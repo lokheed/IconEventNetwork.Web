@@ -1,0 +1,109 @@
+trigger:
+  branches:
+    include: [main]
+
+variables:
+  projectRoot: '$(Build.SourcesDirectory)'
+
+stages:
+- stage: BuildApp
+  displayName: 'Build App'
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: BuildApp
+    displayName: 'Build App'
+    dependsOn: []
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node.js'
+        inputs:
+          versionSpec: '16.x'
+
+      - script: |
+          npm install
+          npm run build
+        displayName: 'npm install and build'
+        workingDirectory: 'iconeventnetwork-web'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: StencilJS files'
+        inputs:
+          PathtoPublish: '$(projectRoot)/iconeventnetwork-web/www'
+          ArtifactName: 'app'
+          publishLocation: 'Container'
+
+- stage: DeployAppQA
+  dependsOn: BuildApp
+  displayName: Deploy app to QA
+  jobs:
+    - deployment: DeployAppQA
+      displayName: Deploy app to QA
+      environment:
+       name: AWS-QA
+       resourceType: VirtualMachine
+      pool:
+        vmImage: ubuntu-latest
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+              - download: current
+                artifact: 'app'
+              
+              - task: Bash@3
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Starting deployment script run"
+                    cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+- stage: DeployAppStaging
+  dependsOn: DeployAppQA
+  displayName: Deploy app to staging
+  jobs:
+    - deployment: DeployAppStaging
+      displayName: Deploy app to staging
+      environment:
+       name: AWS-STG
+       resourceType: VirtualMachine
+      pool:
+        vmImage: ubuntu-latest
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+              - download: current
+                artifact: 'app'
+              
+              - task: Bash@3
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Starting deployment script run"
+                    cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+- stage: DeployAppProduction
+  dependsOn: DeployAppStaging
+  displayName: Deploy app to production
+  jobs:
+    - deployment: DeployAppProduction
+      displayName: Deploy app to production
+      environment:
+       name: AWS-PROD
+       resourceType: VirtualMachine
+      pool:
+        vmImage: ubuntu-latest
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+              - download: current
+                artifact: 'app'
+              
+              - task: Bash@3
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Starting deployment script run"
+                    cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
