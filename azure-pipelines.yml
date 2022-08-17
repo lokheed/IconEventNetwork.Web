@@ -52,11 +52,19 @@ stages:
                 artifact: 'app'
               
               - task: Bash@3
+                displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+              - task: Bash@3
+                displayName: Restart NGINX
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    sudo systemctl reload nginx
 
 - stage: DeployAppStaging
   dependsOn: DeployAppQA
@@ -77,11 +85,19 @@ stages:
                 artifact: 'app'
               
               - task: Bash@3
+                displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+              - task: Bash@3
+                displayName: Restart NGINX
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    sudo systemctl reload nginx
 
 - stage: DeployAppProduction
   dependsOn: DeployAppStaging
@@ -102,8 +118,16 @@ stages:
                 artifact: 'app'
               
               - task: Bash@3
+                displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+              - task: Bash@3
+                displayName: Restart NGINX
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    sudo systemctl reload nginx
