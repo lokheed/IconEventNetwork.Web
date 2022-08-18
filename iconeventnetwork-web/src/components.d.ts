@@ -7,7 +7,15 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil-community/router";
 export namespace Components {
+    interface AppDashboard {
+    }
+    interface AppDestinations {
+    }
+    interface AppDirectory {
+    }
     interface AppHome {
+    }
+    interface AppJoin {
     }
     interface AppProfile {
         "match": MatchResults;
@@ -16,11 +24,35 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAppDashboardElement extends Components.AppDashboard, HTMLStencilElement {
+    }
+    var HTMLAppDashboardElement: {
+        prototype: HTMLAppDashboardElement;
+        new (): HTMLAppDashboardElement;
+    };
+    interface HTMLAppDestinationsElement extends Components.AppDestinations, HTMLStencilElement {
+    }
+    var HTMLAppDestinationsElement: {
+        prototype: HTMLAppDestinationsElement;
+        new (): HTMLAppDestinationsElement;
+    };
+    interface HTMLAppDirectoryElement extends Components.AppDirectory, HTMLStencilElement {
+    }
+    var HTMLAppDirectoryElement: {
+        prototype: HTMLAppDirectoryElement;
+        new (): HTMLAppDirectoryElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
         prototype: HTMLAppHomeElement;
         new (): HTMLAppHomeElement;
+    };
+    interface HTMLAppJoinElement extends Components.AppJoin, HTMLStencilElement {
+    }
+    var HTMLAppJoinElement: {
+        prototype: HTMLAppJoinElement;
+        new (): HTMLAppJoinElement;
     };
     interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
     }
@@ -35,13 +67,25 @@ declare global {
         new (): HTMLAppRootElement;
     };
     interface HTMLElementTagNameMap {
+        "app-dashboard": HTMLAppDashboardElement;
+        "app-destinations": HTMLAppDestinationsElement;
+        "app-directory": HTMLAppDirectoryElement;
         "app-home": HTMLAppHomeElement;
+        "app-join": HTMLAppJoinElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppDashboard {
+    }
+    interface AppDestinations {
+    }
+    interface AppDirectory {
+    }
     interface AppHome {
+    }
+    interface AppJoin {
     }
     interface AppProfile {
         "match"?: MatchResults;
@@ -49,7 +93,11 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface IntrinsicElements {
+        "app-dashboard": AppDashboard;
+        "app-destinations": AppDestinations;
+        "app-directory": AppDirectory;
         "app-home": AppHome;
+        "app-join": AppJoin;
         "app-profile": AppProfile;
         "app-root": AppRoot;
     }
@@ -58,7 +106,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-dashboard": LocalJSX.AppDashboard & JSXBase.HTMLAttributes<HTMLAppDashboardElement>;
+            "app-destinations": LocalJSX.AppDestinations & JSXBase.HTMLAttributes<HTMLAppDestinationsElement>;
+            "app-directory": LocalJSX.AppDirectory & JSXBase.HTMLAttributes<HTMLAppDirectoryElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
+            "app-join": LocalJSX.AppJoin & JSXBase.HTMLAttributes<HTMLAppJoinElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
         }

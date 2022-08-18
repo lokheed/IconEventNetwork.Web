@@ -16,7 +16,10 @@
     "@types/jest": "^27.0.3",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^16.1.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^4.22.6"
+  }
 }
