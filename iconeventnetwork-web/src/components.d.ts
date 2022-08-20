@@ -7,53 +7,23 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil-community/router";
 export namespace Components {
-    interface AppDashboard {
-    }
-    interface AppDestinations {
-    }
-    interface AppDirectory {
-    }
-    interface AppHome {
-    }
-    interface AppJoin {
-    }
     interface AppProfile {
         "match": MatchResults;
     }
     interface AppRoot {
     }
+    interface PageDashboard {
+    }
+    interface PageDestinations {
+    }
+    interface PageDirectory {
+    }
+    interface PageHome {
+    }
+    interface PageJoin {
+    }
 }
 declare global {
-    interface HTMLAppDashboardElement extends Components.AppDashboard, HTMLStencilElement {
-    }
-    var HTMLAppDashboardElement: {
-        prototype: HTMLAppDashboardElement;
-        new (): HTMLAppDashboardElement;
-    };
-    interface HTMLAppDestinationsElement extends Components.AppDestinations, HTMLStencilElement {
-    }
-    var HTMLAppDestinationsElement: {
-        prototype: HTMLAppDestinationsElement;
-        new (): HTMLAppDestinationsElement;
-    };
-    interface HTMLAppDirectoryElement extends Components.AppDirectory, HTMLStencilElement {
-    }
-    var HTMLAppDirectoryElement: {
-        prototype: HTMLAppDirectoryElement;
-        new (): HTMLAppDirectoryElement;
-    };
-    interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
-    }
-    var HTMLAppHomeElement: {
-        prototype: HTMLAppHomeElement;
-        new (): HTMLAppHomeElement;
-    };
-    interface HTMLAppJoinElement extends Components.AppJoin, HTMLStencilElement {
-    }
-    var HTMLAppJoinElement: {
-        prototype: HTMLAppJoinElement;
-        new (): HTMLAppJoinElement;
-    };
     interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
     }
     var HTMLAppProfileElement: {
@@ -66,53 +36,83 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLPageDashboardElement extends Components.PageDashboard, HTMLStencilElement {
+    }
+    var HTMLPageDashboardElement: {
+        prototype: HTMLPageDashboardElement;
+        new (): HTMLPageDashboardElement;
+    };
+    interface HTMLPageDestinationsElement extends Components.PageDestinations, HTMLStencilElement {
+    }
+    var HTMLPageDestinationsElement: {
+        prototype: HTMLPageDestinationsElement;
+        new (): HTMLPageDestinationsElement;
+    };
+    interface HTMLPageDirectoryElement extends Components.PageDirectory, HTMLStencilElement {
+    }
+    var HTMLPageDirectoryElement: {
+        prototype: HTMLPageDirectoryElement;
+        new (): HTMLPageDirectoryElement;
+    };
+    interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {
+    }
+    var HTMLPageHomeElement: {
+        prototype: HTMLPageHomeElement;
+        new (): HTMLPageHomeElement;
+    };
+    interface HTMLPageJoinElement extends Components.PageJoin, HTMLStencilElement {
+    }
+    var HTMLPageJoinElement: {
+        prototype: HTMLPageJoinElement;
+        new (): HTMLPageJoinElement;
+    };
     interface HTMLElementTagNameMap {
-        "app-dashboard": HTMLAppDashboardElement;
-        "app-destinations": HTMLAppDestinationsElement;
-        "app-directory": HTMLAppDirectoryElement;
-        "app-home": HTMLAppHomeElement;
-        "app-join": HTMLAppJoinElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "page-dashboard": HTMLPageDashboardElement;
+        "page-destinations": HTMLPageDestinationsElement;
+        "page-directory": HTMLPageDirectoryElement;
+        "page-home": HTMLPageHomeElement;
+        "page-join": HTMLPageJoinElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppDashboard {
-    }
-    interface AppDestinations {
-    }
-    interface AppDirectory {
-    }
-    interface AppHome {
-    }
-    interface AppJoin {
-    }
     interface AppProfile {
         "match"?: MatchResults;
     }
     interface AppRoot {
     }
+    interface PageDashboard {
+    }
+    interface PageDestinations {
+    }
+    interface PageDirectory {
+    }
+    interface PageHome {
+    }
+    interface PageJoin {
+    }
     interface IntrinsicElements {
-        "app-dashboard": AppDashboard;
-        "app-destinations": AppDestinations;
-        "app-directory": AppDirectory;
-        "app-home": AppHome;
-        "app-join": AppJoin;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "page-dashboard": PageDashboard;
+        "page-destinations": PageDestinations;
+        "page-directory": PageDirectory;
+        "page-home": PageHome;
+        "page-join": PageJoin;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-dashboard": LocalJSX.AppDashboard & JSXBase.HTMLAttributes<HTMLAppDashboardElement>;
-            "app-destinations": LocalJSX.AppDestinations & JSXBase.HTMLAttributes<HTMLAppDestinationsElement>;
-            "app-directory": LocalJSX.AppDirectory & JSXBase.HTMLAttributes<HTMLAppDirectoryElement>;
-            "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
-            "app-join": LocalJSX.AppJoin & JSXBase.HTMLAttributes<HTMLAppJoinElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
+            "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
+            "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
+            "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
+            "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
         }
     }
 }

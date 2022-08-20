@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('app-join', () => {
+describe('page-destinations', () => {
   it('renders', async () => {
     const page = await newE2EPage();
-    await page.setContent('<app-join></app-join>');
+    await page.setContent('<page-destinations></page-destinations>');
 
-    const element = await page.find('app-join');
+    const element = await page.find('page-destinations');
     expect(element).toHaveClass('hydrated');
   });
 });
