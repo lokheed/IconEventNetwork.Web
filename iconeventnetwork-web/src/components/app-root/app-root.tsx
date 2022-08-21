@@ -12,13 +12,7 @@ export class AppRoot {
         <header>
           <h1>Icon Event Network</h1>
         </header>
-        <ul class="navigation">
-          <li><stencil-route-link url="/" exact={true}>Why Icon?</stencil-route-link></li>
-          <li><stencil-route-link url="/dashboard">Dashboard</stencil-route-link></li>
-          <li><stencil-route-link url="/directory">Directory</stencil-route-link></li>
-          <li><stencil-route-link url="/destinations">Destinations</stencil-route-link></li>
-          <li><stencil-route-link url="/join">Join the Network</stencil-route-link></li>
-        </ul>
+        <app-navigation></app-navigation>
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>

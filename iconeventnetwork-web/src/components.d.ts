@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil-community/router";
 export namespace Components {
+    interface AppNavigation {
+    }
     interface AppProfile {
         "match": MatchResults;
     }
@@ -24,6 +26,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAppNavigationElement extends Components.AppNavigation, HTMLStencilElement {
+    }
+    var HTMLAppNavigationElement: {
+        prototype: HTMLAppNavigationElement;
+        new (): HTMLAppNavigationElement;
+    };
     interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
     }
     var HTMLAppProfileElement: {
@@ -67,6 +75,7 @@ declare global {
         new (): HTMLPageJoinElement;
     };
     interface HTMLElementTagNameMap {
+        "app-navigation": HTMLAppNavigationElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
         "page-dashboard": HTMLPageDashboardElement;
@@ -77,6 +86,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppNavigation {
+    }
     interface AppProfile {
         "match"?: MatchResults;
     }
@@ -93,6 +104,7 @@ declare namespace LocalJSX {
     interface PageJoin {
     }
     interface IntrinsicElements {
+        "app-navigation": AppNavigation;
         "app-profile": AppProfile;
         "app-root": AppRoot;
         "page-dashboard": PageDashboard;
@@ -106,6 +118,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
