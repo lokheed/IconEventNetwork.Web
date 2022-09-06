@@ -6,6 +6,7 @@ import { RouterHistory } from '@stencil-community/router';
   styleUrl: 'app-login-button.css',
   shadow: true,
 })
+
 export class AppLoginButton {
   @Prop() isAuthenticated!: boolean;
   @Prop() strapiBaseUrl!: string;
