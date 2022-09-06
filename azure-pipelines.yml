@@ -57,9 +57,9 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/'*
-                    rm '/var/www/html/build/'*
-                    rm '/var/www/html/'*
+                    rm '/var/www/html/assets/icon/*'
+                    rm '/var/www/html/build/*'
+                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -93,9 +93,9 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/'*
-                    rm '/var/www/html/build/'*
-                    rm '/var/www/html/'*
+                    rm '/var/www/html/assets/icon/*'
+                    rm '/var/www/html/build/*'
+                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -129,9 +129,9 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/'*
-                    rm '/var/www/html/build/'*
-                    rm '/var/www/html/'*
+                    rm '/var/www/html/assets/icon/*'
+                    rm '/var/www/html/build/*'
+                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
