@@ -51,15 +51,19 @@ stages:
               - download: current
                 artifact: 'app'
               
+              - task: DeleteFiles@1
+                displayName: Delete existing files
+                inputs: 
+                  contents: |
+                    /var/www/html/assets/icon/*
+                    /var/www/html/build/*
+                    /var/www/html/*
               - task: Bash@3
                 displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/*'
-                    rm '/var/www/html/build/*'
-                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -86,6 +90,13 @@ stages:
             steps:
               - download: current
                 artifact: 'app'
+              - task: DeleteFiles@1
+                displayName: Delete existing files
+                inputs: 
+                  contents: |
+                    /var/www/html/assets/icon/*
+                    /var/www/html/build/*
+                    /var/www/html/*
               
               - task: Bash@3
                 displayName: Copy files
@@ -93,9 +104,6 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/*'
-                    rm '/var/www/html/build/*'
-                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -123,15 +131,19 @@ stages:
               - download: current
                 artifact: 'app'
               
+              - task: DeleteFiles@1
+                displayName: Delete existing files
+                inputs: 
+                  contents: |
+                    /var/www/html/assets/icon/*
+                    /var/www/html/build/*
+                    /var/www/html/*
               - task: Bash@3
                 displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
                     echo "Starting deployment script run"
-                    rm '/var/www/html/assets/icon/*'
-                    rm '/var/www/html/build/*'
-                    rm '/var/www/html/*'
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
