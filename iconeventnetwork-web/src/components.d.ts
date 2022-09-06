@@ -5,38 +5,56 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults } from "@stencil-community/router";
+import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
-    interface AppNavigation {
+    interface AppLoginButton {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
     }
-    interface AppProfile {
-        "match": MatchResults;
+    interface AppNavigation {
+        "isAuthenticated": boolean;
     }
     interface AppRoot {
+        "isAuthenticated": boolean;
     }
     interface PageDashboard {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageDestinations {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageDirectory {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageHome {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
     }
     interface PageJoin {
+        "history": RouterHistory;
+        "isAuthenticated": boolean;
+    }
+    interface PageLoginRedirect {
+        "strapiBaseUrl": string;
     }
 }
 declare global {
+    interface HTMLAppLoginButtonElement extends Components.AppLoginButton, HTMLStencilElement {
+    }
+    var HTMLAppLoginButtonElement: {
+        prototype: HTMLAppLoginButtonElement;
+        new (): HTMLAppLoginButtonElement;
+    };
     interface HTMLAppNavigationElement extends Components.AppNavigation, HTMLStencilElement {
     }
     var HTMLAppNavigationElement: {
         prototype: HTMLAppNavigationElement;
         new (): HTMLAppNavigationElement;
-    };
-    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
-    }
-    var HTMLAppProfileElement: {
-        prototype: HTMLAppProfileElement;
-        new (): HTMLAppProfileElement;
     };
     interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
     }
@@ -74,58 +92,85 @@ declare global {
         prototype: HTMLPageJoinElement;
         new (): HTMLPageJoinElement;
     };
+    interface HTMLPageLoginRedirectElement extends Components.PageLoginRedirect, HTMLStencilElement {
+    }
+    var HTMLPageLoginRedirectElement: {
+        prototype: HTMLPageLoginRedirectElement;
+        new (): HTMLPageLoginRedirectElement;
+    };
     interface HTMLElementTagNameMap {
+        "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
-        "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
         "page-dashboard": HTMLPageDashboardElement;
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
+        "page-login-redirect": HTMLPageLoginRedirectElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppNavigation {
+    interface AppLoginButton {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
     }
-    interface AppProfile {
-        "match"?: MatchResults;
+    interface AppNavigation {
+        "isAuthenticated": boolean;
     }
     interface AppRoot {
+        "isAuthenticated"?: boolean;
     }
     interface PageDashboard {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageDestinations {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageDirectory {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
     }
     interface PageHome {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
     }
     interface PageJoin {
+        "history"?: RouterHistory;
+        "isAuthenticated": boolean;
+    }
+    interface PageLoginRedirect {
+        "strapiBaseUrl": string;
     }
     interface IntrinsicElements {
+        "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
-        "app-profile": AppProfile;
         "app-root": AppRoot;
         "page-dashboard": PageDashboard;
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
         "page-home": PageHome;
         "page-join": PageJoin;
+        "page-login-redirect": PageLoginRedirect;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
-            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
+            "page-login-redirect": LocalJSX.PageLoginRedirect & JSXBase.HTMLAttributes<HTMLPageLoginRedirectElement>;
         }
     }
 }

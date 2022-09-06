@@ -1,4 +1,5 @@
-import { Component, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
+import { RouterHistory } from '@stencil-community/router';
 
 @Component({
   tag: 'page-directory',
@@ -6,6 +7,14 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class PageDirectory {
+  @Prop() isAuthenticated!: boolean;
+  @Prop() history: RouterHistory;
+
+  componentWillRender() {
+    if (!this.isAuthenticated) {
+      this.history.replace('/', {});
+    }
+  } 
 
   render() {
     return (
