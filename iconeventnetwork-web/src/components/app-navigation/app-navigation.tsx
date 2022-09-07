@@ -59,6 +59,14 @@ export class AppNavigation {
         </li>
         <li>
           <stencil-route-link 
+            url="/" 
+            activeClass="link-active" 
+            exact={true}>
+              Foo
+          </stencil-route-link>
+        </li>        
+        <li>
+          <stencil-route-link 
             url="/join" 
             activeClass="link-active">
               Join the Network
