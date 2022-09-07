@@ -55,9 +55,7 @@ stages:
                 displayName: Delete existing files
                 inputs: 
                   contents: |
-                    /var/www/html/assets/icon/*
-                    /var/www/html/build/*
-                    /var/www/html/*
+                    **/www/html/*
               - task: Bash@3
                 displayName: Copy files
                 inputs:
