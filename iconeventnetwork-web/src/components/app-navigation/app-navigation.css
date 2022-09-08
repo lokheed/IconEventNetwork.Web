@@ -2,18 +2,18 @@
   display: block;
 }
 
-ul.navigation {
+nav > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-ul.navigation li {
+nav > ul li {
   float: left;
 }
 
-ul.navigation li a {
+nav > ul li a {
   display: block;
   color: white;
   text-align: center;
@@ -22,17 +22,17 @@ ul.navigation li a {
   background-color: #333333;
 }
 
-ul.navigation li a.link-active {
+nav > ul li a.link-active {
   color: #333333;
   background-color: white;
 }
 
-ul.navigation li a:hover {
+nav > ul li a:hover {
   color: white;
   background-color: #111111;
 }
 
-ul.navigation li a.link-active:hover {
+nav > ul li a.link-active:hover {
   color: #333333;
   background-color: #eeeeee;
 }
