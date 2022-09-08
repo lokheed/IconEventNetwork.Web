@@ -51,17 +51,20 @@ stages:
               - download: current
                 artifact: 'app'
               
-              - task: DeleteFiles@1
-                displayName: Delete existing files
-                inputs: 
-                  contents: |
-                    **/www/html/*
+              - task: Bash@3
+                displayName: Delete previous files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Delete previous app files"
+                    rm -rf '/var/www/html/'*
+
               - task: Bash@3
                 displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
-                    echo "Starting deployment script run"
+                    echo "Copy app files"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -88,20 +91,20 @@ stages:
             steps:
               - download: current
                 artifact: 'app'
-              - task: DeleteFiles@1
-                displayName: Delete existing files
-                inputs: 
-                  contents: |
-                    /var/www/html/assets/icon/*
-                    /var/www/html/build/*
-                    /var/www/html/*
+              - task: Bash@3
+                displayName: Delete previous files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Delete previous app files"
+                    rm -rf '/var/www/html/'*
               
               - task: Bash@3
                 displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
-                    echo "Starting deployment script run"
+                    echo "Copy app files"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
@@ -129,19 +132,19 @@ stages:
               - download: current
                 artifact: 'app'
               
-              - task: DeleteFiles@1
-                displayName: Delete existing files
-                inputs: 
-                  contents: |
-                    /var/www/html/assets/icon/*
-                    /var/www/html/build/*
-                    /var/www/html/*
+              - task: Bash@3
+                displayName: Delete previous files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Delete previous app files"
+                    rm -rf '/var/www/html/'*
               - task: Bash@3
                 displayName: Copy files
                 inputs:
                   targetType: 'inline'
                   script: |
-                    echo "Starting deployment script run"
+                    echo "Copy app files"
                     cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
 
               - task: Bash@3
