@@ -24,19 +24,21 @@ export class AppLoginButton {
     
     if (this.isAuthenticated) {
       return (
-        <div class='login-logout-button'>
+        <div>
           <a onClick={logout}>
-            <button>Log Out</button>
-          </a>
-        </div>  
+            Log Out
+          </a> 
+        </div>
+
       );  
     } else {
       return (
-        <div class='login-logout-button'>
+        <div>
           <a href={loginUrl}>
-            <button>Log In</button>
+            Log In
           </a>
-        </div>  
+        </div>
+
       );  
     }
 

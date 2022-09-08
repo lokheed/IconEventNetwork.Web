@@ -18,7 +18,7 @@ export class AppNavigation {
                 url="/" 
                 activeClass="link-active" 
                 exact={true}>
-                  Why Icon?
+                  Who We Are
               </stencil-route-link>
             </li>
             
@@ -26,22 +26,22 @@ export class AppNavigation {
               <stencil-route-link 
                 url="/dashboard" 
                 activeClass="link-active">
-                  Dashboard
+                  Event Planners
               </stencil-route-link>
             </li>
             <li>
               <stencil-route-link 
                 url="/directory" 
                 activeClass="link-active">
-                  Directory
+                  About Us
               </stencil-route-link>
             </li>
             <li>
               <stencil-route-link 
-                url="/destinations" 
+                url="/join" 
                 activeClass="link-active">
-                  Destinations
-              </stencil-route-link>
+                  Join the Network
+                </stencil-route-link>
             </li>
           </ul>
         </nav>
@@ -57,9 +57,24 @@ export class AppNavigation {
               url="/" 
               activeClass="link-active" 
               exact={true}>
-                Why Icon?
+                Who We Are
             </stencil-route-link>
-          </li>      
+          </li>
+          
+          <li>
+            <stencil-route-link 
+              url="/dashboard" 
+              activeClass="link-active">
+                Event Planners
+            </stencil-route-link>
+          </li>
+          <li>
+            <stencil-route-link 
+              url="/directory" 
+              activeClass="link-active">
+                About Us
+            </stencil-route-link>
+          </li>
           <li>
             <stencil-route-link 
               url="/join" 

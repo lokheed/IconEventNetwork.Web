@@ -7,6 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
+    interface AppHeader {
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
+    }
     interface AppLoginButton {
         "history": RouterHistory;
         "isAuthenticated": boolean;
@@ -32,8 +36,6 @@ export namespace Components {
     }
     interface PageHome {
         "history": RouterHistory;
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface PageJoin {
         "history": RouterHistory;
@@ -44,6 +46,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {
+    }
+    var HTMLAppHeaderElement: {
+        prototype: HTMLAppHeaderElement;
+        new (): HTMLAppHeaderElement;
+    };
     interface HTMLAppLoginButtonElement extends Components.AppLoginButton, HTMLStencilElement {
     }
     var HTMLAppLoginButtonElement: {
@@ -99,6 +107,7 @@ declare global {
         new (): HTMLPageLoginRedirectElement;
     };
     interface HTMLElementTagNameMap {
+        "app-header": HTMLAppHeaderElement;
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
@@ -111,6 +120,10 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppHeader {
+        "isAuthenticated": boolean;
+        "strapiBaseUrl": string;
+    }
     interface AppLoginButton {
         "history"?: RouterHistory;
         "isAuthenticated": boolean;
@@ -136,8 +149,6 @@ declare namespace LocalJSX {
     }
     interface PageHome {
         "history"?: RouterHistory;
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface PageJoin {
         "history"?: RouterHistory;
@@ -147,6 +158,7 @@ declare namespace LocalJSX {
         "strapiBaseUrl": string;
     }
     interface IntrinsicElements {
+        "app-header": AppHeader;
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
@@ -162,6 +174,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;

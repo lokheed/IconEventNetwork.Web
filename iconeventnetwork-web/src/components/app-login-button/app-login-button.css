@@ -1,5 +1,22 @@
+div {
+  margin-top: 35px;
+}
 
-.login-logout-button {
-  float: right;
-  margin-right: 50px;
+div > a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: small;
+  font-weight: 600;  
+  border: 2px solid #fff;
+  padding: 5px;
+}
+
+div > a.link-active {
+  font-weight: 600;
+}
+
+div > a:hover {
+  font-weight: 600;
+  color: #fff;
 }
