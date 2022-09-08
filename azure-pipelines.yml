@@ -57,7 +57,7 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Delete previous app files"
-                    rm -rf '/var/www/html/'*
+                    sudo rm -rf '/var/www/html/'*
 
               - task: Bash@3
                 displayName: Copy files
@@ -97,7 +97,7 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Delete previous app files"
-                    rm -rf '/var/www/html/'*
+                    sudo rm -rf '/var/www/html/'*
               
               - task: Bash@3
                 displayName: Copy files
@@ -138,7 +138,7 @@ stages:
                   targetType: 'inline'
                   script: |
                     echo "Delete previous app files"
-                    rm -rf '/var/www/html/'*
+                    sudo rm -rf '/var/www/html/'*
               - task: Bash@3
                 displayName: Copy files
                 inputs:
