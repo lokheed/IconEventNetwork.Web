@@ -13,13 +13,14 @@ nav ul li a {
   text-transform: uppercase;
   color: #fff;
   font-size: small;
+  font-weight: 300;
 }
 
 nav > ul li a.link-active {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 nav > ul li a:hover {
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
 }

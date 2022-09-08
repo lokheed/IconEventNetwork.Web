@@ -6,3 +6,9 @@ header {
   color: #fff;
   height: 62px;
 }
+
+.logo-container > h1 {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
