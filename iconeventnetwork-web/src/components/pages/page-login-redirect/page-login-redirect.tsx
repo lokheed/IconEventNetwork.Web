@@ -1,20 +1,22 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'page-login-redirect',
   styleUrl: 'page-login-redirect.css',
   shadow: true,
 })
-export class PageLoginRedirect {
-  @Prop() strapiBaseUrl!: string;
-  @State() text: string = 'Loading...';
-
+export class PageLoginRedirect {;
   render() {
-    var currentText = this.text;
+    var currentText = 'Loading...';
+    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
+    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+
 
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
-    fetch(`${this.strapiBaseUrl}/api/auth/cognito/callback${window.location.search}`)
+    fetch(`${strapiBaseUrl}/api/auth/cognito/callback${window.location.search}`)
       .then(res => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);

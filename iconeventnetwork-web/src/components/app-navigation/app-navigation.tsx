@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'app-navigation',
@@ -7,9 +7,9 @@ import { Component, Prop, h } from '@stencil/core';
 })
 
 export class AppNavigation {
-  @Prop() isAuthenticated!: boolean;
   render() {
-    if (this.isAuthenticated) {
+    var isAuthenticated = !!localStorage.getItem('jwt');
+    if (isAuthenticated) {
       return (
         <nav>
           <ul>
@@ -36,13 +36,6 @@ export class AppNavigation {
                   About Us
               </stencil-route-link>
             </li>
-            <li>
-              <stencil-route-link 
-                url="/join" 
-                activeClass="link-active">
-                  Join the Network
-                </stencil-route-link>
-            </li>
           </ul>
         </nav>
       );
@@ -58,21 +51,6 @@ export class AppNavigation {
               activeClass="link-active" 
               exact={true}>
                 Who We Are
-            </stencil-route-link>
-          </li>
-          
-          <li>
-            <stencil-route-link 
-              url="/dashboard" 
-              activeClass="link-active">
-                Event Planners
-            </stencil-route-link>
-          </li>
-          <li>
-            <stencil-route-link 
-              url="/directory" 
-              activeClass="link-active">
-                About Us
             </stencil-route-link>
           </li>
           <li>

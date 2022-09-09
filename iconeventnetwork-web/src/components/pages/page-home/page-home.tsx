@@ -1,5 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
-import { RouterHistory } from '@stencil-community/router';
+import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-home',
@@ -7,8 +6,7 @@ import { RouterHistory } from '@stencil-community/router';
   shadow: true,
 })
 export class PageHome {
-  @Prop() history: RouterHistory;
-  
+
   render() {
     return (
       <Host>
@@ -42,5 +40,4 @@ export class PageHome {
       </Host>
     );
   }
-
 }

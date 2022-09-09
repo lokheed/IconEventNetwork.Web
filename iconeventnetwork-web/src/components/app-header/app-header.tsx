@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'app-header',
@@ -6,18 +6,15 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class AppHeader {
-  @Prop() isAuthenticated!: boolean;
-  @Prop() strapiBaseUrl!: string;
-
   render() {
     return (
       <header>
         <div class='logo-container'>
           <h1>Icon Event Network</h1>
         </div>
-        <app-navigation isAuthenticated={this.isAuthenticated} ></app-navigation>
+        <app-navigation></app-navigation>
         <div class='user-container'>
-          <app-login-button isAuthenticated={this.isAuthenticated} strapiBaseUrl={this.strapiBaseUrl}></app-login-button>
+          <app-login-button></app-login-button>
         </div>
      </header>
     );

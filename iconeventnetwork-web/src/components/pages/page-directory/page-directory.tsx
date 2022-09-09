@@ -7,11 +7,11 @@ import { RouterHistory } from '@stencil-community/router';
   shadow: true,
 })
 export class PageDirectory {
-  @Prop() isAuthenticated!: boolean;
   @Prop() history: RouterHistory;
 
   componentWillRender() {
-    if (!this.isAuthenticated) {
+    var isAuthenticated = !!localStorage.getItem('jwt');       
+    if (!isAuthenticated) {
       this.history.replace('/', {});
     }
   } 

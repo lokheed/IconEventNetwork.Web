@@ -1,19 +1,18 @@
-import { Component, Prop, h } from '@stencil/core';
-import { RouterHistory } from '@stencil-community/router';
-
+import { Component, h } from '@stencil/core';
 @Component({
   tag: 'app-login-button',
   styleUrl: 'app-login-button.css',
   shadow: true,
 })
 
-export class AppLoginButton {
-  @Prop() isAuthenticated!: boolean;
-  @Prop() strapiBaseUrl!: string;
-  @Prop() history: RouterHistory;
-  
+export class AppLoginButton { 
   render() {
-    const loginUrl = this.strapiBaseUrl + '/api/connect/cognito';
+    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
+    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+
+    const loginUrl = strapiBaseUrl + '/api/connect/cognito';
 
     const logout = (e) => {
       e.preventDefault();
@@ -22,7 +21,8 @@ export class AppLoginButton {
       window.location.replace('/')
     };    
     
-    if (this.isAuthenticated) {
+    var isAuthenticated = !!localStorage.getItem('jwt');    
+    if (isAuthenticated) {
       return (
         <div>
           <a onClick={logout}>

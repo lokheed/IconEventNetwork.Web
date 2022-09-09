@@ -8,41 +8,28 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
     interface AppHeader {
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface AppLoginButton {
-        "history": RouterHistory;
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface AppNavigation {
-        "isAuthenticated": boolean;
     }
     interface AppRoot {
-        "isAuthenticated": boolean;
     }
     interface PageDashboard {
         "history": RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageDestinations {
         "history": RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageDirectory {
         "history": RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageHome {
-        "history": RouterHistory;
     }
     interface PageJoin {
         "history": RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageLoginRedirect {
-        "strapiBaseUrl": string;
     }
 }
 declare global {
@@ -121,41 +108,28 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppHeader {
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface AppLoginButton {
-        "history"?: RouterHistory;
-        "isAuthenticated": boolean;
-        "strapiBaseUrl": string;
     }
     interface AppNavigation {
-        "isAuthenticated": boolean;
     }
     interface AppRoot {
-        "isAuthenticated"?: boolean;
     }
     interface PageDashboard {
         "history"?: RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageDestinations {
         "history"?: RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageDirectory {
         "history"?: RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageHome {
-        "history"?: RouterHistory;
     }
     interface PageJoin {
         "history"?: RouterHistory;
-        "isAuthenticated": boolean;
     }
     interface PageLoginRedirect {
-        "strapiBaseUrl": string;
     }
     interface IntrinsicElements {
         "app-header": AppHeader;
