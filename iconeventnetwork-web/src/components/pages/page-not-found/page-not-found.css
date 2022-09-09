@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  font-family: 'Montserrat';
+}
+
+.hero {
+  min-height: 800px;
+  background: 
+    linear-gradient(rgba(121, 103, 91,1) 5%, rgba(121, 103, 91,0.5) 25%, rgba(121, 103, 91,0) 50%),
+    url('https://qa-icon-strapi.s3.amazonaws.com/TIN_Hero_d030d67dc0.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    color: #fff;
+    position: relative;
+}
+
+.hero p {
+  color: #fff;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  font-size: 3em;
+  padding-top: 1.5em;
+  margin: 0;
+}
+
+p {
+  color: #000;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.5em;
+  width: 45%;
+  margin: auto;
+  padding-top: 1.5em;
+}

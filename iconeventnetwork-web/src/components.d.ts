@@ -31,6 +31,8 @@ export namespace Components {
     }
     interface PageLoginRedirect {
     }
+    interface PageNotFound {
+    }
 }
 declare global {
     interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {
@@ -93,6 +95,12 @@ declare global {
         prototype: HTMLPageLoginRedirectElement;
         new (): HTMLPageLoginRedirectElement;
     };
+    interface HTMLPageNotFoundElement extends Components.PageNotFound, HTMLStencilElement {
+    }
+    var HTMLPageNotFoundElement: {
+        prototype: HTMLPageNotFoundElement;
+        new (): HTMLPageNotFoundElement;
+    };
     interface HTMLElementTagNameMap {
         "app-header": HTMLAppHeaderElement;
         "app-login-button": HTMLAppLoginButtonElement;
@@ -104,6 +112,7 @@ declare global {
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
         "page-login-redirect": HTMLPageLoginRedirectElement;
+        "page-not-found": HTMLPageNotFoundElement;
     }
 }
 declare namespace LocalJSX {
@@ -131,6 +140,8 @@ declare namespace LocalJSX {
     }
     interface PageLoginRedirect {
     }
+    interface PageNotFound {
+    }
     interface IntrinsicElements {
         "app-header": AppHeader;
         "app-login-button": AppLoginButton;
@@ -142,6 +153,7 @@ declare namespace LocalJSX {
         "page-home": PageHome;
         "page-join": PageJoin;
         "page-login-redirect": PageLoginRedirect;
+        "page-not-found": PageNotFound;
     }
 }
 export { LocalJSX as JSX };
@@ -158,6 +170,7 @@ declare module "@stencil/core" {
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
             "page-login-redirect": LocalJSX.PageLoginRedirect & JSXBase.HTMLAttributes<HTMLPageLoginRedirectElement>;
+            "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
         }
     }
 }
