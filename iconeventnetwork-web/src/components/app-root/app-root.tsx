@@ -18,6 +18,7 @@ export class AppRoot {
             <stencil-route url="/destinations" component="page-destinations" />
             <stencil-route url="/join" component="page-join" />
             <stencil-route url="/page-login-redirect" component='page-login-redirect' />
+            <stencil-route url="/demo" component="page-demo" />
             <stencil-route component='page-not-found' />
          </stencil-route-switch>
         </stencil-router>

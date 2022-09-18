@@ -19,4 +19,5 @@ div > a.link-active {
 div > a:hover {
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
 }

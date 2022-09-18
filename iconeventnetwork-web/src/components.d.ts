@@ -18,6 +18,21 @@ export namespace Components {
     interface PageDashboard {
         "history": RouterHistory;
     }
+    interface PageDemo {
+        "companyAddressTypeOptions": HTMLElement;
+        "companyEmailAddressTypeOptions": HTMLElement;
+        "companyPhoneNumberTypeOptions": HTMLElement;
+        "history": RouterHistory;
+        "personAddressTypeOptions": HTMLElement;
+        "personCompanyAddressTypeOptions": HTMLElement;
+        "personCompanyEmailAddressTypeOptions": HTMLElement;
+        "personCompanyPhoneNumberTypeOptions": HTMLElement;
+        "personEmailAddressTypeOptions": HTMLElement;
+        "personPhoneNumberTypeOptions": HTMLElement;
+        "prefixesOptions": HTMLElement;
+        "pronounOptions": HTMLElement;
+        "suffixesOptions": HTMLElement;
+    }
     interface PageDestinations {
         "history": RouterHistory;
     }
@@ -65,6 +80,12 @@ declare global {
         prototype: HTMLPageDashboardElement;
         new (): HTMLPageDashboardElement;
     };
+    interface HTMLPageDemoElement extends Components.PageDemo, HTMLStencilElement {
+    }
+    var HTMLPageDemoElement: {
+        prototype: HTMLPageDemoElement;
+        new (): HTMLPageDemoElement;
+    };
     interface HTMLPageDestinationsElement extends Components.PageDestinations, HTMLStencilElement {
     }
     var HTMLPageDestinationsElement: {
@@ -107,6 +128,7 @@ declare global {
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
         "page-dashboard": HTMLPageDashboardElement;
+        "page-demo": HTMLPageDemoElement;
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
         "page-home": HTMLPageHomeElement;
@@ -126,6 +148,21 @@ declare namespace LocalJSX {
     }
     interface PageDashboard {
         "history"?: RouterHistory;
+    }
+    interface PageDemo {
+        "companyAddressTypeOptions"?: HTMLElement;
+        "companyEmailAddressTypeOptions"?: HTMLElement;
+        "companyPhoneNumberTypeOptions"?: HTMLElement;
+        "history"?: RouterHistory;
+        "personAddressTypeOptions"?: HTMLElement;
+        "personCompanyAddressTypeOptions"?: HTMLElement;
+        "personCompanyEmailAddressTypeOptions"?: HTMLElement;
+        "personCompanyPhoneNumberTypeOptions"?: HTMLElement;
+        "personEmailAddressTypeOptions"?: HTMLElement;
+        "personPhoneNumberTypeOptions"?: HTMLElement;
+        "prefixesOptions"?: HTMLElement;
+        "pronounOptions"?: HTMLElement;
+        "suffixesOptions"?: HTMLElement;
     }
     interface PageDestinations {
         "history"?: RouterHistory;
@@ -148,6 +185,7 @@ declare namespace LocalJSX {
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
         "page-dashboard": PageDashboard;
+        "page-demo": PageDemo;
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
         "page-home": PageHome;
@@ -165,6 +203,7 @@ declare module "@stencil/core" {
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
+            "page-demo": LocalJSX.PageDemo & JSXBase.HTMLAttributes<HTMLPageDemoElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
