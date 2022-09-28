@@ -22,6 +22,7 @@ export namespace Components {
         "companyAddressTypeOptions": HTMLElement;
         "companyEmailAddressTypeOptions": HTMLElement;
         "companyPhoneNumberTypeOptions": HTMLElement;
+        "countryOptions": HTMLElement;
         "history": RouterHistory;
         "personAddressTypeOptions": HTMLElement;
         "personCompanyAddressTypeOptions": HTMLElement;
@@ -153,6 +154,7 @@ declare namespace LocalJSX {
         "companyAddressTypeOptions"?: HTMLElement;
         "companyEmailAddressTypeOptions"?: HTMLElement;
         "companyPhoneNumberTypeOptions"?: HTMLElement;
+        "countryOptions"?: HTMLElement;
         "history"?: RouterHistory;
         "personAddressTypeOptions"?: HTMLElement;
         "personCompanyAddressTypeOptions"?: HTMLElement;

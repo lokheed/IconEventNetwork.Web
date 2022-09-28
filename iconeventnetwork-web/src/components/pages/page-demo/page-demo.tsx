@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, State, h } from '@stencil/core';
 import { RouterHistory } from '@stencil-community/router';
 
 @Component({
@@ -20,7 +20,20 @@ export class PageDemo {
   @Prop() personEmailAddressTypeOptions: HTMLElement;
   @Prop() personCompanyEmailAddressTypeOptions: HTMLElement;
   @Prop() companyEmailAddressTypeOptions: HTMLElement;
+  @Prop() countryOptions: HTMLElement;
+  @State() selectedCountry: string;
+  @State() countrySubvivisionOptions: HTMLElement;
+  @State() selectedCountrySubdivision: string;
 
+  handleCountryChange(event) {
+    this.selectedCountry = event.target.value;
+    this.selectedCountrySubdivision = '';
+    this.getCountrySubdivisionOptions();
+  }
+
+  handleCountrySubdivisionChange(event) { 
+    this.selectedCountrySubdivision = event.target.value;
+  }
 
   componentWillLoad() {
     this.getPrefixesOptions();
@@ -35,6 +48,7 @@ export class PageDemo {
     this.getPersonEmailAddressTypeOptions();
     this.getPersonCompanyEmailAddressTypeOptions();
     this.getCompanyEmailAddressTypeOptions();
+    this.getCountryOptions();
   }
 
   componentWillRender() {
@@ -93,6 +107,14 @@ export class PageDemo {
     this.suffixesOptions = suffixesData.map((d) => <option value={d.id}>{d.attributes.Name}</option>);;
   }
   
+  updateCountryOptions(countryData) {
+    this.countryOptions = countryData.map((d) => <option value={d.attributes.A2} selected={this.selectedCountry == d.attributes.A2}>{d.attributes.Name}</option>);
+  }
+
+  updateCountrySubdivisionOptions(countrySubdivisionData) {
+    this.countrySubvivisionOptions = countrySubdivisionData.map((d) => <option value={d.attributes.Code} selected={this.selectedCountrySubdivision == d.attributes.Code}>{d.attributes.Name}</option>);;
+  }
+
   private getOptions() {
     return {  
       method: 'GET',
@@ -222,6 +244,26 @@ export class PageDemo {
     });
   }
 
+  private getCountryOptions() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/countries?filters[IsActive][$eq]=1&pagination[pageSize]=300&sort=SearchableName`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateCountryOptions(res.data);
+    });
+  }
+
+  private getCountrySubdivisionOptions() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/countrysubdivisions?filters[Code][$startsWith]=${this.selectedCountry}&filters[IsActive][$eq]=1&pagination[pageSize]=100&sort=SearchableName`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateCountrySubdivisionOptions(res.data);
+    });
+  }
+
   private getStrapiBaseUrl() {
     var strapiBaseUrl = 'https://api.iconeventnetwork.com';
     if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
@@ -234,6 +276,14 @@ export class PageDemo {
     return (
       <div class="page-demo">
         <h1>Demo</h1>
+        <h2>Country and State/Region</h2>
+        <select onInput={(event) => this.handleCountryChange(event)}><option value='' selected={this.selectedCountry == ''}></option>{this.countryOptions}</select>
+        <br/>
+        <select onInput={(event) => this.handleCountrySubdivisionChange(event)}><option value='' selected={this.selectedCountrySubdivision == ''}></option>{this.countrySubvivisionOptions}</select>
+        <br/>
+        Selected Country ISO A2 Code: {this.selectedCountry}
+        <br/>
+        Selected State/Region ISO Code: {this.selectedCountrySubdivision}
         <h2>Prefix</h2>
         <select><option></option>{this.prefixesOptions}</select>
         <h2>Suffix</h2>
