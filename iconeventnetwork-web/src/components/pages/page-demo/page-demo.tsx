@@ -20,6 +20,9 @@ export class PageDemo {
   @Prop() personEmailAddressTypeOptions: HTMLElement;
   @Prop() personCompanyEmailAddressTypeOptions: HTMLElement;
   @Prop() companyEmailAddressTypeOptions: HTMLElement;
+  @Prop() personSocialMediaTypeOptions: HTMLElement;
+  @Prop() personCompanySocialMediaTypeOptions: HTMLElement;
+  @Prop() companySocialMediaTypeOptions: HTMLElement;
   @Prop() countryOptions: HTMLElement;
   @State() selectedCountry: string;
   @State() countrySubvivisionOptions: HTMLElement;
@@ -48,6 +51,9 @@ export class PageDemo {
     this.getPersonEmailAddressTypeOptions();
     this.getPersonCompanyEmailAddressTypeOptions();
     this.getCompanyEmailAddressTypeOptions();
+    this.getPersonSocialMediaTypeOptions();
+    this.getPersonCompanySocialMediaTypeOptions();
+    this.getCompanySocialMediaTypeOptions();   
     this.getCountryOptions();
   }
 
@@ -92,6 +98,18 @@ export class PageDemo {
   
   updatePersonCompanyPhoneNumberTypeOptions(personCompanyPhoneNumberTypesData) {
     this.personCompanyPhoneNumberTypeOptions = personCompanyPhoneNumberTypesData.map((d) => <option value={d.id}>{d.attributes.Name}</option>);;
+  }
+
+  updateCompanySocialMediaTypeOptions(companySocialMediaTypesData) {
+    this.companySocialMediaTypeOptions = companySocialMediaTypesData.map((d) => <option value={d.id}>{d.attributes.Name}</option>);;
+  }
+
+  updatePersonSocialMediaTypeOptions(personSocialMediaTypesData) {
+    this.personSocialMediaTypeOptions = personSocialMediaTypesData.map((d) => <option value={d.id}>{d.attributes.Name}</option>);;
+  }
+  
+  updatePersonCompanySocialMediaTypeOptions(personCompanySocialMediaTypesData) {
+    this.personCompanySocialMediaTypeOptions = personCompanySocialMediaTypesData.map((d) => <option value={d.id}>{d.attributes.Name}</option>);;
   }
 
 
@@ -214,6 +232,36 @@ export class PageDemo {
     });
   }
 
+  private getCompanySocialMediaTypeOptions() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateCompanySocialMediaTypeOptions(res.data);
+    });
+  }
+
+  private getPersonSocialMediaTypeOptions() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updatePersonSocialMediaTypeOptions(res.data);
+    });
+  }
+
+  private getPersonCompanySocialMediaTypeOptions() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updatePersonCompanySocialMediaTypeOptions(res.data);
+    });
+  }
+
   private getPrefixesOptions() {   
     var strapiBaseUrl = this.getStrapiBaseUrl();
     var options = this.getOptions();
@@ -308,6 +356,12 @@ export class PageDemo {
         <select><option></option>{this.personCompanyEmailAddressTypeOptions}</select>
         <h2>Email Address Types: Company</h2>
         <select><option></option>{this.companyEmailAddressTypeOptions}</select>
+        <h2>Social Media Types: Person</h2>
+        <select><option></option>{this.personSocialMediaTypeOptions}</select>
+        <h2>Social Media Types: Person at Company</h2>
+        <select><option></option>{this.personCompanySocialMediaTypeOptions}</select>
+        <h2>Social Media Types: Company</h2>
+        <select><option></option>{this.companySocialMediaTypeOptions}</select>
       </div>
     );
   }
