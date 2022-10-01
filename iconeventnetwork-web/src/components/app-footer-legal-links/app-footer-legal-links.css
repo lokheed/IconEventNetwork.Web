@@ -1,0 +1,30 @@
+h2 {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin: 0;
+    padding-bottom: 0.5em;
+}
+ 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-inline: 0;
+}
+
+li {
+    line-height: 1.5em;
+}
+
+li a {
+    font-size: 0.8em;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    cursor: pointer;
+}

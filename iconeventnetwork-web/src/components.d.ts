@@ -7,6 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
+    interface AppFooter {
+    }
+    interface AppFooterLegalLinks {
+    }
+    interface AppFooterNavigation {
+    }
     interface AppHeader {
     }
     interface AppLoginButton {
@@ -14,6 +20,10 @@ export namespace Components {
     interface AppNavigation {
     }
     interface AppRoot {
+    }
+    interface PageCodeOfConduct {
+    }
+    interface PageCookiePolicy {
     }
     interface PageDashboard {
         "history": RouterHistory;
@@ -52,8 +62,30 @@ export namespace Components {
     }
     interface PageNotFound {
     }
+    interface PagePrivacyPolicy {
+    }
+    interface PageTermsOfService {
+    }
 }
 declare global {
+    interface HTMLAppFooterElement extends Components.AppFooter, HTMLStencilElement {
+    }
+    var HTMLAppFooterElement: {
+        prototype: HTMLAppFooterElement;
+        new (): HTMLAppFooterElement;
+    };
+    interface HTMLAppFooterLegalLinksElement extends Components.AppFooterLegalLinks, HTMLStencilElement {
+    }
+    var HTMLAppFooterLegalLinksElement: {
+        prototype: HTMLAppFooterLegalLinksElement;
+        new (): HTMLAppFooterLegalLinksElement;
+    };
+    interface HTMLAppFooterNavigationElement extends Components.AppFooterNavigation, HTMLStencilElement {
+    }
+    var HTMLAppFooterNavigationElement: {
+        prototype: HTMLAppFooterNavigationElement;
+        new (): HTMLAppFooterNavigationElement;
+    };
     interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {
     }
     var HTMLAppHeaderElement: {
@@ -77,6 +109,18 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLPageCodeOfConductElement extends Components.PageCodeOfConduct, HTMLStencilElement {
+    }
+    var HTMLPageCodeOfConductElement: {
+        prototype: HTMLPageCodeOfConductElement;
+        new (): HTMLPageCodeOfConductElement;
+    };
+    interface HTMLPageCookiePolicyElement extends Components.PageCookiePolicy, HTMLStencilElement {
+    }
+    var HTMLPageCookiePolicyElement: {
+        prototype: HTMLPageCookiePolicyElement;
+        new (): HTMLPageCookiePolicyElement;
     };
     interface HTMLPageDashboardElement extends Components.PageDashboard, HTMLStencilElement {
     }
@@ -126,11 +170,28 @@ declare global {
         prototype: HTMLPageNotFoundElement;
         new (): HTMLPageNotFoundElement;
     };
+    interface HTMLPagePrivacyPolicyElement extends Components.PagePrivacyPolicy, HTMLStencilElement {
+    }
+    var HTMLPagePrivacyPolicyElement: {
+        prototype: HTMLPagePrivacyPolicyElement;
+        new (): HTMLPagePrivacyPolicyElement;
+    };
+    interface HTMLPageTermsOfServiceElement extends Components.PageTermsOfService, HTMLStencilElement {
+    }
+    var HTMLPageTermsOfServiceElement: {
+        prototype: HTMLPageTermsOfServiceElement;
+        new (): HTMLPageTermsOfServiceElement;
+    };
     interface HTMLElementTagNameMap {
+        "app-footer": HTMLAppFooterElement;
+        "app-footer-legal-links": HTMLAppFooterLegalLinksElement;
+        "app-footer-navigation": HTMLAppFooterNavigationElement;
         "app-header": HTMLAppHeaderElement;
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
+        "page-code-of-conduct": HTMLPageCodeOfConductElement;
+        "page-cookie-policy": HTMLPageCookiePolicyElement;
         "page-dashboard": HTMLPageDashboardElement;
         "page-demo": HTMLPageDemoElement;
         "page-destinations": HTMLPageDestinationsElement;
@@ -139,9 +200,17 @@ declare global {
         "page-join": HTMLPageJoinElement;
         "page-login-redirect": HTMLPageLoginRedirectElement;
         "page-not-found": HTMLPageNotFoundElement;
+        "page-privacy-policy": HTMLPagePrivacyPolicyElement;
+        "page-terms-of-service": HTMLPageTermsOfServiceElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppFooter {
+    }
+    interface AppFooterLegalLinks {
+    }
+    interface AppFooterNavigation {
+    }
     interface AppHeader {
     }
     interface AppLoginButton {
@@ -149,6 +218,10 @@ declare namespace LocalJSX {
     interface AppNavigation {
     }
     interface AppRoot {
+    }
+    interface PageCodeOfConduct {
+    }
+    interface PageCookiePolicy {
     }
     interface PageDashboard {
         "history"?: RouterHistory;
@@ -187,11 +260,20 @@ declare namespace LocalJSX {
     }
     interface PageNotFound {
     }
+    interface PagePrivacyPolicy {
+    }
+    interface PageTermsOfService {
+    }
     interface IntrinsicElements {
+        "app-footer": AppFooter;
+        "app-footer-legal-links": AppFooterLegalLinks;
+        "app-footer-navigation": AppFooterNavigation;
         "app-header": AppHeader;
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
+        "page-code-of-conduct": PageCodeOfConduct;
+        "page-cookie-policy": PageCookiePolicy;
         "page-dashboard": PageDashboard;
         "page-demo": PageDemo;
         "page-destinations": PageDestinations;
@@ -200,16 +282,23 @@ declare namespace LocalJSX {
         "page-join": PageJoin;
         "page-login-redirect": PageLoginRedirect;
         "page-not-found": PageNotFound;
+        "page-privacy-policy": PagePrivacyPolicy;
+        "page-terms-of-service": PageTermsOfService;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-footer": LocalJSX.AppFooter & JSXBase.HTMLAttributes<HTMLAppFooterElement>;
+            "app-footer-legal-links": LocalJSX.AppFooterLegalLinks & JSXBase.HTMLAttributes<HTMLAppFooterLegalLinksElement>;
+            "app-footer-navigation": LocalJSX.AppFooterNavigation & JSXBase.HTMLAttributes<HTMLAppFooterNavigationElement>;
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
+            "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
             "page-demo": LocalJSX.PageDemo & JSXBase.HTMLAttributes<HTMLPageDemoElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
@@ -218,6 +307,8 @@ declare module "@stencil/core" {
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
             "page-login-redirect": LocalJSX.PageLoginRedirect & JSXBase.HTMLAttributes<HTMLPageLoginRedirectElement>;
             "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
+            "page-privacy-policy": LocalJSX.PagePrivacyPolicy & JSXBase.HTMLAttributes<HTMLPagePrivacyPolicyElement>;
+            "page-terms-of-service": LocalJSX.PageTermsOfService & JSXBase.HTMLAttributes<HTMLPageTermsOfServiceElement>;
         }
     }
 }

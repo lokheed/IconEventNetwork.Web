@@ -1,0 +1,54 @@
+footer {
+    display: flex;
+    background-color: #000000;
+    color: #fff;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3rem;
+    margin-top: 2rem;
+}
+
+ footer > div {
+    width: 25%;
+
+ }
+
+ .logo-container {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .logo-container > div {
+   display: flex;
+   justify-content: center;
+ }
+
+ .logo-container .icon {
+   height: 16px;
+   margin-left: 0.25em;
+   margin-right: 0.25em;
+ }
+
+ footer .container h2 {
+   font-size: 0.8em;
+   text-transform: uppercase;
+   margin: 0;
+   padding-bottom: 0.5em;
+ }
+
+ footer address {
+   font-size: 0.8em;
+   font-style: normal;
+ }
+
+ footer address a,
+ footer address a:visited,
+ footer address a:hover,
+ footer address a:active,
+ footer .container h2 a,
+ footer .container h2 a:visited,
+ footer .container h2 a:hover,
+ footer .container h2 a:active {
+   text-decoration: none;
+   color: #ffffff;
+ }

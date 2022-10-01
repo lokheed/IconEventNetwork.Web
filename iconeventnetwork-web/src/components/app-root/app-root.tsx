@@ -18,10 +18,15 @@ export class AppRoot {
             <stencil-route url="/destinations" component="page-destinations" />
             <stencil-route url="/join" component="page-join" />
             <stencil-route url="/page-login-redirect" component='page-login-redirect' />
+            <stencil-route url="/code-of-conduct" component="page-code-of-conduct" />
+            <stencil-route url="/terms-of-service" component="page-terms-of-service" />
+            <stencil-route url="/privacy-policy" component="page-privacy-policy" />
+            <stencil-route url="/cookie-policy" component="page-cookie-policy" />
             <stencil-route url="/demo" component="page-demo" />
             <stencil-route component='page-not-found' />
          </stencil-route-switch>
         </stencil-router>
+        <app-footer></app-footer>
       </Host>
     );
   }
