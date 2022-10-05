@@ -10,8 +10,12 @@ export namespace Components {
     interface AppFooter {
     }
     interface AppFooterLegalLinks {
+        "footerLegalLinksHeader": HTMLElement;
+        "footerLegalLinksItems": HTMLElement;
     }
     interface AppFooterNavigation {
+        "footerNavigationHeader": HTMLElement;
+        "footerNavigationItems": HTMLElement;
     }
     interface AppHeader {
     }
@@ -58,7 +62,11 @@ export namespace Components {
     interface PageJoin {
         "history": RouterHistory;
     }
+    interface PageLogin {
+    }
     interface PageLoginRedirect {
+    }
+    interface PageLogout {
     }
     interface PageNotFound {
     }
@@ -158,11 +166,23 @@ declare global {
         prototype: HTMLPageJoinElement;
         new (): HTMLPageJoinElement;
     };
+    interface HTMLPageLoginElement extends Components.PageLogin, HTMLStencilElement {
+    }
+    var HTMLPageLoginElement: {
+        prototype: HTMLPageLoginElement;
+        new (): HTMLPageLoginElement;
+    };
     interface HTMLPageLoginRedirectElement extends Components.PageLoginRedirect, HTMLStencilElement {
     }
     var HTMLPageLoginRedirectElement: {
         prototype: HTMLPageLoginRedirectElement;
         new (): HTMLPageLoginRedirectElement;
+    };
+    interface HTMLPageLogoutElement extends Components.PageLogout, HTMLStencilElement {
+    }
+    var HTMLPageLogoutElement: {
+        prototype: HTMLPageLogoutElement;
+        new (): HTMLPageLogoutElement;
     };
     interface HTMLPageNotFoundElement extends Components.PageNotFound, HTMLStencilElement {
     }
@@ -198,7 +218,9 @@ declare global {
         "page-directory": HTMLPageDirectoryElement;
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
+        "page-login": HTMLPageLoginElement;
         "page-login-redirect": HTMLPageLoginRedirectElement;
+        "page-logout": HTMLPageLogoutElement;
         "page-not-found": HTMLPageNotFoundElement;
         "page-privacy-policy": HTMLPagePrivacyPolicyElement;
         "page-terms-of-service": HTMLPageTermsOfServiceElement;
@@ -208,8 +230,12 @@ declare namespace LocalJSX {
     interface AppFooter {
     }
     interface AppFooterLegalLinks {
+        "footerLegalLinksHeader"?: HTMLElement;
+        "footerLegalLinksItems"?: HTMLElement;
     }
     interface AppFooterNavigation {
+        "footerNavigationHeader"?: HTMLElement;
+        "footerNavigationItems"?: HTMLElement;
     }
     interface AppHeader {
     }
@@ -256,7 +282,11 @@ declare namespace LocalJSX {
     interface PageJoin {
         "history"?: RouterHistory;
     }
+    interface PageLogin {
+    }
     interface PageLoginRedirect {
+    }
+    interface PageLogout {
     }
     interface PageNotFound {
     }
@@ -280,7 +310,9 @@ declare namespace LocalJSX {
         "page-directory": PageDirectory;
         "page-home": PageHome;
         "page-join": PageJoin;
+        "page-login": PageLogin;
         "page-login-redirect": PageLoginRedirect;
+        "page-logout": PageLogout;
         "page-not-found": PageNotFound;
         "page-privacy-policy": PagePrivacyPolicy;
         "page-terms-of-service": PageTermsOfService;
@@ -305,7 +337,9 @@ declare module "@stencil/core" {
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
+            "page-login": LocalJSX.PageLogin & JSXBase.HTMLAttributes<HTMLPageLoginElement>;
             "page-login-redirect": LocalJSX.PageLoginRedirect & JSXBase.HTMLAttributes<HTMLPageLoginRedirectElement>;
+            "page-logout": LocalJSX.PageLogout & JSXBase.HTMLAttributes<HTMLPageLogoutElement>;
             "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
             "page-privacy-policy": LocalJSX.PagePrivacyPolicy & JSXBase.HTMLAttributes<HTMLPagePrivacyPolicyElement>;
             "page-terms-of-service": LocalJSX.PageTermsOfService & JSXBase.HTMLAttributes<HTMLPageTermsOfServiceElement>;

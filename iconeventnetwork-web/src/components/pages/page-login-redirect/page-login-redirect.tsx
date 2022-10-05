@@ -38,7 +38,7 @@ export class PageLoginRedirect {;
       });
 
   
-    return <p>{currentText}</p>
+    return <h1>{currentText}</h1>
   
   }
 
