@@ -24,3 +24,22 @@ nav > ul li a:hover {
   font-weight: 500;
   color: #fff;
 }
+
+@media (max-width: 480px) {
+  nav {
+    max-width: 150px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}

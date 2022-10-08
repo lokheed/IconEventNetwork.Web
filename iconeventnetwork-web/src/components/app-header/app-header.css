@@ -12,3 +12,25 @@ header {
   font-weight: 400;
   text-transform: uppercase;
 }
+
+@media (max-width: 480px) {
+  .logo-container {
+    margin-left: .5em;
+    min-width: 100px;
+  }
+  h1 {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
