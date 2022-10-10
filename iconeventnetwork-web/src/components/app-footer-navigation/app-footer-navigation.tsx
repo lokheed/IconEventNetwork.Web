@@ -69,9 +69,9 @@ export class AppFooterNavigation {
   render() {
     return (
       <Host>
-          {this.footerNavigationHeader}
-          <ul>               
-              {this.footerNavigationItems}
+        {this.footerNavigationHeader}
+        <ul>               
+          {this.footerNavigationItems}
         </ul>
       </Host>
     ); 

@@ -30,13 +30,16 @@ ul.parent a:hover {
  .dropdown-container {
   position: relative; 
  }
- .dropdown-container > * > a::after {
+ .dropdown-container > a::after {
   content: '>';
   display: inline-block;
   transform: rotate(90deg);
   margin-left: 10px;
   scale: 2 1;
   font-weight: 100;
+ }
+ .dropdown > li > a:hover {
+  font-weight: 300;
  }
  .dropdown {
   background-color: #000000;
