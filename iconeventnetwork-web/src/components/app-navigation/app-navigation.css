@@ -1,14 +1,15 @@
-nav {
-  margin-top: 35px;
+.menu {
+  display: flex;
+  margin-top: 10px;
 }
 
-nav ul {
+ul.parent {
   display: flex;
   gap: 1rem;
   list-style-type: none;
 }
 
-nav ul li a {
+ul.parent a {
   text-decoration: none;
   text-transform: uppercase;
   color: #fff;
@@ -16,24 +17,100 @@ nav ul li a {
   font-weight: 300;
 }
 
-nav > ul li a.link-active {
+ul.parent a.link-active {
   font-weight: 500;
 }
 
-nav > ul li a:hover {
+ul.parent a:hover {
   font-weight: 500;
   color: #fff;
 }
 
+/* DROPDOWN MENU */
+ .dropdown-container {
+  position: relative; 
+ }
+ .dropdown {
+  background-color: #000000;
+  padding: 1em 0;
+  position: absolute; /*WITH RESPECT TO PARENT*/
+  display: none;
+  border-radius: 8px;
+  list-style-type: none;
+ }
+ .dropdown li + li {
+  margin-top: 10px;
+ }
+ .dropdown li {
+  padding: 0.5em 1em;
+  width: 8em;
+  text-align: center;
+ }
+ .dropdown li:hover {
+  background-color: #ffffff;
+ }
+ .dropdown li:hover  a {
+  color: #000000;
+ }
+ .dropdown-container:hover .dropdown {
+  display: block;
+ }
+
+/* CHECKBOX HACK */
+input[type=checkbox]{
+  display: none;
+ } 
+
+ /*HAMBURGER MENU*/
+ .hamburger {
+  display: none;
+  font-size: 24px;
+  user-select: none;
+ }
+
 @media (max-width: 480px) {
-  nav {
-    max-width: 150px;
-    overflow: hidden;
-  }
+
 }
 
 @media (max-width: 768px) {
-
+  .menu { 
+    display:none;
+    position: absolute;
+    background-color:#79675c;
+    right: 0;
+    left: 0;
+    margin: 0;
+    text-align: center;
+  }
+  .menu li:hover {
+    display: inline-block;
+    transition: 0.3s ease;
+  }
+  ul.parent {
+    flex-direction: column;
+    padding-inline-start: 0;
+  }
+  input[type=checkbox]:checked ~ .menu{
+    display: block;
+  }
+  .hamburger {
+    display: block;
+  }
+  ul.dropdown {
+    position: relative;
+    background-color: #79675c;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  ul.dropdown li {
+    width: 100%;
+    padding: 0;
+  }
+  ul.dropdown li a {
+    text-transform: none;
+    font-size: 0.7em;
+  }
 }
 
 @media (max-width: 1024px) {

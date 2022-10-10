@@ -8,15 +8,15 @@ import { Component, h } from '@stencil/core';
 export class AppHeader {
   render() {
     return (
-      <header>
-        <div class='logo-container'>
+      <nav>
+        <div class='logo'>
           <h1>Icon Event Network</h1>
         </div>
         <app-navigation></app-navigation>
         <div class='user-container'>
           <app-login-button></app-login-button>
         </div>
-     </header>
+     </nav>
     );
   }
 

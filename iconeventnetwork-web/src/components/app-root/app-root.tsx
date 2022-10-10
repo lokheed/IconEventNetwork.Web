@@ -10,24 +10,26 @@ export class AppRoot {
     return (
       <Host>
         <app-header></app-header>
-        <stencil-router>
-          <stencil-route-switch scrollTopOffset={0}>
-            <stencil-route url="/" component="page-home" exact={true} />
-            <stencil-route url="/dashboard" component="page-dashboard" />
-            <stencil-route url="/directory" component="page-directory" />
-            <stencil-route url="/destinations" component="page-destinations" />
-            <stencil-route url="/join" component="page-join" />
-            <stencil-route url="/page-login-redirect" component='page-login-redirect' />
-            <stencil-route url="/code-of-conduct" component="page-code-of-conduct" />
-            <stencil-route url="/terms-of-service" component="page-terms-of-service" />
-            <stencil-route url="/privacy-policy" component="page-privacy-policy" />
-            <stencil-route url="/cookie-policy" component="page-cookie-policy" />
-            <stencil-route url="/login" component="page-login" />
-            <stencil-route url="/logout" component="page-logout" />
-            <stencil-route url="/demo" component="page-demo" />
-            <stencil-route component='page-not-found' />
-         </stencil-route-switch>
-        </stencil-router>
+        <div class='content'>
+          <stencil-router>
+            <stencil-route-switch scrollTopOffset={0}>
+              <stencil-route url="/" component="page-home" exact={true} />
+              <stencil-route url="/dashboard" component="page-dashboard" />
+              <stencil-route url="/directory" component="page-directory" />
+              <stencil-route url="/destinations" component="page-destinations" />
+              <stencil-route url="/join" component="page-join" />
+              <stencil-route url="/page-login-redirect" component='page-login-redirect' />
+              <stencil-route url="/code-of-conduct" component="page-code-of-conduct" />
+              <stencil-route url="/terms-of-service" component="page-terms-of-service" />
+              <stencil-route url="/privacy-policy" component="page-privacy-policy" />
+              <stencil-route url="/cookie-policy" component="page-cookie-policy" />
+              <stencil-route url="/login" component="page-login" />
+              <stencil-route url="/logout" component="page-logout" />
+              <stencil-route url="/demo" component="page-demo" />
+              <stencil-route component='page-not-found' />
+          </stencil-route-switch>
+          </stencil-router>
+        </div>
         <app-footer></app-footer>
       </Host>
     );

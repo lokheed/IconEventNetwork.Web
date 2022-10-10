@@ -1,5 +1,5 @@
 div {
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 div > a {
@@ -20,4 +20,29 @@ div > a:hover {
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .logo {
+    margin-left: .5em;
+    min-width: 100px;
+  }
+  .logo > h1 {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 768px) {
+  div {
+    margin-top: 10px;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 1200px) {
+
 }
