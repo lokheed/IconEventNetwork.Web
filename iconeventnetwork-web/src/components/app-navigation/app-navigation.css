@@ -30,6 +30,14 @@ ul.parent a:hover {
  .dropdown-container {
   position: relative; 
  }
+ .dropdown-container > * > a::after {
+  content: '>';
+  display: inline-block;
+  transform: rotate(90deg);
+  margin-left: 10px;
+  scale: 2 1;
+  font-weight: 100;
+ }
  .dropdown {
   background-color: #000000;
   padding: 1em 0;
@@ -110,6 +118,11 @@ input[type=checkbox]{
   ul.dropdown li a {
     text-transform: none;
     font-size: 0.7em;
+  }
+
+  .dropdown-container > * > a::after {
+    content: '';
+    margin-left: 0;
   }
 }
 
