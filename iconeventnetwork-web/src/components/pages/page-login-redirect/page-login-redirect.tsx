@@ -1,13 +1,14 @@
-import { Component, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'page-login-redirect',
   styleUrl: 'page-login-redirect.css',
   shadow: true,
 })
-export class PageLoginRedirect {;
-  render() {
-    var currentText = 'Loading...';
+export class PageLoginRedirect {
+  @State() currentText: string;
+
+  componentDidRender() {
     var strapiBaseUrl = 'https://api.iconeventnetwork.com';
     if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
     if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
@@ -29,17 +30,22 @@ export class PageLoginRedirect {;
         // Now saving the jwt to use it for future authenticated requests to Strapi
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
-        currentText = 'You have been successfully logged in. You will be redirected in a few seconds...';
+        this.currentText = 'You have been successfully logged in. You will be redirected shortly...';
         window.location.replace('/')
       })
       .catch(err => {
         console.log(err);
-        currentText = 'An error occurred, please see the developer console.';
+        this.currentText = 'An error occurred, please see the developer console.';
       });
-
-  
-    return <h1>{currentText}</h1>
-  
   }
 
+  render() {
+    return (
+      <Host>
+        <div class='hero'>
+          <p>{this.currentText}</p>
+        </div>
+      </Host>        
+    )
+  }
 }

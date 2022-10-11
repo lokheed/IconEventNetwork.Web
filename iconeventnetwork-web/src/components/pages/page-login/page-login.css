@@ -1,0 +1,43 @@
+:host {
+    display: block;
+    font-family: 'Montserrat';
+  }
+  
+  .hero {
+    min-height: 800px;
+    background: 
+      linear-gradient(rgba(121, 103, 91,1) 5%, rgba(121, 103, 91,0.5) 25%, rgba(121, 103, 91,0) 50%),
+      url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Hero_5a6f8fbd0f.png');
+      background-repeat:no-repeat;
+      background-size:cover;
+      background-position:center;
+      color: #fff;
+      position: relative;
+  }
+  
+  p {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 4em;
+    margin: 0;
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 400px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+  
+  }
+  
+  @media (max-width: 1024px) {
+  
+  }
+  
+  @media (max-width: 1200px) {
+  
+  }

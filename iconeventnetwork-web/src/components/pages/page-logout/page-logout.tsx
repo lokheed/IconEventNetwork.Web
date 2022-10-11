@@ -1,14 +1,15 @@
-import { Component, h } from '@stencil/core';
+import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-logout',
+  styleUrl: 'page-logout.css',
+  shadow: true,
 })
 export class PageLogout {;
-  render() {
+  componentDidRender() {
     var isAuthenticated = !!localStorage.getItem('jwt');
     if (!isAuthenticated) {
       window.location.replace('/');
-      return <h1>Logging Out...</h1>
     } else {
       localStorage.removeItem('jwt');
       localStorage.removeItem('username');
@@ -28,7 +29,16 @@ export class PageLogout {;
       }
       var logoutUrl = cognitoBaseUrl + '/logout?client_id=' + clientId + '&logout_uri=' + window.location.href;
       window.location.replace(logoutUrl);
-      return <h1>Logging Out...</h1>
     }
+  }
+
+  render() {
+    return (
+      <Host>
+        <div class='hero'>
+          <p>Logging Out...</p>
+        </div>
+      </Host>
+    )
   }
 }
