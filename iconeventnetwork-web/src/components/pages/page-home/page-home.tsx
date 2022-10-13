@@ -80,6 +80,21 @@ export class PageHome {
             </div>            
           </div>
         </div>
+        <div class='single-image'>
+          <div></div>
+        </div>      
+        <a id='are-you-an-icon'></a>        
+        <div class='right-image'>
+          <div class='text-container'>
+            <h2>Are You an Icon?</h2>
+            <hr class='blue'/>
+            (stuff goes here)          
+          </div>
+          <div class='image-container'>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       </Host>
     );
   }
