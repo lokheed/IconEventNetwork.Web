@@ -24,7 +24,16 @@ h1 {
   font-weight: 300;
   text-align: center;
   font-size: 3em;
-  padding-top: 1.5em;
+  padding-top: 3em;
+  margin: 0;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  font-size: 3em;
+  padding-top: 3em;
   margin: 0;
 }
 
@@ -61,6 +70,138 @@ hr.purple {
   background-color:#8676c1;
 }
 
+.purple {
+  color:#8676c1;
+}
+
+hr.green {
+  background-color:#2e964e;
+}
+
+.green {
+  color:#2e964e;
+}
+
+hr.pink {
+  background-color:#d774a1;
+}
+
+.pink {
+  color:#d774a1;
+}
+
+hr.orange {
+  background-color:#df5e2e;
+}
+
+.orange {
+  color:#df5e2e;
+}
+
+hr.blue {
+  background-color:#3ba7cb;
+}
+
+.blue {
+  color:#3ba7cb;
+}
+
+.triple-image {
+  display: flex;
+  flex-flow: row;
+  padding: 9em 0 0 0;
+  margin: 0;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.triple-image > div {
+  flex: 1 0 auto;
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.triple-image > div:nth-child(1) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_1_372c3bce80.png');
+}
+
+.triple-image > div:nth-child(2) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_2_62a1bbb9b3.png');
+}
+
+.triple-image > div:nth-child(3) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_3_6e3e0e6cf2.png');
+}
+
+.left-image {
+  display: flex;
+  flex-flow: row;
+  padding: 9em 0 0 0;
+  margin: 0;
+  flex-wrap: nowrap;
+}
+
+.left-image .image-container {
+  flex: 0 0 33%;
+  display: flex;
+}
+.left-image .image-container > div:nth-child(1) {
+  flex: 0 0 33%;
+}
+.left-image .image-container > div:nth-child(2) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_4_8a315438c4.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex: 0 0 66%;
+}
+
+.left-image .text-container {
+  flex: 0 0 50%;
+  margin: 0 0 0 3em;
+}
+
+.left-image .text-container h2 {
+  text-align: left;
+  padding-top: 0;
+}
+
+.left-image .text-container hr {
+  margin: 0px;
+  width: 7%;
+}
+
+.left-image .text-container .list {
+  counter-reset: list-number;
+  margin: 3em 0 0 0;
+}
+
+.left-image .text-container .list-item-container {
+  display: grid;
+  grid-template-columns: 3em 100%;
+  margin: 0 0 2em 0;
+}
+
+.list-item-container > div.counter-container:before {
+  counter-increment: list-number;
+  content: counter(list-number, decimal-leading-zero);
+  font-size: 2em;
+  font-weight: 300;
+  margin: 0;
+}
+
+.left-image .text-container .list div p {
+  margin: 0 0 0 2em;
+  text-align: left;
+  display: inline-flex;
+  padding-top: 0;
+  width: 80%;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
 @media (max-width: 480px) {
   .hero {
     min-height: 400px;
@@ -73,6 +214,10 @@ hr.purple {
     font-size: 1em;
     width: 75%;
     padding-top: 1em;
+  }
+
+  .triple-image {
+    padding: 3em 0 0 0;
   }
 }
 
