@@ -3,7 +3,6 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 3rem;
-    margin-top: 2rem;
 }
 
 footer {
@@ -27,8 +26,7 @@ footer {
 
  .logo-container .icon {
    height: 16px;
-   margin-left: 0.25em;
-   margin-right: 0.25em;
+   margin: 1em 0.5em;
  }
 
  footer .container h2 {
@@ -41,6 +39,7 @@ footer {
  footer address {
    font-size: 0.8em;
    font-style: normal;
+   line-height: 1.5em;
  }
 
  footer address a,

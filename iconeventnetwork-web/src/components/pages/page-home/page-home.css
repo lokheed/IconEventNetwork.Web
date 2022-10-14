@@ -37,6 +37,10 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  font-size: 2em;
+}
+
 p {
   color: #000;
   text-align: center;
@@ -123,16 +127,28 @@ hr.blue {
   background-position: center;
 }
 
-.triple-image > div:nth-child(1) {
+.triple-image.image-set-1 > div:nth-child(1) {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_1_372c3bce80.png');
 }
 
-.triple-image > div:nth-child(2) {
+.triple-image.image-set-1 > div:nth-child(2) {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_2_62a1bbb9b3.png');
 }
 
-.triple-image > div:nth-child(3) {
+.triple-image.image-set-1 > div:nth-child(3) {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_3_6e3e0e6cf2.png');
+}
+
+.triple-image.image-set-2 > div:nth-child(1) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_8_972043d5fb.png');
+}
+
+.triple-image.image-set-2 > div:nth-child(2) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_9_bcf43e60d2.png');
+}
+
+.triple-image.image-set-2 > div:nth-child(3) {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_10_1d8b321864.png');
 }
 
 .single-image {
@@ -152,8 +168,12 @@ hr.blue {
   background-position: center;
 }
 
-.single-image > div:nth-child(1) {
+.single-image > div.image1 {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_5_d02617d813.jpg');
+}
+
+.single-image > div.image2 {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_7_93598c1197.jpg');
 }
 
 .left-image, 
@@ -246,6 +266,33 @@ hr.blue {
   background-size: cover;
   background-position: center;
   flex: 0 0 80%;
+}
+
+.right-image p {
+  font-size: 1.25em;
+  line-height: 2em;
+  text-align: left;
+  width: auto;
+  padding: 0;
+  margin: 0 10% 0 0;
+}
+
+.tab-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.tab-link {
+  flex: 0 0 45%;
+  margin: 3em 0 0 0;
+}
+
+.tab-link > span {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  cursor: pointer;
 }
 
 @media (max-width: 480px) {
