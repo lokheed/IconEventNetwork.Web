@@ -143,6 +143,10 @@ hr.blue {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_8_972043d5fb.png');
 }
 
+.triple-image.image-set-2 {
+  padding: 0;
+}
+
 .triple-image.image-set-2 > div:nth-child(2) {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_9_bcf43e60d2.png');
 }
@@ -349,6 +353,10 @@ hr.blue {
   padding-right: 5px;
   color: #8676c1;
   font-weight: 900;
+}
+
+div.accent-block {
+  background-color: #f2f2f2;
 }
 
 @media (max-width: 480px) {
