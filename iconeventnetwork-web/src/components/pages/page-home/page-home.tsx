@@ -30,7 +30,7 @@ export class PageHome {
           </h1>
           <p>
             The Icon Network was envisioned by a community of world-class event planners and 
-            providers who together, create iconic experiences for life's most important occasions.
+            providers who together create iconic experiences for life's most important occasions.
           </p>
           <div class='scroll-prompt'>
             Scroll
@@ -48,8 +48,8 @@ export class PageHome {
           <hr class='purple'/>
           <p>
             To empower luxury event professionals to operate at their highest potential by creating
-            a platform to collaborate and create, share best practices and drive fullfillment
-            through community.
+            a platform to collaborate and create, share best practices, and drive fullfillment
+            through community
           </p>
         </div>
         <div class='triple-image image-set-1'>
@@ -86,7 +86,7 @@ export class PageHome {
                 <div class='counter-container blue'></div>    
                 <p>
                   Thereafter, all Icon Network members are monitored and held accountable for
-                  quality, reliability and consistency.
+                  quality, reliability, and consistency.
                 </p>              
               </div>        
             </div>            
@@ -105,7 +105,7 @@ export class PageHome {
               The Icon Network consists of world-renowned event planners and providers who
               co-created the organization and its rules of engagement. Applicants to join
               the network will be processed online and reviewed in a timely manner, with
-              notification of status occuring within 30 days. Select an option below to learn
+              notification of status occurring within 30 days. Select an option below to learn
               more about the application criteria and benefits.
             </p>
             <div class='tab-links'>

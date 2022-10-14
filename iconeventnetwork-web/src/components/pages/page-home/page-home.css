@@ -17,6 +17,7 @@
 
 .hero p {
   color: #fff;
+  font-weight: 400;
 }
 
 h1 {
@@ -45,7 +46,8 @@ p {
   color: #000;
   text-align: center;
   font-weight: 300;
-  font-size: 1.5em;
+  font-size: 1.3em;
+  line-height: 1.6em;
   width: 45%;
   margin: auto;
   padding-top: 1.5em;
@@ -64,10 +66,11 @@ div.scroll-prompt {
 }
 
 hr {
-  width: 5%;
+  width: 3.5em;
   border: none;
   height: 3px;
   background-color: #000;
+  margin: 1.5em auto 0 auto;
 }
 
 hr.purple {
@@ -123,7 +126,7 @@ hr.blue {
   flex: 1 0 auto;
   aspect-ratio: 1/1;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-position: center;
 }
 
@@ -218,8 +221,8 @@ hr.blue {
 
 .left-image .text-container hr,
 .right-image .text-container hr {
-  margin: 1em 0 0 0;
-  width: 7%;
+  margin: 1.5em 0 0 0;
+  width: 3.5em;
 }
 
 .left-image .text-container .list {
@@ -236,7 +239,7 @@ hr.blue {
 .list-item-container > div.counter-container:before {
   counter-increment: list-number;
   content: counter(list-number, decimal-leading-zero);
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 300;
   margin: 0;
 }
@@ -245,10 +248,10 @@ hr.blue {
   margin: 0 0 0 2em;
   text-align: left;
   display: inline-flex;
-  padding-top: 0;
+  padding-top: 0.25em;
   width: 80%;
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 1.3em;
+  line-height: 1.6em;
 }
 
 .left-image .image-container {
@@ -273,8 +276,8 @@ hr.blue {
 }
 
 .right-image p {
-  font-size: 1.25em;
-  line-height: 2em;
+  font-size: 1.3em;
+  line-height: 1.6em;
   text-align: left;
   width: auto;
   padding: 0;
@@ -293,9 +296,9 @@ hr.blue {
 }
 
 .tab-link > span {
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 1.25em;
+  font-size: 1.3em;
   cursor: pointer;
 }
 
@@ -332,7 +335,7 @@ hr.blue {
 
 .tabContent .item > div.label {
   font-size: 1.5em;
-  font-weight: 900;
+  font-weight: 700;
   color: #8676c1;
 }
 
@@ -352,7 +355,7 @@ hr.blue {
   content: '+';
   padding-right: 5px;
   color: #8676c1;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 div.accent-block {
