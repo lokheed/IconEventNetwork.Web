@@ -187,7 +187,15 @@ export class PageHome {
           <h2>Founding Planners</h2>
           <hr class='pink'/>
           <p>
-            (content will go here for logos and event planners link button)
+            (content will go here for logos and event planners link button)<br/><br/><br/>
+          </p>
+        </div>
+        <div class='accent-block'>
+          <a id='leadership-team'></a>        
+          <h2>Leadership Team</h2>
+          <hr class='red'/>
+          <p>
+            (content will go here for leadership team photos and bios)<br/><br/><br/>
           </p>
         </div>
         <div class='triple-image image-set-2'>
