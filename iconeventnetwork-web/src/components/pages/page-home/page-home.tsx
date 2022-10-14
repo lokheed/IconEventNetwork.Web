@@ -193,7 +193,7 @@ export class PageHome {
         <div class='accent-block'>
           <a id='leadership-team'></a>        
           <h2>Leadership Team</h2>
-          <hr class='red'/>
+          <hr class='orange'/>
           <p>
             (content will go here for leadership team photos and bios)<br/><br/><br/>
           </p>
