@@ -41,13 +41,31 @@ ul.parent a:hover {
  .dropdown > li > a:hover {
   font-weight: 500;
  }
- .dropdown {
+ .dropdown-container .dropdown {
   background-color: #000000;
   padding: 1em 0;
   position: absolute; /*WITH RESPECT TO PARENT*/
   display: none;
   border-radius: 8px;
   list-style-type: none;
+  opacity: 0.85;
+ }
+ 
+@keyframes growDown {
+  0% {
+      transform: scaleY(0)
+  }
+  80% {
+      transform: scaleY(1.1)
+  }
+  100% {
+      transform: scaleY(1)
+  }
+}
+.dropdown-container:hover .dropdown {
+  display: block;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
  }
  .dropdown li + li {
   margin-top: 10px;
@@ -63,10 +81,7 @@ ul.parent a:hover {
  .dropdown li:hover  a {
   color: #000000;
  }
- .dropdown-container:hover .dropdown {
-  display: block;
-  opacity: 0.85; 
- }
+
 
 /* CHECKBOX HACK */
 input[type=checkbox]{
