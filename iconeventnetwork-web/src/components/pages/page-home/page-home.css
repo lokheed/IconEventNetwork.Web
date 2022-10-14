@@ -318,6 +318,39 @@ hr.blue {
   height: 1px;
 }
 
+.tabContent .item {
+  display: flex;
+}
+
+.tabContent .item > div {
+  flex: 0 0 50%;
+}
+
+.tabContent .item > div.label {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: #8676c1;
+}
+
+.tabContent .item > div.content ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.tabContent .item > div.content li {
+  margin: 0 0 1.5em 0;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.tabContent .item > div.content li:before {
+  content: '+';
+  padding-right: 5px;
+  color: #8676c1;
+  font-weight: 900;
+}
+
 @media (max-width: 480px) {
   .hero {
     min-height: 400px;

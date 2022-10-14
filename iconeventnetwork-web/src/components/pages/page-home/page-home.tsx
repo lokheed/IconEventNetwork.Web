@@ -121,12 +121,63 @@ export class PageHome {
         <div class={{tabContent: true, hidden: !this.isEventPlannersLinkSelected}}>
           <h2>Event Planners</h2>
           <hr/>
-          (stuff will go here)
+          <div class="item">
+            <div class='label'>Evaluation<br></br>Criteria</div>
+            <div class='content'>
+              <ul>
+                <li>Recommendation from an Advisory Board member or other network participant</li>
+                <li>Demonstrated experience in the luxury sector</li>
+                <li>Total sales and event production data</li>
+                <li>Network feedback</li>
+                <li>Photos/videos of work</li>
+              </ul>
+            </div>
+          </div>
+          <hr/>
+          <div class="item">
+            <div class='label'>Network<br/>Benefits</div>
+            <div class='content'>
+              <ul>
+                <li>A vetted list of trusted providers from all categories, in markets around the globe</li>
+                <li>Online directory listing on the Icon Network intranet</li>
+                <li>Consumer-facing directory listing on the Icon Network website</li>
+                <li>The Icon Network logo/seal for inclusion in your business communications</li>
+                <li>Consumer marketing via social media, PR and other channels</li>
+              </ul>
+            </div>
+          </div>
+          <hr/>
         </div>
         <div class={{tabContent: true, hidden: !this.isProvderPartnersLinkSelected}}>
           <h2>Provider Partners</h2>
           <hr/>
-          (stuff will go here)
+          <div class="item">
+            <div class='label'>Evaluation<br></br>Criteria</div>
+            <div class='content'>
+              <ul>
+                <li>Recommendation from an Advisory Board member or other network participant</li>
+                <li>Demonstrated experience in the luxury sector</li>
+                <li>Total sales and event production data</li>
+                <li>Network feedback</li>
+                <li>Photos/videos of work</li>
+              </ul>
+            </div>
+          </div>
+          <hr/>
+          <div class="item">
+            <div class='label'>Network<br/>Benefits</div>
+            <div class='content'>
+              <ul>
+                <li>A vetted list of trusted providers from all categories, in markets around the globe</li>
+                <li>Online directory listing on the Icon Network intranet</li>
+                <li>Consumer-facing directory listing on the Icon Network website</li>
+                <li>The Icon Network logo/seal for inclusion in your business communications</li>
+                <li>Consumer marketing via social media, PR and other channels</li>
+              </ul>
+            </div>
+          </div>
+          <hr/>
+
         </div>
         <div class='single-image'>
           <div class='image2'></div>
