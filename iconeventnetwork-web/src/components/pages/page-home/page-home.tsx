@@ -40,7 +40,7 @@ export class PageHome {
             through community.
           </p>
         </div>
-        <div class='triple-image'>
+        <div class='triple-image image-set-1'>
           <div></div>
           <div></div>
           <div></div>
@@ -81,19 +81,47 @@ export class PageHome {
           </div>
         </div>
         <div class='single-image'>
-          <div></div>
+          <div class='image1'></div>
         </div>      
         <a id='are-you-an-icon'></a>        
         <div class='right-image'>
           <div class='text-container'>
             <h2>Are You an Icon?</h2>
             <hr class='blue'/>
-            (stuff goes here)          
-          </div>
+            <h3>The Selection Process</h3>
+            <p>
+              The Icon Network consists of world-renowned event planners and providers who
+              co-created the organization and its rules of engagement. Applicants to join
+              the network will be processed online and reviewed in a timely manner, with
+              notification of status occuring within 30 days. Select an option below to learn
+              more about the application criteria and benefits.
+            </p>
+            <div class='tab-links'>
+              <div class='tab-link'><span id='event-planners-link'>Event Planners</span></div>
+              <div class='tab-link'><span id='provider-partners-link'>Provider Partners</span></div>            
+            </div>        
+          </div>         
           <div class='image-container'>
             <div></div>
             <div></div>
           </div>
+        </div>
+        <p>(content will go here for selected tab)  </p>
+        <div class='single-image'>
+          <div class='image2'></div>
+        </div>      
+        <div>
+          <a id='founding-planners'></a>        
+          <h2>Founding Planners</h2>
+          <hr class='pink'/>
+          <p>
+            (content will go here for logos and event planners link button)
+          </p>
+        </div>
+        <div class='triple-image image-set-2'>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </Host>
     );
