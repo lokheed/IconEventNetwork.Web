@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'page-home',
@@ -6,6 +6,18 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PageHome {
+  @State() isEventPlannersLinkSelected: boolean = false;
+  @State() isProvderPartnersLinkSelected: boolean = false;
+
+  private eventPlannersLinkToggle() {
+    this.isEventPlannersLinkSelected = true;
+    this.isProvderPartnersLinkSelected = false;
+ }
+
+  private providerPartnersLinkToggle() {
+    this.isEventPlannersLinkSelected = false;
+    this.isProvderPartnersLinkSelected = true;
+  }
 
   render() {
     return (
@@ -97,8 +109,8 @@ export class PageHome {
               more about the application criteria and benefits.
             </p>
             <div class='tab-links'>
-              <div class='tab-link'><span id='event-planners-link'>Event Planners</span></div>
-              <div class='tab-link'><span id='provider-partners-link'>Provider Partners</span></div>            
+              <div class='tab-link'><span id='event-planners-link' class={{selected: this.isEventPlannersLinkSelected}} onClick={() => this.eventPlannersLinkToggle()}>Event Planners</span></div>
+              <div class='tab-link'><span id='provider-partners-link' class={{selected: this.isProvderPartnersLinkSelected}} onClick={() => this.providerPartnersLinkToggle()}>Provider Partners</span></div>            
             </div>        
           </div>         
           <div class='image-container'>
@@ -106,7 +118,16 @@ export class PageHome {
             <div></div>
           </div>
         </div>
-        <p>(content will go here for selected tab)  </p>
+        <div class={{tabContent: true, hidden: !this.isEventPlannersLinkSelected}}>
+          <h2>Event Planners</h2>
+          <hr/>
+          (stuff will go here)
+        </div>
+        <div class={{tabContent: true, hidden: !this.isProvderPartnersLinkSelected}}>
+          <h2>Provider Partners</h2>
+          <hr/>
+          (stuff will go here)
+        </div>
         <div class='single-image'>
           <div class='image2'></div>
         </div>      
