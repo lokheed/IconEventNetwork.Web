@@ -26,6 +26,8 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface PageAboutUs {
+    }
     interface PageCodeOfConduct {
     }
     interface PageCookiePolicy {
@@ -57,6 +59,8 @@ export namespace Components {
     }
     interface PageDirectory {
         "history": RouterHistory;
+    }
+    interface PageEventPlanners {
     }
     interface PageHome {
     }
@@ -119,6 +123,12 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLPageAboutUsElement extends Components.PageAboutUs, HTMLStencilElement {
+    }
+    var HTMLPageAboutUsElement: {
+        prototype: HTMLPageAboutUsElement;
+        new (): HTMLPageAboutUsElement;
+    };
     interface HTMLPageCodeOfConductElement extends Components.PageCodeOfConduct, HTMLStencilElement {
     }
     var HTMLPageCodeOfConductElement: {
@@ -154,6 +164,12 @@ declare global {
     var HTMLPageDirectoryElement: {
         prototype: HTMLPageDirectoryElement;
         new (): HTMLPageDirectoryElement;
+    };
+    interface HTMLPageEventPlannersElement extends Components.PageEventPlanners, HTMLStencilElement {
+    }
+    var HTMLPageEventPlannersElement: {
+        prototype: HTMLPageEventPlannersElement;
+        new (): HTMLPageEventPlannersElement;
     };
     interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {
     }
@@ -211,12 +227,14 @@ declare global {
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
+        "page-about-us": HTMLPageAboutUsElement;
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
         "page-cookie-policy": HTMLPageCookiePolicyElement;
         "page-dashboard": HTMLPageDashboardElement;
         "page-demo": HTMLPageDemoElement;
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
+        "page-event-planners": HTMLPageEventPlannersElement;
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
         "page-login": HTMLPageLoginElement;
@@ -246,6 +264,8 @@ declare namespace LocalJSX {
         "menu"?: HTMLElement;
     }
     interface AppRoot {
+    }
+    interface PageAboutUs {
     }
     interface PageCodeOfConduct {
     }
@@ -279,6 +299,8 @@ declare namespace LocalJSX {
     interface PageDirectory {
         "history"?: RouterHistory;
     }
+    interface PageEventPlanners {
+    }
     interface PageHome {
     }
     interface PageJoin {
@@ -304,12 +326,14 @@ declare namespace LocalJSX {
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
+        "page-about-us": PageAboutUs;
         "page-code-of-conduct": PageCodeOfConduct;
         "page-cookie-policy": PageCookiePolicy;
         "page-dashboard": PageDashboard;
         "page-demo": PageDemo;
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
+        "page-event-planners": PageEventPlanners;
         "page-home": PageHome;
         "page-join": PageJoin;
         "page-login": PageLogin;
@@ -331,12 +355,14 @@ declare module "@stencil/core" {
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
             "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
             "page-demo": LocalJSX.PageDemo & JSXBase.HTMLAttributes<HTMLPageDemoElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
+            "page-event-planners": LocalJSX.PageEventPlanners & JSXBase.HTMLAttributes<HTMLPageEventPlannersElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
             "page-login": LocalJSX.PageLogin & JSXBase.HTMLAttributes<HTMLPageLoginElement>;

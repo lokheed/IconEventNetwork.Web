@@ -10,7 +10,7 @@ export class AppHeader {
     return (
       <nav>
         <div class='logo'>
-          <h1>The Icon Network</h1>
+          <h1><a href='/'>The Icon Network</a></h1>
         </div>
         <app-navigation></app-navigation>
         <div class='user-container'>
