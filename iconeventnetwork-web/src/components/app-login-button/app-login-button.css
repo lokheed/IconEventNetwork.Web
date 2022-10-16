@@ -1,5 +1,6 @@
 div {
   margin-top: 25px;
+  display: none;
 }
 
 div > a {

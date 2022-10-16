@@ -186,9 +186,23 @@ export class PageHome {
           <a id='founding-planners'></a>        
           <h2>Founding Planners</h2>
           <hr class='pink'/>
-          <p>
-            (content will go here for logos and event planners link button)<br/><br/><br/>
-          </p>
+          <div class='founding-planner-logo-ctn'>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>    
+	          <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
+          </div>
         </div>
         <div class='accent-block'>
           <a id='leadership-team'></a>        
