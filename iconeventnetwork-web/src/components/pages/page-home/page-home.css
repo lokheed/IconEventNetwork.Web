@@ -334,6 +334,7 @@ hr.blue {
   font-size: 1.5em;
   font-weight: 700;
   color: #8676c1;
+  margin: auto;
 }
 
 .tabContent .item > div.content ul {
@@ -367,21 +368,9 @@ div.accent-block {
     transform: translateX(-250px);
     opacity:1;
   }  
-  13.4% {
-    transform: translateX(-500px);
-    opacity:1;
-  }  
-  20.1% {
-    transform: translateX(-750px);
-    opacity:1;
-  }  
-  26.8% {
-    transform: translateX(-1000px);
-    opacity:1;
-  }  
   33.5% {
     transform: translateX(-1250px);
-    opacity:1;
+    opacity:1; 
   }  
   40.2% {
     transform: translateX(-1500px);
@@ -403,7 +392,7 @@ div.accent-block {
   top: 0;
   left: calc(50% + 625px);
   opacity: 0;
-  animation: display 30s infinite;
+  animation: display 30s linear infinite; 
   width: 250px;
   height: 125px;
 }
