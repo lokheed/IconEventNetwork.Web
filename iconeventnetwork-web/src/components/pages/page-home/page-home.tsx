@@ -189,19 +189,19 @@ export class PageHome {
           <div class='founding-planner-logo-ctn'>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>    
-	          <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
             <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
+            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
           </div>
         </div>
         <div class='triple-image image-set-2'>
