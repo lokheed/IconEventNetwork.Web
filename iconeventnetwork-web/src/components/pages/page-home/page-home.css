@@ -360,7 +360,7 @@ div.accent-block {
   background-color: #f2f2f2;
 }
 
-@keyframes display {
+@keyframes founderLogoCarousel {
   0% {
     opacity:0;
   }
@@ -392,7 +392,7 @@ div.accent-block {
   top: 0;
   left: calc(50% + 625px);
   opacity: 0;
-  animation: display 30s linear infinite; 
+  animation: founderLogoCarousel 30s linear infinite; 
   width: 250px;
   height: 125px;
 }
