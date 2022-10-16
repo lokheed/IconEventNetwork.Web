@@ -209,7 +209,7 @@ hr.blue {
 }
 
 .right-image .text-container {
-  flex: 0 0 45%;
+  flex: 0 0 50%;
   margin: 0 0 0 9em;
 }
 
@@ -254,17 +254,14 @@ hr.blue {
   line-height: 1.6em;
 }
 
-.left-image .image-container {
+.left-image .image-container,
+.right-image .image-container {
   flex: 0 0 33%;
   display: flex;
 }
 
-.right-image .image-container {
-  flex: 0 0 40%;
-  display: flex;
-}
 .right-image .image-container > div:nth-child(2) {
-  flex: 0 0 20%;
+  flex: 0 0 33%;
 }
 
 .right-image .image-container > div:nth-child(1) {
@@ -272,7 +269,7 @@ hr.blue {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  flex: 0 0 80%;
+  flex: 0 0 66%;
 }
 
 .right-image p {

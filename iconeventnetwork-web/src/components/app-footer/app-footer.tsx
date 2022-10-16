@@ -23,19 +23,11 @@ export class AppFooter {
         <div class='container contact-container'>
           <h2>Contact</h2>
           <address>
-            Address Line 1<br/>
-            Address Line 2 <br/>
-            City, State <br/>            
-            00000 <br/> 
-            <br/>
             E: <a href="mailto:info@iconeventnetwork.com">info@iconeventnetwork</a>         
           </address>
         </div>
         <div class='container navigation-container'>
           <app-footer-navigation></app-footer-navigation>
-        </div>
-        <div class='container legal-container'>
-          <app-footer-legal-links></app-footer-legal-links>
         </div>
      </footer>
     );
