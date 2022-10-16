@@ -204,14 +204,6 @@ export class PageHome {
             <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
           </div>
         </div>
-        <div class='accent-block'>
-          <a id='leadership-team'></a>        
-          <h2>Leadership Team</h2>
-          <hr class='orange'/>
-          <p>
-            (content will go here for leadership team photos and bios)<br/><br/><br/>
-          </p>
-        </div>
         <div class='triple-image image-set-2'>
           <div></div>
           <div></div>
