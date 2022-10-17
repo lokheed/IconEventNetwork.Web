@@ -1,4 +1,5 @@
 import { Component, Host, State, h } from '@stencil/core';
+import { scrollToFragment } from 'scroll-to-fragment';
 
 @Component({
   tag: 'page-home',
@@ -7,6 +8,10 @@ export class PageHome {
   @State() isEventPlannersLinkSelected: boolean = false;
   @State() isProvderPartnersLinkSelected: boolean = false;
 
+  componentDidLoad() {
+    scrollToFragment();
+  }
+  
   private eventPlannersLinkToggle() {
     this.isEventPlannersLinkSelected = true;
     this.isProvderPartnersLinkSelected = false;
