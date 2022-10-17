@@ -63,6 +63,7 @@ export namespace Components {
     interface PageEventPlanners {
     }
     interface PageHome {
+        "foundingPlannerLogos": HTMLElement;
     }
     interface PageJoin {
         "history": RouterHistory;
@@ -302,6 +303,7 @@ declare namespace LocalJSX {
     interface PageEventPlanners {
     }
     interface PageHome {
+        "foundingPlannerLogos"?: HTMLElement;
     }
     interface PageJoin {
         "history"?: RouterHistory;
