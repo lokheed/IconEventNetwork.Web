@@ -1,26 +1,68 @@
-import { Component, Host, State, h } from '@stencil/core';
+import { Component, Host, Prop, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
 
 @Component({
   tag: 'page-home',
 })
 export class PageHome {
+  @Prop() foundingPlannerLogos: HTMLElement;
   @State() isEventPlannersLinkSelected: boolean = false;
   @State() isProvderPartnersLinkSelected: boolean = false;
+
+  componentWillLoad() {
+    this.getFoundingPlannerLogos();
+  }
 
   componentDidLoad() {
     scrollToFragment();
   }
-  
+
   private eventPlannersLinkToggle() {
     this.isEventPlannersLinkSelected = true;
     this.isProvderPartnersLinkSelected = false;
- }
+  }
+
+  private getFoundingPlannerLogos() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/founding-planner-logo?populate=*`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateFoundingPlannerLogos(res.data);
+    });
+  }
+
+  private getOptions() {
+    return {  
+      method: 'GET'
+    }
+  }
+
+  private getStrapiBaseUrl() {
+    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
+    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+    return strapiBaseUrl;
+  }
 
   private providerPartnersLinkToggle() {
     this.isEventPlannersLinkSelected = false;
     this.isProvderPartnersLinkSelected = true;
   }
+
+  updateFoundingPlannerLogos(foundingPlannerLogoData) {
+    var returnedLogos = foundingPlannerLogoData.attributes.Logos.data.map((d) => <img src={d.attributes.formats.thumbnail.url} alt={d.attributes.alternativeText} class="logo"/>);
+    if (returnedLogos.length === 15) this.foundingPlannerLogos = returnedLogos;
+    if (returnedLogos.length > 15) this.foundingPlannerLogos = returnedLogos.slice(0, 15);
+    if (returnedLogos.length < 15) {
+      var finalLogos = returnedLogos;
+      while (finalLogos.length < 15) {
+        finalLogos.push(...returnedLogos);
+      }
+      this.foundingPlannerLogos = finalLogos.slice(0, 15);
+    }
+ }
 
   render() {
     return (
@@ -190,21 +232,7 @@ export class PageHome {
           <h2>Founding Planners</h2>
           <hr class='pink'/>
           <div class='founding-planner-logo-ctn'>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/easton_0aba39c4bc.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/db_8be22f2c35.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/David_Stark_ca2aec040e.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/Colin_Cowie_ad2476f7ed.png" alt="" class="logo"/>
-            <img src="https://pro-icon-strapi.s3.amazonaws.com/ae_627fd94ebe.png" alt="" class="logo"/>
+           {this.foundingPlannerLogos}
           </div>
         </div>
         <div class='triple-image image-set-2'>
