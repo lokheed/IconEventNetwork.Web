@@ -76,16 +76,7 @@ export class PageHome {
           <p>
             The Icon Network was envisioned by a community of world-class event planners and 
             providers who together create iconic experiences for life's most important occasions.
-          </p>
-          <div class='scroll-prompt'>
-            Scroll
-            <br/><br/>
-            |
-            <br/>
-            |
-            <br/>
-            |
-          </div>        
+          </p>       
         </div>
         <div>
           <a id='our-mission'></a>        
