@@ -20,5 +20,6 @@
   },
   "license": "MIT",
   "dependencies": {
+    "scroll-to-fragment": "^1.0.12"
   }
 }
