@@ -359,6 +359,9 @@ hr.blue {
 .single-image > div.image3 {
   background-image: url('https://pro-icon-strapi.s3.amazonaws.com/hobe_sound_wedding_weekend_1_01_a89f8ce18c.jpg');
   background-position: bottom;
+}
+
+.single-image:has(div.image3) {
   padding: 4.5em 0 0 0;
 }
 
