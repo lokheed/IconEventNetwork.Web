@@ -1,14 +1,14 @@
-import { Component, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'app-header',
-  styleUrl: 'app-header.css',
-  shadow: true,
 })
 export class AppHeader {
+  @Prop() backgroundClass: string;
+
   render() {
     return (
-      <nav>
+      <nav class={this.backgroundClass}>
         <div class='logo'>
           <h1><a href='/'>The Icon Network</a></h1>
         </div>
