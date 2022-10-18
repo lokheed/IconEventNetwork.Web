@@ -1,8 +1,6 @@
 import { Component, h } from '@stencil/core';
 @Component({
   tag: 'app-login-button',
-  styleUrl: 'app-login-button.css',
-  shadow: true,
 })
 
 export class AppLoginButton { 
@@ -10,7 +8,7 @@ export class AppLoginButton {
     var isAuthenticated = !!localStorage.getItem('jwt');    
     if (isAuthenticated) {
       return (
-        <div>
+        <div class='login-button'>
           <a href='/logout'>
             Log Out
           </a> 
@@ -18,7 +16,7 @@ export class AppLoginButton {
       );  
     } else {
       return (
-        <div>
+        <div class='login-button'>
           <a href='/login'>
             Log In
           </a>

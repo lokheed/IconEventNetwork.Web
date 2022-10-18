@@ -18,6 +18,7 @@ export namespace Components {
         "footerNavigationItems": HTMLElement;
     }
     interface AppHeader {
+        "backgroundClass": string;
     }
     interface AppLoginButton {
     }
@@ -258,6 +259,7 @@ declare namespace LocalJSX {
         "footerNavigationItems"?: HTMLElement;
     }
     interface AppHeader {
+        "backgroundClass"?: string;
     }
     interface AppLoginButton {
     }

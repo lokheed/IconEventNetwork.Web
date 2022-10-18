@@ -2,8 +2,6 @@ import { Component, State, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'app-navigation',
-  styleUrl: 'app-navigation.css',
-  shadow: true,
 })
 
 export class AppNavigation {
@@ -80,8 +78,8 @@ export class AppNavigation {
 
       return (
         <div>
-          <input type="checkbox" id="checkbox_toggle"></input>
-          <label htmlFor='checkbox_toggle' class="hamburger">&#9776;</label>
+          <input type="checkbox" id="menu_checkbox_toggle"></input>
+          <label htmlFor='menu_checkbox_toggle' class="hamburger">&#9776;</label>
           {this.menu}
         </div>
       );

@@ -1,14 +1,24 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'app-root',
   styleUrl: 'app-root.css',
 })
 export class AppRoot {
+  @State() navigationBackgroundClass: string = 'white';
+
+  componentWillRender() {
+    switch (window.location.pathname) {
+      case '/':
+        this.navigationBackgroundClass = 'brown';
+        break;
+      default: this.navigationBackgroundClass = 'white';
+    }
+  }
   render() {
     return (
       <Host>
-        <app-header></app-header>
+        <app-header backgroundClass={this.navigationBackgroundClass}></app-header>
         <div class='content'>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
