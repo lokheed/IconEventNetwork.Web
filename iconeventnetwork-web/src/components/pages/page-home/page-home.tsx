@@ -25,7 +25,7 @@ export class PageHome {
   private getFoundingPlannerLogos() {   
     var strapiBaseUrl = this.getStrapiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/founding-planner-logo?populate=*`, options)
+    fetch(`${strapiBaseUrl}/api/founding-planners?fields[0]=CompanyName&populate[Logo][fields][0]=alternativeText&populate[Logo][fields][1]=url&sort[0]=LogoRank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateFoundingPlannerLogos(res.data);
@@ -52,7 +52,7 @@ export class PageHome {
   }
 
   updateFoundingPlannerLogos(foundingPlannerLogoData) {
-    var returnedLogos = foundingPlannerLogoData.attributes.Logos.data.map((d) => <img src={d.attributes.formats.thumbnail.url} alt={d.attributes.alternativeText} class="logo"/>);
+    var returnedLogos = foundingPlannerLogoData.map((d) => <img src={d.attributes.Logo.data.attributes.url} alt={d.attributes.Logo.data.attributes.alternativeText} class="logo"/>);
     if (returnedLogos.length === 15) this.foundingPlannerLogos = returnedLogos;
     if (returnedLogos.length > 15) this.foundingPlannerLogos = returnedLogos.slice(0, 15);
     if (returnedLogos.length < 15) {
