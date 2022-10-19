@@ -44,7 +44,7 @@ export class AppFooterNavigation {
     if (menuHeaderData) {
       switch(menuHeaderData.LinkType) {
         case 'HeadingLink': {
-          this.footerNavigationHeader = <h2><stencil-route-link url={menuHeaderData.link}>{menuHeaderData.DisplayName}</stencil-route-link></h2>;
+          this.footerNavigationHeader = <h2><a href={menuHeaderData.Link}>{menuHeaderData.DisplayName}</a></h2>;
           break;
         }
         case 'HeadingNoLink': {
@@ -59,11 +59,11 @@ export class AppFooterNavigation {
     var isAuthenticated = !!localStorage.getItem('jwt');
     var menuItems;
     if (isAuthenticated) {
-      menuItems = footerMenuData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.link != '/login');
+      menuItems = footerMenuData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.Link != '/login');
     } else {
       menuItems = footerMenuData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
     }
-    this.footerNavigationItems = menuItems.map(d => <li><stencil-route-link url={d.link}>{d.DisplayName}</stencil-route-link></li>);
+    this.footerNavigationItems = menuItems.map(d => <li><a href={d.Link}>{d.DisplayName}</a></li>);
   }
 
   render() {
