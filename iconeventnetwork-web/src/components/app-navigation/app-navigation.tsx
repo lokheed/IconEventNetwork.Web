@@ -61,7 +61,7 @@ export class AppNavigation {
                   <ul class='dropdown'>
                     {menuItem.Links.map((subMenuItem) => {
                       return (
-                        <li><a href={subMenuItem.link}>{subMenuItem.DisplayName}</a></li>
+                        <li><a href={subMenuItem.Link}>{subMenuItem.DisplayName}</a></li>
                       )
                     })}
                   </ul>
