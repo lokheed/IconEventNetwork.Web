@@ -158,8 +158,10 @@ nav.brown .menu ul.parent a:hover {
  .menu .dropdown li:hover {
   background-color: #fff;
  }
- .menu .dropdown li:hover  a {
+ .menu ul.dropdown > li:hover > a,
+ .menu ul.dropdown > li:hover > a:hover {
   color: #000;
+  font-weight: 700;
  }
 
 
@@ -361,6 +363,10 @@ hr.blue {
   background-position: bottom;
 }
 
+.single-image > div.image4 {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/haiku_mill_wedding_10_2200x1467_83f57e71f6.jpg');
+  background-position: bottom;
+}
 .single-image:has(div.image3) {
   padding: 4.5em 0 0 0;
 }
@@ -447,12 +453,20 @@ hr.blue {
 }
 
 .right-image .image-container > div:nth-child(1) {
-  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_6_5193a0d5b3.jpg?');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   flex: 0 0 66%;
 }
+
+.right-image .image-container > div.image5 {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_6_5193a0d5b3.jpg');
+}
+
+.right-image .image-container > div.image6 {
+  background-image: url('https://pro-icon-strapi.s3.amazonaws.com/The_Day_Ira_Lippke_P0096_72dpi_200x300_2x_ed2b5f8c86.jpg');
+}
+
 
 .right-image p {
   font-size: 1.3em;

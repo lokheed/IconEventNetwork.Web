@@ -44,7 +44,7 @@ export class AppNavigation {
         <ul class='parent'>
         {menuData.attributes.Navigation.map((menuItem) => {
           var path = window.location.pathname ? window.location.pathname.toLowerCase() : '/';
-          var link = menuItem.link ? menuItem.link.toLowerCase() : '/';
+          var link = menuItem.Link ? menuItem.Link.toLowerCase() : '/';
           var className = path == link ? 'link-active' : '';
           switch (menuItem.__component) {
             case 'menu.menu-link':

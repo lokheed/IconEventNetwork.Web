@@ -150,7 +150,7 @@ export class PageHome {
             </div>        
           </div>         
           <div class='image-container'>
-            <div></div>
+            <div class='image5'></div>
             <div></div>
           </div>
         </div>
