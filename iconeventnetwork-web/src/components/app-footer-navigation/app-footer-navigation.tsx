@@ -2,8 +2,6 @@ import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'app-footer-navigation',
-  styleUrl: 'app-footer-navigation.css',
-  shadow: true,
 })
 export class AppFooterNavigation {
   @Prop() footerNavigationHeader: HTMLElement;

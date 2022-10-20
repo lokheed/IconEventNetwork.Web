@@ -2,8 +2,6 @@ import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'app-footer-legal-links',
-  styleUrl: 'app-footer-legal-links.css',
-  shadow: true,
 })
 export class AppFooterLegalLinks {
     @Prop() footerLegalLinksHeader: HTMLElement;
@@ -63,15 +61,15 @@ export class AppFooterLegalLinks {
       } else {
         menuItems = footerLegalLinksData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
       }
-      this.footerLegalLinksItems = menuItems.map(d => <li><stencil-route-link url={d.link}>{d.DisplayName}</stencil-route-link></li>);
+      this.footerLegalLinksItems = menuItems.map(d => <li><stencil-route-link url={d.Link}>{d.DisplayName}</stencil-route-link></li>);
     }
   
     render() {
       return (
         <Host>
-            {this.footerLegalLinksHeader}
-            <ul>               
-                {this.footerLegalLinksItems}
+          {this.footerLegalLinksHeader}
+          <ul>               
+              {this.footerLegalLinksItems}
           </ul>
         </Host>
       ); 

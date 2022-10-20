@@ -645,6 +645,95 @@ hr.blue {
   animation-delay: 28s;
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 3rem;
+}
+
+footer {
+background-color: #000000;
+color: #fff;
+}
+
+footer > div {
+  width: 25%;
+}
+
+footer .logo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+footer .logo-container > div {
+ display: flex;
+ justify-content: center;
+}
+
+footer .logo-container .icon {
+ height: 16px;
+ margin: 1em 0.5em;
+}
+
+footer .container h2 {
+ font-size: 0.8em;
+ text-transform: uppercase;
+ margin: 0;
+ padding: 0 0 0.5em 0;
+ text-align: left;
+ font-weight: 700;
+}
+
+footer address {
+ font-size: 0.8em;
+ font-style: normal;
+ line-height: 2em;
+}
+
+footer address a,
+footer address a:visited,
+footer address a:hover,
+footer address a:active,
+footer .container h2 a,
+footer .container h2 a:visited,
+footer .container h2 a:hover,
+footer .container h2 a:active {
+ text-decoration: none;
+ color: #ffffff;
+}
+
+footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding-inline: 0;
+}
+
+footer li {
+  line-height: 1.5em;
+}
+
+footer li a {
+  font-size: 0.8em;
+}
+
+footer a,
+footer a:visited,
+footer a:hover,
+footer a:active {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+footer address a,
+footer address a:visited,
+footer address a:hover,
+footer address a:active {
+  text-transform: none;
+}
+
 @media (max-width: 480px) {
   nav {
     height: 40px;
@@ -672,6 +761,18 @@ hr.blue {
   .triple-image {
     padding: 3em 0 0 0;
   }
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-top: .5rem;
+  }
+
+  footer > div {
+    width: 50%;
+    margin-top: .5rem;
+ }
 }
 
 @media (max-width: 768px) {
