@@ -1,4 +1,4 @@
-:host {
+:host {.icon
   display: block;
   font-family: 'Montserrat';
 }
@@ -36,13 +36,20 @@ nav.brown {
   color: #fff;
 }
 
-nav .logo > h1 {
-  font-family: 'Alegreya Sans', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 1.5em;
-  margin: 1em 0 0 0;
-  padding: 0;
+nav .logo {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  height: 62px;
+  width: 200px;
+}
+
+nav .logo {
+  background-image: url('/assets/icon/TIN-Logo-Horizontal-BLK.png');
+}
+
+nav.brown .logo {
+  background-image: url('/assets/icon/TIN-Logo-Horizontal-Reversed.png');
 }
 
 nav .logo a {
@@ -671,9 +678,14 @@ footer .logo-container > div {
  justify-content: center;
 }
 
+footer .logo-container .icon-network-vertical-logo {
+  width: 125px;
+  margin: 0;
+}
+
 footer .logo-container .icon {
- height: 16px;
- margin: 1em 0.5em;
+ height: 32px;
+ margin: 0;
 }
 
 footer .container h2 {

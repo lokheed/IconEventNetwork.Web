@@ -8,10 +8,8 @@ export class AppHeader {
 
   render() {
     return (
-      <nav class={this.backgroundClass}>
-        <div class='logo'>
-          <h1><a href='/'>The Icon Network</a></h1>
-        </div>
+      <nav class={this.backgroundClass}>      
+        <a href='/'><div class='logo'></div></a>       
         <app-navigation></app-navigation>
         <div class='user-container'>
           <app-login-button></app-login-button>

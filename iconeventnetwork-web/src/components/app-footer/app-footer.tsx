@@ -10,12 +10,13 @@ export class AppFooter {
         <div class='container logo-container'>
           <div>
             <a href='/'>
-              <img src='https://pro-icon-strapi.s3.amazonaws.com/icon_logo_white_a2dca55220.png' />
+              <img class='icon-network-vertical-logo' src='/assets/icon/TIN-Logo-Vertical-Reversed.png' />
             </a>
           </div>
           <div>
-            <a href='#'><img class='icon' src='/assets/icon/facebook-icon-transparent-white.png' /></a>
-            <a href='#'><img class='icon' src='/assets/icon/instagram-icon-transparent-white.png' /></a>
+            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-Facebook.png' /></a>
+            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-Instagram.png' /></a>
+            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-LinkedIn.png' /></a>
           </div>
         </div>
         <div class='container contact-container'>
