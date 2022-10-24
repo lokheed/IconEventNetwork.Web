@@ -20,6 +20,15 @@ export namespace Components {
     interface AppHeader {
         "backgroundClass": string;
     }
+    interface AppLeadershipTeamItem {
+        "Bio": string;
+        "Color": string;
+        "FirstName": string;
+        "HeadshotAltText": string;
+        "HeadshotURL": string;
+        "JobTitle": string;
+        "LastName": string;
+    }
     interface AppLoginButton {
     }
     interface AppNavigation {
@@ -28,6 +37,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface PageAboutUs {
+        "leadershipTeamMembers": HTMLElement;
     }
     interface PageCodeOfConduct {
     }
@@ -106,6 +116,12 @@ declare global {
     var HTMLAppHeaderElement: {
         prototype: HTMLAppHeaderElement;
         new (): HTMLAppHeaderElement;
+    };
+    interface HTMLAppLeadershipTeamItemElement extends Components.AppLeadershipTeamItem, HTMLStencilElement {
+    }
+    var HTMLAppLeadershipTeamItemElement: {
+        prototype: HTMLAppLeadershipTeamItemElement;
+        new (): HTMLAppLeadershipTeamItemElement;
     };
     interface HTMLAppLoginButtonElement extends Components.AppLoginButton, HTMLStencilElement {
     }
@@ -226,6 +242,7 @@ declare global {
         "app-footer-legal-links": HTMLAppFooterLegalLinksElement;
         "app-footer-navigation": HTMLAppFooterNavigationElement;
         "app-header": HTMLAppHeaderElement;
+        "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
@@ -261,6 +278,15 @@ declare namespace LocalJSX {
     interface AppHeader {
         "backgroundClass"?: string;
     }
+    interface AppLeadershipTeamItem {
+        "Bio"?: string;
+        "Color"?: string;
+        "FirstName"?: string;
+        "HeadshotAltText"?: string;
+        "HeadshotURL"?: string;
+        "JobTitle"?: string;
+        "LastName"?: string;
+    }
     interface AppLoginButton {
     }
     interface AppNavigation {
@@ -269,6 +295,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface PageAboutUs {
+        "leadershipTeamMembers"?: HTMLElement;
     }
     interface PageCodeOfConduct {
     }
@@ -327,6 +354,7 @@ declare namespace LocalJSX {
         "app-footer-legal-links": AppFooterLegalLinks;
         "app-footer-navigation": AppFooterNavigation;
         "app-header": AppHeader;
+        "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
@@ -356,6 +384,7 @@ declare module "@stencil/core" {
             "app-footer-legal-links": LocalJSX.AppFooterLegalLinks & JSXBase.HTMLAttributes<HTMLAppFooterLegalLinksElement>;
             "app-footer-navigation": LocalJSX.AppFooterNavigation & JSXBase.HTMLAttributes<HTMLAppFooterNavigationElement>;
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
+            "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
