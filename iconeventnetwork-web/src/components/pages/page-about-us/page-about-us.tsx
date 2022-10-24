@@ -1,9 +1,59 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
+import { scrollToFragment } from 'scroll-to-fragment';
 
 @Component({
   tag: 'page-about-us',
 })
 export class PageAboutUs {
+  @Prop() leadershipTeamMembers: HTMLElement;
+
+  componentWillLoad() {
+    this.getLeadershipTeamMembers();
+  }
+
+  componentDidLoad() {
+    scrollToFragment();
+  }
+
+  private getLeadershipTeamMembers() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/leadership-team-members?fields[0]=Title&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateLeadershipTeamMembers(res.data);
+    });
+  }
+
+  private getOptions() {
+    return {  
+      method: 'GET'
+    }
+  }
+
+  updateLeadershipTeamMembers(leadershipTeamMemberData) {
+   this.leadershipTeamMembers = leadershipTeamMemberData.map((d, index) =>
+    <app-leadership-team-item 
+      FirstName={d.attributes.FirstName}
+      LastName={d.attributes.LastName}
+      JobTitle={d.attributes.Title}
+      Bio={d.attributes.Bio}
+      HeadshotURL={d.attributes.Headshot.data.attributes.url}
+      HeadshotAltText={d.attributes.Headshot.data.attributes.alternativeText}
+      Color={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
+      >
+    </app-leadership-team-item>
+   );
+  }
+
+  private getStrapiBaseUrl() {
+    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
+    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+    return strapiBaseUrl;
+  }
+
   render() {
     return (
       <Host>
@@ -21,7 +71,7 @@ export class PageAboutUs {
           </p>     
         </div>   
         <div>
-          (leaderhsip bios here)
+          {this.leadershipTeamMembers}
         </div>
         <a id='testimonials'></a>           
         <div class='accent-block'>    

@@ -1,8 +1,3 @@
-:host {.icon
-  display: block;
-  font-family: 'Montserrat';
-}
-
 .hero {
   min-height: 800px;
   background: 
@@ -650,6 +645,90 @@ hr.blue {
 }
 .founding-planner-logo-ctn > img:nth-child(15) {
   animation-delay: 28s;
+}
+
+.leadership-team-item {
+  display: flex;
+  margin: 6em;
+}
+
+.leadership-team-item .headshot {
+  margin: 0 3em 0 0;
+}
+
+.leadership-team-item .headshot img {
+  max-height: 300px;
+}
+
+.leadership-team-item .info {
+  flex: 0 0 66%;
+  max-height: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leadership-team-item .info:has(.read-more.clicked) {
+  max-height: fit-content;
+  overflow: auto;
+  text-overflow: unset;
+}
+
+.leadership-team-item .info h3 {
+  margin-block: 0;
+  margin: 0.25em 0;
+}
+
+.leadership-team-item .info .title {
+  font-size: 1.5em;
+  font-style: italic;
+  margin: 0 0 0.25em 0;
+}
+
+.leadership-team-item .info .bio {
+  position: relative;
+}
+
+.leadership-team-item .info .bio .read-more {
+  position: absolute;
+  display: inline-block;
+  top: 170px;
+  right: 0;
+  font-size: 1.0;
+  font-weight: 700;
+  font-size: 1.25em;
+  text-decoration: underline;
+  background-color: #fff;
+  padding: .75em;
+  cursor: pointer;
+}
+
+.leadership-team-item .info .bio p {
+  font-size: 1em;
+  line-height: 1.5em;
+  text-align: left;
+  width: 100%;
+  padding: 0 0 1em 0;
+}
+
+.leadership-team-item .info .bio .read-more.blue {
+  color: #3ba7cb;
+}
+
+.leadership-team-item .info .bio .read-more.purple {
+  color: #8676c1;
+}
+
+.leadership-team-item .info .bio .read-more.green {
+  color: #2e964e;
+}
+
+.leadership-team-item .info .bio .read-more.pink {
+  color: #d774a1;
+}
+
+
+.leadership-team-item .info .bio .read-more.clicked {
+  display: none;
 }
 
 footer {
