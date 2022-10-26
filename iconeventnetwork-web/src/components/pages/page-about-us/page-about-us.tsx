@@ -3,7 +3,6 @@ import { scrollToFragment } from 'scroll-to-fragment';
 
 @Component({
   tag: 'page-about-us',
-  styleUrl: 'page-about-us.css',
 })
 export class PageAboutUs {
   @Prop() leadershipTeamMembers: HTMLElement;
