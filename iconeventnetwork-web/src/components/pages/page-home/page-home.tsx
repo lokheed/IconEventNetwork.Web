@@ -175,10 +175,11 @@ export class PageHome {
             <div class='content'>
               <ul>
                 <li>A vetted list of trusted providers from all categories, in markets around the globe</li>
-                <li>Online directory listing on the Icon Network intranet</li>
+                <li>Online directory listing on the Icon Network digital platform</li>
                 <li>Consumer-facing directory listing on the Icon Network website</li>
                 <li>The Icon Network logo/seal for inclusion in your business communications</li>
                 <li>Consumer marketing via social media, PR and other channels</li>
+                <li>Networking events that incorporate 1:1 appointments between planners and providers</li>              
               </ul>
             </div>
           </div>
@@ -204,11 +205,11 @@ export class PageHome {
             <div class='label'>Network<br/>Benefits</div>
             <div class='content'>
               <ul>
-                <li>A vetted list of trusted providers from all categories, in markets around the globe</li>
-                <li>Online directory listing on the Icon Network intranet</li>
-                <li>Consumer-facing directory listing on the Icon Network website</li>
+                <li>Exclusive access to the world’s best event planners, representing hundreds of millions in luxury event sales</li>
+                <li>Online directory listing on the Icon Network digital platform</li>
                 <li>The Icon Network logo/seal for inclusion in your business communications</li>
-                <li>Consumer marketing via social media, PR and other channels</li>
+                <li>B-to-B marketing opportunities to reach event planners</li>
+                <li>Networking events that incorporate 1:1 appointments between planners and providers</li>
               </ul>
             </div>
           </div>
