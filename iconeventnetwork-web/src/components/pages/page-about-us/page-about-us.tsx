@@ -3,6 +3,7 @@ import { scrollToFragment } from 'scroll-to-fragment';
 
 @Component({
   tag: 'page-about-us',
+  styleUrl: 'page-about-us.css',
 })
 export class PageAboutUs {
   @Prop() leadershipTeamMembers: HTMLElement;
@@ -24,6 +25,7 @@ export class PageAboutUs {
       this.updateLeadershipTeamMembers(res.data);
     });
   }
+
 
   private getOptions() {
     return {  
@@ -77,11 +79,11 @@ export class PageAboutUs {
         <div class='accent-block'>    
           <h2>Testimonials</h2>
           <hr class='orange'/>
-          (testimonials will go here)
+          <app-testimonial-carousel></app-testimonial-carousel>
         </div>     
         <a id='contact-us'></a>        
         <div class='right-image'>
-          <div class='text-container'>
+          <div class='text-container contact-us'>
             <h2>Contact Us</h2>
             <hr class='green'/>
             <p>
@@ -90,7 +92,7 @@ export class PageAboutUs {
             <h3>Email:</h3>
             <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork</a>
             <h3>Phone:</h3>
-            +1-123-456-7890     
+            <span class='phone'>012.345.6789</span>   
           </div>         
           <div class='image-container'>
             <div class='image6'></div>

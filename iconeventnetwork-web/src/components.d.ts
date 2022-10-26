@@ -36,6 +36,9 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface AppTestimonialCarousel {
+        "testimonials": HTMLElement;
+    }
     interface PageAboutUs {
         "leadershipTeamMembers": HTMLElement;
     }
@@ -140,6 +143,12 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLAppTestimonialCarouselElement extends Components.AppTestimonialCarousel, HTMLStencilElement {
+    }
+    var HTMLAppTestimonialCarouselElement: {
+        prototype: HTMLAppTestimonialCarouselElement;
+        new (): HTMLAppTestimonialCarouselElement;
     };
     interface HTMLPageAboutUsElement extends Components.PageAboutUs, HTMLStencilElement {
     }
@@ -246,6 +255,7 @@ declare global {
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-root": HTMLAppRootElement;
+        "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
         "page-cookie-policy": HTMLPageCookiePolicyElement;
@@ -293,6 +303,9 @@ declare namespace LocalJSX {
         "menu"?: HTMLElement;
     }
     interface AppRoot {
+    }
+    interface AppTestimonialCarousel {
+        "testimonials"?: HTMLElement;
     }
     interface PageAboutUs {
         "leadershipTeamMembers"?: HTMLElement;
@@ -358,6 +371,7 @@ declare namespace LocalJSX {
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
         "app-root": AppRoot;
+        "app-testimonial-carousel": AppTestimonialCarousel;
         "page-about-us": PageAboutUs;
         "page-code-of-conduct": PageCodeOfConduct;
         "page-cookie-policy": PageCookiePolicy;
@@ -388,6 +402,7 @@ declare module "@stencil/core" {
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
             "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
