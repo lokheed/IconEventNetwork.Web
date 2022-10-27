@@ -1,9 +1,55 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'page-event-planners',
+  styleUrl: 'page-event-planners.css',
 })
 export class PageEventPlanners {
+  @Prop() eventPlanners: HTMLElement;  
+ 
+  componentWillLoad() {
+    this.getEventPlanners();
+  }
+
+  private getEventPlanners() {   
+    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var options = this.getOptions();
+    fetch(`${strapiBaseUrl}/api/founding-planners?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName&populate=*`, options)
+    .then(res => res.json())
+    .then(res => {
+      this.updateEventPlanners(res.data);
+    });
+  }
+
+
+  private getOptions() {
+    return {  
+      method: 'GET'
+    }
+  }
+
+  updateEventPlanners(eventPlannerData) {
+   this.eventPlanners = eventPlannerData.map((d) =>
+    <app-event-planner-item 
+      FirstName={d.attributes.FirstName}
+      LastName={d.attributes.LastName}
+      CompanyName={d.attributes.CompanyName}
+      Bio={d.attributes.Bio}
+      HeadshotURL={d.attributes.Headshot.data.attributes.url}
+      HeadshotAltText={d.attributes.Headshot.data.attributes.alternativeText}
+      >
+    </app-event-planner-item>
+   );
+  }
+
+  private getStrapiBaseUrl() {
+    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
+    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
+    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+    return strapiBaseUrl;
+  }
+ 
   render() {
     return (
       <Host>
@@ -21,7 +67,7 @@ export class PageEventPlanners {
           </p>     
         </div>   
         <div class='planner-grid'>
-          (event planner grid will go here)
+          {this.eventPlanners}
         </div>     
       </Host>
     );
