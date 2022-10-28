@@ -1,6 +1,6 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { RouterHistory } from '@stencil-community/router';
-
+import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-demo',
   styleUrl: 'page-demo.css',
@@ -143,9 +143,9 @@ export class PageDemo {
   }
 
   private getCompanyAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCompanyAddressTypeOptions(res.data);
@@ -153,9 +153,9 @@ export class PageDemo {
   }
 
   private getPersonAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonAddressTypeOptions(res.data);
@@ -163,9 +163,9 @@ export class PageDemo {
   }
 
   private getPersonCompanyAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonCompanyAddressTypeOptions(res.data);
@@ -173,9 +173,9 @@ export class PageDemo {
   }
 
   private getCompanyEmailAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCompanyEmailAddressTypeOptions(res.data);
@@ -183,9 +183,9 @@ export class PageDemo {
   }
 
   private getPersonEmailAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonEmailAddressTypeOptions(res.data);
@@ -193,9 +193,9 @@ export class PageDemo {
   }
 
   private getPersonCompanyEmailAddressTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonCompanyEmailAddressTypeOptions(res.data);
@@ -203,9 +203,9 @@ export class PageDemo {
   }
 
   private getCompanyPhoneNumberTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCompanyPhoneNumberTypeOptions(res.data);
@@ -213,9 +213,9 @@ export class PageDemo {
   }
 
   private getPersonPhoneNumberTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonPhoneNumberTypeOptions(res.data);
@@ -223,9 +223,9 @@ export class PageDemo {
   }
 
   private getPersonCompanyPhoneNumberTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonCompanyPhoneNumberTypeOptions(res.data);
@@ -233,9 +233,9 @@ export class PageDemo {
   }
 
   private getCompanySocialMediaTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCompanySocialMediaTypeOptions(res.data);
@@ -243,9 +243,9 @@ export class PageDemo {
   }
 
   private getPersonSocialMediaTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonSocialMediaTypeOptions(res.data);
@@ -253,9 +253,9 @@ export class PageDemo {
   }
 
   private getPersonCompanySocialMediaTypeOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePersonCompanySocialMediaTypeOptions(res.data);
@@ -263,9 +263,9 @@ export class PageDemo {
   }
 
   private getPrefixesOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/prefixes?filters[IsActive][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/prefixes?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePrefixesOptions(res.data);
@@ -273,9 +273,9 @@ export class PageDemo {
   }
 
   private getPronounOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/pronouns?filters[IsActive][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/pronouns?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updatePronounOptions(res.data);
@@ -283,9 +283,9 @@ export class PageDemo {
   }
 
   private getSuffixesOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/suffixes?filters[IsActive][$eq]=1&sort=Rank`, options)
+    fetch(`${baseUrl}/api/suffixes?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateSuffixesOptions(res.data);
@@ -293,9 +293,9 @@ export class PageDemo {
   }
 
   private getCountryOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/countries?filters[IsActive][$eq]=1&pagination[pageSize]=300&sort=SearchableName`, options)
+    fetch(`${baseUrl}/api/countries?filters[IsActive][$eq]=1&pagination[pageSize]=300&sort=SearchableName`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCountryOptions(res.data);
@@ -303,21 +303,13 @@ export class PageDemo {
   }
 
   private getCountrySubdivisionOptions() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/countrysubdivisions?filters[Code][$startsWith]=${this.selectedCountry}&filters[IsActive][$eq]=1&pagination[pageSize]=100&sort=SearchableName`, options)
+    fetch(`${baseUrl}/api/countrysubdivisions?filters[Code][$startsWith]=${this.selectedCountry}&filters[IsActive][$eq]=1&pagination[pageSize]=100&sort=SearchableName`, options)
     .then(res => res.json())
     .then(res => {
       this.updateCountrySubdivisionOptions(res.data);
     });
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
 
   render() {
