@@ -26,6 +26,10 @@
     filter:sepia(15%) hue-rotate(167deg) saturate(5);
 }
 
+.planner-grid .event-planner-item.dimmed .headshot img {
+    opacity: 0.5;
+}
+
 .planner-grid .event-planner-item .info h3 {
     font-size: 1.5em;
     font-weight: 700;
@@ -46,4 +50,37 @@
 
 .planner-grid .event-planner-item .bio {
     display: none;
+}
+
+.planner-grid .hydrated:has(.event-planner-bio-item) {
+    margin: 0 0 3em 0;
+    grid-column: span 3;
+}
+
+.planner-grid .event-planner-bio-item .closer {
+    display: block;
+    float: right;
+    font-weight: 700;
+    padding-top: 3em;
+    cursor: pointer;
+}
+
+.planner-grid .event-planner-bio-item h2 {
+    padding-top: 1em;
+    text-align: left;
+}
+
+.planner-grid .event-planner-bio-item h3 {
+    margin-block-start: .5em;
+    margin-block-end: .5em;
+    text-align: left;
+}
+
+.planner-grid .event-planner-bio-item hr {
+    margin: 1.5em 0;
+}
+
+.planner-grid .event-planner-bio-item .bio {
+    font-size: 1.5em;
+    line-height: 1.75em;
 }

@@ -1,29 +1,42 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Listen, h } from '@stencil/core';
 @Component({
   tag: 'app-event-planner-item',
 })
 
 export class EventPlannerItem { 
+    @Prop() EventPlannerId: number;
     @Prop() FirstName: string;
     @Prop() LastName: string;
     @Prop() CompanyName: string;
-    @Prop() Bio: string;
     @Prop() HeadshotURL: string;
     @Prop() HeadshotAltText: string;
-    @Prop() Color: string;
+    @Prop() Bio: string;
+    @State() EventPlannerItemCSSClass: string = 'event-planner-item';
+    @Event() eventPlannerItemSelected: EventEmitter<number>;
+    @Listen('eventPlannerItemSelected', {target: 'body'})
+    eventPlannerItemSelectedHandler(event: CustomEvent<number>) {
+        this.otherEventPlannerItemSelectedHander(event.detail);
+    }
+    
+    otherEventPlannerItemSelectedHander(eventPlannerId: number) {
+        if (this.EventPlannerId == eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item selected';
+        if (eventPlannerId > 0 && this.EventPlannerId != eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item dimmed';
+        if (eventPlannerId == 0) this.EventPlannerItemCSSClass = 'event-planner-item';
+    }
+  
+    thisEventPlannerItemSelectedHandler() {
+        this.eventPlannerItemSelected.emit(this.EventPlannerId);
+    }
 
     render() {   
         return (
-            <div class='event-planner-item'>
+            <div id={'eventPlanner' + this.EventPlannerId} onClick={() => this.thisEventPlannerItemSelectedHandler()} class={this.EventPlannerItemCSSClass}>
                 <div class='headshot'>
                     <img src={this.HeadshotURL} alt={this.HeadshotAltText} class='leadership-headshot' />
                 </div>
                 <div class='info'>
                     <h3>{this.FirstName} {this.LastName}</h3>
                     <div class='company'>{this.CompanyName}</div>
-                    <div class="bio">
-                        <div innerHTML={this.Bio}></div>
-                    </div> 
                 </div>
             </div>
         );

@@ -7,10 +7,17 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
+    interface AppEventPlannerBioItem {
+        "Bio": string;
+        "CompanyName": string;
+        "EventPlannerId": number;
+        "FirstName": string;
+        "LastName": string;
+    }
     interface AppEventPlannerItem {
         "Bio": string;
-        "Color": string;
         "CompanyName": string;
+        "EventPlannerId": number;
         "FirstName": string;
         "HeadshotAltText": string;
         "HeadshotURL": string;
@@ -106,6 +113,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAppEventPlannerBioItemElement extends Components.AppEventPlannerBioItem, HTMLStencilElement {
+    }
+    var HTMLAppEventPlannerBioItemElement: {
+        prototype: HTMLAppEventPlannerBioItemElement;
+        new (): HTMLAppEventPlannerBioItemElement;
+    };
     interface HTMLAppEventPlannerItemElement extends Components.AppEventPlannerItem, HTMLStencilElement {
     }
     var HTMLAppEventPlannerItemElement: {
@@ -263,6 +276,7 @@ declare global {
         new (): HTMLPageTermsOfServiceElement;
     };
     interface HTMLElementTagNameMap {
+        "app-event-planner-bio-item": HTMLAppEventPlannerBioItemElement;
         "app-event-planner-item": HTMLAppEventPlannerItemElement;
         "app-footer": HTMLAppFooterElement;
         "app-footer-legal-links": HTMLAppFooterLegalLinksElement;
@@ -292,14 +306,23 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppEventPlannerBioItem {
+        "Bio"?: string;
+        "CompanyName"?: string;
+        "EventPlannerId"?: number;
+        "FirstName"?: string;
+        "LastName"?: string;
+        "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
+    }
     interface AppEventPlannerItem {
         "Bio"?: string;
-        "Color"?: string;
         "CompanyName"?: string;
+        "EventPlannerId"?: number;
         "FirstName"?: string;
         "HeadshotAltText"?: string;
         "HeadshotURL"?: string;
         "LastName"?: string;
+        "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
     }
     interface AppFooter {
     }
@@ -390,6 +413,7 @@ declare namespace LocalJSX {
     interface PageTermsOfService {
     }
     interface IntrinsicElements {
+        "app-event-planner-bio-item": AppEventPlannerBioItem;
         "app-event-planner-item": AppEventPlannerItem;
         "app-footer": AppFooter;
         "app-footer-legal-links": AppFooterLegalLinks;
@@ -422,6 +446,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-event-planner-bio-item": LocalJSX.AppEventPlannerBioItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerBioItemElement>;
             "app-event-planner-item": LocalJSX.AppEventPlannerItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerItemElement>;
             "app-footer": LocalJSX.AppFooter & JSXBase.HTMLAttributes<HTMLAppFooterElement>;
             "app-footer-legal-links": LocalJSX.AppFooterLegalLinks & JSXBase.HTMLAttributes<HTMLAppFooterLegalLinksElement>;
