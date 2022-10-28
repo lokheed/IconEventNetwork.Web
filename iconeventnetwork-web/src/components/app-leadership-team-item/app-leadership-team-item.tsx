@@ -21,7 +21,6 @@ export class LeadershipTeamItem {
         this.ReadMoreClass = 'read-more ' + this.Color;
     }
 
-
     render() {   
         return (
             <div class='leadership-team-item'>

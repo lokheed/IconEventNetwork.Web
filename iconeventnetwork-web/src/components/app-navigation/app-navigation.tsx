@@ -1,4 +1,5 @@
 import { Component, State, Prop, h } from '@stencil/core';
+import { urlService } from '../../services/url-service';
 
 @Component({
   tag: 'app-navigation',
@@ -14,7 +15,7 @@ export class AppNavigation {
   }
 
   private getMenu() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var strapiBaseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
     fetch(`${strapiBaseUrl}/api/main-menu?populate=Navigation.Links`, options)
     .then(res => res.json())
@@ -27,14 +28,6 @@ export class AppNavigation {
     return {  
       method: 'GET'
     }
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
 
   updateMenu(menuData) {

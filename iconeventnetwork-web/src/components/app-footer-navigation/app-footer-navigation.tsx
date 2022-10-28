@@ -1,5 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
-
+import { urlService } from '../../services/url-service';
 @Component({
   tag: 'app-footer-navigation',
 })
@@ -18,22 +18,14 @@ export class AppFooterNavigation {
   }
 
   private getFooterMenu() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/footer-menu?populate=*`, options)
+    fetch(`${baseUrl}/api/footer-menu?populate=*`, options)
     .then(res => res.json())
     .then(res => {
       this.updateFooterMenuHeader(res.data);
       this.updateFooterMenuItems(res.data);
     });
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
 
   updateFooterMenuHeader(footerMenuData) {

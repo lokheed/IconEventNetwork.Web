@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
+import { urlService } from '../../../services/url-service';
 
 @Component({
   tag: 'page-about-us',
@@ -16,9 +17,9 @@ export class PageAboutUs {
   }
 
   private getLeadershipTeamMembers() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/leadership-team-members?fields[0]=Title&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
+    fetch(`${baseUrl}/api/leadership-team-members?fields[0]=Title&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateLeadershipTeamMembers(res.data);
@@ -45,14 +46,6 @@ export class PageAboutUs {
       >
     </app-leadership-team-item>
    );
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
 
   render() {
