@@ -2,7 +2,8 @@ import { Component, Host, Prop, State, Listen, h } from '@stencil/core';
 import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-event-planners',
-  styleUrl: 'page-event-planners.css',
+  styleUrl: 'page-event-planners.scss',
+  shadow: false,
 })
 export class PageEventPlanners {
   @Prop() eventPlanners: HTMLElement; 

@@ -3,8 +3,8 @@ import { RouterHistory } from '@stencil-community/router';
 
 @Component({
   tag: 'page-directory',
-  styleUrl: 'page-directory.css',
-  shadow: true,
+  styleUrl: 'page-directory.scss',
+  shadow: false,
 })
 export class PageDirectory {
   @Prop() history: RouterHistory;

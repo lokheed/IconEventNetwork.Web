@@ -2,8 +2,8 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'page-privacy-policy',
-  styleUrl: 'page-privacy-policy.css',
-  shadow: true,
+  styleUrl: 'page-privacy-policy.scss',
+  shadow: false,
 })
 export class PagePrivacyPolicy {
   render() {

@@ -2,8 +2,8 @@ import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'page-login-redirect',
-  styleUrl: 'page-login-redirect.css',
-  shadow: true,
+  styleUrl: 'page-login-redirect.scss',
+  shadow: false,
 })
 export class PageLoginRedirect {
   @State() currentText: string;

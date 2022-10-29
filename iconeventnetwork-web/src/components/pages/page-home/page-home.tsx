@@ -3,6 +3,8 @@ import { scrollToFragment } from 'scroll-to-fragment';
 import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-home',
+  styleUrl: 'page-home.scss',
+  shadow: false,
 })
 export class PageHome {
   @Prop() foundingPlannerLogos: HTMLElement;

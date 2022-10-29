@@ -3,8 +3,8 @@ import { RouterHistory } from '@stencil-community/router';
 
 @Component({
   tag: 'page-join',
-  styleUrl: 'page-join.css',
-  shadow: true,
+  styleUrl: 'page-join.scss',
+  shadow: false,
 })
 export class PageJoin {
   @Prop() history: RouterHistory;

@@ -4,6 +4,8 @@ import { urlService } from '../../../services/url-service';
 
 @Component({
   tag: 'page-about-us',
+  styleUrl: 'page-about-us.scss',
+  shadow: false,
 })
 export class PageAboutUs {
   @Prop() leadershipTeamMembers: HTMLElement;

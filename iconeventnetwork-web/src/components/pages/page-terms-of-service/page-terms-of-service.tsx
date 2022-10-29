@@ -2,6 +2,8 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-terms-of-service',
+  styleUrl: 'page-terms-of-service.scss',
+  shadow: false,
 })
 export class PageTermsOfService {
   render() {
