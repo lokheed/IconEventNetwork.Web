@@ -2,8 +2,8 @@ import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'page-login-redirect',
-  styleUrl: 'page-login-redirect.css',
-  shadow: true,
+  styleUrl: 'page-login-redirect.scss',
+  shadow: false,
 })
 export class PageLoginRedirect {
   @State() currentText: string;
@@ -34,7 +34,7 @@ export class PageLoginRedirect {
         window.location.replace('/')
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
         this.currentText = 'An error occurred, please see the developer console.';
       });
   }

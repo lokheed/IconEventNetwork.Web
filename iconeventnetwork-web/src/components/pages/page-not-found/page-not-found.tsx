@@ -2,8 +2,8 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-not-found',
-  styleUrl: 'page-not-found.css',
-  shadow: true,
+  styleUrl: 'page-not-found.scss',
+  shadow: false,
 })
 export class PageNotFound {
   render() {

@@ -2,7 +2,8 @@ import { Component, Host, State, h } from '@stencil/core';
 
 @Component({
   tag: 'app-root',
-  styleUrl: 'app-root.css',
+  styleUrl: 'app-root.scss',
+  shadow: false,
 })
 export class AppRoot {
   @State() navigationBackgroundClass: string = 'white';

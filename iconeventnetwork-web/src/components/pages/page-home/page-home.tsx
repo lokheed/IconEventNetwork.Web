@@ -1,8 +1,10 @@
 import { Component, Host, Prop, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
-
+import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-home',
+  styleUrl: 'page-home.scss',
+  shadow: false,
 })
 export class PageHome {
   @Prop() foundingPlannerLogos: HTMLElement;
@@ -23,9 +25,9 @@ export class PageHome {
   }
 
   private getFoundingPlannerLogos() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/founding-planners?fields[0]=CompanyName&populate[Logo][fields][0]=alternativeText&populate[Logo][fields][1]=url&sort[0]=LogoRank`, options)
+    fetch(`${baseUrl}/api/founding-planners?fields[0]=CompanyName&populate[Logo][fields][0]=alternativeText&populate[Logo][fields][1]=url&sort[0]=LogoRank`, options)
     .then(res => res.json())
     .then(res => {
       this.updateFoundingPlannerLogos(res.data);
@@ -36,14 +38,6 @@ export class PageHome {
     return {  
       method: 'GET'
     }
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
 
   private providerPartnersLinkToggle() {

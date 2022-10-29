@@ -1,6 +1,9 @@
 import { Component, Prop, h } from '@stencil/core';
+import { urlService } from '../../services/url-service';
 @Component({
-  tag: 'app-testimonial-carousel',
+    tag: 'app-testimonial-carousel',
+    styleUrl: 'app-testimonial-carousel.scss',
+    shadow: false,
 })
 
 export class TestimonialCarousel { 
@@ -11,9 +14,9 @@ export class TestimonialCarousel {
     }
 
     private getTestimonials() {   
-        var strapiBaseUrl = this.getStrapiBaseUrl();
+        var baseUrl = urlService.getApiBaseUrl();
         var options = this.getOptions();
-        fetch(`${strapiBaseUrl}/api/testimonials?fields[0]=Name&fields[1]=Company&fields[2]=Quote&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
+        fetch(`${baseUrl}/api/testimonials?fields[0]=Name&fields[1]=Company&fields[2]=Quote&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
         .then(res => res.json())
         .then(res => {
             this.updateTestimonials(res.data);
@@ -24,14 +27,6 @@ export class TestimonialCarousel {
         return {  
             method: 'GET'
         }
-    }
-
-    private getStrapiBaseUrl() {
-        var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-        if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-        if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-        if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-        return strapiBaseUrl;
     }
     
     updateTestimonials(testimonialData) {

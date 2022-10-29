@@ -1,6 +1,8 @@
 import { Component, h } from '@stencil/core';
 @Component({
   tag: 'app-login-button',
+  styleUrl: 'app-login-button.scss',
+  shadow: false,
 })
 
 export class AppLoginButton { 

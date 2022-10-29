@@ -2,8 +2,8 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-login',
-  styleUrl: 'page-login.css',
-  shadow: true,
+  styleUrl: 'page-login.scss',
+  shadow: false,
 })
 export class PageLogin {;
   componentDidRender() {
