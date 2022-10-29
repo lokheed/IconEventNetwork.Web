@@ -1,5 +1,5 @@
 import { Component, Host, Prop, State, Listen, h } from '@stencil/core';
-
+import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-event-planners',
   styleUrl: 'page-event-planners.css',
@@ -40,9 +40,9 @@ export class PageEventPlanners {
   }
 
   private getEventPlanners() {   
-    var strapiBaseUrl = this.getStrapiBaseUrl();
+    var baseUrl = urlService.getApiBaseUrl();
     var options = this.getOptions();
-    fetch(`${strapiBaseUrl}/api/founding-planners?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName`, options)
+    fetch(`${baseUrl}/api/founding-planners?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName`, options)
     .then(res => res.json())
     .then(res => {
       this.updateEventPlanners(res.data);
@@ -52,7 +52,7 @@ export class PageEventPlanners {
   private getEventPlanner(eventPlannerId) { 
     if (eventPlannerId == 0)  this.eventPlannerBio = undefined;
     if (eventPlannerId > 0) {
-      var strapiBaseUrl = this.getStrapiBaseUrl();
+      var strapiBaseUrl = urlService.getApiBaseUrl();
       var options = this.getOptions();
       fetch(`${strapiBaseUrl}/api/founding-planners/${eventPlannerId}?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName`, options)
       .then(res => res.json())
@@ -89,14 +89,6 @@ export class PageEventPlanners {
       >
     </app-event-planner-item>
    );
-  }
-
-  private getStrapiBaseUrl() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    return strapiBaseUrl;
   }
  
   render() {
