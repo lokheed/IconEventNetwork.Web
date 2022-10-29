@@ -1,36 +1,33 @@
 import { Component, Host, Prop, h } from '@stencil/core';
-import { urlService } from '../../services/url-service';
+import { MenuLink } from '../../services/clients/client-base';
+import { FooterMenuClient } from '../../services/clients/footer-menu-client';
+
 @Component({
   tag: 'app-footer-navigation',
 })
 export class AppFooterNavigation {
+  private readonly footerMenuClient!: FooterMenuClient;
+
+  constructor() {
+    this.footerMenuClient = new FooterMenuClient();
+  }
+
   @Prop() footerNavigationHeader: HTMLElement;
   @Prop() footerNavigationItems: HTMLElement;
 
   componentWillLoad() {
-    this.getFooterMenu();
+    this.footerMenuClient.getFooterMenu()
+      .then(res => {
+        const menuItems = res.data.attributes.MenuItems
+        this.updateFooterMenuHeader(menuItems);
+        this.updateFooterMenuItems(menuItems);
+      })
+      .catch(err => console.error(err));
   }
 
-  private getOptions() {
-    return {  
-      method: 'GET'
-    }
-  }
-
-  private getFooterMenu() {   
-    var baseUrl = urlService.getApiBaseUrl();
-    var options = this.getOptions();
-    fetch(`${baseUrl}/api/footer-menu?populate=*`, options)
-    .then(res => res.json())
-    .then(res => {
-      this.updateFooterMenuHeader(res.data);
-      this.updateFooterMenuItems(res.data);
-    });
-  }
-
-  updateFooterMenuHeader(footerMenuData) {
+  updateFooterMenuHeader(menuLinks: MenuLink[]) {
     this.footerNavigationHeader = <h2></h2>
-    var menuHeaderData = footerMenuData.attributes.MenuItems.find(m => m.LinkType === 'HeadingLink' || m.LinkType === 'HeadingNoLink');
+    var menuHeaderData = menuLinks.find(m => m.LinkType === 'HeadingLink' || m.LinkType === 'HeadingNoLink');
     if (menuHeaderData) {
       switch(menuHeaderData.LinkType) {
         case 'HeadingLink': {
@@ -45,13 +42,13 @@ export class AppFooterNavigation {
     }
   }
   
-  updateFooterMenuItems(footerMenuData) {
+  updateFooterMenuItems(menuLinks: MenuLink[]) {
     var isAuthenticated = !!localStorage.getItem('jwt');
     var menuItems;
     if (isAuthenticated) {
-      menuItems = footerMenuData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.Link != '/login');
+      menuItems = menuLinks.filter(m => m.LinkType === 'Normal' && m.Link != '/login');
     } else {
-      menuItems = footerMenuData.attributes.MenuItems.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
+      menuItems = menuLinks.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
     }
     this.footerNavigationItems = menuItems.map(d => <li><a href={d.Link}>{d.DisplayName}</a></li>);
   }

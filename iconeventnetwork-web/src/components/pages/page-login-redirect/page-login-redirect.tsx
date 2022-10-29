@@ -34,7 +34,7 @@ export class PageLoginRedirect {
         window.location.replace('/')
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
         this.currentText = 'An error occurred, please see the developer console.';
       });
   }
