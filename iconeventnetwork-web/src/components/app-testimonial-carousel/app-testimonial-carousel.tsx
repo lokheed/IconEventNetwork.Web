@@ -1,7 +1,9 @@
 import { Component, Prop, h } from '@stencil/core';
 import { urlService } from '../../services/url-service';
 @Component({
-  tag: 'app-testimonial-carousel',
+    tag: 'app-testimonial-carousel',
+    styleUrl: 'app-testimonial-carousel.scss',
+    shadow: false,
 })
 
 export class TestimonialCarousel { 

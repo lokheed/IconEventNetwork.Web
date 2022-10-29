@@ -1,0 +1,182 @@
+.triple-image {
+	display: flex;
+	flex-flow: row;
+	padding: 9em 0 0 0;
+	margin: 0;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	>div {
+		flex: 1 0 auto;
+		aspect-ratio: 1/1;
+		background-repeat: no-repeat;
+		background-size: auto;
+		background-position: center;
+	}
+}
+.triple-image.image-set-1 {
+	>div {
+		&:nth-child(1) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_1_372c3bce80.png');
+		}
+		&:nth-child(2) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_2_62a1bbb9b3.png');
+		}
+		&:nth-child(3) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_3_6e3e0e6cf2.png');
+		}
+	}
+}
+.triple-image.image-set-2 {
+	>div {
+		&:nth-child(1) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_8_972043d5fb.png');
+		}
+		&:nth-child(2) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_9_bcf43e60d2.png');
+		}
+		&:nth-child(3) {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_10_1d8b321864.png');
+		}
+	}
+	padding: 0;
+}
+.single-image {
+	display: flex;
+	flex-flow: row;
+	padding: 9em 0 0 0;
+	margin: 0;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	>div {
+		flex: 1 0 auto;
+		aspect-ratio: 3/1;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+	>div.image1 {
+		background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_5_d02617d813.jpg');
+	}
+	>div.image2 {
+		background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_7_93598c1197.jpg');
+	}
+	>div.image3 {
+		background-image: url('https://pro-icon-strapi.s3.amazonaws.com/hobe_sound_wedding_weekend_1_01_a89f8ce18c.jpg');
+		background-position: bottom;
+	}
+	>div.image4 {
+		background-image: url('https://pro-icon-strapi.s3.amazonaws.com/haiku_mill_wedding_10_2200x1467_83f57e71f6.jpg');
+		background-position: bottom;
+	}
+	&:has(div.image3) {
+		padding: 4.5em 0 0 0;
+	}
+}
+.left-image {
+	display: flex;
+	flex-flow: row;
+	padding: 9em 0 0 0;
+	margin: 0;
+	flex-wrap: nowrap;
+	.image-container {
+		>div {
+			&:nth-child(1) {
+				flex: 0 0 33%;
+			}
+			&:nth-child(2) {
+				background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_4_8a315438c4.jpeg');
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+				flex: 0 0 66%;
+			}
+		}
+		flex: 0 0 33%;
+		display: flex;
+	}
+	.text-container {
+		flex: 0 0 50%;
+		margin: 0 0 0 3em;
+		h2 {
+			text-align: left;
+			padding-top: 0;
+		}
+		hr {
+			margin: 1.5em 0 0 0;
+			width: 3.5em;
+		}
+		.list {
+			counter-reset: list-number;
+			margin: 3em 0 0 0;
+			div {
+				p {
+					margin: 0 0 0 2em;
+					text-align: left;
+					display: inline-flex;
+					padding-top: 0.25em;
+					width: 80%;
+					font-size: 1.3em;
+					line-height: 1.6em;
+				}
+			}
+		}
+		.list-item-container {
+			display: grid;
+			grid-template-columns: 3em 100%;
+			margin: 0 0 2em 0;
+		}
+	}
+}
+.right-image {
+	display: flex;
+	flex-flow: row;
+	padding: 9em 0 0 0;
+	margin: 0;
+	flex-wrap: nowrap;
+	.text-container {
+		flex: 0 0 50%;
+		margin: 0 0 0 9em;
+		h2 {
+			text-align: left;
+			padding-top: 0;
+		}
+		hr {
+			margin: 1.5em 0 0 0;
+			width: 3.5em;
+		}
+	}
+	.image-container {
+		flex: 0 0 33%;
+		display: flex;
+		>div {
+			&:nth-child(2) {
+				flex: 0 0 33%;
+			}
+			&:nth-child(1) {
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+				flex: 0 0 66%;
+			}
+		}
+		>div.image5 {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/TIN_Image_6_5193a0d5b3.jpg');
+		}
+		>div.image6 {
+			background-image: url('https://pro-icon-strapi.s3.amazonaws.com/The_Day_Ira_Lippke_P0096_72dpi_200x300_2x_ed2b5f8c86.jpg');
+		}
+	}
+	p {
+		font-size: 1.3em;
+		line-height: 1.6em;
+		text-align: left;
+		width: auto;
+		padding: 0;
+		margin: 0 10% 0 0;
+	}
+}
+@media (max-width: 480px) {
+	.triple-image {
+		padding: 3em 0 0 0;
+	}
+}

@@ -1,0 +1,11 @@
+.list-item-container {
+	>div.counter-container {
+		&:before {
+			counter-increment: list-number;
+			content: counter(list-number, decimal-leading-zero);
+			font-size: 3em;
+			font-weight: 300;
+			margin: 0;
+		}
+	}
+}

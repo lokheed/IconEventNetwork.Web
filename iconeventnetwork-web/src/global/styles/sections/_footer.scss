@@ -1,0 +1,126 @@
+footer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 3rem;
+	background-color: var(--color-black);
+	color: var(--color-white);
+	>div {
+		width: 25%;
+	}
+	.logo-container {
+		display: flex;
+		flex-direction: column;
+		>div {
+			display: flex;
+			justify-content: center;
+		}
+		.icon-network-vertical-logo {
+			width: 125px;
+			margin: 0;
+		}
+		.icon {
+			height: 32px;
+			margin: 0;
+		}
+	}
+	.container {
+		h2 {
+			font-size: 0.8em;
+			text-transform: uppercase;
+			margin: 0;
+			padding: 0 0 0.5em 0;
+			text-align: left;
+			font-weight: 700;
+			a {
+				text-decoration: none;
+				color: var(--color-white);
+				&:visited {
+					text-decoration: none;
+					color: var(--color-white);
+				}
+				&:hover {
+					text-decoration: none;
+					color: var(--color-white);
+				}
+				&:active {
+					text-decoration: none;
+					color: var(--color-white);
+				}
+			}
+		}
+	}
+	address {
+		font-size: 0.8em;
+		font-style: normal;
+		line-height: 2em;
+		a {
+			text-decoration: none;
+			color: var(--color-white);
+			text-transform: none;
+			&:visited {
+				text-decoration: none;
+				color: var(--color-white);
+				text-transform: none;
+			}
+			&:hover {
+				text-decoration: none;
+				color: var(--color-white);
+				text-transform: none;
+			}
+			&:active {
+				text-decoration: none;
+				color: var(--color-white);
+				text-transform: none;
+			}
+		}
+	}
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding-inline: 0;
+	}
+	li {
+		line-height: 1.5em;
+		a {
+			font-size: 0.8em;
+		}
+	}
+	a {
+		text-decoration: none;
+		text-transform: uppercase;
+		color: var(--color-white);
+		cursor: pointer;
+		&:visited {
+			text-decoration: none;
+			text-transform: uppercase;
+			color: var(--color-white);
+			cursor: pointer;
+		}
+		&:hover {
+			text-decoration: none;
+			text-transform: uppercase;
+			color: var(--color-white);
+			cursor: pointer;
+		}
+		&:active {
+			text-decoration: none;
+			text-transform: uppercase;
+			color: var(--color-white);
+			cursor: pointer;
+		}
+	}
+}
+@media (max-width: 480px) {
+	footer {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		margin-top: .5rem;
+		>div {
+			width: 50%;
+			margin-top: .5rem;
+		}
+	}
+}

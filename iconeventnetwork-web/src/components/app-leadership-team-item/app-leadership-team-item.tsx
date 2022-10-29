@@ -1,6 +1,8 @@
 import { Component, Prop, State, h } from '@stencil/core';
 @Component({
-  tag: 'app-leadership-team-item',
+    tag: 'app-leadership-team-item',
+    styleUrl: 'app-leadership-team-item.scss',
+    shadow: false,
 })
 
 export class LeadershipTeamItem { 
