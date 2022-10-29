@@ -2,6 +2,8 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-event-planners',
+  styleUrl: 'page-event-planners.scss',
+  shadow: false,
 })
 export class PageEventPlanners {
   render() {

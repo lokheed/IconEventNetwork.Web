@@ -2,8 +2,8 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'page-cookie-policy',
-  styleUrl: 'page-cookie-policy.css',
-  shadow: true,
+  styleUrl: 'page-cookie-policy.scss',
+  shadow: false,
 })
 export class PageCookiePolicy {
   render() {

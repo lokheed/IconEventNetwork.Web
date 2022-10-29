@@ -2,8 +2,8 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'page-code-of-conduct',
-  styleUrl: 'page-code-of-conduct.css',
-  shadow: true,
+  styleUrl: 'page-code-of-conduct.scss',
+  shadow: false,
 })
 export class PageCodeOfConduct {
   render() {

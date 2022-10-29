@@ -2,8 +2,8 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'page-logout',
-  styleUrl: 'page-logout.css',
-  shadow: true,
+  styleUrl: 'page-logout.scss',
+  shadow: false,
 })
 export class PageLogout {;
   componentDidRender() {
