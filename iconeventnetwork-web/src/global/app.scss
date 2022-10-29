@@ -8,8 +8,7 @@
   Any global CSS variables should also be applied here.
 */
 
-body {
-  margin: 0px;
-  padding: 0px;
-  font-family: 'Montserrat', sans-serif, -apple-system, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-}
+@import 'styles/variables/variables';
+@import 'styles/base';
+@import 'styles/components/components';
+@import 'styles/sections/sections';

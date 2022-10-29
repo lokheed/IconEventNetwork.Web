@@ -1,0 +1,28 @@
+div.login-button {
+	margin-top: 25px;
+	display: none;
+	>a {
+		text-decoration: none;
+		text-transform: uppercase;
+		color: var(--color-white);
+		font-size: small;
+		font-weight: 600;
+		border: 2px solid #fff;
+		padding: 5px;
+		&:hover {
+			font-weight: 600;
+			color: var(--color-white);
+			cursor: pointer;
+		}
+	}
+	>a.link-active {
+		font-weight: 600;
+	}
+}
+
+@media (max-width: 768px) {
+	div.login-button {
+		margin-top: 10px;
+		font-size: 0.8em;
+	}
+}

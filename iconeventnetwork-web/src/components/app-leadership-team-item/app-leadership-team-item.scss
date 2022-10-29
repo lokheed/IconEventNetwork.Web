@@ -1,0 +1,68 @@
+.leadership-team-item {
+	display: flex;
+	margin: 6em;
+	.headshot {
+		margin: 0 3em 0 0;
+		img {
+			max-height: 300px;
+		}
+	}
+	.info {
+		flex: 0 0 66%;
+		max-height: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		&:has(.read-more.clicked) {
+			max-height: fit-content;
+			overflow: auto;
+			text-overflow: unset;
+		}
+		h3 {
+			margin-block: 0;
+			margin: 0.25em 0;
+		}
+		.title {
+			font-size: 1.5em;
+			font-style: italic;
+			margin: 0 0 0.25em 0;
+		}
+		.bio {
+			position: relative;
+			.read-more {
+				position: absolute;
+				display: inline-block;
+				top: 170px;
+				right: 0;
+				font-size: 1.0;
+				font-weight: 700;
+				font-size: 1.25em;
+				text-decoration: underline;
+				background-color: var(--color-white);
+				padding: .75em;
+				cursor: pointer;
+			}
+			p {
+				font-size: 1em;
+				line-height: 1.5em;
+				text-align: left;
+				width: 100%;
+				padding: 0 0 1em 0;
+			}
+			.read-more.blue {
+				color: var(--color-blue);
+			}
+			.read-more.purple {
+				color: var(--color-purple);
+			}
+			.read-more.green {
+				color: var(--color-green);
+			}
+			.read-more.pink {
+				color: var(--color-pink);
+			}
+			.read-more.clicked {
+				display: none;
+			}
+		}
+	}
+}
