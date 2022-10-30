@@ -1,6 +1,8 @@
 import { Component, Prop, State, Event, EventEmitter, Listen, h } from '@stencil/core';
 @Component({
-  tag: 'app-event-planner-item',
+    tag: 'app-event-planner-item',
+    styleUrl: 'app-event-planner-item.scss',
+    shadow: false,
 })
 
 export class EventPlannerItem { 
