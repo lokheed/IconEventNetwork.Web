@@ -185,7 +185,15 @@ input#menu_checkbox_toggle {
 			}
 		}
 	}
-	.menu {
+	#menu_checkbox_toggle {
+		&:checked {
+			+ {
+				.menu {
+					display: block;
+				}
+			}
+		}
+	}	.menu {
 		display: none;
 		position: absolute;
 		background-color: var(--color-brown);
@@ -203,15 +211,7 @@ input#menu_checkbox_toggle {
 			flex-direction: column;
 			padding-inline-start: 0;
 		}
-		input#menu_checkbox_toggle {
-			&:checked {
-				~ {
-					.menu {
-						display: block;
-					}
-				}
-			}
-		}
+
 		ul.dropdown {
 			position: relative;
 			background-color: var(--color-brown);
