@@ -4,6 +4,8 @@ import { FooterLegalMenuClient } from '../../services/clients/footer-legal-menu-
 
 @Component({
   tag: 'app-footer-legal-links',
+  styleUrl: 'app-footer-legal-links.scss',
+  shadow: false,
 })
 export class AppFooterLegalLinks {
     private readonly footerLegalMenuClient!: FooterLegalMenuClient;

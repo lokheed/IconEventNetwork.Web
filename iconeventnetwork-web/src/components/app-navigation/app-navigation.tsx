@@ -4,6 +4,8 @@ import { MainMenuClient } from '../../services/clients/main-menu-client';
 
 @Component({
   tag: 'app-navigation',
+  styleUrl: 'app-navigation.scss',
+  shadow: false,
 })
 
 export class AppNavigation {

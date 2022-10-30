@@ -2,6 +2,8 @@ import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'app-header',
+  styleUrl: 'app-header.scss',
+  shadow: false,
 })
 export class AppHeader {
   @Prop() backgroundClass: string;

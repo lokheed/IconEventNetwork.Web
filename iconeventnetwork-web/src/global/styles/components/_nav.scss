@@ -173,10 +173,11 @@ input#menu_checkbox_toggle {
 	user-select: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 	nav {
 		height: 40px;
 		.logo {
+			height: 40px;
 			margin-left: .5em;
 			min-width: 100px;
 			>h1 {
@@ -184,9 +185,6 @@ input#menu_checkbox_toggle {
 			}
 		}
 	}
-}
-
-@media (max-width: 768px) {
 	.menu {
 		display: none;
 		position: absolute;
