@@ -68,8 +68,8 @@ export class AppNavigation {
 
       return (
         <div>
-          <input type="checkbox" id="menu_checkbox_toggle"></input>
           <label htmlFor='menu_checkbox_toggle' class="hamburger">&#9776;</label>
+          <input type="checkbox" id="menu_checkbox_toggle"></input>
           {this.menu}
         </div>
       );
