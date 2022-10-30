@@ -54,7 +54,7 @@ export class PageAboutUs {
     return (
       <Host>
         <div class='single-image'>
-          <div class='image4'></div>
+          <div class='image4'><div class='photo-credit'>Photo courtesy of Marcy Blum Events</div></div>
         </div>   
         <a id='our-leadership'></a>         
         <div class='accent-block'>       
@@ -89,7 +89,7 @@ export class PageAboutUs {
             <span class='phone'>012.345.6789</span>   
           </div>         
           <div class='image-container'>
-            <div class='image6'></div>
+            <div class='image6'><div class='photo-credit'>Photo courtesy of Matthew Robbins Design</div></div>
             <div></div>
           </div>
         </div>

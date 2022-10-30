@@ -11,6 +11,7 @@
 		background-repeat: no-repeat;
 		background-size: auto;
 		background-position: center;
+		position: relative;	
 	}
 }
 .triple-image.image-set-1 {
@@ -47,6 +48,7 @@
 	margin: 0;
 	flex-wrap: nowrap;
 	justify-content: space-evenly;
+	position: relative;
 	>div {
 		flex: 1 0 auto;
 		aspect-ratio: 3/1;
@@ -89,6 +91,7 @@
 				background-size: cover;
 				background-position: center;
 				flex: 0 0 66%;
+				position: relative;
 			}
 		}
 		flex: 0 0 33%;
@@ -149,6 +152,7 @@
 		flex: 0 0 33%;
 		display: flex;
 		>div {
+			position: relative;
 			&:nth-child(2) {
 				flex: 0 0 33%;
 			}
@@ -175,8 +179,22 @@
 		margin: 0 10% 0 0;
 	}
 }
+.photo-credit {
+	display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 5px 5px 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #000000;
+    font-size: 0.75em;
+	text-align: right;
+}
 @media (max-width: 480px) {
 	.triple-image {
 		padding: 3em 0 0 0;
+	}
+	.photo-credit {
+		font-size: 0.65em;
 	}
 }
