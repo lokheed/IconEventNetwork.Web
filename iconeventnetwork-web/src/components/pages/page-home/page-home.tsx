@@ -70,7 +70,8 @@ export class PageHome {
           <p>
             The Icon Network was envisioned by a community of world-class event planners and 
             providers who together create iconic experiences for life's most important occasions.
-          </p>       
+          </p>
+          <div class='photo-credit'>Photo courtesy of Marcy Blum Events</div>       
         </div>
         <div>
           <a id='our-mission'></a>        
@@ -83,15 +84,15 @@ export class PageHome {
           </p>
         </div>
         <div class='triple-image image-set-1'>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div><div class='photo-credit'>Photo courtesy of Mindy Weiss Party Consultants</div></div>
+          <div><div class='photo-credit'>Photo courtesy of David Stark Design and Production</div></div>
+          <div><div class='photo-credit'>Photo courtesy of JZ Events</div></div>
         </div>
         <a id='how-it-works'></a>        
         <div class='left-image'>
           <div class='image-container'>
             <div></div>
-            <div></div>
+            <div><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
           </div>
           <div class='text-container'>
             <h2>How it Works</h2>
@@ -123,7 +124,7 @@ export class PageHome {
           </div>
         </div>
         <div class='single-image'>
-          <div class='image1'></div>
+          <div class='image1'><div class='photo-credit'>Photo courtesy of Matthew Robbins Design</div></div>
         </div>      
         <a id='are-you-an-icon'></a>        
         <div class='right-image'>
@@ -144,7 +145,7 @@ export class PageHome {
             </div>        
           </div>         
           <div class='image-container'>
-            <div class='image5'></div>
+            <div class='image5'><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
             <div></div>
           </div>
         </div>
@@ -211,7 +212,7 @@ export class PageHome {
 
         </div>
         <div class='single-image'>
-          <div class='image2'></div>
+          <div class='image2'><div class='photo-credit'>Photo courtesy of Matthews Robbins Design</div></div>
         </div>      
         <div>
           <a id='founding-planners'></a>        
@@ -222,9 +223,9 @@ export class PageHome {
           </div>
         </div>
         <div class='triple-image image-set-2'>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div><div class='photo-credit'>Photo courtesy of Rafanelli Events</div></div>
+          <div><div class='photo-credit'>Photo courtesy of Marcy Blum Events</div></div>
+          <div><div class='photo-credit'>Photo courtesy of Colin Cowie Lifestyle</div></div>
         </div>
       </Host>
     );
