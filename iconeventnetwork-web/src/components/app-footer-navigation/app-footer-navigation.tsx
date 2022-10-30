@@ -4,6 +4,8 @@ import { FooterMenuClient } from '../../services/clients/footer-menu-client';
 
 @Component({
   tag: 'app-footer-navigation',
+  styleUrl: 'app-footer-navigation.scss',
+  shadow: false,
 })
 export class AppFooterNavigation {
   private readonly footerMenuClient!: FooterMenuClient;

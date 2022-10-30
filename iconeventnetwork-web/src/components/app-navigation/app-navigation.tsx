@@ -4,6 +4,8 @@ import { MainMenuClient } from '../../services/clients/main-menu-client';
 
 @Component({
   tag: 'app-navigation',
+  styleUrl: 'app-navigation.scss',
+  shadow: false,
 })
 
 export class AppNavigation {
@@ -66,8 +68,8 @@ export class AppNavigation {
 
       return (
         <div>
-          <input type="checkbox" id="menu_checkbox_toggle"></input>
           <label htmlFor='menu_checkbox_toggle' class="hamburger">&#9776;</label>
+          <input type="checkbox" id="menu_checkbox_toggle"></input>
           {this.menu}
         </div>
       );

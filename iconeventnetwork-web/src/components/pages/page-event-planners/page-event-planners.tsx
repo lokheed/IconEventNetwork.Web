@@ -31,7 +31,10 @@ export class PageEventPlanners {
       var plannerItemNode = document.getElementById(selectedEventPlannerElementId);
       var plannerItemParentNode = plannerItemNode.parentNode;
       var index = Array.prototype.indexOf.call(plannerGridNode.children, plannerItemParentNode);
-      var targetIndex = (Math.floor(index/3) + 1) * 3;
+      var columnCount = 3; //default
+      if (window.innerWidth < 769) columnCount = 2;
+      if (window.innerWidth < 577) columnCount = 1;
+      var targetIndex = (Math.floor(index/columnCount) + 1) * columnCount;
       plannerGridNode.insertBefore(plannerBioItemParentNode, plannerGridNode.children[targetIndex]);
     }
   }
