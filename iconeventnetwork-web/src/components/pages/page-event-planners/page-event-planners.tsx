@@ -99,7 +99,7 @@ export class PageEventPlanners {
     return (
       <Host>
         <div class='single-image'>
-          <div class='image3'></div>
+          <div class='image3'><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
         </div>   
         <div class='accent-block'>
           <h2>Event Planners</h2>
