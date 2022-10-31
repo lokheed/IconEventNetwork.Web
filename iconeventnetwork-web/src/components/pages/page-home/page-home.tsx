@@ -134,7 +134,7 @@ export class PageHome {
             <h3>The Selection Process</h3>
             <p>
               The Icon Network consists of world-renowned event planners and providers who
-              co-created the organization and its rules of engagement. Applicants to join
+              co-created the organization and its rules of engagement. Applications to join
               the network will be processed online and reviewed in a timely manner, with
               notification of status occurring within 30 days. Select an option below to learn
               more about the application criteria and benefits.

@@ -9,7 +9,7 @@ export class PageTermsOfService {
   render() {
     return (
       <Host>
-        <h1>Terms and Conditions</h1>
+        <h1>Terms of Service</h1>
         <div class='legal'>
           <p>Welcome to the Icon Network!</p>
 

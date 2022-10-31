@@ -9,7 +9,7 @@ export class PagePrivacyPolicy {
   render() {
     return (
       <Host>
-        <h1>Terms and Conditions</h1>
+        <h1>Privacy Policy</h1>
         <div class='legal'>
           <p>At the Icon Network, accessible from https://iconeventnetwork.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by the Icon Network and how we use it.</p>
 
