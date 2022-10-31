@@ -203,7 +203,7 @@ export class PageHome {
                 <li>Exclusive access to the world’s best event planners, representing hundreds of millions in luxury event sales</li>
                 <li>Online directory listing on the Icon Network digital platform</li>
                 <li>The Icon Network logo/seal for inclusion in your business communications</li>
-                <li>B-to-B marketing opportunities to reach event planners</li>
+                <li>B2B marketing opportunities to reach event planners</li>
                 <li>Networking events that incorporate 1:1 appointments between planners and providers</li>
               </ul>
             </div>
