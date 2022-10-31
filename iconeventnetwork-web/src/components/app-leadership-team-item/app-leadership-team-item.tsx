@@ -14,9 +14,13 @@ export class LeadershipTeamItem {
     @Prop() HeadshotAltText: string;
     @Prop() Color: string;
     @State() ReadMoreClass: string;
+    
+    private info: HTMLDivElement;
 
-    handleClick() {
+    handleClick(e: MouseEvent) {
+        e.preventDefault();
         this.ReadMoreClass = 'read-more clicked';
+        this.info.classList.add('no-after');
     }
 
     componentWillLoad() {
@@ -29,13 +33,13 @@ export class LeadershipTeamItem {
                 <div class='headshot'>
                     <img src={this.HeadshotURL} alt={this.HeadshotAltText} class="leadership-headshot"/>
                 </div>
-                <div class='info'>
+                <div class='info' ref={el => this.info = el}>
                     <h3>{this.FirstName} {this.LastName}</h3>
                     <div class='title'>{this.JobTitle}</div>
                     <div class="bio">
-                        <div onClick={() => this.handleClick()} class={this.ReadMoreClass}>Read more</div>
                         <div innerHTML={this.Bio}></div>
-                    </div> 
+                        <a onClick={e => this.handleClick(e)} class={this.ReadMoreClass}>Read more</a>
+                    </div>
                 </div>
             </div>
         );

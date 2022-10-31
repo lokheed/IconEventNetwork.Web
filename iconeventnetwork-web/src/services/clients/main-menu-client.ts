@@ -1,4 +1,4 @@
-import { ClientBase, MenuLink, SuccessResponse } from "./client-base";
+import { ApiParameters, ClientBase, MenuLink, SuccessResponse } from "./client-base";
 
 export class MainMenuClient extends ClientBase {
     private endpoint = "/api/main-menu";
@@ -7,10 +7,11 @@ export class MainMenuClient extends ClientBase {
         super();
     }
 
-    public getMainMenu(populate: string = "*") {
+    public getMainMenu(parameters?: ApiParameters) {
         return new Promise<SuccessResponse<GetMainMenuResponse>>((resolve, reject) => {
+            let query = this.stringifyParameters(parameters);
             fetch(
-                `${this.baseUrl}${this.endpoint}?populate=${populate}`,
+                `${this.baseUrl}${this.endpoint}?${query}`,
                 {
                     method: "GET",
                 })

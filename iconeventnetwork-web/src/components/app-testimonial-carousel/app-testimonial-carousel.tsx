@@ -1,5 +1,8 @@
-import { Component, Prop, h } from '@stencil/core';
-import { urlService } from '../../services/url-service';
+import { Component, h, State } from '@stencil/core';
+import { DataResponse } from '../../services/clients/client-base';
+import { GetTestimonialsResponse, TestimonialClient } from '../../services/clients/testimonial-client';
+
+
 @Component({
     tag: 'app-testimonial-carousel',
     styleUrl: 'app-testimonial-carousel.scss',
@@ -7,52 +10,55 @@ import { urlService } from '../../services/url-service';
 })
 
 export class TestimonialCarousel { 
-    @Prop() testimonials: HTMLElement;
+    private testimonialClient: TestimonialClient;
+    
+    constructor() {
+        this.testimonialClient = new TestimonialClient();
+    }
+
+    @State() testimonials: DataResponse<GetTestimonialsResponse>[];
 
     componentWillLoad() {
         this.getTestimonials();
     }
 
     private getTestimonials() {   
-        var baseUrl = urlService.getApiBaseUrl();
-        var options = this.getOptions();
-        fetch(`${baseUrl}/api/testimonials?fields[0]=Name&fields[1]=Company&fields[2]=Quote&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
-        .then(res => res.json())
-        .then(res => {
-            this.updateTestimonials(res.data);
-        });
-    }
-
-    private getOptions() {
-        return {  
-            method: 'GET'
-        }
-    }
-    
-    updateTestimonials(testimonialData) {
-        this.testimonials = testimonialData.map((d, index) =>
-            <div class='testimonial-item'>
-                <div class='container'>
-                    <div class='headshot'>
-                        <img src={d.attributes.Headshot.data.attributes.url} alt={d.attributes.Headshot.data.attributes.alternativeText} class="testimonial-headshot"/>
-                    </div>
-                    <div class={'open-quote ' + (index == 0 ? 'green' : index == 1 ? 'blue' : index == 2 ? 'orange' : index == 3 ? 'pink' : 'purple')}>&#8220;</div>
-                    <div class='info'>
-                        <div class="quote">
-                            <div innerHTML={d.attributes.Quote + '&#8221;'}></div>
-                        </div> 
-                        <h3>{d.attributes.Name}</h3>
-                        <div class='title'>{d.attributes.Company}</div>                    
-                    </div>
-                </div>
-            </div>
-        );
+        /* /api/testimonials?fields[0]=Name&fields[1]=Company&fields[2]=Quote&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank */
+        this.testimonialClient.getTestimonials({
+            fields: ['Name', 'Company', 'Quote'],
+            populate: {
+                Headshot: {
+                    fields: ['alternativeText', 'url'],
+                },
+            },
+            sort: ['Rank'],
+        })
+        .then((response) => {
+            this.testimonials = response.data;
+        })
+        .catch(reason => console.error(reason));
     }
     
     render() {   
         return (
             <div class='testimonial-carousel'>
-                {this.testimonials}
+                {this.testimonials && this.testimonials.map((testimonial, index) =>
+                    <div class='testimonial-item'>
+                    <div class='container'>
+                        <div class='headshot'>
+                            <img src={testimonial.attributes.Headshot.data.attributes.url} alt={testimonial.attributes.Headshot.data.attributes.alternativeText} class="testimonial-headshot"/>
+                        </div>
+                        <div class={'open-quote ' + (index == 0 ? 'green' : index == 1 ? 'blue' : index == 2 ? 'orange' : index == 3 ? 'pink' : 'purple')}>&#8220;</div>
+                        <div class='info'>
+                            <div class="quote">
+                                <div innerHTML={testimonial.attributes.Quote + '&#8221;'}></div>
+                            </div> 
+                            <h3>{testimonial.attributes.Name}</h3>
+                            <div class='title'>{testimonial.attributes.Company}</div>
+                        </div>
+                    </div>
+                </div>
+                )}
             </div>
         );
     }     

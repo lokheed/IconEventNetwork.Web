@@ -70,7 +70,7 @@
 		background-image: url('https://pro-icon-strapi.s3.amazonaws.com/haiku_mill_wedding_10_2200x1467_83f57e71f6.jpg');
 		background-position: bottom;
 	}
-	&:has(div.image3) {
+	&:has(div.image3, div.image4) {
 		padding: 4.5em 0 0 0;
 	}
 }
@@ -190,6 +190,15 @@
     font-size: 0.75em;
 	text-align: right;
 }
+
+@media (max-width: 768px) {
+	.single-image {
+		&:has(div.image3, div.image4) {
+			padding: 2.5em 0 0 0;
+		}
+	}	
+}
+
 @media (max-width: 480px) {
 	.triple-image {
 		padding: 3em 0 0 0;

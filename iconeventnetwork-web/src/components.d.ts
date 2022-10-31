@@ -53,7 +53,6 @@ export namespace Components {
     interface AppRoot {
     }
     interface AppTestimonialCarousel {
-        "testimonials": HTMLElement;
     }
     interface PageAboutUs {
         "leadershipTeamMembers": HTMLElement;
@@ -354,7 +353,6 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface AppTestimonialCarousel {
-        "testimonials"?: HTMLElement;
     }
     interface PageAboutUs {
         "leadershipTeamMembers"?: HTMLElement;

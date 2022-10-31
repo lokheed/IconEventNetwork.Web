@@ -1,4 +1,4 @@
-import { ClientBase, SuccessResponse } from "./client-base";
+import { ApiParameters, ClientBase, SuccessResponse } from "./client-base";
 
 export class FooterLegalMenuClient extends ClientBase {
     private endpoint = "/api/footer-legal-menu";
@@ -7,10 +7,11 @@ export class FooterLegalMenuClient extends ClientBase {
         super();
     }
 
-    public getFooterLegalMenu(populate: string = "*") {
+    public getFooterLegalMenu(parameters?: ApiParameters) {
         return new Promise<SuccessResponse<GetFooterLegalMenuResponse>>((resolve, reject) => {
+            let query = this.stringifyParameters(parameters);
             fetch(
-                `${this.baseUrl}${this.endpoint}?populate=${populate}`,
+                `${this.baseUrl}${this.endpoint}?${query}`,
                 {
                     method: "GET",
                 })
