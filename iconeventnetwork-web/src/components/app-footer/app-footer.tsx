@@ -24,7 +24,7 @@ export class AppFooter {
         <div class='container contact-container'>
           <h2>Contact</h2>
           <address>
-            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork</a>
+            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork.com</a>
             <br/>
             +1-123-456-7890         
           </address>
@@ -35,6 +35,7 @@ export class AppFooter {
         <div class='container navigation-container'>
           <app-footer-legal-links></app-footer-legal-links>
         </div>
+        <div class='copyright'>&copy; 2022 the Icon Network</div>
      </footer>
     );
   }
