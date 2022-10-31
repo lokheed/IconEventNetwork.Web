@@ -20,7 +20,9 @@ export class AppNavigation {
 
   componentWillLoad() {
     this.hamburgerIsChecked = false;
-    this.mainMenuClient.getMainMenu("Navigation.Links")
+    this.mainMenuClient.getMainMenu({
+      populate: ["Navigation.Links"],
+    })
       .then(res => {
         this.updateMenu(res.data.attributes.Navigation);
       })
