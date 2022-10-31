@@ -16,17 +16,12 @@ export class AppFooter {
             </a>
           </div>
           <div>
-            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-Facebook.png' /></a>
-            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-Instagram.png' /></a>
-            <a href='#'><img class='icon' src='/assets/icon/Social-Icon-LinkedIn.png' /></a>
           </div>
         </div>
         <div class='container contact-container'>
           <h2>Contact</h2>
           <address>
-            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork.com</a>
-            <br/>
-            +1-123-456-7890         
+            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about the Icon Network">info@iconeventnetwork.com</a>       
           </address>
         </div>
         <div class='container navigation-container'>
@@ -35,7 +30,7 @@ export class AppFooter {
         <div class='container navigation-container'>
           <app-footer-legal-links></app-footer-legal-links>
         </div>
-        <div class='copyright'>&copy; 2022 the Icon Network</div>
+        <div class='copyright'>&copy; 2022 Icon Network</div>
      </footer>
     );
   }
