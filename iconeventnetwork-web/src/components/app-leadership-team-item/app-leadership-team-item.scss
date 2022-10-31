@@ -19,7 +19,8 @@
 		}
 		h3 {
 			margin-block: 0;
-			margin: 0.25em 0;
+			margin: 0 0 .5em 0;
+			line-height: .75em;
 		}
 		.title {
 			font-size: 1.5em;
@@ -31,14 +32,14 @@
 			.read-more {
 				position: absolute;
 				display: inline-block;
-				top: 170px;
+				top: 212px;
 				right: 0;
-				font-size: 1.0;
+				font-size: 1em;
 				font-weight: 700;
-				font-size: 1.25em;
+				font-size: 1em;
 				text-decoration: underline;
 				background-color: var(--color-white);
-				padding: .75em;
+				padding: 0 0 0 .75em;
 				cursor: pointer;
 			}
 			p {

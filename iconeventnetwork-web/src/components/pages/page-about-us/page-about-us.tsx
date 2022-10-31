@@ -62,7 +62,7 @@ export class PageAboutUs {
           <hr class='blue'/>
           <p>
             Our executive team brings decades of expertise and experience to the
-            Icon Network, provideing the strategic vision and plan for the network's
+            Icon Network, providing the strategic vision and plan for the network's
             ongoing growth and success.
           </p>     
         </div>   
@@ -81,10 +81,10 @@ export class PageAboutUs {
             <h2>Contact Us</h2>
             <hr class='green'/>
             <p>
-              To reach The Icon Network call or email us.
+              To reach the Icon Network call or email us.
             </p>
             <h3>Email:</h3>
-            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork</a>
+            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about The Icon Network">info@iconeventnetwork.com</a>
             <h3>Phone:</h3>
             <span class='phone'>012.345.6789</span>   
           </div>         
