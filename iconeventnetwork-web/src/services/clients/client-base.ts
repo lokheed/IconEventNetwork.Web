@@ -1,3 +1,4 @@
+import qs from "qs";
 import { urlService } from "../url-service";
 
 
@@ -26,6 +27,16 @@ export class ClientBase {
             }
         });
     }
+
+    /** Sets parameters defaults if parameters are undefined */
+    public stringifyParameters(parameters: ApiParameters) {
+        let params: ApiParameters = {populate: "*", ...parameters}
+        return qs.stringify(
+            params,
+            {
+                encodeValuesOnly: true,
+            });
+    }
 }
 
 export interface SuccessResponse<T> {
@@ -36,11 +47,19 @@ export interface SuccessResponse<T> {
     error?: ErrorResponse;
 }
 
+export interface CollectionSuccessResponse<T> {
+    data: DataResponse<T>[] | null;
+    meta?: {
+        pagination? : PaginationResponse;
+    };
+    error?: ErrorResponse;
+}
+
 export interface DataResponse<T> {
     id: number;
     attributes: T & {
-        createdAt: Date,
-        updatedAt: Date};
+        createdAt?: Date,
+        updatedAt?: Date};
 }
 
 export interface PaginationResponse {
@@ -73,4 +92,58 @@ export interface ErrorResponse {
     message: string;
     /** The error details.*/
     details: any;
+}
+
+/** Parameters to configure getting a list of items using the REST APIs.
+ * See https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/api-parameters.html
+*/
+export interface ApiParameters {
+    /** Used to sort the results by one or multiple fields:
+     * You can append :asc or :desc to the field name to specify the sort order.
+     * If you don't specify the sort order, it will default to ascending.
+     * Example: sort=["field1:asc","field2:desc"]
+    */
+    sort?: string | string[];
+    /** Used to filter the results by one or multiple fields:
+     * Use an array of objects where the key is the field name and the value is the filter value.
+     * For the filter value, see https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
+    */
+    filters?: object;
+    /**
+     * Queries can accept a populate parameter to populate various field types:
+            - relations & media fields
+            - components & dynamic zones
+            - creator fields
+       See https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#relation-media-fields
+     */
+    populate?: string | object;
+    /** Used to limit the fields returned. */
+    fields?: string[];
+    pagination? : {
+        page: number;
+        pageSize: number;
+        withCount: boolean;
+    } | {
+        start: number;
+        limit: number;
+        withCount: boolean;
+    },
+    /** Used to select between the live or preview data. */
+    publicationState?: "live" | "preview";
+    /** Can be used to specify in which locale (language) to get the resources in. */
+    locale?: string | string[];
+}
+
+export interface HeadshotInfo{
+    data: HeadshotData;
+}
+
+export interface HeadshotData{
+    id: number;
+    attributes: HeadshotAttributes;
+}
+
+export interface HeadshotAttributes{
+    alternativeText: string;
+    url: string;
 }

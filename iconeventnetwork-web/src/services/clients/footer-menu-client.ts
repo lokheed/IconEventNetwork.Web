@@ -1,4 +1,4 @@
-import { ClientBase, MenuLink, SuccessResponse } from "./client-base";
+import { ApiParameters, ClientBase, MenuLink, SuccessResponse } from "./client-base";
 
 export class FooterMenuClient extends ClientBase {
     private endpoint = "/api/footer-menu";
@@ -7,10 +7,11 @@ export class FooterMenuClient extends ClientBase {
         super();
     }
 
-    public getFooterMenu(populate: string = "*") {
+    public getFooterMenu(parameters?: ApiParameters) {
         return new Promise<SuccessResponse<GetFooterMenuResponse>>((resolve, reject) => {
+            let query = this.stringifyParameters(parameters);
             fetch(
-                `${this.baseUrl}${this.endpoint}?populate=${populate}`,
+                `${this.baseUrl}${this.endpoint}?${query}`,
                 {
                     method: "GET",
                 })

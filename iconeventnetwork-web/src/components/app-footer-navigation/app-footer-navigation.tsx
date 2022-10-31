@@ -20,7 +20,7 @@ export class AppFooterNavigation {
   componentWillLoad() {
     this.footerMenuClient.getFooterMenu()
       .then(res => {
-        const menuItems = res.data.attributes.MenuItems
+        const menuItems = res.data.attributes.MenuItems;
         this.updateFooterMenuHeader(menuItems);
         this.updateFooterMenuItems(menuItems);
       })
