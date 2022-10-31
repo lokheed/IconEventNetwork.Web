@@ -173,7 +173,7 @@ export class PageHome {
                 <li>Online directory listing on the Icon Network digital platform</li>
                 <li>Consumer-facing directory listing on the Icon Network website</li>
                 <li>The Icon Network logo/seal for inclusion in your business communications</li>
-                <li>Consumer marketing via social media, PR and other channels</li>
+                <li>Consumer marketing via social media, PR, and other channels</li>
                 <li>Networking events that incorporate 1:1 appointments between planners and providers</li>              
               </ul>
             </div>
