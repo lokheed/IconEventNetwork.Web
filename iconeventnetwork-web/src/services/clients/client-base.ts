@@ -134,16 +134,16 @@ export interface ApiParameters {
     locale?: string | string[];
 }
 
-export interface HeadshotInfo{
-    data: HeadshotData;
+export interface ImageInfo{
+    data: ImageData;
 }
 
-export interface HeadshotData{
+export interface ImageData{
     id: number;
-    attributes: HeadshotAttributes;
+    attributes: ImageAttributes;
 }
 
-export interface HeadshotAttributes{
+export interface ImageAttributes{
     alternativeText: string;
     url: string;
 }

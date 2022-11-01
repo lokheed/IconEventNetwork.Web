@@ -1,4 +1,4 @@
-import { ApiParameters, ClientBase, CollectionSuccessResponse, HeadshotInfo } from "./client-base";
+import { ApiParameters, ClientBase, CollectionSuccessResponse, ImageInfo } from "./client-base";
 
 export class TestimonialClient extends ClientBase {
     private endpoint = "/api/testimonials";
@@ -27,5 +27,5 @@ export interface GetTestimonialsResponse{
     Company: string;
     Name: string;
     Quote: string;
-    Headshot: HeadshotInfo;
+    Headshot: ImageInfo;
 }
