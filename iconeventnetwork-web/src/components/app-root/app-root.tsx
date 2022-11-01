@@ -20,7 +20,7 @@ export class AppRoot {
     return (
       <Host>
         <app-header backgroundClass={this.navigationBackgroundClass}></app-header>
-        <div class='content'>
+        <div class='main-content'>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
               <stencil-route url="/" component="page-home" exact={true} />
