@@ -193,7 +193,8 @@ input#menu_checkbox_toggle {
 				}
 			}
 		}
-	}	.menu {
+	}	
+	.menu {
 		display: none;
 		position: absolute;
 		background-color: var(--color-brown);
@@ -210,6 +211,9 @@ input#menu_checkbox_toggle {
 		ul.parent {
 			flex-direction: column;
 			padding-inline-start: 0;
+			a {
+				color: var(--color-white);
+			}
 		}
 
 		ul.dropdown {
@@ -228,6 +232,18 @@ input#menu_checkbox_toggle {
 			}
 		}
 		.dropdown-container {
+			.dropdown {
+				display: block;
+				position: initial;
+				li {
+					text-align: center;
+				}
+			}
+			&:hover {
+				.dropdown {
+					animation: none;
+				}
+			}
 			>* {
 				>a {
 					&::after {
