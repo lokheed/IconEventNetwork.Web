@@ -146,7 +146,6 @@ export class PageHome {
           </div>         
           <div class='image-container'>
             <div class='image5'><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
-            <div></div>
           </div>
         </div>
         <div class={{tabContent: true, hidden: !this.isEventPlannersLinkSelected}}>
