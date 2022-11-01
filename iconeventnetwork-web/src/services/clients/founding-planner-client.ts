@@ -1,14 +1,14 @@
 import { ApiParameters, ClientBase, CollectionSuccessResponse, ImageInfo } from "./client-base";
 
-export class LeadershipTeamMemberClient extends ClientBase {
-    private endpoint = "/api/leadership-team-members";
+export class FoundingPlannerClient extends ClientBase {
+    private endpoint = "/api/founding-planners";
 
     constructor() {
         super();
     }
 
-    public getLeadershipTeamMembers(parameters?: ApiParameters) {
-        return new Promise<CollectionSuccessResponse<GetLeadershipTeamMembersResponse>>((resolve, reject) => {
+    public getFoundingPlanners(parameters?: ApiParameters) {
+        return new Promise<CollectionSuccessResponse<GetFoundingPlannersResponse>>((resolve, reject) => {
             let query = this.stringifyParameters(parameters);
             fetch(
                 `${this.baseUrl}${this.endpoint}?${query}`,
@@ -23,10 +23,11 @@ export class LeadershipTeamMemberClient extends ClientBase {
     }
 }
 
-export interface GetLeadershipTeamMembersResponse{
-    Bio: string;
-    FirstName: string;
-    LastName: string;
-    Title: string;
-    Headshot: ImageInfo;
+export interface GetFoundingPlannersResponse{
+    CompanyName: string;
+    Logo: ImageInfo;
+    FirstName?: string;
+    LastName?: string;
+    Bio?: string;
+    Headshot?: ImageInfo;
 }

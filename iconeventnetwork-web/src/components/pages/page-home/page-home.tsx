@@ -1,18 +1,38 @@
-import { Component, Host, Prop, State, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
-import { urlService } from '../../../services/url-service';
+import { DataResponse } from '../../../services/clients/client-base';
+import { FoundingPlannerClient, GetFoundingPlannersResponse } from '../../../services/clients/founding-planner-client';
+
 @Component({
   tag: 'page-home',
   styleUrl: 'page-home.scss',
   shadow: false,
 })
 export class PageHome {
-  @Prop() foundingPlannerLogos: HTMLElement;
+  private foundingPlannersClient: FoundingPlannerClient;
+  
+  constructor() {
+    this.foundingPlannersClient = new FoundingPlannerClient();
+  }
+  
+  @State() foundingPlanners: DataResponse<GetFoundingPlannersResponse>[];
   @State() isEventPlannersLinkSelected: boolean = false;
   @State() isProvderPartnersLinkSelected: boolean = false;
 
   componentWillLoad() {
-    this.getFoundingPlannerLogos();
+    this.foundingPlannersClient.getFoundingPlanners({
+      fields: ['CompanyName'],
+      populate: {
+        Logo: {
+          fields: ['alternativeText', 'url'],
+        },
+      },
+      sort: ['LogoRank'],
+    })
+      .then((response) => {
+        this.updateFoundingPlannerLogos(response.data);
+      })
+      .catch((error) => console.error(error));
   }
 
   componentDidLoad() {
@@ -24,38 +44,18 @@ export class PageHome {
     this.isProvderPartnersLinkSelected = false;
   }
 
-  private getFoundingPlannerLogos() {   
-    var baseUrl = urlService.getApiBaseUrl();
-    var options = this.getOptions();
-    fetch(`${baseUrl}/api/founding-planners?fields[0]=CompanyName&populate[Logo][fields][0]=alternativeText&populate[Logo][fields][1]=url&sort[0]=LogoRank`, options)
-    .then(res => res.json())
-    .then(res => {
-      this.updateFoundingPlannerLogos(res.data);
-    });
-  }
-
-  private getOptions() {
-    return {  
-      method: 'GET'
-    }
-  }
-
   private providerPartnersLinkToggle() {
     this.isEventPlannersLinkSelected = false;
     this.isProvderPartnersLinkSelected = true;
   }
 
-  updateFoundingPlannerLogos(foundingPlannerLogoData) {
-    var returnedLogos = foundingPlannerLogoData.map((d) => <img src={d.attributes.Logo.data.attributes.url} alt={d.attributes.Logo.data.attributes.alternativeText} class="logo"/>);
-    if (returnedLogos.length === 15) this.foundingPlannerLogos = returnedLogos;
-    if (returnedLogos.length > 15) this.foundingPlannerLogos = returnedLogos.slice(0, 15);
-    if (returnedLogos.length < 15) {
-      var finalLogos = returnedLogos;
-      while (finalLogos.length < 15) {
-        finalLogos.push(...returnedLogos);
-      }
-      this.foundingPlannerLogos = finalLogos.slice(0, 15);
+  updateFoundingPlannerLogos(foundingPlannerLogoData: DataResponse<GetFoundingPlannersResponse>[]) {
+    const wantedPlanners = 15;
+    const planners: DataResponse<GetFoundingPlannersResponse>[] = [];
+    while (planners.length < wantedPlanners){
+      planners.push(...foundingPlannerLogoData);
     }
+    this.foundingPlanners = planners.slice(0,15);
  }
 
   render() {
@@ -219,7 +219,12 @@ export class PageHome {
           <h2>Founding Planners</h2>
           <hr class='pink'/>
           <div class='founding-planner-logo-ctn'>
-           {this.foundingPlannerLogos}
+           {this.foundingPlanners && this.foundingPlanners.map((planner) => 
+            <img
+              src={planner.attributes.Logo.data.attributes.url}
+              alt={planner.attributes.Logo.data.attributes.alternativeText} class="logo"
+            />
+          )}
           </div>
         </div>
         <div class='triple-image image-set-2'>
