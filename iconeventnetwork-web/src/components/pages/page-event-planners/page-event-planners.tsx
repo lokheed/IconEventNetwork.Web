@@ -1,18 +1,25 @@
-import { Component, Host, Prop, State, Listen, h } from '@stencil/core';
-import { urlService } from '../../../services/url-service';
+import { Component, Host, State, Listen, h } from '@stencil/core';
+import { DataResponse } from '../../../services/clients/client-base';
+import { FoundingPlannerClient, GetFoundingPlannersResponse } from '../../../services/clients/founding-planner-client';
+
 @Component({
   tag: 'page-event-planners',
   styleUrl: 'page-event-planners.scss',
   shadow: false,
 })
 export class PageEventPlanners {
-  @Prop() eventPlanners: HTMLElement; 
-  @State() eventPlannerBio: HTMLElement; 
+  private readonly foundingPlannerClient: FoundingPlannerClient;
+  
+  constructor() {
+    this.foundingPlannerClient = new FoundingPlannerClient();
+  }
+  
+  @State() foundingPlanners: DataResponse<GetFoundingPlannersResponse>[];
   @State() selectedEventPlannerId: number = 0;
+
   @Listen('eventPlannerItemSelected', {target: 'body'})
   eventPlannerItemSelectedHandler(event: CustomEvent<number>) {
     this.selectedEventPlannerId = event.detail;
-      this.getEventPlanner(event.detail);
   }
 
   componentDidRender() {
@@ -40,59 +47,32 @@ export class PageEventPlanners {
   }
 
   componentWillLoad() {
-    this.getEventPlanners();
+    this.foundingPlannerClient.getFoundingPlanners({
+      fields: ['CompanyName', 'FirstName', 'LastName', 'Bio'],
+      populate: {
+        Headshot: {
+          fields: ['alternativeText', 'url'],
+        },
+      },
+      sort: ['LastName', 'FirstName', 'CompanyName'],
+    })
+    .then((response) => this.foundingPlanners = response.data)
+    .catch((error) => console.error(error));
   }
 
-  private getEventPlanners() {   
-    var baseUrl = urlService.getApiBaseUrl();
-    var options = this.getOptions();
-    fetch(`${baseUrl}/api/founding-planners?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName`, options)
-    .then(res => res.json())
-    .then(res => {
-      this.updateEventPlanners(res.data);
-    });
-  }
-
-  private getEventPlanner(eventPlannerId) { 
-    if (eventPlannerId == 0)  this.eventPlannerBio = undefined;
-    if (eventPlannerId > 0) {
-      var strapiBaseUrl = urlService.getApiBaseUrl();
-      var options = this.getOptions();
-      fetch(`${strapiBaseUrl}/api/founding-planners/${eventPlannerId}?fields[0]=CompanyName&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&sort[0]=LastName&sort[1]=FirstName&sort[3]=CompanyName`, options)
-      .then(res => res.json())
-      .then(res => {
-        this.eventPlannerBio = 
-          <app-event-planner-bio-item
-            EventPlannerId={res.data.id}
-            FirstName={res.data.attributes.FirstName}
-            LastName={res.data.attributes.LastName}
-            CompanyName={res.data.attributes.CompanyName}
-            Bio={res.data.attributes.Bio}
-          >
-          </app-event-planner-bio-item>
-      });
+  private renderPlannerBio() {
+    if (this.selectedEventPlannerId < 1) {
+      return
     }
-  }
-
-  private getOptions() {
-    return {  
-      method: 'GET'
-    }
-  }
-
-  updateEventPlanners(eventPlannerData) {
-   this.eventPlanners = eventPlannerData.map((d) =>
-    <app-event-planner-item 
-      EventPlannerId={d.id}
-      FirstName={d.attributes.FirstName}
-      LastName={d.attributes.LastName}
-      CompanyName={d.attributes.CompanyName}
-      Bio={d.attributes.Bio}
-      HeadshotURL={d.attributes.Headshot.data.attributes.url}
-      HeadshotAltText={d.attributes.Headshot.data.attributes.alternativeText}
-      >
-    </app-event-planner-item>
-   );
+    
+    const planner = this.foundingPlanners.find(planner => planner.id == this.selectedEventPlannerId);
+    return <app-event-planner-bio-item
+      EventPlannerId={planner.id}
+      FirstName={planner.attributes.FirstName}
+      LastName={planner.attributes.LastName}
+      CompanyName={planner.attributes.CompanyName}
+      Bio={planner.attributes.Bio}
+    />
   }
  
   render() {
@@ -112,8 +92,18 @@ export class PageEventPlanners {
           </p>     
         </div>   
         <div class='planner-grid'>
-          {this.eventPlanners}
-          {this.eventPlannerBio}
+          {this.foundingPlanners && this.foundingPlanners.map(planner => 
+            <app-event-planner-item 
+              EventPlannerId={planner.id}
+              FirstName={planner.attributes.FirstName}
+              LastName={planner.attributes.LastName}
+              CompanyName={planner.attributes.CompanyName}
+              Bio={planner.attributes.Bio}
+              HeadshotURL={planner.attributes.Headshot.data.attributes.url}
+              HeadshotAltText={planner.attributes.Headshot.data.attributes.alternativeText}
+            />
+          )}
+          {this.renderPlannerBio()}
         </div>     
       </Host>
     );

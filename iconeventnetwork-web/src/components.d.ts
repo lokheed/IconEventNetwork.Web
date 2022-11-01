@@ -55,7 +55,6 @@ export namespace Components {
     interface AppTestimonialCarousel {
     }
     interface PageAboutUs {
-        "leadershipTeamMembers": HTMLElement;
     }
     interface PageCodeOfConduct {
     }
@@ -90,10 +89,8 @@ export namespace Components {
         "history": RouterHistory;
     }
     interface PageEventPlanners {
-        "eventPlanners": HTMLElement;
     }
     interface PageHome {
-        "foundingPlannerLogos": HTMLElement;
     }
     interface PageJoin {
         "history": RouterHistory;
@@ -355,7 +352,6 @@ declare namespace LocalJSX {
     interface AppTestimonialCarousel {
     }
     interface PageAboutUs {
-        "leadershipTeamMembers"?: HTMLElement;
     }
     interface PageCodeOfConduct {
     }
@@ -390,10 +386,8 @@ declare namespace LocalJSX {
         "history"?: RouterHistory;
     }
     interface PageEventPlanners {
-        "eventPlanners"?: HTMLElement;
     }
     interface PageHome {
-        "foundingPlannerLogos"?: HTMLElement;
     }
     interface PageJoin {
         "history"?: RouterHistory;

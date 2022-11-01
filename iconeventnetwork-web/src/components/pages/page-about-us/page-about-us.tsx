@@ -1,6 +1,7 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
-import { urlService } from '../../../services/url-service';
+import { DataResponse } from '../../../services/clients/client-base';
+import { GetLeadershipTeamMembersResponse, LeadershipTeamMemberClient } from '../../../services/clients/leadership-team-member-client';
 
 @Component({
   tag: 'page-about-us',
@@ -8,46 +9,32 @@ import { urlService } from '../../../services/url-service';
   shadow: false,
 })
 export class PageAboutUs {
-  @Prop() leadershipTeamMembers: HTMLElement;
+  private readonly leadershipTeamMemberClient: LeadershipTeamMemberClient;
+
+  constructor(){
+    this.leadershipTeamMemberClient = new LeadershipTeamMemberClient();
+  }
+
+  @State() leadershipTeamMembers: DataResponse<GetLeadershipTeamMembersResponse>[];
 
   componentWillLoad() {
-    this.getLeadershipTeamMembers();
+    this.leadershipTeamMemberClient.getLeadershipTeamMembers({
+      fields: ['Title', 'FirstName', 'LastName', 'Bio'],
+      populate: {
+        Headshot: {
+          fields: ['alternativeText', 'url'],
+        },
+      },
+      sort: ['Rank'],
+    })
+    .then((response) => {
+      this.leadershipTeamMembers = response.data;
+    })
+    .catch(reason => console.error(reason));
   }
 
   componentDidLoad() {
     scrollToFragment();
-  }
-
-  private getLeadershipTeamMembers() {   
-    var baseUrl = urlService.getApiBaseUrl();
-    var options = this.getOptions();
-    fetch(`${baseUrl}/api/leadership-team-members?fields[0]=Title&fields[1]=FirstName&fields[2]=LastName&fields[3]=Bio&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank`, options)
-    .then(res => res.json())
-    .then(res => {
-      this.updateLeadershipTeamMembers(res.data);
-    });
-  }
-
-
-  private getOptions() {
-    return {  
-      method: 'GET'
-    }
-  }
-
-  updateLeadershipTeamMembers(leadershipTeamMemberData) {
-   this.leadershipTeamMembers = leadershipTeamMemberData.map((d, index) =>
-    <app-leadership-team-item 
-      FirstName={d.attributes.FirstName}
-      LastName={d.attributes.LastName}
-      JobTitle={d.attributes.Title}
-      Bio={d.attributes.Bio}
-      HeadshotURL={d.attributes.Headshot.data.attributes.url}
-      HeadshotAltText={d.attributes.Headshot.data.attributes.alternativeText}
-      Color={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
-      >
-    </app-leadership-team-item>
-   );
   }
 
   render() {
@@ -67,7 +54,17 @@ export class PageAboutUs {
           </p>     
         </div>   
         <div>
-          {this.leadershipTeamMembers}
+          {this.leadershipTeamMembers && this.leadershipTeamMembers.map((member, index) =>
+            <app-leadership-team-item 
+              FirstName={member.attributes.FirstName}
+              LastName={member.attributes.LastName}
+              JobTitle={member.attributes.Title}
+              Bio={member.attributes.Bio}
+              HeadshotURL={member.attributes.Headshot.data.attributes.url}
+              HeadshotAltText={member.attributes.Headshot.data.attributes.alternativeText}
+              Color={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
+            />
+          )}
         </div>
         <a id='testimonials'></a>           
         <div class='accent-block'>    
