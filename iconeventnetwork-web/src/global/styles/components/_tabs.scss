@@ -62,3 +62,23 @@
 		}
 	}
 }
+
+@media (max-width: 480px) {
+	.tab-links {
+		flex-direction: column;
+
+	}
+	.tabContent {
+		width: 85%;
+		margin: auto;
+		.item {
+			>div.label {
+				font-size: 1.2em;
+			}
+			>div.content {
+				font-size: .8em;
+				padding: 0 0 0 1em;
+			}
+		}
+	}
+}
