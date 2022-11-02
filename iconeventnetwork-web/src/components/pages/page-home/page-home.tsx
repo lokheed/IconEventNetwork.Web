@@ -65,7 +65,7 @@ export class PageHome {
           <h1>
             Introducing 
             <br/>
-            The Icon Network
+            The Icon Network<sup>TM</sup>
           </h1>
           <p>
             The Icon Network was envisioned by a community of world-class event planners and 
@@ -146,7 +146,6 @@ export class PageHome {
           </div>         
           <div class='image-container'>
             <div class='image5'><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
-            <div></div>
           </div>
         </div>
         <div class={{tabContent: true, hidden: !this.isEventPlannersLinkSelected}}>

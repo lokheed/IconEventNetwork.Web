@@ -52,7 +52,7 @@ export class AppFooterLegalLinks {
       } else {
         menuItems = menuLinks.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
       }
-      this.footerLegalLinksItems = menuItems.map(d => <li><stencil-route-link url={d.Link}>{d.DisplayName}</stencil-route-link></li>);
+      this.footerLegalLinksItems = menuItems.map(d => <li><a href={d.Link}>{d.DisplayName}</a></li>);
     }
   
     render() {

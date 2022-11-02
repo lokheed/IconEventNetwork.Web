@@ -1,4 +1,4 @@
-import { Component, State, Prop, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 import { MenuLink } from '../../services/clients/client-base';
 import { MainMenuClient } from '../../services/clients/main-menu-client';
 
@@ -15,11 +15,9 @@ export class AppNavigation {
     this.mainMenuClient = new MainMenuClient();
   }
 
-  @State() hamburgerIsChecked: boolean;
   @Prop() menu: HTMLElement;
 
   componentWillLoad() {
-    this.hamburgerIsChecked = false;
     this.mainMenuClient.getMainMenu({
       populate: ["Navigation.Links"],
     })
@@ -27,6 +25,11 @@ export class AppNavigation {
         this.updateMenu(res.data.attributes.Navigation);
       })
       .catch(err => console.error(err));
+  }
+
+  closeMenu() {
+    var checkbox = document.getElementById('menu_checkbox_toggle') as HTMLInputElement | null;
+    if (checkbox != null) checkbox.checked = false;
   }
 
   updateMenu(menuLinks: MenuLink[]) {
@@ -53,7 +56,7 @@ export class AppNavigation {
                   <ul class='dropdown'>
                     {menuItem.Links.map((subMenuItem) => {
                       return (
-                        <li><a href={subMenuItem.Link}>{subMenuItem.DisplayName}</a></li>
+                        <li><a href={subMenuItem.Link} onClick={() => this.closeMenu()}>{subMenuItem.DisplayName}</a></li>
                       )
                     })}
                   </ul>
