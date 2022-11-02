@@ -65,7 +65,7 @@ export class PageHome {
           <h1>
             Introducing 
             <br/>
-            The Icon Network
+            The Icon Network<sup>TM</sup>
           </h1>
           <p>
             The Icon Network was envisioned by a community of world-class event planners and 
