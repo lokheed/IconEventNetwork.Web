@@ -11,6 +11,11 @@ h1 {
 	padding-top: 3em;
 	margin: 0;
 }
+h1 sup {
+	font-size: x-small;
+    top: -15px;
+    position: relative;
+}
 h2 {
 	text-transform: uppercase;
 	font-weight: 300;
@@ -76,6 +81,9 @@ hr.blue {
 		font-size: 2em;
 		padding-top: 2em;
 	}
+	h1 sup {
+		font-size: xx-small;
+		top: -8px;	}
 	h2 {
 		font-size: 2em;
 		padding-top: 2em;
