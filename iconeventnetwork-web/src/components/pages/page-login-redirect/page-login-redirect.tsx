@@ -1,4 +1,5 @@
 import { Component, Host, State, h } from '@stencil/core';
+import { urlService } from '../../../services/url-service';
 
 @Component({
   tag: 'page-login-redirect',
@@ -6,13 +7,10 @@ import { Component, Host, State, h } from '@stencil/core';
   shadow: false,
 })
 export class PageLoginRedirect {
-  @State() currentText: string;
+  @State() currentText: string = 'Logging In...';
 
   componentDidRender() {
-    var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-    if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-    if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+    var strapiBaseUrl = urlService.getApiBaseUrl();
 
 
     // Successfully logged with the provider
