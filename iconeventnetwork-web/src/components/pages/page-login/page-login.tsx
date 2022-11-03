@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import { urlService } from '../../../services/url-service';
 
 @Component({
   tag: 'page-login',
@@ -6,20 +7,8 @@ import { Component, Host, h } from '@stencil/core';
   shadow: false,
 })
 export class PageLogin {;
-  componentDidRender() {
-    var isAuthenticated = !!localStorage.getItem('jwt');    
-    if (isAuthenticated) {
-        window.location.replace('/');
-    } else {
-        var strapiBaseUrl = 'https://api.iconeventnetwork.com';
-        if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-        if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-        if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
-    
-        const loginUrl = strapiBaseUrl + '/api/connect/cognito';
-    
-        window.location.replace(loginUrl) 
-    }
+  constructor() {
+    window.location.replace(!!localStorage.getItem('jwt') ? '/' : urlService.getApiBaseUrl() + '/api/connect/cognito');
   }
 
   render() {  
