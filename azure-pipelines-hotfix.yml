@@ -1,0 +1,110 @@
+variables:
+  projectRoot: '$(Build.SourcesDirectory)'
+
+stages:
+- stage: BuildApp
+  displayName: 'Build App'
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: BuildApp
+    displayName: 'Build App'
+    dependsOn: []
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node.js'
+        inputs:
+          versionSpec: '16.x'
+
+      - script: |
+          npm install
+          npm run build
+        displayName: 'npm install and build'
+        workingDirectory: 'iconeventnetwork-web'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: StencilJS files'
+        inputs:
+          PathtoPublish: '$(projectRoot)/iconeventnetwork-web/www'
+          ArtifactName: 'app'
+          publishLocation: 'Container'
+
+- stage: DeployAppStaging
+  dependsOn: BuildApp
+  displayName: Deploy app to staging
+  jobs:
+    - deployment: DeployAppStaging
+      displayName: Deploy app to staging
+      environment:
+       name: AWS-STG
+       resourceType: VirtualMachine
+      pool:
+        vmImage: ubuntu-latest
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+              - download: current
+                artifact: 'app'
+              - task: Bash@3
+                displayName: Delete previous files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Delete previous app files"
+                    sudo rm -rf '/var/www/html/'*
+              
+              - task: Bash@3
+                displayName: Copy files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Copy app files"
+                    sudo cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+              - task: Bash@3
+                displayName: Restart NGINX
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    sudo systemctl reload nginx
+
+- stage: DeployAppProduction
+  dependsOn: DeployAppStaging
+  displayName: Deploy app to production
+  jobs:
+    - deployment: DeployAppProduction
+      displayName: Deploy app to production
+      environment:
+       name: AWS-PROD
+       resourceType: VirtualMachine
+      pool:
+        vmImage: ubuntu-latest
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+              - download: current
+                artifact: 'app'
+              
+              - task: Bash@3
+                displayName: Delete previous files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Delete previous app files"
+                    sudo rm -rf '/var/www/html/'*
+              - task: Bash@3
+                displayName: Copy files
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "Copy app files"
+                    sudo cp -r '$(Pipeline.Workspace)/app/'* '/var/www/html'
+
+              - task: Bash@3
+                displayName: Restart NGINX
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    sudo systemctl reload nginx
