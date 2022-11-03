@@ -86,7 +86,7 @@ export class PageHome {
         <div class='triple-image image-set-1'>
           <div><div class='photo-credit'>Photo courtesy of Mindy Weiss Party Consultants</div></div>
           <div><div class='photo-credit'>Photo courtesy of David Stark Design and Production</div></div>
-          <div><div class='photo-credit'>Photo courtesy of Alison Events</div></div>
+          <div><div class='photo-credit'>Photo courtesy of Alison Events</div></div> 
         </div>
         <a id='how-it-works'></a>        
         <div class='left-image'>
