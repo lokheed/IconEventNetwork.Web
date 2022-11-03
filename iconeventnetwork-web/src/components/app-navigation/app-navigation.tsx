@@ -13,6 +13,8 @@ export class AppNavigation {
 
   constructor(){
     this.mainMenuClient = new MainMenuClient();
+    // Default menu to standard anonymous memu until the proper menu loads
+    this.menu = <div class="menu"><ul class="parent"><li class="dropdown-container"><a class="link-active" href="/">Who We Are</a><ul class="dropdown"><li><a href="/#our-mission">Our Mission</a></li><li><a href="/#how-it-works">How It Works</a></li><li><a href="/#are-you-an-icon">Are You an Icon?</a></li><li><a href="/#founding-planners">Founding Planners</a></li></ul></li><li><a class="" href="/event-planners">Event Planners</a></li><li class="dropdown-container"><a class="" href="/about-us">About Us</a><ul class="dropdown"><li><a href="/about-us#our-leadership">Our Leadership</a></li><li><a href="/about-us#testimonials">Testimonials</a></li><li><a href="/about-us#contact-us">Contact Us</a></li></ul></li></ul></div>;
   }
 
   @Prop() menu: HTMLElement;
