@@ -13,11 +13,7 @@ export class PageLogin {;
 
   render() {  
     return (
-      <Host>
-        <div class='hero'>
-          <p>Logging In...</p>
-        </div>
-      </Host>  
+      <Host></Host>  
     )
   }
 }
