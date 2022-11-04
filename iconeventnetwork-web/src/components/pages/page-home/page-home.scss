@@ -21,7 +21,7 @@
 	width: 100vw;
 	height: 125px;
 	margin: 3em 0;
-	min-width: 1250px;
+
 	overflow: hidden;
 	>img {
 		position: absolute;
@@ -73,5 +73,14 @@
 		&:nth-child(15) {
 			animation-delay: 28s;
 		}
+	}
+}
+
+@media (max-width: 480px) {
+	
+.founding-planner-logo-ctn {
+	>img {
+		left: calc(50% + 240px);
+		}	
 	}
 }
