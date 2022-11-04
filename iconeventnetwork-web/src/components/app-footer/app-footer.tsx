@@ -21,8 +21,14 @@ export class AppFooter {
         <div class='container contact-container'>
           <h2>Contact</h2>
           <address>
+            307 5th Ave<br/>
+            New York, NY<br/>            
+            10016<br/> 
+            <br/>            
             <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about the Icon Network">info@iconeventnetwork.com</a>       
-          </address>
+            <br/>
+            +1-212-476-9444      
+            </address>
         </div>
         <div class='container navigation-container'>
           <app-footer-navigation></app-footer-navigation>
