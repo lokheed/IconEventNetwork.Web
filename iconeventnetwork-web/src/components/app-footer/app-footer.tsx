@@ -36,7 +36,7 @@ export class AppFooter {
         <div class='container navigation-container'>
           <app-footer-legal-links></app-footer-legal-links>
         </div>
-        <div class='copyright'>&copy; 2022 Icon Network</div>
+        <div class='copyright'>&copy; {new Date().getFullYear()} Icon Network</div>
      </footer>
     );
   }
