@@ -48,7 +48,6 @@ export namespace Components {
     interface AppLoginButton {
     }
     interface AppNavigation {
-        "menu": HTMLElement;
     }
     interface AppRoot {
     }
@@ -348,7 +347,6 @@ declare namespace LocalJSX {
     interface AppLoginButton {
     }
     interface AppNavigation {
-        "menu"?: HTMLElement;
     }
     interface AppRoot {
     }
