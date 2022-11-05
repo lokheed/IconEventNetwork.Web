@@ -30,8 +30,6 @@ export namespace Components {
         "footerLegalLinksItems": HTMLElement;
     }
     interface AppFooterNavigation {
-        "footerNavigationHeader": HTMLElement;
-        "footerNavigationItems": HTMLElement;
     }
     interface AppHeader {
         "backgroundClass": string;
@@ -326,8 +324,6 @@ declare namespace LocalJSX {
         "footerLegalLinksItems"?: HTMLElement;
     }
     interface AppFooterNavigation {
-        "footerNavigationHeader"?: HTMLElement;
-        "footerNavigationItems"?: HTMLElement;
     }
     interface AppHeader {
         "backgroundClass"?: string;
