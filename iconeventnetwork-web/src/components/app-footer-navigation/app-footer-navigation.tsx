@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, State, h } from '@stencil/core';
 import { MenuLink } from '../../services/clients/client-base';
 import { FooterMenuClient } from '../../services/clients/footer-menu-client';
 
@@ -14,53 +14,41 @@ export class AppFooterNavigation {
     this.footerMenuClient = new FooterMenuClient();
   }
 
-  @Prop() footerNavigationHeader: HTMLElement;
-  @Prop() footerNavigationItems: HTMLElement;
+  @State() menuItems: MenuLink[] = [];
 
   componentWillLoad() {
     this.footerMenuClient.getFooterMenu()
       .then(res => {
-        const menuItems = res.data.attributes.MenuItems;
-        this.updateFooterMenuHeader(menuItems);
-        this.updateFooterMenuItems(menuItems);
+        this.menuItems = res.data.attributes.MenuItems;
       })
       .catch(err => console.error(err));
   }
 
-  updateFooterMenuHeader(menuLinks: MenuLink[]) {
-    this.footerNavigationHeader = <h2></h2>
-    var menuHeaderData = menuLinks.find(m => m.LinkType === 'HeadingLink' || m.LinkType === 'HeadingNoLink');
-    if (menuHeaderData) {
-      switch(menuHeaderData.LinkType) {
-        case 'HeadingLink': {
-          this.footerNavigationHeader = <h2><a href={menuHeaderData.Link}>{menuHeaderData.DisplayName}</a></h2>;
-          break;
-        }
-        case 'HeadingNoLink': {
-          this.footerNavigationHeader = <h2>{menuHeaderData.DisplayName}</h2>;
-          break;
-        }
-      }
+  render() {
+    var header = <h2></h2>;
+    var headerItem = this.menuItems.find(m => m.LinkType === 'HeadingLink' || m.LinkType === 'HeadingNoLink'); 
+    if (headerItem && headerItem.LinkType === 'HeadingLink') {
+      header = <h2><a href={headerItem.Link}>{headerItem.DisplayName}</a></h2>
+    } else if (headerItem && headerItem.LinkType === 'HeadingNoLink') {
+      header = <h2>{headerItem.DisplayName}</h2>
     }
-  }
-  
-  updateFooterMenuItems(menuLinks: MenuLink[]) {
-    var isAuthenticated = !!localStorage.getItem('jwt');
+    const isAuthenticated = !!localStorage.getItem('jwt');
     var menuItems;
     if (isAuthenticated) {
-      menuItems = menuLinks.filter(m => m.LinkType === 'Normal' && m.Link != '/login');
+      menuItems = this.menuItems.filter(m => m.LinkType === 'Normal' && m.Link != '/login');
     } else {
-      menuItems = menuLinks.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
-    }
-    this.footerNavigationItems = menuItems.map(d => <li><a href={d.Link}>{d.DisplayName}</a></li>);
-  }
-
-  render() {
+      menuItems = this.menuItems.filter(m => m.LinkType === 'Normal' && m.IsVisibleAnonymous);
+    }    
     return (
       <Host>
-        {this.footerNavigationHeader}
-        <ul>               
-          {this.footerNavigationItems}
+        {header}
+        <ul>   
+          {menuItems.map((menuItem) => {
+              return (
+                <li><a href={menuItem.Link}>{menuItem.DisplayName}</a></li>
+              )
+            })
+          }
         </ul>
       </Host>
     ); 
