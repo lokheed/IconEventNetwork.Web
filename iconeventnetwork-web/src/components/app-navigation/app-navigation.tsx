@@ -13,11 +13,9 @@ export class AppNavigation {
 
   constructor(){
     this.mainMenuClient = new MainMenuClient();
-    // I want to default to the basic anonymous menu so that something shows on initial render before the menu data comes back from the api
-    this.menuLinks = [{id: 1,__component: "menu.sub-menu",DisplayName: "Who We Are",Link: "/",IsVisibleAnonymous: true,},{id: 6,__component: "menu.menu-link",DisplayName: "Event Planners",Link: "/event-planners","LinkType": "Normal",IsVisibleAnonymous: true},{id: 2,__component: "menu.sub-menu",DisplayName: "About Us",Link: "/about-us",IsVisibleAnonymous: true,}];
   }
 
-  @State() menuLinks: MenuLink[] = [];
+  @State() menuLinks: MenuLink[] = [{id: 1,__component: "menu.menu-link",DisplayName: "Who We Are",Link: "/",IsVisibleAnonymous: true,},{id: 6,__component: "menu.menu-link",DisplayName: "Event Planners",Link: "/event-planners","LinkType": "Normal",IsVisibleAnonymous: true},{id: 2,__component: "menu.menu-link",DisplayName: "About Us",Link: "/about-us",IsVisibleAnonymous: true,}];
 
   componentWillLoad() {
     this.mainMenuClient.getMainMenu({
