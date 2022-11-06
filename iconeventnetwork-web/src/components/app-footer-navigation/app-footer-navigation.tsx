@@ -1,6 +1,5 @@
-import { Component, Host, State, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 import { MenuLink } from '../../services/clients/client-base';
-import { FooterMenuClient } from '../../services/clients/footer-menu-client';
 
 @Component({
   tag: 'app-footer-navigation',
@@ -8,21 +7,8 @@ import { FooterMenuClient } from '../../services/clients/footer-menu-client';
   shadow: false,
 })
 export class AppFooterNavigation {
-  private readonly footerMenuClient!: FooterMenuClient;
 
-  constructor() {
-    this.footerMenuClient = new FooterMenuClient();
-  }
-
-  @State() menuItems: MenuLink[] = [];
-
-  componentWillLoad() {
-    this.footerMenuClient.getFooterMenu()
-      .then(res => {
-        this.menuItems = res.data.attributes.MenuItems;
-      })
-      .catch(err => console.error(err));
-  }
+  @Prop() menuItems: MenuLink[] = [];
 
   render() {
     var header = <h2></h2>;
