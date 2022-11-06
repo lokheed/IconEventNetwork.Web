@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { MenuLink } from "./services/clients/client-base";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
     interface AppEventPlannerBioItem {
@@ -25,9 +26,8 @@ export namespace Components {
     }
     interface AppFooter {
     }
-    interface AppFooterLegalLinks {
-    }
     interface AppFooterNavigation {
+        "menuItems": MenuLink[];
     }
     interface AppHeader {
         "backgroundClass": string;
@@ -124,12 +124,6 @@ declare global {
     var HTMLAppFooterElement: {
         prototype: HTMLAppFooterElement;
         new (): HTMLAppFooterElement;
-    };
-    interface HTMLAppFooterLegalLinksElement extends Components.AppFooterLegalLinks, HTMLStencilElement {
-    }
-    var HTMLAppFooterLegalLinksElement: {
-        prototype: HTMLAppFooterLegalLinksElement;
-        new (): HTMLAppFooterLegalLinksElement;
     };
     interface HTMLAppFooterNavigationElement extends Components.AppFooterNavigation, HTMLStencilElement {
     }
@@ -273,7 +267,6 @@ declare global {
         "app-event-planner-bio-item": HTMLAppEventPlannerBioItemElement;
         "app-event-planner-item": HTMLAppEventPlannerItemElement;
         "app-footer": HTMLAppFooterElement;
-        "app-footer-legal-links": HTMLAppFooterLegalLinksElement;
         "app-footer-navigation": HTMLAppFooterNavigationElement;
         "app-header": HTMLAppHeaderElement;
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
@@ -320,9 +313,8 @@ declare namespace LocalJSX {
     }
     interface AppFooter {
     }
-    interface AppFooterLegalLinks {
-    }
     interface AppFooterNavigation {
+        "menuItems"?: MenuLink[];
     }
     interface AppHeader {
         "backgroundClass"?: string;
@@ -404,7 +396,6 @@ declare namespace LocalJSX {
         "app-event-planner-bio-item": AppEventPlannerBioItem;
         "app-event-planner-item": AppEventPlannerItem;
         "app-footer": AppFooter;
-        "app-footer-legal-links": AppFooterLegalLinks;
         "app-footer-navigation": AppFooterNavigation;
         "app-header": AppHeader;
         "app-leadership-team-item": AppLeadershipTeamItem;
@@ -437,7 +428,6 @@ declare module "@stencil/core" {
             "app-event-planner-bio-item": LocalJSX.AppEventPlannerBioItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerBioItemElement>;
             "app-event-planner-item": LocalJSX.AppEventPlannerItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerItemElement>;
             "app-footer": LocalJSX.AppFooter & JSXBase.HTMLAttributes<HTMLAppFooterElement>;
-            "app-footer-legal-links": LocalJSX.AppFooterLegalLinks & JSXBase.HTMLAttributes<HTMLAppFooterLegalLinksElement>;
             "app-footer-navigation": LocalJSX.AppFooterNavigation & JSXBase.HTMLAttributes<HTMLAppFooterNavigationElement>;
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
