@@ -8,15 +8,15 @@ class UrlService{
 
         if (window.location.hostname.toLowerCase().startsWith('qa'))
         {
-            return 'https://qaapi.iconeventnetwork.com';
+            return 'https://qaapi.theiconnetwork.com';
         } 
 
         if (window.location.hostname.toLowerCase().startsWith('stg'))
         {
-            return 'https://stgapi.iconeventnetwork.com';
+            return 'https://stgapi.theiconnetwork.com';
         }
         
-        return 'https://api.iconeventnetwork.com';
+        return 'https://api.theiconnetwork.com';
     }
 }
 
