@@ -50,7 +50,7 @@ export class AppFooter {
             New York, NY<br/>            
             10016<br/> 
             <br/>            
-            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about the Icon Network">info@iconeventnetwork.com</a>       
+            <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a>       
             <br/>
             +1-212-476-9444      
             </address>
