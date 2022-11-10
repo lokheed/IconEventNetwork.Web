@@ -84,7 +84,7 @@ export namespace Components {
     interface PageDirectory {
         "history": RouterHistory;
     }
-    interface PageEventPlanners {
+    interface PageFoundingMembers {
         "eventPlanners": HTMLElement;
     }
     interface PageHome {
@@ -209,11 +209,11 @@ declare global {
         prototype: HTMLPageDirectoryElement;
         new (): HTMLPageDirectoryElement;
     };
-    interface HTMLPageEventPlannersElement extends Components.PageEventPlanners, HTMLStencilElement {
+    interface HTMLPageFoundingMembersElement extends Components.PageFoundingMembers, HTMLStencilElement {
     }
-    var HTMLPageEventPlannersElement: {
-        prototype: HTMLPageEventPlannersElement;
-        new (): HTMLPageEventPlannersElement;
+    var HTMLPageFoundingMembersElement: {
+        prototype: HTMLPageFoundingMembersElement;
+        new (): HTMLPageFoundingMembersElement;
     };
     interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {
     }
@@ -281,7 +281,7 @@ declare global {
         "page-demo": HTMLPageDemoElement;
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
-        "page-event-planners": HTMLPageEventPlannersElement;
+        "page-founding-members": HTMLPageFoundingMembersElement;
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
         "page-login": HTMLPageLoginElement;
@@ -371,7 +371,7 @@ declare namespace LocalJSX {
     interface PageDirectory {
         "history"?: RouterHistory;
     }
-    interface PageEventPlanners {
+    interface PageFoundingMembers {
         "eventPlanners"?: HTMLElement;
     }
     interface PageHome {
@@ -410,7 +410,7 @@ declare namespace LocalJSX {
         "page-demo": PageDemo;
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
-        "page-event-planners": PageEventPlanners;
+        "page-founding-members": PageFoundingMembers;
         "page-home": PageHome;
         "page-join": PageJoin;
         "page-login": PageLogin;
@@ -442,7 +442,7 @@ declare module "@stencil/core" {
             "page-demo": LocalJSX.PageDemo & JSXBase.HTMLAttributes<HTMLPageDemoElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
-            "page-event-planners": LocalJSX.PageEventPlanners & JSXBase.HTMLAttributes<HTMLPageEventPlannersElement>;
+            "page-founding-members": LocalJSX.PageFoundingMembers & JSXBase.HTMLAttributes<HTMLPageFoundingMembersElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
             "page-login": LocalJSX.PageLogin & JSXBase.HTMLAttributes<HTMLPageLoginElement>;

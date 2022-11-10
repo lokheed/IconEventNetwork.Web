@@ -81,10 +81,12 @@ export class PageAboutUs {
             <h2>Contact Us</h2>
             <hr class='green'/>
             <p>
-              To reach the Icon Network, email us.
+              To reach the Icon Network, call or email us.
             </p>
             <h3>Email:</h3>
             <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a>
+            <h3>Phone:</h3>
+            <span class='phone'>+1-212-476-9444</span>
           </div>         
           <div class='image-container'>
             <div class='image6'><div class='photo-credit'>Photo courtesy of Matthew Robbins Design</div></div>
