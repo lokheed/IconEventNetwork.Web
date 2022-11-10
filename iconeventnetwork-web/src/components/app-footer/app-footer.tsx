@@ -21,7 +21,7 @@ export class AppFooter {
         <div class='container contact-container'>
           <h2>Contact</h2>
           <address>
-            <a href="mailto:info@iconeventnetwork.com?subject=Inquiry about the Icon Network">info@iconeventnetwork.com</a>       
+            <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a>       
           </address>
         </div>
         <div class='container navigation-container'>
