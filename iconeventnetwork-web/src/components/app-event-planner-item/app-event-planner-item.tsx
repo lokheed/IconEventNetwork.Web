@@ -1,4 +1,5 @@
 import { Component, Prop, State, Event, EventEmitter, Listen, h } from '@stencil/core';
+import { noPhotoDataUrl } from '../../utils/images-fallback';
 @Component({
     tag: 'app-event-planner-item',
     styleUrl: 'app-event-planner-item.scss',
@@ -10,7 +11,7 @@ export class EventPlannerItem {
     @Prop() FirstName: string;
     @Prop() LastName: string;
     @Prop() CompanyName: string;
-    @Prop() HeadshotURL: string;
+    @Prop() HeadshotURL: string = noPhotoDataUrl;
     @Prop() HeadshotAltText: string;
     @Prop() Bio: string;
     @State() EventPlannerItemCSSClass: string = 'event-planner-item';
@@ -34,7 +35,11 @@ export class EventPlannerItem {
         return (
             <div id={'eventPlanner' + this.EventPlannerId} onClick={() => this.thisEventPlannerItemSelectedHandler()} class={this.EventPlannerItemCSSClass}>
                 <div class='headshot'>
-                    <img src={this.HeadshotURL} alt={this.HeadshotAltText} class='leadership-headshot' />
+                    <img
+                        src={this.HeadshotURL}
+                        alt={this.HeadshotAltText}
+                        class='leadership-headshot'
+                    />
                 </div>
                 <div class='info'>
                     <h3>{this.FirstName} {this.LastName}</h3>

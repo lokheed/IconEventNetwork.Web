@@ -62,7 +62,7 @@ export class PageEventPlanners {
 
   private renderPlannerBio() {
     if (this.selectedEventPlannerId < 1) {
-      return
+      return;
     }
     
     const planner = this.foundingPlanners.find(planner => planner.id == this.selectedEventPlannerId);
@@ -99,8 +99,8 @@ export class PageEventPlanners {
               LastName={planner.attributes.LastName}
               CompanyName={planner.attributes.CompanyName}
               Bio={planner.attributes.Bio}
-              HeadshotURL={planner.attributes.Headshot.data.attributes.url}
-              HeadshotAltText={planner.attributes.Headshot.data.attributes.alternativeText}
+              HeadshotURL={planner.attributes.Headshot?.data?.attributes.url}
+              HeadshotAltText={planner.attributes.Headshot?.data?.attributes.alternativeText}
             />
           )}
           {this.renderPlannerBio()}
