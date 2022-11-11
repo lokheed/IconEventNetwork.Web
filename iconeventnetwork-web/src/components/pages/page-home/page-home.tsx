@@ -214,8 +214,8 @@ export class PageHome {
           <div class='image2'><div class='photo-credit'>Photo courtesy of Matthews Robbins Design</div></div>
         </div>      
         <div>
-          <a id='founding-planners'></a>        
-          <h2>Founding Planners</h2>
+          <a id='founding-members'></a>        
+          <h2>Founding Members</h2> 
           <hr class='pink'/>
           <div class='founding-planner-logo-ctn'>
            {this.foundingPlanners && this.foundingPlanners.map((planner) => 
