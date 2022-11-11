@@ -215,7 +215,7 @@ export class PageHome {
         </div>      
         <div>
           <a id='founding-members'></a>        
-          <h2>Founding Members</h2>
+          <h2>Founding Members</h2> 
           <hr class='pink'/>
           <div class='founding-planner-logo-ctn'>
            {this.foundingPlannerLogos}

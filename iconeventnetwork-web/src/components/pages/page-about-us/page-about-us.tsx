@@ -86,7 +86,7 @@ export class PageAboutUs {
             <h3>Email:</h3>
             <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a>
             <h3>Phone:</h3>
-            <span class='phone'>+1-212-476-9444</span>
+            <span class='phone'>+1-212-476-9444</span> 
           </div>         
           <div class='image-container'>
             <div class='image6'><div class='photo-credit'>Photo courtesy of Matthew Robbins Design</div></div>
