@@ -2,6 +2,7 @@ import { Component, Host, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
 import { DataResponse } from '../../../services/clients/client-base';
 import { FoundingPlannerClient, GetFoundingPlannersResponse } from '../../../services/clients/founding-planner-client';
+import { noImageDataUrl } from '../../../utils/images-fallback';
 
 @Component({
   tag: 'page-home',
@@ -220,8 +221,8 @@ export class PageHome {
           <div class='founding-planner-logo-ctn'>
            {this.foundingPlanners && this.foundingPlanners.map((planner) => 
             <img
-              src={planner.attributes.Logo.data.attributes.url}
-              alt={planner.attributes.Logo.data.attributes.alternativeText} class="logo"
+              src={planner.attributes.Logo.data?.attributes.url ? planner.attributes.Logo.data.attributes.url : noImageDataUrl}
+              alt={planner.attributes.Logo.data?.attributes.alternativeText} class="logo"
             />
           )}
           </div>

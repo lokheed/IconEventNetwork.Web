@@ -2,6 +2,7 @@ import { Component, Host, State, h } from '@stencil/core';
 import { scrollToFragment } from 'scroll-to-fragment';
 import { DataResponse } from '../../../services/clients/client-base';
 import { GetLeadershipTeamMembersResponse, LeadershipTeamMemberClient } from '../../../services/clients/leadership-team-member-client';
+import { noPhotoDataUrl } from '../../../utils/images-fallback';
 
 @Component({
   tag: 'page-about-us',
@@ -60,8 +61,8 @@ export class PageAboutUs {
               LastName={member.attributes.LastName}
               JobTitle={member.attributes.Title}
               Bio={member.attributes.Bio}
-              HeadshotURL={member.attributes.Headshot.data.attributes.url}
-              HeadshotAltText={member.attributes.Headshot.data.attributes.alternativeText}
+              HeadshotURL={member.attributes.Headshot.data?.attributes.url ? member.attributes.Headshot.data.attributes.url : noPhotoDataUrl}
+              HeadshotAltText={member.attributes.Headshot.data?.attributes.alternativeText}
               Color={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
             />
           )}
