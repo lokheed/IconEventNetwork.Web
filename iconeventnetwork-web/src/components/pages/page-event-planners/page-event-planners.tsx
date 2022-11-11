@@ -1,11 +1,11 @@
 import { Component, Host, Prop, State, Listen, h } from '@stencil/core';
 import { urlService } from '../../../services/url-service';
 @Component({
-  tag: 'page-founding-members',
-  styleUrl: 'page-founding-members.scss',
+  tag: 'page-event-planners',
+  styleUrl: 'page-event-planners.scss',
   shadow: false,
 })
-export class PageFoundingMembers {
+export class PageEventPlanners {
   @Prop() eventPlanners: HTMLElement; 
   @State() eventPlannerBio: HTMLElement; 
   @State() selectedEventPlannerId: number = 0;
@@ -102,7 +102,7 @@ export class PageFoundingMembers {
           <div class='image3'><div class='photo-credit'>Photo courtesy of Easton Events</div></div>
         </div>   
         <div class='accent-block'>
-          <h2>Founding Members</h2>
+          <h2>Event Planners</h2>
           <hr class='purple'/>
           <p>
             The Icon Network is a select community of world-class event planners across
