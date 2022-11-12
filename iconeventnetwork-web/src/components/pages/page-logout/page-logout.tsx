@@ -1,6 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
-import { cognitoService } from '../../../services/cognito-service';
-
+import { urlService } from '../../../services/url-service';
 
 @Component({
   tag: 'page-logout',
@@ -15,7 +14,7 @@ export class PageLogout {;
     } else {
       localStorage.removeItem('jwt');
       localStorage.removeItem('username');
-      window.location.replace(cognitoService.getBaseUrl() + '/logout?client_id=' + cognitoService.getClientId() + '&logout_uri=' + window.location.href);
+      window.location.replace(urlService.CognitoBaseUrl + '/logout?client_id=' + urlService.CognitoClientId + '&logout_uri=' + window.location.href);
     }
   }
 

@@ -143,7 +143,7 @@ export class PageDemo {
   }
 
   private getCompanyAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -153,7 +153,7 @@ export class PageDemo {
   }
 
   private getPersonAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -163,7 +163,7 @@ export class PageDemo {
   }
 
   private getPersonCompanyAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -173,7 +173,7 @@ export class PageDemo {
   }
 
   private getCompanyEmailAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -183,7 +183,7 @@ export class PageDemo {
   }
 
   private getPersonEmailAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -193,7 +193,7 @@ export class PageDemo {
   }
 
   private getPersonCompanyEmailAddressTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/email-address-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -203,7 +203,7 @@ export class PageDemo {
   }
 
   private getCompanyPhoneNumberTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -213,7 +213,7 @@ export class PageDemo {
   }
 
   private getPersonPhoneNumberTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -223,7 +223,7 @@ export class PageDemo {
   }
 
   private getPersonCompanyPhoneNumberTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/phone-number-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -233,7 +233,7 @@ export class PageDemo {
   }
 
   private getCompanySocialMediaTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -243,7 +243,7 @@ export class PageDemo {
   }
 
   private getPersonSocialMediaTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPerson][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -253,7 +253,7 @@ export class PageDemo {
   }
 
   private getPersonCompanySocialMediaTypeOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/social-media-types?filters[IsActive][$eq]=1&filters[AppliesToPersonCompany][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -263,7 +263,7 @@ export class PageDemo {
   }
 
   private getPrefixesOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/prefixes?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -273,7 +273,7 @@ export class PageDemo {
   }
 
   private getPronounOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/pronouns?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -283,7 +283,7 @@ export class PageDemo {
   }
 
   private getSuffixesOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/suffixes?filters[IsActive][$eq]=1&sort=Rank`, options)
     .then(res => res.json())
@@ -293,7 +293,7 @@ export class PageDemo {
   }
 
   private getCountryOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/countries?filters[IsActive][$eq]=1&pagination[pageSize]=300&sort=SearchableName`, options)
     .then(res => res.json())
@@ -303,7 +303,7 @@ export class PageDemo {
   }
 
   private getCountrySubdivisionOptions() {   
-    var baseUrl = urlService.getApiBaseUrl();
+    var baseUrl = urlService.ApiBaseUrl;
     var options = this.getOptions();
     fetch(`${baseUrl}/api/countrysubdivisions?filters[Code][$startsWith]=${this.selectedCountry}&filters[IsActive][$eq]=1&pagination[pageSize]=100&sort=SearchableName`, options)
     .then(res => res.json())

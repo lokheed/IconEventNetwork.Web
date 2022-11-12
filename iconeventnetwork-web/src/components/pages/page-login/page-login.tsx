@@ -8,7 +8,7 @@ import { urlService } from '../../../services/url-service';
 })
 export class PageLogin {;
   constructor() {
-    window.location.replace(!!localStorage.getItem('jwt') ? '/' : urlService.getApiBaseUrl() + '/api/connect/cognito');
+    window.location.replace(!!localStorage.getItem('jwt') ? '/' : urlService.ApiBaseUrl + '/api/connect/cognito');
   }
 
   render() {  

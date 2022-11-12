@@ -10,7 +10,7 @@ export class PageLoginRedirect {
   @State() currentText: string = 'Logging In...';
 
   componentDidRender() {
-    var strapiBaseUrl = urlService.getApiBaseUrl();
+    var strapiBaseUrl = urlService.ApiBaseUrl;
 
 
     // Successfully logged with the provider
