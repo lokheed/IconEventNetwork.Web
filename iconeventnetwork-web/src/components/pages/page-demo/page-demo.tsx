@@ -1,5 +1,4 @@
 import { Component, Prop, State, h } from '@stencil/core';
-import { RouterHistory } from '@stencil-community/router';
 import { urlService } from '../../../services/url-service';
 @Component({
   tag: 'page-demo',
@@ -7,7 +6,6 @@ import { urlService } from '../../../services/url-service';
   shadow: false,
 })
 export class PageDemo {
-  @Prop() history: RouterHistory;
   @Prop() prefixesOptions: HTMLElement;
   @Prop() suffixesOptions: HTMLElement;
   @Prop() pronounOptions: HTMLElement;
@@ -60,7 +58,7 @@ export class PageDemo {
   componentWillRender() {
     var isAuthenticated = !!localStorage.getItem('jwt');       
     if (!isAuthenticated) {
-      this.history.replace('/', {});
+      window.location.replace('/');
     }
   } 
 

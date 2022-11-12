@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MenuLink } from "./services/clients/client-base";
-import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
     interface AppEventPlannerBioItem {
         "Bio": string;
@@ -56,7 +55,6 @@ export namespace Components {
     interface PageCookiePolicy {
     }
     interface PageDashboard {
-        "history": RouterHistory;
     }
     interface PageDemo {
         "companyAddressTypeOptions": HTMLElement;
@@ -64,7 +62,6 @@ export namespace Components {
         "companyPhoneNumberTypeOptions": HTMLElement;
         "companySocialMediaTypeOptions": HTMLElement;
         "countryOptions": HTMLElement;
-        "history": RouterHistory;
         "personAddressTypeOptions": HTMLElement;
         "personCompanyAddressTypeOptions": HTMLElement;
         "personCompanyEmailAddressTypeOptions": HTMLElement;
@@ -78,17 +75,14 @@ export namespace Components {
         "suffixesOptions": HTMLElement;
     }
     interface PageDestinations {
-        "history": RouterHistory;
     }
     interface PageDirectory {
-        "history": RouterHistory;
     }
     interface PageEventPlanners {
     }
     interface PageHome {
     }
     interface PageJoin {
-        "history": RouterHistory;
     }
     interface PageLogin {
     }
@@ -340,7 +334,6 @@ declare namespace LocalJSX {
     interface PageCookiePolicy {
     }
     interface PageDashboard {
-        "history"?: RouterHistory;
     }
     interface PageDemo {
         "companyAddressTypeOptions"?: HTMLElement;
@@ -348,7 +341,6 @@ declare namespace LocalJSX {
         "companyPhoneNumberTypeOptions"?: HTMLElement;
         "companySocialMediaTypeOptions"?: HTMLElement;
         "countryOptions"?: HTMLElement;
-        "history"?: RouterHistory;
         "personAddressTypeOptions"?: HTMLElement;
         "personCompanyAddressTypeOptions"?: HTMLElement;
         "personCompanyEmailAddressTypeOptions"?: HTMLElement;
@@ -362,17 +354,14 @@ declare namespace LocalJSX {
         "suffixesOptions"?: HTMLElement;
     }
     interface PageDestinations {
-        "history"?: RouterHistory;
     }
     interface PageDirectory {
-        "history"?: RouterHistory;
     }
     interface PageEventPlanners {
     }
     interface PageHome {
     }
     interface PageJoin {
-        "history"?: RouterHistory;
     }
     interface PageLogin {
     }
