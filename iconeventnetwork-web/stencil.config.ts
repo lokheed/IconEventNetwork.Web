@@ -16,6 +16,6 @@ export const config: Config = {
     },
   ],
   plugins: [
-    sass(),
+    sass({sourceMap: true}),
   ],
 };
