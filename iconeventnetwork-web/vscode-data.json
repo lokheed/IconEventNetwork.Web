@@ -1,0 +1,297 @@
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "app-event-planner-bio-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "bio",
+          "description": ""
+        },
+        {
+          "name": "company-name",
+          "description": ""
+        },
+        {
+          "name": "event-planner-id",
+          "description": ""
+        },
+        {
+          "name": "first-name",
+          "description": ""
+        },
+        {
+          "name": "last-name",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "app-event-planner-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "bio",
+          "description": ""
+        },
+        {
+          "name": "company-name",
+          "description": ""
+        },
+        {
+          "name": "event-planner-id",
+          "description": ""
+        },
+        {
+          "name": "first-name",
+          "description": ""
+        },
+        {
+          "name": "headshot-alt-text",
+          "description": ""
+        },
+        {
+          "name": "headshot-u-r-l",
+          "description": ""
+        },
+        {
+          "name": "last-name",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "app-footer",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-footer-navigation",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-header",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "background-class",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "app-leadership-team-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "bio",
+          "description": ""
+        },
+        {
+          "name": "color",
+          "description": ""
+        },
+        {
+          "name": "first-name",
+          "description": ""
+        },
+        {
+          "name": "headshot-alt-text",
+          "description": ""
+        },
+        {
+          "name": "headshot-u-r-l",
+          "description": ""
+        },
+        {
+          "name": "job-title",
+          "description": ""
+        },
+        {
+          "name": "last-name",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "app-login-button",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-navigation",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-root",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-testimonial-carousel",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-about-us",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-code-of-conduct",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-cookie-policy",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-dashboard",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-demo",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-destinations",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-directory",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-event-planners",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-home",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-join",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-login",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-login-redirect",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-logout",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-not-found",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-privacy-policy",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-terms-of-service",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    }
+  ]
+}
