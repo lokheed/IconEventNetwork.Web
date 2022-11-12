@@ -3,10 +3,10 @@ import { urlService } from "../url-service";
 
 
 export class ClientBase {
-    private _baseUrl;
+    private _baseUrl: string;
     
     constructor() {
-        this._baseUrl = urlService.getApiBaseUrl();
+        this._baseUrl = urlService.ApiBaseUrl;
     }
 
     get baseUrl() {
