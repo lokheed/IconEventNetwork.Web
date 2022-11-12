@@ -11,10 +11,10 @@ export class PageLogin {;
     if (isAuthenticated) {
         window.location.replace('/');
     } else {
-        var strapiBaseUrl = 'https://api.iconeventnetwork.com';
+        var strapiBaseUrl = 'https://api.theiconnetwork.com';
         if (window.location.hostname.toLowerCase() === 'localhost') strapiBaseUrl = 'http://localhost:1337';
-        if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.iconeventnetwork.com';
-        if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.iconeventnetwork.com';
+        if (window.location.hostname.toLowerCase().startsWith('qa')) strapiBaseUrl = 'https://qaapi.theiconnetwork.com';
+        if (window.location.hostname.toLowerCase().startsWith('stg')) strapiBaseUrl = 'https://stgapi.theiconnetwork.com';
     
         const loginUrl = strapiBaseUrl + '/api/connect/cognito';
     

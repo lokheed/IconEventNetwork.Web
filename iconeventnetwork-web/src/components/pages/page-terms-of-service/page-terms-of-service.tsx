@@ -13,7 +13,7 @@ export class PageTermsOfService {
         <div class='legal'>
           <p>Welcome to the Icon Network!</p>
 
-          <p>These terms and conditions outline the rules and regulations for the use of the Icon Network's website, located at https://iconeventnetwork.com.</p>
+          <p>These terms and conditions outline the rules and regulations for the use of the Icon Network's website, located at https:/theiconnetwork.com/.</p>
 
           <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use the Icon Network's website if you do not agree to all of the terms and conditions stated on this page.</p>
 
