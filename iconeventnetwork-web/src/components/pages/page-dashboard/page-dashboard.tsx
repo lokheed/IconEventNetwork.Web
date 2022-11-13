@@ -10,7 +10,7 @@ export class PageDashboard {
   @Prop() history: RouterHistory;
 
   componentWillRender() {
-    var isAuthenticated = !!localStorage.getItem('jwt');       
+    var isAuthenticated = !!localStorage.getItem('jwt');
     if (!isAuthenticated) {
       this.history.replace('/', {});
     }
