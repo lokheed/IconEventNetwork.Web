@@ -23,7 +23,6 @@ export class TestimonialCarousel {
     }
 
     private getTestimonials() {   
-        /* /api/testimonials?fields[0]=Name&fields[1]=Company&fields[2]=Quote&populate[Headshot][fields][0]=alternativeText&populate[Headshot][fields][1]=url&sort[0]=Rank */
         this.testimonialClient.getTestimonials({
             fields: ['Name', 'Company', 'Quote'],
             populate: {

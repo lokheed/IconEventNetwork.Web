@@ -66,13 +66,7 @@ export class PageEventPlanners {
     }
     
     const planner = this.foundingPlanners.find(planner => planner.id == this.selectedEventPlannerId);
-    return <app-event-planner-bio-item
-      EventPlannerId={planner.id}
-      FirstName={planner.attributes.FirstName}
-      LastName={planner.attributes.LastName}
-      CompanyName={planner.attributes.CompanyName}
-      Bio={planner.attributes.Bio}
-    />
+    return <app-event-planner-bio-item planner={planner} />
   }
  
   render() {
@@ -94,13 +88,7 @@ export class PageEventPlanners {
         <div class='planner-grid'>
           {this.foundingPlanners && this.foundingPlanners.map(planner => 
             <app-event-planner-item 
-              EventPlannerId={planner.id}
-              FirstName={planner.attributes.FirstName}
-              LastName={planner.attributes.LastName}
-              CompanyName={planner.attributes.CompanyName}
-              Bio={planner.attributes.Bio}
-              HeadshotURL={planner.attributes.Headshot?.data?.attributes.url}
-              HeadshotAltText={planner.attributes.Headshot?.data?.attributes.alternativeText}
+              planner={planner}
             />
           )}
           {this.renderPlannerBio()}

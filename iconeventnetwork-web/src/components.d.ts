@@ -5,24 +5,22 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MenuLink } from "./services/clients/client-base";
+import { DataResponse, MenuLink } from "./services/clients/client-base";
+import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
+import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { RouterHistory } from "@stencil-community/router";
 export namespace Components {
     interface AppEventPlannerBioItem {
-        "Bio": string;
-        "CompanyName": string;
-        "EventPlannerId": number;
-        "FirstName": string;
-        "LastName": string;
+        /**
+          * The details about the planner
+         */
+        "planner": DataResponse<GetFoundingPlannersResponse>;
     }
     interface AppEventPlannerItem {
-        "Bio": string;
-        "CompanyName": string;
-        "EventPlannerId": number;
-        "FirstName": string;
-        "HeadshotAltText": string;
-        "HeadshotURL": string;
-        "LastName": string;
+        /**
+          * The details about the planner.
+         */
+        "planner": DataResponse<GetFoundingPlannersResponse>;
     }
     interface AppFooter {
     }
@@ -33,13 +31,14 @@ export namespace Components {
         "backgroundClass": string;
     }
     interface AppLeadershipTeamItem {
-        "Bio": string;
-        "Color": string;
-        "FirstName": string;
-        "HeadshotAltText": string;
-        "HeadshotURL": string;
-        "JobTitle": string;
-        "LastName": string;
+        /**
+          * The details about the member.
+         */
+        "member": DataResponse<GetLeadershipTeamMembersResponse>;
+        /**
+          * The color of the read more link.
+         */
+        "readMoreColor": string;
     }
     interface AppLoginButton {
     }
@@ -291,22 +290,18 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppEventPlannerBioItem {
-        "Bio"?: string;
-        "CompanyName"?: string;
-        "EventPlannerId"?: number;
-        "FirstName"?: string;
-        "LastName"?: string;
         "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
+        /**
+          * The details about the planner
+         */
+        "planner"?: DataResponse<GetFoundingPlannersResponse>;
     }
     interface AppEventPlannerItem {
-        "Bio"?: string;
-        "CompanyName"?: string;
-        "EventPlannerId"?: number;
-        "FirstName"?: string;
-        "HeadshotAltText"?: string;
-        "HeadshotURL"?: string;
-        "LastName"?: string;
         "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
+        /**
+          * The details about the planner.
+         */
+        "planner"?: DataResponse<GetFoundingPlannersResponse>;
     }
     interface AppFooter {
     }
@@ -317,13 +312,14 @@ declare namespace LocalJSX {
         "backgroundClass"?: string;
     }
     interface AppLeadershipTeamItem {
-        "Bio"?: string;
-        "Color"?: string;
-        "FirstName"?: string;
-        "HeadshotAltText"?: string;
-        "HeadshotURL"?: string;
-        "JobTitle"?: string;
-        "LastName"?: string;
+        /**
+          * The details about the member.
+         */
+        "member"?: DataResponse<GetLeadershipTeamMembersResponse>;
+        /**
+          * The color of the read more link.
+         */
+        "readMoreColor"?: string;
     }
     interface AppLoginButton {
     }

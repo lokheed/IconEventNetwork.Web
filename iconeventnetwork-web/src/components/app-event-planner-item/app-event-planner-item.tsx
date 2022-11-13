@@ -1,5 +1,8 @@
 import { Component, Prop, State, Event, EventEmitter, Listen, h } from '@stencil/core';
+import { DataResponse } from '../../services/clients/client-base';
+import { GetFoundingPlannersResponse } from '../../services/clients/founding-planner-client';
 import { noPhotoDataUrl } from '../../utils/images-fallback';
+
 @Component({
     tag: 'app-event-planner-item',
     styleUrl: 'app-event-planner-item.scss',
@@ -7,43 +10,46 @@ import { noPhotoDataUrl } from '../../utils/images-fallback';
 })
 
 export class EventPlannerItem { 
-    @Prop() EventPlannerId: number;
-    @Prop() FirstName: string;
-    @Prop() LastName: string;
-    @Prop() CompanyName: string;
-    @Prop() HeadshotURL: string = noPhotoDataUrl;
-    @Prop() HeadshotAltText: string;
-    @Prop() Bio: string;
+    /** The details about the planner. */
+    @Prop() planner: DataResponse<GetFoundingPlannersResponse>;
+
     @State() EventPlannerItemCSSClass: string = 'event-planner-item';
+    
     @Event() eventPlannerItemSelected: EventEmitter<number>;
+    
     @Listen('eventPlannerItemSelected', {target: 'body'})
+    
     eventPlannerItemSelectedHandler(event: CustomEvent<number>) {
         this.otherEventPlannerItemSelectedHander(event.detail);
     }
     
     otherEventPlannerItemSelectedHander(eventPlannerId: number) {
-        if (this.EventPlannerId == eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item selected';
-        if (eventPlannerId > 0 && this.EventPlannerId != eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item dimmed';
+        if (this.planner.id == eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item selected';
+        if (eventPlannerId > 0 && this.planner.id != eventPlannerId) this.EventPlannerItemCSSClass = 'event-planner-item dimmed';
         if (eventPlannerId == 0) this.EventPlannerItemCSSClass = 'event-planner-item';
     }
   
     thisEventPlannerItemSelectedHandler() {
-        this.eventPlannerItemSelected.emit(this.EventPlannerId);
+        this.eventPlannerItemSelected.emit(this.planner.id);
     }
 
     render() {   
         return (
-            <div id={'eventPlanner' + this.EventPlannerId} onClick={() => this.thisEventPlannerItemSelectedHandler()} class={this.EventPlannerItemCSSClass}>
+            <div
+                id={'eventPlanner' + this.planner.id}
+                onClick={() => this.thisEventPlannerItemSelectedHandler()}
+                class={this.EventPlannerItemCSSClass}
+            >
                 <div class='headshot'>
                     <img
-                        src={this.HeadshotURL}
-                        alt={this.HeadshotAltText}
+                        src={this.planner.attributes.Headshot.data ? this.planner.attributes.Headshot.data.attributes.url : noPhotoDataUrl}
+                        alt={this.planner.attributes.Headshot.data ? this.planner.attributes.Headshot.data.attributes.alternativeText : 'No photo'}
                         class='leadership-headshot'
                     />
                 </div>
                 <div class='info'>
-                    <h3>{this.FirstName} {this.LastName}</h3>
-                    <div class='company'>{this.CompanyName}</div>
+                    <h3>{this.planner.attributes.FirstName} {this.planner.attributes.LastName}</h3>
+                    <div class='company'>{this.planner.attributes.CompanyName}</div>
                 </div>
             </div>
         );

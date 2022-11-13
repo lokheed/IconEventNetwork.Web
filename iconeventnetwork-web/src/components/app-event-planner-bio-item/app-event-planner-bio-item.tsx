@@ -1,4 +1,6 @@
 import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
+import { DataResponse } from '../../services/clients/client-base';
+import { GetFoundingPlannersResponse } from '../../services/clients/founding-planner-client';
 @Component({
     tag: 'app-event-planner-bio-item',
     styleUrl: 'app-event-planner-bio-item.scss',
@@ -6,11 +8,9 @@ import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
 })
 
 export class EventPlannerBioItem { 
-    @Prop() EventPlannerId: number;
-    @Prop() FirstName: string;
-    @Prop() LastName: string;
-    @Prop() CompanyName: string;
-    @Prop() Bio: string;
+    /** The details about the planner */
+    @Prop() planner: DataResponse<GetFoundingPlannersResponse>;
+    
     @Event() eventPlannerItemSelected: EventEmitter<number>;
   
     thisEventPlannerItemSelectedHandler() {
@@ -19,12 +19,12 @@ export class EventPlannerBioItem {
 
     render() {   
         return (
-            <div id={'eventPlannerBio' + this.EventPlannerId} class='event-planner-bio-item'>
+            <div id={'eventPlannerBio' + this.planner.id} class='event-planner-bio-item'>
                 <div class='closer' onClick={() => this.thisEventPlannerItemSelectedHandler()}>&#x2715; CLOSE</div>
-                <h2>{this.FirstName} {this.LastName}</h2>
-                <h3>{this.CompanyName}</h3>
+                <h2>{this.planner.attributes.FirstName} {this.planner.attributes.LastName}</h2>
+                <h3>{this.planner.attributes.CompanyName}</h3>
                 <hr class='blue'/>
-                <div class='bio' innerHTML={this.Bio}></div>
+                <div class='bio' innerHTML={this.planner.attributes.Bio}></div>
             </div>
         );
     }     
