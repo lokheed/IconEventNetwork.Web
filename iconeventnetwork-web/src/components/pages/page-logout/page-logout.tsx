@@ -7,7 +7,7 @@ import { urlService } from '../../../services/url-service';
   shadow: false,
 })
 export class PageLogout {;
-  constructor() {
+  componentDidLoad() {
     var isAuthenticated = !!localStorage.getItem('jwt');
     if (!isAuthenticated) {
       window.location.replace('/');
@@ -20,7 +20,11 @@ export class PageLogout {;
 
   render() {
     return (
-      <Host></Host>
+      <Host>
+        <h1>Logging Out... <i class="fa-solid fa-spinner fa-spin-pulse"></i></h1>
+        <br/>
+        <br/>
+      </Host> 
     )
   }
 }
