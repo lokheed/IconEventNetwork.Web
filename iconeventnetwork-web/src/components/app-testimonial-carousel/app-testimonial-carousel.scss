@@ -1033,7 +1033,6 @@
 	width: 100vw;
 	height: 450px;
 	margin: 0;
-	min-width: 1250px;
 	overflow: hidden;
 	.testimonial-item {
 		position: absolute;
@@ -1065,6 +1064,10 @@
 			overflow: hidden;
 			.headshot {
 				flex: 0 0 20%;
+				.testimonial-headshot {
+					max-width: 150px;
+					border-radius: 50%;
+				}
 			}
 			.open-quote {
 				flex: 0 0 5%;
@@ -1106,20 +1109,9 @@
 		}
 	}
 }
-.testimonial-item {
-	.container {
-		.headshot {
-			.testimonial-headshot {
-				max-width: 150px;
-				border-radius: 50%;
-			}
-		}
-	}
-}
 
 @media (max-width: 1150px) {
 	.testimonial-carousel {
-		min-width: 980px;
 		.testimonial-item {
 			left: calc(50% + 1650px);
 			width: 625px;
@@ -1167,7 +1159,6 @@
 
 @media (max-width: 978px) {
 	.testimonial-carousel {
-		min-width: 980px;
 		.testimonial-item {
 			left: calc(50% + 1250px);
 			width: 500px;
@@ -1189,6 +1180,11 @@
 				animation: testimonialCarouselSlot5-978 50s linear infinite;
 			}
 			.container {
+				.headshot {
+					.testimonial-headshot {
+						max-width: 100px;
+					}
+				}
 				.open-quote {
 					font-size: 10em;
 					line-height: 1em;
@@ -1212,23 +1208,13 @@
 			}
 		}
 	}
-	.testimonial-item {
-		.container {
-			.headshot {
-				.testimonial-headshot {
-					max-width: 100px;
-				}
-			}
-		}
-	}	
 }
 
 @media (max-width: 810px) {
 	.testimonial-carousel {
-		min-width: 810px;
 		.testimonial-item {
-			left: calc(50% + 1250px);
-			width: 350px;
+			left: calc(50% + 1300px);
+			width: 460px;
 			height: 250px;
 			padding: 2em;
 			margin: 2.5em;
@@ -1248,6 +1234,11 @@
 				animation: testimonialCarouselSlot5-810 50s linear infinite;
 			}
 			.container {
+				.headshot {
+					.testimonial-headshot {
+						max-width: 75px;
+					}
+				}
 				.open-quote {
 					font-size: 10em;
 					line-height: 1em;
@@ -1256,8 +1247,7 @@
 				.info {
 					flex: 0 0 55%;					
 					.quote {
-						font-size: .8em;
-						line-height: 1em;
+						font-size: .9em;
 					}
 					h3 {
 						font-size: 1.5em;
@@ -1271,24 +1261,15 @@
 			}
 		}
 	}
-	.testimonial-item {
-		.container {
-			.headshot {
-				.testimonial-headshot {
-					max-width: 75px;
-				}
-			}
-		}
-	}	
 }
 
 @media (max-width: 530px) {
 	.testimonial-carousel {
-		min-width: 530px;
+		// height: 500px;
 		.testimonial-item {
-			left: calc(50% + 688px);
-			width: 275px;
-			height: 300px;
+			left: calc(50% + 760px);
+			width: 280px;
+			height: 380px;
 			padding: 1em;
 			margin: 2.5em;
 			&:nth-child(1) {
@@ -1307,16 +1288,23 @@
 				animation: testimonialCarouselSlot5-530 50s linear infinite;
 			}
 			.container {
+				flex-direction: column;
+				.headshot {
+					margin: 0 auto;
+					.testimonial-headshot {
+						max-width: 150px;
+					}
+				}
 				.open-quote {
-					font-size: 5em;
+					font-size: 8em;
 					line-height: 1em;
-					margin-top: -14px;
+					margin: -50px 0;
 				}
 				.info {
+					top: 0;
 					flex: 0 0 65%;					
 					.quote {
 						font-size: .8em;
-						line-height: 1em;
 					}
 					h3 {
 						font-size: 1.5em;
@@ -1330,13 +1318,4 @@
 			}
 		}
 	}
-	.testimonial-item {
-		.container {
-			.headshot {
-				.testimonial-headshot {
-					max-width: 50px;
-				}
-			}
-		}
-	}	
 }

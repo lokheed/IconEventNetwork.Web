@@ -1,5 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
-import { RouterHistory } from '@stencil-community/router';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'page-join',
@@ -7,12 +6,10 @@ import { RouterHistory } from '@stencil-community/router';
   shadow: false,
 })
 export class PageJoin {
-  @Prop() history: RouterHistory;
-
   componentWillRender() {
     var isAuthenticated = !!localStorage.getItem('jwt');       
     if (isAuthenticated) {
-      this.history.replace('/', {});
+      window.location.replace('/');
     }
   } 
   

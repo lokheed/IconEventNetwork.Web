@@ -1,4 +1,7 @@
 import { Component, Host, State, h } from '@stencil/core';
+import { createRouter, Route, NotFound } from 'stencil-router-v2';
+
+const Router = createRouter();
 
 @Component({
   tag: 'app-root',
@@ -21,26 +24,56 @@ export class AppRoot {
       <Host>
         <app-header backgroundClass={this.navigationBackgroundClass}></app-header>
         <div class='main-content'>
-          <stencil-router>
-            <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route url="/" component="page-home" exact={true} />
-              <stencil-route url="/event-planners" component="page-event-planners" />
-              <stencil-route url="/about-us" component="page-about-us" />
-              <stencil-route url="/dashboard" component="page-dashboard" />
-              <stencil-route url="/directory" component="page-directory" />
-              <stencil-route url="/destinations" component="page-destinations" />
-              <stencil-route url="/join" component="page-join" />
-              <stencil-route url="/page-login-redirect" component='page-login-redirect' />
-              <stencil-route url="/code-of-conduct" component="page-code-of-conduct" />
-              <stencil-route url="/terms-of-service" component="page-terms-of-service" />
-              <stencil-route url="/privacy-policy" component="page-privacy-policy" />
-              <stencil-route url="/cookie-policy" component="page-cookie-policy" />
-              <stencil-route url="/login" component="page-login" />
-              <stencil-route url="/logout" component="page-logout" />
-              <stencil-route url="/demo" component="page-demo" />
-              <stencil-route component='page-not-found' />
-          </stencil-route-switch>
-          </stencil-router>
+          <Router.Switch>
+            <Route path="/">
+              <page-home />
+            </Route>
+            <Route path="/event-planners">
+              <page-event-planners />
+            </Route>
+            <Route path="/about-us">
+              <page-about-us />
+            </Route>
+            <Route path="/dashboard">
+              <page-dashboard />
+            </Route>
+            <Route path="/directory">
+              <page-directory />
+            </Route>
+            <Route path="/destinations">
+              <page-destinations />
+            </Route>
+            <Route path="/join">
+              <page-join />
+            </Route>
+            <Route path="/page-login-redirect">
+              <page-login-redirect />
+            </Route>
+            <Route path="/code-of-conduct">
+              <page-code-of-conduct />
+            </Route>
+            <Route path="/terms-of-service">
+              <page-terms-of-service />
+            </Route>
+            <Route path="/privacy-policy">
+              <page-privacy-policy />
+            </Route>
+            <Route path="/cookie-policy">
+              <page-cookie-policy />
+            </Route>
+            <Route path="/login">
+              <page-login />
+            </Route>
+            <Route path="/logout">
+              <page-logout />
+            </Route>
+            <Route path="/demo">
+              <page-demo />
+            </Route>
+            <Route path={NotFound}>
+              <page-not-found />
+            </Route>
+        </Router.Switch>
         </div>
         <app-footer></app-footer>
       </Host>

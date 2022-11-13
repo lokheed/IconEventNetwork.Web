@@ -13,9 +13,19 @@ export const config: Config = {
       // comment the following line to disable service workers in production
       serviceWorker: null,
       baseUrl: 'https://myapp.local/',
+      copy: [
+        { src: '../node_modules/@fortawesome/fontawesome-free/webfonts', dest: 'webfonts' }
+      ]
+    },
+    {
+      type: 'docs-readme',
+    },
+    {
+      type: 'docs-vscode',
+      file: 'vscode-data.json',
     },
   ],
   plugins: [
-    sass(),
+    sass({sourceMap: true}),
   ],
 };
