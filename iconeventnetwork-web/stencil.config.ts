@@ -25,6 +25,7 @@ export const config: Config = {
       file: 'vscode-data.json',
     },
   ],
+  sourceMap: true,
   plugins: [
     sass({sourceMap: true}),
   ],
