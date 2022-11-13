@@ -1,4 +1,7 @@
 import { Component, Prop, State, h } from '@stencil/core';
+import { DataResponse } from '../../services/clients/client-base';
+import { GetLeadershipTeamMembersResponse } from '../../services/clients/leadership-team-member-client';
+import { noPhotoDataUrl } from '../../utils/images-fallback';
 @Component({
     tag: 'app-leadership-team-item',
     styleUrl: 'app-leadership-team-item.scss',
@@ -6,13 +9,12 @@ import { Component, Prop, State, h } from '@stencil/core';
 })
 
 export class LeadershipTeamItem { 
-    @Prop() FirstName: string;
-    @Prop() LastName: string;
-    @Prop() JobTitle: string;
-    @Prop() Bio: string;
-    @Prop() HeadshotURL: string;
-    @Prop() HeadshotAltText: string;
-    @Prop() Color: string;
+    /** The details about the member. */
+    @Prop() member: DataResponse<GetLeadershipTeamMembersResponse>;
+
+    /** The color of the read more link.*/
+    @Prop() readMoreColor: string;
+
     @State() ReadMoreClass: string;
     
     private info: HTMLDivElement;
@@ -24,20 +26,22 @@ export class LeadershipTeamItem {
     }
 
     componentWillLoad() {
-        this.ReadMoreClass = 'read-more ' + this.Color;
+        this.ReadMoreClass = 'read-more ' + this.readMoreColor;
     }
 
     render() {   
         return (
             <div class='leadership-team-item'>
                 <div class='headshot'>
-                    <img src={this.HeadshotURL} alt={this.HeadshotAltText} class="leadership-headshot"/>
+                    <img
+                        src={this.member.attributes.Headshot.data ? this.member.attributes.Headshot.data.attributes.url : noPhotoDataUrl}
+                        alt={this.member.attributes.Headshot.data?.attributes.alternativeText} class="leadership-headshot"/>
                 </div>
                 <div class='info' ref={el => this.info = el}>
-                    <h3>{this.FirstName} {this.LastName}</h3>
-                    <div class='title'>{this.JobTitle}</div>
+                    <h3>{this.member.attributes.FirstName} {this.member.attributes.LastName}</h3>
+                    <div class='title'>{this.member.attributes.Title}</div>
                     <div class="bio">
-                        <div innerHTML={this.Bio}></div>
+                        <div innerHTML={this.member.attributes.Bio}></div>
                         <a onClick={e => this.handleClick(e)} class={this.ReadMoreClass}>Read more</a>
                     </div>
                 </div>

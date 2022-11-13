@@ -7,28 +7,7 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": [
-        {
-          "name": "bio",
-          "description": ""
-        },
-        {
-          "name": "company-name",
-          "description": ""
-        },
-        {
-          "name": "event-planner-id",
-          "description": ""
-        },
-        {
-          "name": "first-name",
-          "description": ""
-        },
-        {
-          "name": "last-name",
-          "description": ""
-        }
-      ]
+      "attributes": []
     },
     {
       "name": "app-event-planner-item",
@@ -36,36 +15,7 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": [
-        {
-          "name": "bio",
-          "description": ""
-        },
-        {
-          "name": "company-name",
-          "description": ""
-        },
-        {
-          "name": "event-planner-id",
-          "description": ""
-        },
-        {
-          "name": "first-name",
-          "description": ""
-        },
-        {
-          "name": "headshot-alt-text",
-          "description": ""
-        },
-        {
-          "name": "headshot-u-r-l",
-          "description": ""
-        },
-        {
-          "name": "last-name",
-          "description": ""
-        }
-      ]
+      "attributes": []
     },
     {
       "name": "app-footer",
@@ -104,32 +54,8 @@
       },
       "attributes": [
         {
-          "name": "bio",
-          "description": ""
-        },
-        {
-          "name": "color",
-          "description": ""
-        },
-        {
-          "name": "first-name",
-          "description": ""
-        },
-        {
-          "name": "headshot-alt-text",
-          "description": ""
-        },
-        {
-          "name": "headshot-u-r-l",
-          "description": ""
-        },
-        {
-          "name": "job-title",
-          "description": ""
-        },
-        {
-          "name": "last-name",
-          "description": ""
+          "name": "read-more-color",
+          "description": "The color of the read more link."
         }
       ]
     },

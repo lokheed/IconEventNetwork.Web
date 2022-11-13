@@ -7,15 +7,9 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default          |
-| ----------------- | ------------------- | ----------- | -------- | ---------------- |
-| `Bio`             | `bio`               |             | `string` | `undefined`      |
-| `CompanyName`     | `company-name`      |             | `string` | `undefined`      |
-| `EventPlannerId`  | `event-planner-id`  |             | `number` | `undefined`      |
-| `FirstName`       | `first-name`        |             | `string` | `undefined`      |
-| `HeadshotAltText` | `headshot-alt-text` |             | `string` | `undefined`      |
-| `HeadshotURL`     | `headshot-u-r-l`    |             | `string` | `noPhotoDataUrl` |
-| `LastName`        | `last-name`         |             | `string` | `undefined`      |
+| Property  | Attribute | Description                    | Type                                        | Default     |
+| --------- | --------- | ------------------------------ | ------------------------------------------- | ----------- |
+| `planner` | --        | The details about the planner. | `DataResponse<GetFoundingPlannersResponse>` | `undefined` |
 
 
 ## Events

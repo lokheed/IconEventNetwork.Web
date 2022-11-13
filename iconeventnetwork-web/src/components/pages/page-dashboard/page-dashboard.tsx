@@ -7,7 +7,7 @@ import { Component, h } from '@stencil/core';
 })
 export class PageDashboard {
   componentWillRender() {
-    var isAuthenticated = !!localStorage.getItem('jwt');       
+    var isAuthenticated = !!localStorage.getItem('jwt');
     if (!isAuthenticated) {
       window.location.replace('/');
     }

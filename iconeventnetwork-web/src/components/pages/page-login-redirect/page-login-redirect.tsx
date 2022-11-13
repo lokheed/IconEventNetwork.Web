@@ -10,12 +10,9 @@ export class PageLoginRedirect {
   @State() currentText: string = 'Logging In...';
 
   componentDidRender() {
-    var strapiBaseUrl = urlService.ApiBaseUrl;
-
-
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
-    fetch(`${strapiBaseUrl}/api/auth/cognito/callback${window.location.search}`)
+    fetch(`${urlService.ApiBaseUrl}/api/auth/cognito/callback${window.location.search}`)
       .then(res => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
