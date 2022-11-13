@@ -5,12 +5,18 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
+## Dependencies
 
-| Property  | Attribute | Description | Type            | Default     |
-| --------- | --------- | ----------- | --------------- | ----------- |
-| `history` | --        |             | `RouterHistory` | `undefined` |
+### Used by
 
+ - [app-root](../../app-root)
+
+### Graph
+```mermaid
+graph TD;
+  app-root --> page-join
+  style page-join fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
