@@ -5,7 +5,8 @@
 }
 .tab-link {
 	flex: 0 0 45%;
-	margin: 3em 0 0 0;
+	white-space: nowrap;
+	margin: 3em 0.5em 0 0;
 	>span {
 		font-weight: 500;
 		text-transform: uppercase;
@@ -63,13 +64,12 @@
 	}
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 	.tab-links {
 		flex-direction: column;
-
 	}
 	.tabContent {
-		width: 85%;
+		width: 80%;
 		margin: auto;
 		.item {
 			>div.label {
