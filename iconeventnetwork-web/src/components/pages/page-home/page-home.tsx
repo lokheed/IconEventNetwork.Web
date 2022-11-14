@@ -12,6 +12,7 @@ export class PageHome {
   private foundingPlannersClient: FoundingPlannerClient;
   
   constructor() {
+    if (window.location.hostname.toLowerCase().includes('iconeventnetwork.com')) window.location.replace('https://theiconnetwork.com');
     this.foundingPlannersClient = new FoundingPlannerClient();
   }
   
