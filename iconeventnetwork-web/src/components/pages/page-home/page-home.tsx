@@ -13,6 +13,9 @@ export class PageHome {
   private foundingPlannersClient: FoundingPlannerClient;
   
   constructor() {
+    // short term hack until proper domain redirect is working at the DNS level
+    if (window.location.hostname.toLowerCase().includes('iconeventnetwork.com')) window.location.replace('https://theiconnetwork.com');
+    
     this.foundingPlannersClient = new FoundingPlannerClient();
   }
   
