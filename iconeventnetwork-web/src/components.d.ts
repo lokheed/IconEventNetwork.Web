@@ -96,6 +96,14 @@ export namespace Components {
     interface PageTermsOfService {
     }
 }
+export interface AppEventPlannerBioItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppEventPlannerBioItemElement;
+}
+export interface AppEventPlannerItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppEventPlannerItemElement;
+}
 declare global {
     interface HTMLAppEventPlannerBioItemElement extends Components.AppEventPlannerBioItem, HTMLStencilElement {
     }
@@ -284,14 +292,14 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppEventPlannerBioItem {
-        "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
+        "onEventPlannerItemSelected"?: (event: AppEventPlannerBioItemCustomEvent<number>) => void;
         /**
           * The details about the planner
          */
         "planner"?: DataResponse<GetFoundingPlannersResponse>;
     }
     interface AppEventPlannerItem {
-        "onEventPlannerItemSelected"?: (event: CustomEvent<number>) => void;
+        "onEventPlannerItemSelected"?: (event: AppEventPlannerItemCustomEvent<number>) => void;
         /**
           * The details about the planner.
          */
