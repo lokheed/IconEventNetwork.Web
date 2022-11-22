@@ -19,18 +19,43 @@ export class AppFooter {
   @State() navigationMenuItems: MenuLink[] = [];
   @State() legalMenuItems: MenuLink[] = [];
   
+  
   componentWillLoad() {
+    this.getMenuItems();
+    this.getLegalMenuItems();
+  }
+
+  private getMenuItems() {
+    const footerMenuItemsStorageKey = "footerMenuItems";
+    var storedMenuItems = sessionStorage.getItem(footerMenuItemsStorageKey);
+    if (storedMenuItems) {
+      this.navigationMenuItems = JSON.parse(storedMenuItems);
+      return;
+    }
+
     this.footerMenuClient.getFooterMenu()
       .then(res => {
         this.navigationMenuItems = res.data.attributes.MenuItems;
+        sessionStorage.setItem(footerMenuItemsStorageKey, JSON.stringify(this.navigationMenuItems));
       })
       .catch(err => console.error(err));
+  }
+
+  private getLegalMenuItems() {
+    const footerLegalMenuItemsStorageKey = "footerLegalMenuItems";
+    var storedMenuItems = sessionStorage.getItem(footerLegalMenuItemsStorageKey);
+    if (storedMenuItems) {
+      this.legalMenuItems = JSON.parse(storedMenuItems);
+      return;
+    }
     this.footerLegalMenuClient.getFooterLegalMenu()
       .then(res => {
         this.legalMenuItems = res.data.attributes.MenuItems;
+        sessionStorage.setItem(footerLegalMenuItemsStorageKey, JSON.stringify(this.legalMenuItems));
       })
-      .catch(err => console.error(err))  
+      .catch(err => console.error(err));
     }
+
   render() {
     return (
       <footer>
