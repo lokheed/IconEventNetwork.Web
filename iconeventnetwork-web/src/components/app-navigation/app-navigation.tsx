@@ -18,14 +18,26 @@ export class AppNavigation {
   @State() menuLinks: MenuLink[] = [{id: 1,__component: "menu.menu-link",DisplayName: "Who We Are",Link: "/",IsVisibleAnonymous: true,},{id: 6,__component: "menu.menu-link",DisplayName: "Event Planners",Link: "/event-planners","LinkType": "Normal",IsVisibleAnonymous: true},{id: 2,__component: "menu.menu-link",DisplayName: "About Us",Link: "/about-us",IsVisibleAnonymous: true,}];
 
   componentWillLoad() {
+    this.getMenuItems();
+  }
+
+  private getMenuItems() {
+    const mainMenuItemsStorageKey = "mainMenuItems";
+    var storedMenuItems = sessionStorage.getItem(mainMenuItemsStorageKey);
+    if (storedMenuItems) {
+      this.menuLinks = JSON.parse(storedMenuItems);
+      return;
+    }
+
     this.mainMenuClient.getMainMenu({
       populate: ["Navigation.Links"],
     })
       .then(res => {
         this.menuLinks = res.data.attributes.Navigation;
+        sessionStorage.setItem(mainMenuItemsStorageKey, JSON.stringify(this.menuLinks));
       })
       .catch(err => console.error(err));
-  }
+    }
 
   closeMenu() {
     var checkbox = document.getElementById('menu_checkbox_toggle') as HTMLInputElement | null;
