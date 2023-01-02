@@ -53,18 +53,22 @@ export class AppNavigation {
                 }              
                 break;
               case 'menu.sub-menu':
-                return (
-                  <li class='dropdown-container'>
-                    <a class={className} href={link}>{menuItem.DisplayName}</a>
-                    <ul class='dropdown'>
-                      {menuItem.Links.map((subMenuItem) => {
-                        return (
-                          <li><a href={subMenuItem.Link} onClick={() => this.closeMenu()}>{subMenuItem.DisplayName}</a></li>
-                        )
-                      })}
-                    </ul>
-                  </li>
-                )
+                if (menuItem.IsVisibleAnonymous || isAuthenticated) {
+                  return (
+                    <li class='dropdown-container'>
+                      <a class={className} href={link}>{menuItem.DisplayName}</a>
+                      <ul class='dropdown'>
+                        {menuItem.Links.map((subMenuItem) => {
+                          if (subMenuItem.IsVisibleAnonymous || isAuthenticated) {
+                            return (
+                              <li><a href={subMenuItem.Link} onClick={() => this.closeMenu()}>{subMenuItem.DisplayName}</a></li>
+                            )
+                          }
+                        })}
+                      </ul>
+                    </li>
+                  )
+                }
               }
             }
           )}
