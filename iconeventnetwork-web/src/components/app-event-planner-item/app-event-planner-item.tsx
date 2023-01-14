@@ -41,10 +41,11 @@ export class EventPlannerItem {
                 class={this.EventPlannerItemCSSClass}
             >
                 <div class='headshot'>
-                    <img
-                        src={this.planner.attributes.Headshot.data ? this.planner.attributes.Headshot.data.attributes.url : noPhotoDataUrl}
-                        alt={this.planner.attributes.Headshot.data ? this.planner.attributes.Headshot.data.attributes.alternativeText : 'No photo'}
-                        class='leadership-headshot'
+                    <app-responsive-image
+                        image={this.planner.attributes.Headshot}
+                        noImageDataUrl={noPhotoDataUrl}
+                        class="leadership-headshot"
+                        expectedWidth={500}
                     />
                 </div>
                 <div class='info'>

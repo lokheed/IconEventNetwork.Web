@@ -146,4 +146,26 @@ export interface ImageData{
 export interface ImageAttributes{
     alternativeText: string;
     url: string;
+    formats? : ImageFormatsInfo
+}
+
+export interface ImageFormatsInfo{
+    xlarge?: ImageFormatInfo;
+    large?: ImageFormatInfo;
+    medium?: ImageFormatInfo;
+    small?: ImageFormatInfo;
+    thumbnail?: ImageFormatInfo;
+    xsmall?: ImageFormatInfo;
+}
+
+export interface ImageFormatInfo{
+    ext: string;
+    hash: string;
+    height: number;
+    mime: string;
+    name: string;
+    path: string;
+    size: number;
+    url: string;
+    width: number;
 }

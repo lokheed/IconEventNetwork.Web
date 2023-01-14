@@ -21,6 +21,7 @@
 graph TD;
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
+  app-event-planner-item --> app-responsive-image
   app-root --> page-event-planners
   style page-event-planners fill:#f9f,stroke:#333,stroke-width:4px
 ```

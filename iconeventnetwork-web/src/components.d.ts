@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DataResponse, MenuLink } from "./services/clients/client-base";
+import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export namespace Components {
@@ -42,6 +42,24 @@ export namespace Components {
     interface AppLoginButton {
     }
     interface AppNavigation {
+    }
+    interface AppResponsiveImage {
+        /**
+          * The css class to pass down to the rendered image.
+         */
+        "class": string;
+        /**
+          * If specified, will get only the smallest image that satisfies this width.
+         */
+        "expectedWidth": number;
+        /**
+          * The ImageInfo for this responsive image.
+         */
+        "image": ImageInfo;
+        /**
+          * The url to use if the image does not exist.
+         */
+        "noImageDataUrl": string;
     }
     interface AppRoot {
     }
@@ -152,6 +170,12 @@ declare global {
     var HTMLAppNavigationElement: {
         prototype: HTMLAppNavigationElement;
         new (): HTMLAppNavigationElement;
+    };
+    interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
+    }
+    var HTMLAppResponsiveImageElement: {
+        prototype: HTMLAppResponsiveImageElement;
+        new (): HTMLAppResponsiveImageElement;
     };
     interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
     }
@@ -270,6 +294,7 @@ declare global {
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
         "app-navigation": HTMLAppNavigationElement;
+        "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
         "page-about-us": HTMLPageAboutUsElement;
@@ -326,6 +351,24 @@ declare namespace LocalJSX {
     interface AppLoginButton {
     }
     interface AppNavigation {
+    }
+    interface AppResponsiveImage {
+        /**
+          * The css class to pass down to the rendered image.
+         */
+        "class"?: string;
+        /**
+          * If specified, will get only the smallest image that satisfies this width.
+         */
+        "expectedWidth"?: number;
+        /**
+          * The ImageInfo for this responsive image.
+         */
+        "image": ImageInfo;
+        /**
+          * The url to use if the image does not exist.
+         */
+        "noImageDataUrl"?: string;
     }
     interface AppRoot {
     }
@@ -388,6 +431,7 @@ declare namespace LocalJSX {
         "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
         "app-navigation": AppNavigation;
+        "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
         "page-about-us": PageAboutUs;
@@ -420,6 +464,7 @@ declare module "@stencil/core" {
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
+            "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;

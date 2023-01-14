@@ -76,6 +76,27 @@
       "attributes": []
     },
     {
+      "name": "app-responsive-image",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "class",
+          "description": "The css class to pass down to the rendered image."
+        },
+        {
+          "name": "expected-width",
+          "description": "If specified, will get only the smallest image that satisfies this width."
+        },
+        {
+          "name": "no-image-data-url",
+          "description": "The url to use if the image does not exist."
+        }
+      ]
+    },
+    {
       "name": "app-root",
       "description": {
         "kind": "markdown",

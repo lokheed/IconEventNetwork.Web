@@ -53,6 +53,7 @@ graph TD;
   app-header --> app-login-button
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
+  app-event-planner-item --> app-responsive-image
   page-about-us --> app-leadership-team-item
   page-about-us --> app-testimonial-carousel
   app-footer --> app-footer-navigation
