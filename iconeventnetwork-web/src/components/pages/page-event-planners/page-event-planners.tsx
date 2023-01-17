@@ -51,7 +51,7 @@ export class PageEventPlanners {
       fields: ['CompanyName', 'FirstName', 'LastName', 'Bio'],
       populate: {
         Headshot: {
-          fields: ['alternativeText', 'url'],
+          fields: ['alternativeText', 'url', 'Formats'],
         },
       },
       sort: ['LastName', 'FirstName', 'CompanyName'],
