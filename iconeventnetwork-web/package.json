@@ -1,7 +1,7 @@
 {
   "name": "iconeventnetwork-web",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Stencil App Starter",
   "scripts": {
     "build": "stencil build",
@@ -11,11 +11,12 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
-    "@stencil/core": "2.19.3",
-    "@stencil/sass": "^2.0.0",
+    "@stencil/core": "2.22.1",
+    "@stencil/sass": "^2.0.3",
     "@types/jest": "^27.0.3",
+    "@types/node": "^18.11.18",
     "@types/qs": "^6.9.7",
-    "jest": "^27.4.5",
+    "jest": "^27.5.1",
     "jest-cli": "^27.4.5",
     "puppeteer": "^16.1.1",
     "qs": "^6.11.0",
