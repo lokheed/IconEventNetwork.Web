@@ -2,6 +2,7 @@ class UrlService{
     private readonly apiBaseUrl: string;
     private readonly cognitoBaseUrl: string;
     private readonly cognitoClientId: string;
+    private readonly environmentName: string;
 
     constructor() {
         if (window.location.hostname.toLowerCase() === 'localhost')
@@ -9,6 +10,7 @@ class UrlService{
             this.apiBaseUrl = 'http://localhost:1337';
             this.cognitoBaseUrl = 'http://deviconeventnetwork.auth.us-east-1.amazoncognito.com/';
             this.cognitoClientId = '794a2cmjve48m7gq4solf4k1v';
+            this.environmentName = 'DEV';
             return;
         }
 
@@ -17,6 +19,7 @@ class UrlService{
             this.apiBaseUrl = 'https://qaapi.theiconnetwork.com';
             this.cognitoBaseUrl = 'https://qaiconeventnetwork.auth.us-east-1.amazoncognito.com/';
             this.cognitoClientId = '1k9u2t8al652k79283a6hsqj3';
+            this.environmentName = 'QA';
             return;
         } 
 
@@ -25,12 +28,14 @@ class UrlService{
             this.apiBaseUrl = 'https://stgapi.theiconnetwork.com';
             this.cognitoBaseUrl = 'https://stgiconeventnetwork.auth.us-east-1.amazoncognito.com/';
             this.cognitoClientId = '1i6chmckpi833hea22en6r82s2';
+            this.environmentName = 'STG';
             return;
         }
         
         this.apiBaseUrl = 'https://api.theiconnetwork.com';
         this.cognitoBaseUrl = 'https://iconeventnetwork.auth.us-east-1.amazoncognito.com';
         this.cognitoClientId = '6gs898o3k11pu8q57da2p4lkcs';
+        this.environmentName = 'PROD';
     }
 
     /** Gets the strapi URL to use depending on the environment. */
@@ -41,6 +46,9 @@ class UrlService{
 
     /** Gets the cognito client ID to use depending on the environment. */
     public get CognitoClientId() { return this.cognitoClientId };
+
+    /** Gets the cognito client ID to use depending on the environment. */
+    public get EnvironmentName() { return this.environmentName };
 }
 
 export const urlService = new UrlService();

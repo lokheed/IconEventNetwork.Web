@@ -49,6 +49,7 @@ graph TD;
   app-root --> page-demo
   app-root --> page-not-found
   app-root --> app-footer
+  app-header --> app-environment-nag
   app-header --> app-navigation
   app-header --> app-login-button
   page-event-planners --> app-event-planner-bio-item
