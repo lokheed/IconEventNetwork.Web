@@ -9,6 +9,8 @@ import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-bas
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export namespace Components {
+    interface AppEnvironmentNag {
+    }
     interface AppEventPlannerBioItem {
         /**
           * The details about the planner
@@ -123,6 +125,12 @@ export interface AppEventPlannerItemCustomEvent<T> extends CustomEvent<T> {
     target: HTMLAppEventPlannerItemElement;
 }
 declare global {
+    interface HTMLAppEnvironmentNagElement extends Components.AppEnvironmentNag, HTMLStencilElement {
+    }
+    var HTMLAppEnvironmentNagElement: {
+        prototype: HTMLAppEnvironmentNagElement;
+        new (): HTMLAppEnvironmentNagElement;
+    };
     interface HTMLAppEventPlannerBioItemElement extends Components.AppEventPlannerBioItem, HTMLStencilElement {
     }
     var HTMLAppEventPlannerBioItemElement: {
@@ -286,6 +294,7 @@ declare global {
         new (): HTMLPageTermsOfServiceElement;
     };
     interface HTMLElementTagNameMap {
+        "app-environment-nag": HTMLAppEnvironmentNagElement;
         "app-event-planner-bio-item": HTMLAppEventPlannerBioItemElement;
         "app-event-planner-item": HTMLAppEventPlannerItemElement;
         "app-footer": HTMLAppFooterElement;
@@ -316,6 +325,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppEnvironmentNag {
+    }
     interface AppEventPlannerBioItem {
         "onEventPlannerItemSelected"?: (event: AppEventPlannerBioItemCustomEvent<number>) => void;
         /**
@@ -423,6 +434,7 @@ declare namespace LocalJSX {
     interface PageTermsOfService {
     }
     interface IntrinsicElements {
+        "app-environment-nag": AppEnvironmentNag;
         "app-event-planner-bio-item": AppEventPlannerBioItem;
         "app-event-planner-item": AppEventPlannerItem;
         "app-footer": AppFooter;
@@ -456,6 +468,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-environment-nag": LocalJSX.AppEnvironmentNag & JSXBase.HTMLAttributes<HTMLAppEnvironmentNagElement>;
             "app-event-planner-bio-item": LocalJSX.AppEventPlannerBioItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerBioItemElement>;
             "app-event-planner-item": LocalJSX.AppEventPlannerItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerItemElement>;
             "app-footer": LocalJSX.AppFooter & JSXBase.HTMLAttributes<HTMLAppFooterElement>;
