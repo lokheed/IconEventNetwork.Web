@@ -5,22 +5,22 @@ class LocalStorageKeyService{
     constructor() {
         if (window.location.hostname.toLowerCase() === 'localhost')
         {
-            this.jwt = 'DEV_jwt';
-            this.username = 'DEV_username';
+            this.jwt = 'dev-jwt';
+            this.username = 'dev-username';
             return;
         }
 
         if (window.location.hostname.toLowerCase().startsWith('qa'))
         {
-            this.jwt = 'QA_jwt';
-            this.username = 'QA_username';
+            this.jwt = 'qa-jwt';
+            this.username = 'qa-username';
             return;
         } 
 
         if (window.location.hostname.toLowerCase().startsWith('stg'))
         {
-            this.jwt = 'STG_jwt';
-            this.username = 'STG_username';
+            this.jwt = 'stg-jwt';
+            this.username = 'stg-username';
             return;
         }
         
