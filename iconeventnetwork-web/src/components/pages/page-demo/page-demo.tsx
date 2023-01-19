@@ -1,5 +1,6 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { urlService } from '../../../services/url-service';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 @Component({
   tag: 'page-demo',
   styleUrl: 'page-demo.scss',
@@ -56,7 +57,7 @@ export class PageDemo {
   }
 
   componentWillRender() {
-    var isAuthenticated = !!localStorage.getItem('jwt');       
+    var isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);       
     if (!isAuthenticated) {
       window.location.replace('/');
     }
@@ -135,7 +136,7 @@ export class PageDemo {
     return {  
       method: 'GET',
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+        'Authorization': 'Bearer ' + localStorage.getItem(localStorageKeyService.Jwt)
       }
     }
   }
