@@ -1,5 +1,6 @@
 import { Component, Host, h } from '@stencil/core';
 import { urlService } from '../../../services/url-service';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 
 @Component({
   tag: 'page-login',
@@ -8,7 +9,7 @@ import { urlService } from '../../../services/url-service';
 })
 export class PageLogin {;
   componentDidLoad() {
-    window.location.replace(!!localStorage.getItem('jwt') ? '/' : urlService.ApiBaseUrl + '/api/connect/cognito');
+    window.location.replace(!!localStorage.getItem(localStorageKeyService.Jwt) ? '/' : urlService.ApiBaseUrl + '/api/connect/cognito');
   }
 
   render() {  

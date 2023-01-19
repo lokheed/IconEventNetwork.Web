@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { MenuLink } from '../../services/clients/client-base';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
   tag: 'app-footer-navigation',
@@ -18,7 +19,7 @@ export class AppFooterNavigation {
     } else if (headerItem && headerItem.LinkType === 'HeadingNoLink') {
       header = <h2>{headerItem.DisplayName}</h2>
     }
-    const isAuthenticated = !!localStorage.getItem('jwt');
+    const isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
     var menuItems;
     if (isAuthenticated) {
       menuItems = this.menuItems.filter(m => m.LinkType === 'Normal' && m.Link != '/login');

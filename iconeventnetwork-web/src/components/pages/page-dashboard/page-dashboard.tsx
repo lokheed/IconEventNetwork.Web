@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 
 @Component({
   tag: 'page-dashboard',
@@ -7,7 +8,7 @@ import { Component, h } from '@stencil/core';
 })
 export class PageDashboard {
   componentWillRender() {
-    var isAuthenticated = !!localStorage.getItem('jwt');
+    var isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
     if (!isAuthenticated) {
       window.location.replace('/');
     }

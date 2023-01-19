@@ -1,6 +1,7 @@
 import { Component, State, h } from '@stencil/core';
 import { MenuLink } from '../../services/clients/client-base';
 import { MainMenuClient } from '../../services/clients/main-menu-client';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
   tag: 'app-navigation',
@@ -45,7 +46,7 @@ export class AppNavigation {
   }
 
   render() {
-    var isAuthenticated = !!localStorage.getItem('jwt');
+    var isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
     return (
       <div>
         <label htmlFor='menu_checkbox_toggle' class="hamburger">&#9776;</label>

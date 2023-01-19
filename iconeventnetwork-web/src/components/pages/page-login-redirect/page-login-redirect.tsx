@@ -1,5 +1,6 @@
 import { Component, Host, State, h } from '@stencil/core';
 import { urlService } from '../../../services/url-service';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 
 @Component({
   tag: 'page-login-redirect',
@@ -23,8 +24,8 @@ export class PageLoginRedirect {
       .then(res => {
         // Successfully logged with Strapi
         // Now saving the jwt to use it for future authenticated requests to Strapi
-        localStorage.setItem('jwt', res.jwt);
-        localStorage.setItem('username', res.user.username);
+        localStorage.setItem(localStorageKeyService.Jwt, res.jwt);
+        localStorage.setItem(localStorageKeyService.Username, res.user.username);
         this.currentText = 'You have been successfully logged in. You will be redirected shortly...';
         window.location.replace('/')
       })

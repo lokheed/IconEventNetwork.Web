@@ -1,4 +1,6 @@
 import { Component, h } from '@stencil/core';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
+
 @Component({
   tag: 'app-login-button',
   styleUrl: 'app-login-button.scss',
@@ -7,7 +9,7 @@ import { Component, h } from '@stencil/core';
 
 export class AppLoginButton { 
   render() {   
-    var isAuthenticated = !!localStorage.getItem('jwt');    
+    var isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);    
     if (isAuthenticated) {
       return (
         <div class='login-button'>
