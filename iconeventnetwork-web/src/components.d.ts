@@ -113,6 +113,16 @@ export namespace Components {
     }
     interface PagePrivacyPolicy {
     }
+    interface PageProfileCompany {
+        "companyId": number;
+    }
+    interface PageProfilePerson {
+    }
+    interface PageProfilePersonAtCompanies {
+    }
+    interface PageProfilePersonAtCompany {
+        "personAtCompanyId": number;
+    }
     interface PageTermsOfService {
     }
 }
@@ -287,6 +297,30 @@ declare global {
         prototype: HTMLPagePrivacyPolicyElement;
         new (): HTMLPagePrivacyPolicyElement;
     };
+    interface HTMLPageProfileCompanyElement extends Components.PageProfileCompany, HTMLStencilElement {
+    }
+    var HTMLPageProfileCompanyElement: {
+        prototype: HTMLPageProfileCompanyElement;
+        new (): HTMLPageProfileCompanyElement;
+    };
+    interface HTMLPageProfilePersonElement extends Components.PageProfilePerson, HTMLStencilElement {
+    }
+    var HTMLPageProfilePersonElement: {
+        prototype: HTMLPageProfilePersonElement;
+        new (): HTMLPageProfilePersonElement;
+    };
+    interface HTMLPageProfilePersonAtCompaniesElement extends Components.PageProfilePersonAtCompanies, HTMLStencilElement {
+    }
+    var HTMLPageProfilePersonAtCompaniesElement: {
+        prototype: HTMLPageProfilePersonAtCompaniesElement;
+        new (): HTMLPageProfilePersonAtCompaniesElement;
+    };
+    interface HTMLPageProfilePersonAtCompanyElement extends Components.PageProfilePersonAtCompany, HTMLStencilElement {
+    }
+    var HTMLPageProfilePersonAtCompanyElement: {
+        prototype: HTMLPageProfilePersonAtCompanyElement;
+        new (): HTMLPageProfilePersonAtCompanyElement;
+    };
     interface HTMLPageTermsOfServiceElement extends Components.PageTermsOfService, HTMLStencilElement {
     }
     var HTMLPageTermsOfServiceElement: {
@@ -321,6 +355,10 @@ declare global {
         "page-logout": HTMLPageLogoutElement;
         "page-not-found": HTMLPageNotFoundElement;
         "page-privacy-policy": HTMLPagePrivacyPolicyElement;
+        "page-profile-company": HTMLPageProfileCompanyElement;
+        "page-profile-person": HTMLPageProfilePersonElement;
+        "page-profile-person-at-companies": HTMLPageProfilePersonAtCompaniesElement;
+        "page-profile-person-at-company": HTMLPageProfilePersonAtCompanyElement;
         "page-terms-of-service": HTMLPageTermsOfServiceElement;
     }
 }
@@ -431,6 +469,16 @@ declare namespace LocalJSX {
     }
     interface PagePrivacyPolicy {
     }
+    interface PageProfileCompany {
+        "companyId"?: number;
+    }
+    interface PageProfilePerson {
+    }
+    interface PageProfilePersonAtCompanies {
+    }
+    interface PageProfilePersonAtCompany {
+        "personAtCompanyId"?: number;
+    }
     interface PageTermsOfService {
     }
     interface IntrinsicElements {
@@ -461,6 +509,10 @@ declare namespace LocalJSX {
         "page-logout": PageLogout;
         "page-not-found": PageNotFound;
         "page-privacy-policy": PagePrivacyPolicy;
+        "page-profile-company": PageProfileCompany;
+        "page-profile-person": PageProfilePerson;
+        "page-profile-person-at-companies": PageProfilePersonAtCompanies;
+        "page-profile-person-at-company": PageProfilePersonAtCompany;
         "page-terms-of-service": PageTermsOfService;
     }
 }
@@ -495,6 +547,10 @@ declare module "@stencil/core" {
             "page-logout": LocalJSX.PageLogout & JSXBase.HTMLAttributes<HTMLPageLogoutElement>;
             "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
             "page-privacy-policy": LocalJSX.PagePrivacyPolicy & JSXBase.HTMLAttributes<HTMLPagePrivacyPolicyElement>;
+            "page-profile-company": LocalJSX.PageProfileCompany & JSXBase.HTMLAttributes<HTMLPageProfileCompanyElement>;
+            "page-profile-person": LocalJSX.PageProfilePerson & JSXBase.HTMLAttributes<HTMLPageProfilePersonElement>;
+            "page-profile-person-at-companies": LocalJSX.PageProfilePersonAtCompanies & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompaniesElement>;
+            "page-profile-person-at-company": LocalJSX.PageProfilePersonAtCompany & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompanyElement>;
             "page-terms-of-service": LocalJSX.PageTermsOfService & JSXBase.HTMLAttributes<HTMLPageTermsOfServiceElement>;
         }
     }
