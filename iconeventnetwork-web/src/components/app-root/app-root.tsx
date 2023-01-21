@@ -67,9 +67,21 @@ export class AppRoot {
             <Route path="/logout">
               <page-logout />
             </Route>
+            <Route path="/profile-person">
+              <page-profile-person />
+            </Route>
+            <Route path="/profile-pacs">
+              <page-profile-person-at-companies />
+            </Route>            
+            <Route path="/profile-pac">
+              <page-profile-person-at-company/>
+            </Route>            
+            <Route path="/profile-company">
+              <page-profile-company />
+            </Route>            
             <Route path="/demo">
               <page-demo />
-            </Route>
+            </Route>            
             <Route path={NotFound}>
               <page-not-found />
             </Route>

@@ -241,6 +241,48 @@
       "attributes": []
     },
     {
+      "name": "page-profile-company",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "company-id",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "page-profile-person",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-profile-person-at-companies",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-profile-person-at-company",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "person-at-company-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "page-terms-of-service",
       "description": {
         "kind": "markdown",
