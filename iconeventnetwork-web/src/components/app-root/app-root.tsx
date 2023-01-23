@@ -1,5 +1,6 @@
 import { Component, Host, State, h } from '@stencil/core';
 import { createRouter, Route, NotFound } from 'stencil-router-v2';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 const Router = createRouter();
 
@@ -10,6 +11,7 @@ const Router = createRouter();
 })
 export class AppRoot {
   @State() navigationBackgroundClass: string = 'white';
+  @State() isAuthenticated: boolean = false;
 
   componentWillRender() {
     switch (window.location.pathname) {
@@ -18,6 +20,7 @@ export class AppRoot {
         break;
       default: this.navigationBackgroundClass = 'white';
     }
+    this.isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
   }
   render() {
     return (
@@ -25,27 +28,6 @@ export class AppRoot {
         <app-header backgroundClass={this.navigationBackgroundClass}></app-header>
         <div class='main-content'>
           <Router.Switch>
-            <Route path="/">
-              <page-home />
-            </Route>
-            <Route path="/event-planners">
-              <page-event-planners />
-            </Route>
-            <Route path="/about-us">
-              <page-about-us />
-            </Route>
-            <Route path="/dashboard">
-              <page-dashboard />
-            </Route>
-            <Route path="/directory">
-              <page-directory />
-            </Route>
-            <Route path="/destinations">
-              <page-destinations />
-            </Route>
-            <Route path="/join">
-              <page-join />
-            </Route>
             <Route path="/page-login-redirect">
               <page-login-redirect />
             </Route>
@@ -66,22 +48,100 @@ export class AppRoot {
             </Route>
             <Route path="/logout">
               <page-logout />
+            </Route>            
+            <Route path="/prelaunch">
+              <page-prelaunch />
             </Route>
-            <Route path="/profile-person">
-              <page-profile-person />
-            </Route>
-            <Route path="/profile-pacs">
-              <page-profile-person-at-companies />
-            </Route>            
-            <Route path="/profile-pac">
-              <page-profile-person-at-company/>
-            </Route>            
-            <Route path="/profile-company">
-              <page-profile-company />
-            </Route>            
-            <Route path="/demo">
-              <page-demo />
-            </Route>            
+
+            {this.isAuthenticated && (
+              <Route path="/">
+                <page-home />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/" to="/prelaunch" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/event-planners">
+                <page-event-planners />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/event-planners" to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/about-us">
+                <page-about-us />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/about-us" to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/dashboard">
+                <page-dashboard />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/dashboard" to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/directory">
+                <page-directory />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/directory" to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/destinations">
+                <page-destinations />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/destinations " to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/join">
+                <page-join />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/join " to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/profile-person">
+                <page-profile-person />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/logout " to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/profile-pacs">
+                <page-profile-person-at-companies />
+              </Route>  
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/profile-pacs " to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/profile-pac">
+                <page-profile-person-at-company/>
+              </Route>  
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/profile-pac " to="/error" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/profile-company">
+                <page-profile-company />
+              </Route>
+            )}
+            {!this.isAuthenticated && (
+              <Route path="/profile-company " to="/error" />
+            )}                    
+
             <Route path={NotFound}>
               <page-not-found />
             </Route>

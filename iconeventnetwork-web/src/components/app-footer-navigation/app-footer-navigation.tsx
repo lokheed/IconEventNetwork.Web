@@ -14,9 +14,9 @@ export class AppFooterNavigation {
   render() {
     var header = <h2></h2>;
     var headerItem = this.menuItems.find(m => m.LinkType === 'HeadingLink' || m.LinkType === 'HeadingNoLink'); 
-    if (headerItem && headerItem.LinkType === 'HeadingLink') {
+    if (headerItem && headerItem.LinkType === 'HeadingLink' && headerItem.IsVisibleAnonymous) {
       header = <h2><a href={headerItem.Link}>{headerItem.DisplayName}</a></h2>
-    } else if (headerItem && headerItem.LinkType === 'HeadingNoLink') {
+    } else if (headerItem && headerItem.LinkType === 'HeadingNoLink' && headerItem.IsVisibleAnonymous) {
       header = <h2>{headerItem.DisplayName}</h2>
     }
     const isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
