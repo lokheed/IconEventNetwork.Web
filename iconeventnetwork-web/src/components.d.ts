@@ -75,24 +75,6 @@ export namespace Components {
     }
     interface PageDashboard {
     }
-    interface PageDemo {
-        "companyAddressTypeOptions": HTMLElement;
-        "companyEmailAddressTypeOptions": HTMLElement;
-        "companyPhoneNumberTypeOptions": HTMLElement;
-        "companySocialMediaTypeOptions": HTMLElement;
-        "countryOptions": HTMLElement;
-        "personAddressTypeOptions": HTMLElement;
-        "personCompanyAddressTypeOptions": HTMLElement;
-        "personCompanyEmailAddressTypeOptions": HTMLElement;
-        "personCompanyPhoneNumberTypeOptions": HTMLElement;
-        "personCompanySocialMediaTypeOptions": HTMLElement;
-        "personEmailAddressTypeOptions": HTMLElement;
-        "personPhoneNumberTypeOptions": HTMLElement;
-        "personSocialMediaTypeOptions": HTMLElement;
-        "prefixesOptions": HTMLElement;
-        "pronounOptions": HTMLElement;
-        "suffixesOptions": HTMLElement;
-    }
     interface PageDestinations {
     }
     interface PageDirectory {
@@ -110,6 +92,8 @@ export namespace Components {
     interface PageLogout {
     }
     interface PageNotFound {
+    }
+    interface PagePrelaunch {
     }
     interface PagePrivacyPolicy {
     }
@@ -231,12 +215,6 @@ declare global {
         prototype: HTMLPageDashboardElement;
         new (): HTMLPageDashboardElement;
     };
-    interface HTMLPageDemoElement extends Components.PageDemo, HTMLStencilElement {
-    }
-    var HTMLPageDemoElement: {
-        prototype: HTMLPageDemoElement;
-        new (): HTMLPageDemoElement;
-    };
     interface HTMLPageDestinationsElement extends Components.PageDestinations, HTMLStencilElement {
     }
     var HTMLPageDestinationsElement: {
@@ -291,6 +269,12 @@ declare global {
         prototype: HTMLPageNotFoundElement;
         new (): HTMLPageNotFoundElement;
     };
+    interface HTMLPagePrelaunchElement extends Components.PagePrelaunch, HTMLStencilElement {
+    }
+    var HTMLPagePrelaunchElement: {
+        prototype: HTMLPagePrelaunchElement;
+        new (): HTMLPagePrelaunchElement;
+    };
     interface HTMLPagePrivacyPolicyElement extends Components.PagePrivacyPolicy, HTMLStencilElement {
     }
     var HTMLPagePrivacyPolicyElement: {
@@ -344,7 +328,6 @@ declare global {
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
         "page-cookie-policy": HTMLPageCookiePolicyElement;
         "page-dashboard": HTMLPageDashboardElement;
-        "page-demo": HTMLPageDemoElement;
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
         "page-event-planners": HTMLPageEventPlannersElement;
@@ -354,6 +337,7 @@ declare global {
         "page-login-redirect": HTMLPageLoginRedirectElement;
         "page-logout": HTMLPageLogoutElement;
         "page-not-found": HTMLPageNotFoundElement;
+        "page-prelaunch": HTMLPagePrelaunchElement;
         "page-privacy-policy": HTMLPagePrivacyPolicyElement;
         "page-profile-company": HTMLPageProfileCompanyElement;
         "page-profile-person": HTMLPageProfilePersonElement;
@@ -431,24 +415,6 @@ declare namespace LocalJSX {
     }
     interface PageDashboard {
     }
-    interface PageDemo {
-        "companyAddressTypeOptions"?: HTMLElement;
-        "companyEmailAddressTypeOptions"?: HTMLElement;
-        "companyPhoneNumberTypeOptions"?: HTMLElement;
-        "companySocialMediaTypeOptions"?: HTMLElement;
-        "countryOptions"?: HTMLElement;
-        "personAddressTypeOptions"?: HTMLElement;
-        "personCompanyAddressTypeOptions"?: HTMLElement;
-        "personCompanyEmailAddressTypeOptions"?: HTMLElement;
-        "personCompanyPhoneNumberTypeOptions"?: HTMLElement;
-        "personCompanySocialMediaTypeOptions"?: HTMLElement;
-        "personEmailAddressTypeOptions"?: HTMLElement;
-        "personPhoneNumberTypeOptions"?: HTMLElement;
-        "personSocialMediaTypeOptions"?: HTMLElement;
-        "prefixesOptions"?: HTMLElement;
-        "pronounOptions"?: HTMLElement;
-        "suffixesOptions"?: HTMLElement;
-    }
     interface PageDestinations {
     }
     interface PageDirectory {
@@ -466,6 +432,8 @@ declare namespace LocalJSX {
     interface PageLogout {
     }
     interface PageNotFound {
+    }
+    interface PagePrelaunch {
     }
     interface PagePrivacyPolicy {
     }
@@ -498,7 +466,6 @@ declare namespace LocalJSX {
         "page-code-of-conduct": PageCodeOfConduct;
         "page-cookie-policy": PageCookiePolicy;
         "page-dashboard": PageDashboard;
-        "page-demo": PageDemo;
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
         "page-event-planners": PageEventPlanners;
@@ -508,6 +475,7 @@ declare namespace LocalJSX {
         "page-login-redirect": PageLoginRedirect;
         "page-logout": PageLogout;
         "page-not-found": PageNotFound;
+        "page-prelaunch": PagePrelaunch;
         "page-privacy-policy": PagePrivacyPolicy;
         "page-profile-company": PageProfileCompany;
         "page-profile-person": PageProfilePerson;
@@ -536,7 +504,6 @@ declare module "@stencil/core" {
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
             "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
-            "page-demo": LocalJSX.PageDemo & JSXBase.HTMLAttributes<HTMLPageDemoElement>;
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
             "page-event-planners": LocalJSX.PageEventPlanners & JSXBase.HTMLAttributes<HTMLPageEventPlannersElement>;
@@ -546,6 +513,7 @@ declare module "@stencil/core" {
             "page-login-redirect": LocalJSX.PageLoginRedirect & JSXBase.HTMLAttributes<HTMLPageLoginRedirectElement>;
             "page-logout": LocalJSX.PageLogout & JSXBase.HTMLAttributes<HTMLPageLogoutElement>;
             "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
+            "page-prelaunch": LocalJSX.PagePrelaunch & JSXBase.HTMLAttributes<HTMLPagePrelaunchElement>;
             "page-privacy-policy": LocalJSX.PagePrivacyPolicy & JSXBase.HTMLAttributes<HTMLPagePrivacyPolicyElement>;
             "page-profile-company": LocalJSX.PageProfileCompany & JSXBase.HTMLAttributes<HTMLPageProfileCompanyElement>;
             "page-profile-person": LocalJSX.PageProfilePerson & JSXBase.HTMLAttributes<HTMLPageProfilePersonElement>;

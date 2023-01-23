@@ -153,14 +153,6 @@
       "attributes": []
     },
     {
-      "name": "page-demo",
-      "description": {
-        "kind": "markdown",
-        "value": ""
-      },
-      "attributes": []
-    },
-    {
       "name": "page-destinations",
       "description": {
         "kind": "markdown",
@@ -226,6 +218,14 @@
     },
     {
       "name": "page-not-found",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "page-prelaunch",
       "description": {
         "kind": "markdown",
         "value": ""
