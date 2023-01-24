@@ -1,0 +1,35 @@
+ div.logo-header {
+    display: flex;
+    justify-content: center;
+}
+
+div.logo-header img.icon {
+    height: 100px;
+    margin-top: 50px;
+}
+
+div.logo-header img.logo {
+    height: 200px;
+}
+
+@media (max-width: 768px) {
+    div.logo-header img.icon {
+        height: 50px;
+        margin-top: 25px;
+    }
+    
+    div.logo-header img.logo {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    div.logo-header img.icon {
+        height: 25px;
+        margin-top: 12px;
+    }
+    
+    div.logo-header img.logo {
+        height: 50px;
+    }
+}

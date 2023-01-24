@@ -14,7 +14,7 @@ export class AppLoginButton {
       return (
         <div class='login-button'>
           <a href='/logout'>
-            Log Out
+            Log&nbsp;Out
           </a> 
         </div>
       );  
@@ -22,7 +22,7 @@ export class AppLoginButton {
       return (
         <div class='login-button'>
           <a href='/login'>
-            Log In
+            Log&nbsp;In
           </a>
         </div>
       );  

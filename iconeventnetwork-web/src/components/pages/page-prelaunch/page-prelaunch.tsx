@@ -10,7 +10,10 @@ export class PagePrelaunch{
         return (
             <Host>
                 <div class='accent-block'>
-                    <h2>The Icon Network</h2>
+                    <div class='logo-header'>
+                        <img src='/assets/icon/icon.png' class='icon' />
+                        <img src='/assets/icon/TIN-Logo-Horizontal-BLK.png' class='logo' />
+                    </div>
                     <hr class='purple'/>
                     <p>
                         The Icon Network is the first invitation-only consortia created for the global luxury 
