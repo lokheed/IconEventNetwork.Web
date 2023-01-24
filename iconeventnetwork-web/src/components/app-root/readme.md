@@ -16,6 +16,8 @@
 - [page-privacy-policy](../pages/page-privacy-policy)
 - [page-cookie-policy](../pages/page-cookie-policy)
 - [page-login](../pages/page-login)
+- [page-logout](../pages/page-logout)
+- [page-prelaunch](../pages/page-prelaunch)
 - [page-home](../pages/page-home)
 - [page-event-planners](../pages/page-event-planners)
 - [page-about-us](../pages/page-about-us)
@@ -23,7 +25,6 @@
 - [page-directory](../pages/page-directory)
 - [page-destinations](../pages/page-destinations)
 - [page-join](../pages/page-join)
-- [page-logout](../pages/page-logout)
 - [page-profile-person](../pages/page-profile-person)
 - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
 - [page-profile-person-at-company](../pages/page-profile-person-at-company)
@@ -41,6 +42,8 @@ graph TD;
   app-root --> page-privacy-policy
   app-root --> page-cookie-policy
   app-root --> page-login
+  app-root --> page-logout
+  app-root --> page-prelaunch
   app-root --> page-home
   app-root --> page-event-planners
   app-root --> page-about-us
@@ -48,7 +51,6 @@ graph TD;
   app-root --> page-directory
   app-root --> page-destinations
   app-root --> page-join
-  app-root --> page-logout
   app-root --> page-profile-person
   app-root --> page-profile-person-at-companies
   app-root --> page-profile-person-at-company
