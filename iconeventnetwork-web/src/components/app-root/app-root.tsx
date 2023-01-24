@@ -15,11 +15,11 @@ export class AppRoot {
 
   componentWillRender() {
     switch (window.location.pathname) {
-      case '/':
+      case '/home':
         this.navigationBackgroundClass = 'brown';
         break;
       default: this.navigationBackgroundClass = 'white';
-    }
+    }    
     this.isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
   }
   render() {
@@ -54,12 +54,18 @@ export class AppRoot {
             </Route>
 
             {this.isAuthenticated && (
-              <Route path="/">
+              <Route path="/" to="/home" />
+              )}
+            {!this.isAuthenticated && (
+              <Route path="/" to="/prelaunch" />
+            )}
+            {this.isAuthenticated && (
+              <Route path="/home">
                 <page-home />
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/" to="/prelaunch" />
+              <Route path="/home" to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/event-planners">
@@ -67,7 +73,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/event-planners" to="/error" />
+              <Route path="/event-planners" to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/about-us">
@@ -75,7 +81,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/about-us" to="/error" />
+              <Route path="/about-us" to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/dashboard">
@@ -83,7 +89,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/dashboard" to="/error" />
+              <Route path="/dashboard" to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/directory">
@@ -91,7 +97,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/directory" to="/error" />
+              <Route path="/directory" to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/destinations">
@@ -99,7 +105,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/destinations " to="/error" />
+              <Route path="/destinations " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/join">
@@ -107,7 +113,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/join " to="/error" />
+              <Route path="/join " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/profile-person">
@@ -115,7 +121,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/logout " to="/error" />
+              <Route path="/logout " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/profile-pacs">
@@ -123,7 +129,7 @@ export class AppRoot {
               </Route>  
             )}
             {!this.isAuthenticated && (
-              <Route path="/profile-pacs " to="/error" />
+              <Route path="/profile-pacs " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/profile-pac">
@@ -131,7 +137,7 @@ export class AppRoot {
               </Route>  
             )}
             {!this.isAuthenticated && (
-              <Route path="/profile-pac " to="/error" />
+              <Route path="/profile-pac " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
               <Route path="/profile-company">
@@ -139,7 +145,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/profile-company " to="/error" />
+              <Route path="/profile-company " to="/prelaunch" />
             )}                    
 
             <Route path={NotFound}>

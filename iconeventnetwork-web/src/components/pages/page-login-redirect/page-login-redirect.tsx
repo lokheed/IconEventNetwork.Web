@@ -27,7 +27,7 @@ export class PageLoginRedirect {
         localStorage.setItem(localStorageKeyService.Jwt, res.jwt);
         localStorage.setItem(localStorageKeyService.Username, res.user.username);
         this.currentText = 'You have been successfully logged in. You will be redirected shortly...';
-        window.location.replace('/')
+        window.location.replace('/home')
       })
       .catch(err => {
         console.error(err);
