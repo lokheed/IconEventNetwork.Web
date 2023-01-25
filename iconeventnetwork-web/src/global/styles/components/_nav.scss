@@ -21,6 +21,7 @@ nav {
 	z-index: 100;
 	background-color: var(--color-white);
 	color: var(--color-black);
+	border-bottom: 2px solid var(--color-light-gray);
 	.logo {
 		background-repeat: no-repeat;
 		background-size: contain;
