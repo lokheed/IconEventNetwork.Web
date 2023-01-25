@@ -24,16 +24,20 @@ export class PageProfilePerson {
                             </div>                            
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions centered'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can"></i>
-                                    </div>
                                     <div class='value'>
                                         <div class='profile-image'>
                                             RM
                                         </div>
                                     </div>
+                                    <div class='actions centered'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                        </div>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                        </div>                                       
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class='profile-item'>
@@ -42,11 +46,16 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can disabled"></i>
-                                    </div>
                                     <div class='value'>
                                         Ron Miles <span class='pronouns'>(he/him/his)</span>
+                                    </div>
+                                    <div class='actions'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link'>Edit</span>
+                                        </div>
+                                        <div class='action disabled'>
+                                            <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                        </div>                                      
                                     </div>
                                 </div>
                             </div>
@@ -57,11 +66,16 @@ export class PageProfilePerson {
                             </div>                            
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen disabled"></i> <i class="fa-solid fa-trash-can disabled"></i>
-                                    </div>
                                     <div class='value'>
                                         rmiles
+                                    </div>
+                                    <div class='actions'>
+                                        <div class='action disabled'>
+                                            <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link'>Edit</span>
+                                        </div>
+                                        <div class='action disabled'>
+                                            <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                        </div>                                      
                                     </div>
                                 </div>
                             </div>
@@ -72,9 +86,6 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can disabled"></i>
-                                    </div>
                                     <div class='value'>
                                         <div class='label'>
                                             Personal
@@ -83,14 +94,22 @@ export class PageProfilePerson {
                                             rmiles@theiconnetwork.com
                                         </div>
                                     </div>
+                                    <div class='actions'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                        </div>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                        </div>                                       
+                                    </div>
                                 </div>
                                 <div class='profile-item-row'>
-                                    <div class='actions'></div>
                                     <div class='value'>
                                         <div class='add-another'>
                                             + <span class='action-link'>Add another email address</span>
                                         </div>
                                     </div>                                   
+                                    <div class='actions'></div>
                                 </div>                                
                             </div>
                         </div>
@@ -100,9 +119,6 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can"></i>
-                                    </div>
                                     <div class='value'>
                                         <div class='label'>
                                             Mobile
@@ -111,12 +127,17 @@ export class PageProfilePerson {
                                             +1 (234) 567-8910
                                         </div>
                                     </div>
+                                    <div class='actions'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                        </div>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                        </div>                                       
+                                    </div>
                                 </div>
                                 <hr/>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can"></i>
-                                    </div>
                                     <div class='value'>
                                         <div class='label'>
                                             Work
@@ -125,14 +146,22 @@ export class PageProfilePerson {
                                             +1 (917) 123-4567
                                         </div>
                                     </div>
+                                    <div class='actions'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                        </div>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                        </div>                                       
+                                    </div>
                                 </div>
                                 <div class='profile-item-row'>
-                                    <div class='actions'></div>
                                     <div class='value'>
                                         <div class='add-another'>
                                             + <span class='action-link'>Add another phone number</span>
                                         </div>
                                     </div>                                   
+                                    <div class='actions'></div>
                                 </div>                                
                             </div>
                         </div>
@@ -142,9 +171,6 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 <div class='profile-item-row'>
-                                    <div class='actions'>
-                                        <i class="fa-solid fa-pen"></i> <i class="fa-solid fa-trash-can disabled"></i>
-                                    </div>
                                     <div class='value'>
                                         <div class='label'>
                                             Home
@@ -154,15 +180,23 @@ export class PageProfilePerson {
                                             Dallas, TX 75218
                                         </div>
                                     </div>
+                                    <div class='actions'>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                        </div>
+                                        <div class='action'>
+                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                        </div>                                       
+                                    </div>
                                 </div>
                                 <div class='profile-item-row'>
-                                    <div class='actions'></div>
                                     <div class='value'>
                                         <div class='add-another'>
                                             + <span class='action-link'>Add another email address</span>
                                         </div>
                                     </div>                                   
-                                </div>                                
+                                    <div class='actions'></div>
+                               </div>                                
                             </div>
 
                         </div>
