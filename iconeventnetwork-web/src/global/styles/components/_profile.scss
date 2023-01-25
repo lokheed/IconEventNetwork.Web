@@ -1,0 +1,158 @@
+div.profile-page {
+    display: flex;
+    padding-top: 62px;
+    aside {
+        flex: 1 0 15%;
+        border-right: 2px solid var(--color-light-gray);
+    }
+
+    main {
+        flex: 1 0 85%;
+        margin-left: 6em;
+        margin-top: 4em;
+        h1 {
+            text-align: left;
+            padding-top: .5em;
+        }
+        h2 {
+            text-align: left;
+            text-transform: none;
+            font-size: 2em;
+            font-weight: 400;
+            padding-top: 2em;
+        }
+        p {
+            font-size: 1.5em;
+            font-weight: 400;
+            text-align: left;
+            margin: initial;
+            width: 80%;
+        }
+    }
+
+    .updated-message {
+        font-style: italic;
+        color: var(--color-medium-gray);
+        font-size: 1.3em;
+        font-weight: 400;
+    }
+
+    .profile-box {
+        border: 2px solid var(--color-light-gray);
+        box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
+        margin-top: 2em;
+        margin-bottom: 4em;
+        width: 80%;
+        .profile-item {
+            display: flex;
+            padding: 2em 4em;
+            border-bottom: 2px solid var(--color-light-gray);
+            .label {
+                flex: 1 0 20%;
+                font-weight: 700;
+                font-size: 1.5em;
+            }
+            .label.centered {
+                display: flex;
+                align-items: center;
+            }
+            .content {
+                flex: 1 0 80%;
+                display: grid;            
+                .profile-item-row {
+                    width: 100%;
+                    display: flex;
+                    .actions {
+                        .action {
+                            margin-top: .75em;
+                            cursor: pointer;
+                            min-width: 90px;
+                            i {
+                                padding-right: 5px;
+                            }
+                            .action-link {
+                                font-size: 1em;
+                                font-weight: 600;
+                            }
+                            .action-link.primary {
+                                font-size: 1.2em;
+                                color: var(--color-blue);
+                            }
+                            .action-link.secondary {
+                                color: var(--color-black);
+                            }
+                        }
+                        .action.disabled {
+                            cursor: default;
+                            i {
+                                color: var(--color-medium-gray);
+                            }
+                            .action-link {
+                                color: var(--color-medium-gray) !important;
+                                text-decoration: none !important;
+                                cursor: default !important;
+                            }                      
+                        }
+                    }
+                    .actions.centered {
+                        align-items: center;
+                    }
+                    .value {
+                        flex: 1 0 85%;
+                        font-size: 1.5em;
+                        font-weight: 400;
+                        display: flex;
+                        .profile-image {
+                            background-color: var(--color-purple);
+                            color: var(--color-white);
+                            line-height: 3em;
+                            text-align: center;
+                            height: 75px;
+                            width: 75px;
+                            border-radius: 75px;
+                        }
+                        .pronouns {
+                            font-size: 0.8em;
+                            line-height: 1em;
+                            padding-top: .3em;
+                            padding-left: .2em;
+                        }
+                        .add-another {
+                            color: var(--color-blue);
+                            font-weight: 600;
+                            padding-top: 1em;
+                        }
+                        .label {
+                            font-size: 1em;
+                        }
+                        .value {
+                            font-size: 1em;
+                        }
+                    }
+                }
+                hr {
+                    height: 2px;
+                    background-color: var(--color-light-gray);
+                    width: 100%;
+                    margin: 1em 0;
+                }
+            }
+        }
+        .profile-item.last {
+            border-bottom: none;
+        }
+    }
+
+    .action-link {
+        color: var(--color-blue);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .item-id {
+        color: var(--color-medium-gray);
+        font-size: 1.3em;
+        font-weight: 400;
+        margin-bottom: 2em;
+    }
+}

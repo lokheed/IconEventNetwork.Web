@@ -7,10 +7,24 @@
     --color-pink: #d774a1;
     --color-orange: #df5e2e;
     --color-blue: #3ba7cb;
+    --color-red: #ff0000;
+    --color-brick-red: #A52A2A;
     --color-off-white: #f2f2f2;
     --color-light-gray: #e0e0e0;
     --color-medium-gray: #9d9d9d;
+    --color-button-border-primary: #e0e0e0;
+    --color-button-background-primary: #3aa6cd;
+    --color-button-text-primary: #ffffff;
+    --color-button-border-secondary: #9d9d9d;
+    --color-button-background-secondary: #ffffff;
+    --color-button-text-secondary: #000000;
 }
 .blue {
 	color: var(--color-blue);
+}
+.red {
+    color: var(--color-red);
+}
+.brick-red {
+    color: var(--color-brick-red);
 }
