@@ -1,4 +1,4 @@
-div.profile-page {
+.profile-page {
     display: flex;
     padding-top: 62px;
     aside {
@@ -62,6 +62,10 @@ div.profile-page {
                 .profile-item-row {
                     width: 100%;
                     display: flex;
+                    .action-link {
+                        font-size: 1em;
+                        font-weight: 600;                        
+                    }
                     .actions {
                         .action {
                             margin-top: .75em;
@@ -98,7 +102,7 @@ div.profile-page {
                         align-items: center;
                     }
                     .value {
-                        flex: 1 0 85%;
+                        flex: 1 0 80%;
                         font-size: 1.5em;
                         font-weight: 400;
                         display: flex;
@@ -143,7 +147,57 @@ div.profile-page {
         }
     }
 
+    .companies-grid {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        margin-top: 2em;
+        margin-bottom: 4em;
+        width: 80%;
+        .company-box {
+            border: 2px solid var(--color-light-gray);
+            box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
+            padding: 2em 0;
+            min-width: 30%;
+            max-width: 33%;
+            text-align: center;
+            .company-row {
+                padding: 0 2em;
+                .logo {
+                    background-color: var(--color-medium-gray);
+                    color: var(--color-white);
+                    line-height: 3em;
+                    margin: auto;
+                    height: 75px;
+                    width: 75px;
+                    border-radius: 75px;
+                    i {
+                        font-size: 2.5em;
+                        line-height: 1.9em;
+                    }
+                }
+                .company-name {
+                    font-size: 1.5em;
+                    font-weight: 700;
+                    margin-top: 1em;
+                }        
+                button {
+                    margin: 1em auto;
+                }
+            }
+    
+            hr {
+                height: 2px;
+                background-color: var(--color-light-gray);
+                width: 100%;
+                margin: 1em 0;
+            }
+        }
+    }
+
     .action-link {
+        font-size: 1.5em;
+        font-weight: 600;
         color: var(--color-blue);
         text-decoration: underline;
         cursor: pointer;
@@ -154,5 +208,135 @@ div.profile-page {
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-page {
+        padding-top: 40px;
+        aside {
+            flex: 1 0 0%;
+            display: none;
+        }
+    
+        main {
+            flex: 1 0 100%;
+            margin-left: 1em;
+            margin-top: 1em;
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+                padding-top: 1em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .profile-box {
+                margin-top: 1em;
+                margin-bottom: 2em;
+                width: 90%;
+                .profile-item {
+                    padding: .25em .5em;
+                    .label {
+                        font-size: 0.8em;
+                    }
+                    .content {
+                        .profile-item-row {
+                            font-size: 0.8em;
+                            .value {
+                                font-size: 0.8em;
+                                .profile-image {
+                                    height: 35px;
+                                    width: 35px;
+                                    border-radius: 35px;
+                                    font-size: 1.3em;
+                                    line-height: 2.5em;
+                                }
+                                .label {
+                                    font-size: 0.8em;
+                                }
+                            }
+                            .actions {
+                                font-size: 0.7em;
+                                .action {
+                                    min-width: none;
+                                    .action-link {
+                                        font-size: 0.7em;
+
+                                    }
+                                    .action-link.primary {
+                                        font-size: 0.9em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .updated-message {
+            font-size: 0.8em;
+        }
+        .item-id {
+            font-size: 0.8em;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page {   
+        main {
+            h1 {
+                font-size: 1.4em;
+            }
+            h2 {
+                font-size: 1.1em;
+            }
+            p {
+                font-size: 0.8em;
+            }
+            .profile-box {
+                .profile-item {
+                    .label {
+                        font-size: 0.6em;
+                    }
+                    .content {
+                        .profile-item-row {
+                            font-size: 0.7em;
+                            .value {
+                                font-size: 0.7em;
+                                .profile-image {
+                                    height: 30px;
+                                    width: 30px;
+                                    border-radius: 30px;
+                                    font-size: 1.5em;
+                                    line-height: 2.5em;
+                                }
+                                .label {
+                                    font-size: 0.7em;
+                                    flex: 1 0 15%;
+                                }
+                                .value {
+                                    flex: 1 0 70%;
+                                }
+                            }
+                            .actions {
+                                font-size: 0.6em;
+                                .action {
+                                    .action-link {
+                                        font-size: 0.6em;
+                                    }
+                                    .action-link.primary {
+                                        font-size: 0.8em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
