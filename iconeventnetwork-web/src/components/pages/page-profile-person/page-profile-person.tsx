@@ -51,7 +51,7 @@ export class PageProfilePerson {
                                     </div>
                                     <div class='actions'>
                                         <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link'>Edit</span>
+                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
                                         </div>
                                         <div class='action disabled'>
                                             <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
@@ -71,7 +71,7 @@ export class PageProfilePerson {
                                     </div>
                                     <div class='actions'>
                                         <div class='action disabled'>
-                                            <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link'>Edit</span>
+                                            <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
                                         </div>
                                         <div class='action disabled'>
                                             <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
