@@ -17,7 +17,7 @@ export class PageProfilePerson {
                     <h1>Welcome, Ron M.</h1>
                     <h2>My Personal Profile Information</h2>
                     <p>The information below is associated with your account and will not appear in the directory.</p>
-                    <div class='profile-box'>
+                    <div class='profile-box box-container'>
                         <div class='profile-item'>
                             <div class='label centered'>
                                 Profile Picture
