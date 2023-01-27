@@ -30,13 +30,6 @@
         }
     }
 
-    .updated-message {
-        font-style: italic;
-        color: var(--color-medium-gray);
-        font-size: 1.3em;
-        font-weight: 400;
-    }
-
     .box-container {
         border: 2px solid var(--color-light-gray);
         box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
@@ -256,11 +249,21 @@
         cursor: pointer;
     }
 
-    .item-id {
-        color: var(--color-medium-gray);
+    .id-timestamp {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 1em;           
+        width: 80%;
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 2em;
+        color: var(--color-medium-gray);         
+        .updated-message {
+            font-style: italic;
+            display: grid;
+            justify-content: right;
+        }
     }
 }
 .profile-page.person-at-company {
@@ -290,6 +293,7 @@
             .action-column {
                 display: grid;
                 align-items: end;
+                justify-content: right;
                 .action-link {
                     font-size: 1.2em;
                 }

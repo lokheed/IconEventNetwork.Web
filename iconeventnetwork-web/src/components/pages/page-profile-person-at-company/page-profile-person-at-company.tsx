@@ -287,6 +287,10 @@ export class PageProfilePersonAtCompany {
                     <div class='profile-box box-container'>
                         [NOT YET DESIGNED] 
                     </div>                               
+                    <div class='id-timestamp'>
+                        <div class='item-id'>ID: 12345</div>
+                        <div class='updated-message'>Your company profile last updated January 5, 2023</div>
+                    </div>                
                 </main>
             </div>
         );
