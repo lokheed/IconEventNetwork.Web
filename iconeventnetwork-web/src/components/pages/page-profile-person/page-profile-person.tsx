@@ -201,7 +201,7 @@ export class PageProfilePerson {
                     </div>
                     <div class='id-timestamp'>
                         <div class='item-id'>ID: 12345</div>
-                        <div class='updated-message'>Profile last updated January 5, 2023</div>
+                        <div class='updated-message'>Last updated January 5, 2023</div>
                     </div>
                 </main>
             </div>
