@@ -37,12 +37,15 @@
         font-weight: 400;
     }
 
-    .profile-box {
+    .box-container {
         border: 2px solid var(--color-light-gray);
         box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
+    }
+
+    .profile-box {
+        width: 80%;
         margin-top: 2em;
         margin-bottom: 4em;
-        width: 80%;
         .profile-item {
             display: flex;
             padding: 2em 4em;
@@ -155,11 +158,9 @@
         margin-bottom: 4em;
         width: 80%;
         .company-box {
-            border: 2px solid var(--color-light-gray);
-            box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
             padding: 2em 0;
-            min-width: 30%;
-            max-width: 33%;
+            min-width: 325px;
+            max-width: 500px;
             text-align: center;
             .company-row {
                 padding: 0 2em;
@@ -193,6 +194,51 @@
                 margin: 1em 0;
             }
         }
+    }
+
+    .companies-list {
+        margin-top: 2em;
+        margin-bottom: 1.5em;
+        width: 80%;
+        .company-item {
+            display: grid;
+            grid-template-columns: 3fr 2fr 1fr;
+            grid-template-rows: 1fr;
+            grid-column-gap: 1em;           
+            padding: 2em 4em;
+            border-bottom: 2px solid var(--color-light-gray);
+            .label {
+                font-size: 1.5em;
+                font-weight: 700;
+            }
+            .status {
+                font-size: 1.5em;
+                font-weight: 400;
+            }
+        }
+        .company-item.disabled {
+            .label {
+                color: var(--color-medium-gray);
+            }
+            .status {
+                color: var(--color-medium-gray);
+            }
+            .contact {
+                .action-link {
+                    color: var(--color-medium-gray);
+                    cursor: default;
+                }
+            }
+        }
+        .company-item.last {
+            border-bottom: none;
+        }
+    }
+
+    .collapse-container {
+        width: 80%;
+        text-align: right;
+        margin-bottom: 2em;
     }
 
     .action-link {
@@ -275,6 +321,23 @@
                     }
                 }
             }
+            .companies-list {
+                width: 90%;
+                .company-item {
+                    padding: .5em 1em;
+                    .label {
+                        font-size: 1em;
+                    }
+                    .status {
+                        font-size: 1em;
+                    }
+                    .contact {
+                        .action-link {
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
         }
         .updated-message {
             font-size: 0.8em;
@@ -337,6 +400,37 @@
                     }
                 }
             }
+            .companies-grid {
+                .company-box {
+                    min-width: 285px;
+                    .company-row {
+                        .company-name {
+                            font-size: 1em;
+                        }
+                        button {
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
+            .companies-list {
+                .company-item {
+                    .label {
+                        font-size: .8em;
+                    }
+                    .status {
+                        font-size: .8em;
+                    }
+                    .contact {
+                        .action-link {
+                            font-size: .8em;
+                        }
+                    }
+                }
+            }
+        }
+        .action-link {
+            font-size: 1em;
         }
     }
 }
