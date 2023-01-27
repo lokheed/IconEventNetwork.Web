@@ -111,6 +111,15 @@
                             width: 75px;
                             border-radius: 75px;
                         }
+                        .profile-logo {
+                            background-color: var(--color-medium-gray);
+                            color: var(--color-white);
+                            line-height: 3em;
+                            text-align: center;
+                            height: 75px;
+                            width: 75px;
+                            border-radius: 75px;
+                        }
                         .pronouns {
                             font-size: 0.8em;
                             line-height: 1em;
@@ -128,6 +137,13 @@
                         .value {
                             font-size: 1em;
                         }
+                    }
+                    .value.small-wide-two-column-list {
+                        display: grid;
+                        grid-template-columns: 1fr 9fr; 
+                        .disabled {
+                            color: var(--color-medium-gray);
+                        }        
                     }
                     .value.textarea {
                         flex-direction: column;
@@ -235,6 +251,96 @@
         }
     }
 
+    .media-grid {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        margin-top: 2em;
+        margin-bottom: 4em;
+        width: 80%;
+        .media-box,
+        .add-media-box {
+            display: flex;
+            min-width: 325px;
+            max-width: 500px;  
+        }
+        .media-box {
+            flex-direction: column;
+            .media-preview {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 225px;
+                background-color: var(--color-medium-gray);
+                i.fa-image {
+                    font-size: 6em;
+                    color: var(--color-dark-gray);
+                }
+            }
+            .media-info,
+            .actions {
+                padding: 1em 2em;
+                display: flex;
+            } 
+            .media-info {
+                flex-direction: column;
+                border-bottom: 2px solid var(--color-light-gray);
+                .filename {
+                    font-weight: 500;
+                }
+                .filetype {
+                    font-weight: 700;
+                }
+            }
+            .actions {
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+                .edit {
+                    span {
+                        font-size: 1.5em;
+                        font-weight: 700;
+                        color: var(--color-black);
+                    }
+                    span:hover {
+                        color: var(--color-blue);
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+                .delete {
+                    display: flex;
+                    justify-content: right;
+                    i {
+                        font-size: 1.2em;
+                        line-height: 1.5em;
+                        font-weight: 700;
+                        cursor: pointer;   
+                    }
+                    i:hover {
+                        color: var(--color-brick-red);
+                    }
+                }
+
+            }       
+        }
+        .add-media-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            i {
+                font-size: 6em;
+                cursor: pointer;
+                margin-bottom: 0.25em;
+            }
+            .call-to-action {
+                font-size: 1.5em;
+                font-weight: 700;
+                margin-bottom: 1.5em;
+            }
+        }
+    }
+
     .collapse-container {
         width: 80%;
         text-align: right;
@@ -266,7 +372,8 @@
         }
     }
 }
-.profile-page.person-at-company {
+.profile-page.person-at-company,
+.profile-page.company {
     main {
         h2 {
             font-size: 2.5em;
@@ -318,6 +425,9 @@
                 border-bottom: 5px solid var(--color-green);
             }
         }
+        .tab-grid.company {
+            grid-template-columns: repeat(6, auto);
+        }
     }
 }
 
@@ -357,7 +467,8 @@
                             font-size: 0.8em;
                             .value {
                                 font-size: 0.8em;
-                                .profile-image {
+                                .profile-image,
+                                .profile-logo {
                                     height: 35px;
                                     width: 35px;
                                     border-radius: 35px;
@@ -460,7 +571,8 @@
                             font-size: 0.7em;
                             .value {
                                 font-size: 0.7em;
-                                .profile-image {
+                                .profile-image,
+                                .profile-logo {
                                     height: 30px;
                                     width: 30px;
                                     border-radius: 30px;

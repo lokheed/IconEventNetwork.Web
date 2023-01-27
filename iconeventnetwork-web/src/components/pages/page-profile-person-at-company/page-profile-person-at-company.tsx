@@ -119,7 +119,7 @@ export class PageProfilePersonAtCompany {
                                 </div>
                             </div>
                         </div>
-                        <div class='profile-item'>
+                        <div class='profile-item last'>
                             <div class='label'>
                                 Bio
                             </div>
