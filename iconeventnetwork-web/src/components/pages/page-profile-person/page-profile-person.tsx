@@ -198,7 +198,6 @@ export class PageProfilePerson {
                                     <div class='actions'></div>
                                </div>                                
                             </div>
-
                         </div>
                     </div>
                     <div class='item-id'>ID: 12345</div>
