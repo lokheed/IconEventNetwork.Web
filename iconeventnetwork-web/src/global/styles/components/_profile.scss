@@ -403,11 +403,14 @@
                 }
             }
         }
-        .updated-message {
-            font-size: 0.8em;
-        }
-        .item-id {
-            font-size: 0.8em;
+        .id-timestamp {
+            width: 90%;
+            .item-id {
+                font-size: 0.8em;
+            }              
+            .updated-message {
+                font-size: 0.8em;
+            }     
         }
     }
     .profile-page.person-at-company {
@@ -518,6 +521,14 @@
         }
         .action-link {
             font-size: 1em;
+        }
+        .id-timestamp {
+            .item-id {
+                font-size: 0.6em;
+            }              
+            .updated-message {
+                font-size: 0.6em;
+            }
         }
     }
     .profile-page.person-at-company {
