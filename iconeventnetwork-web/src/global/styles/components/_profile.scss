@@ -30,13 +30,6 @@
         }
     }
 
-    .updated-message {
-        font-style: italic;
-        color: var(--color-medium-gray);
-        font-size: 1.3em;
-        font-weight: 400;
-    }
-
     .box-container {
         border: 2px solid var(--color-light-gray);
         box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
@@ -134,6 +127,13 @@
                         }
                         .value {
                             font-size: 1em;
+                        }
+                    }
+                    .value.textarea {
+                        flex-direction: column;
+                        padding-right: 1em;
+                        .action-link {
+                            font-size: .8em;
                         }
                     }
                 }
@@ -249,11 +249,75 @@
         cursor: pointer;
     }
 
-    .item-id {
-        color: var(--color-medium-gray);
+    .id-timestamp {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 1em;           
+        width: 80%;
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 2em;
+        color: var(--color-medium-gray);         
+        .updated-message {
+            font-style: italic;
+            display: grid;
+            justify-content: right;
+        }
+    }
+}
+.profile-page.person-at-company {
+    main {
+        h2 {
+            font-size: 2.5em;
+            font-weight: 400;
+            padding-top: 1.5em;
+        }
+        .action-link-navigation {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--color-blue);
+            text-decoration: none;
+            cursor: pointer;    
+        }
+        .company-header {
+            display: grid;
+            width: 80%;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 1fr;
+            grid-column-gap: 1em;           
+            padding: 2em 0em 2em 0em;
+            h1 {
+                padding: 0;
+            }
+            .action-column {
+                display: grid;
+                align-items: end;
+                justify-content: right;
+                .action-link {
+                    font-size: 1.2em;
+                }
+            }
+        }
+        .tab-grid {
+            display: grid;
+            width: fit-content;
+            max-width: 80%;
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: 1fr;
+            grid-column-gap: 3em;   
+            .tab {
+                font-size: 1.2em;
+                font-weight: 500;
+                padding-bottom: .75em;
+                cursor: pointer;
+            } 
+            .tab.selected,
+            .tab:hover {
+                font-weight: 700;
+                border-bottom: 5px solid var(--color-green);
+            }
+        }
     }
 }
 
@@ -346,6 +410,29 @@
             font-size: 0.8em;
         }
     }
+    .profile-page.person-at-company {
+        main {
+            h2 {
+                font-size: 1.5em
+            }
+            .action-link-navigation {
+                font-size: .8em;
+            }
+            .company-header {
+                grid-template-columns: 2fr 1fr;
+                .action-column {
+                    .action-link {
+                        font-size: .6em;
+                    }
+                }
+            }
+            .tab-grid {
+                .tab {
+                    font-size: .8em;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 480px) {
@@ -431,6 +518,32 @@
         }
         .action-link {
             font-size: 1em;
+        }
+    }
+    .profile-page.person-at-company {
+        main {
+            h1 {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 1.2em
+            }
+            .action-link-navigation {
+                font-size: .6em;
+            }
+            .company-header {
+                grid-template-columns: 2fr 1fr;
+                .action-column {
+                    .action-link {
+                        font-size: .5em;
+                    }
+                }
+            }
+            .tab-grid {
+                .tab {
+                    font-size: .6em;
+                }
+            }
         }
     }
 }

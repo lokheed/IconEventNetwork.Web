@@ -13,7 +13,6 @@ export class PageProfilePerson {
                     PROFILE LEFT NAV GOES HERE
                 </aside>
                 <main>
-                    <div class='updated-message'>Profile last updated January 5, 2023</div>
                     <h1>Welcome, Ron M.</h1>
                     <h2>My Personal Profile Information</h2>
                     <p>The information below is associated with your account and will not appear in the directory.</p>
@@ -198,10 +197,12 @@ export class PageProfilePerson {
                                     <div class='actions'></div>
                                </div>                                
                             </div>
-
                         </div>
                     </div>
-                    <div class='item-id'>ID: 12345</div>
+                    <div class='id-timestamp'>
+                        <div class='item-id'>ID: 12345</div>
+                        <div class='updated-message'>Profile last updated January 5, 2023</div>
+                    </div>
                 </main>
             </div>
         );
