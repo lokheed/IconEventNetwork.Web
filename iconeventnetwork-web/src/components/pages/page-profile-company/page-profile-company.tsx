@@ -1,4 +1,21 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, State, h } from '@stencil/core';
+import { defineCustomElements } from "@revolist/revogrid/loader";
+
+// stubbing in some fake types for the Team Members grid, these will be replaced later
+// wither properly defined types in the data client
+type revoGridColumn = {
+    prop: string;
+    name: string;
+    sortable: boolean;
+    autoSize: boolean;
+    size: number;
+}
+type teamMember = {
+    DisplayName: string;
+    JobTitle: string;
+    Department: string;
+    id: number;
+}
 
 @Component({
   tag: 'page-profile-company',
@@ -6,7 +23,30 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: false,
 })
 export class PageProfileCompany {
+    constructor() {
+        defineCustomElements();
+
+    }
+
     @Prop() companyId: number;
+
+    // stubbing in some fake data for the Team Members grid, this will be replaced later
+    // with a proper client and definted data
+    @State() columns: revoGridColumn[] = 
+        [
+            { prop: 'DisplayName', name: 'Name', sortable: true, autoSize: true, size: 500 },
+            { prop: 'JobTitle', name: 'Title', sortable: true, autoSize: true, size: 300 },
+            { prop: 'Department', name: 'Department', sortable: true, autoSize: true, size: 300 },
+            { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 }
+        ];
+    @State() teamMembers: teamMember[] =
+        [
+            { DisplayName: 'James Doe', JobTitle: 'Office Assistant', Department: 'Administration', id: 98413 },
+            { DisplayName: 'Abbey Hansen', JobTitle: 'Senior Designer', Department: 'Marketing', id: 12345 },
+            { DisplayName: 'David Hansen', JobTitle: 'Co-Founder', Department: 'Operations', id: 43456 },
+            { DisplayName: 'Ron Miles', JobTitle: 'Head of Technology', Department: 'Technology', id: 96587 },
+            { DisplayName: 'Amelia Ross', JobTitle: 'Head of Digital Product', Department: 'Technology', id: 23477 },
+        ];
 
     render() {
         return (
@@ -499,6 +539,15 @@ export class PageProfileCompany {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                         ut labore et dolore magna aliqua.
                     </p>
+                    <revo-grid
+                        class='revo-grid box-container'
+                        autoSizeColumn={true}
+                        resize={true}
+                        filter={true}
+                        theme='material'
+                        columns={this.columns}
+                        source={this.teamMembers}
+                    />
                 </main>
             </div>
         );
