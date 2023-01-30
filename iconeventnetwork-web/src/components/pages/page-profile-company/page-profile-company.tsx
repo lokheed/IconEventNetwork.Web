@@ -32,13 +32,6 @@ export class PageProfileCompany {
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
     // with a proper client and definted data
-    @State() columns: revoGridColumn[] = 
-        [
-            { prop: 'DisplayName', name: 'Name', sortable: true, autoSize: true, size: 500 },
-            { prop: 'JobTitle', name: 'Title', sortable: true, autoSize: true, size: 300 },
-            { prop: 'Department', name: 'Department', sortable: true, autoSize: true, size: 300 },
-            { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 }
-        ];
     @State() teamMembers: teamMember[] =
         [
             { DisplayName: 'James Doe', JobTitle: 'Office Assistant', Department: 'Administration', id: 98413 },
@@ -49,6 +42,13 @@ export class PageProfileCompany {
         ];
 
     render() {
+        const columns: revoGridColumn[] = 
+        [
+            { prop: 'DisplayName', name: 'Name', sortable: true, autoSize: true, size: 500 },
+            { prop: 'JobTitle', name: 'Title', sortable: true, autoSize: true, size: 300 },
+            { prop: 'Department', name: 'Department', sortable: true, autoSize: true, size: 200 },
+            { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 }
+        ];
         return (
             <div class='profile-page company'>
                 <aside>
@@ -545,9 +545,46 @@ export class PageProfileCompany {
                         resize={true}
                         filter={true}
                         theme='material'
-                        columns={this.columns}
+                        columns={columns}
                         source={this.teamMembers}
                     />
+                    <div>
+                        <input type='checkbox' id='include-inactive-team-members' />
+                        <label>Include inactive team members</label>
+                    </div>
+                    <a id='company-family'></a>
+                    <h2>Company Family</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua.
+                    </p>
+                    <h3>Parent Company</h3>
+                    <div class='company-list'>
+                        <div class='action-link'>The Ritz-Carlton Hotel Company</div>
+                        <div class='location-name'>New York, New York</div>
+                        <div class='item-id'>ID: 1234</div>
+                    </div>
+                    <h3>Children Companies</h3>
+                    <div class='company-list child-companies'>
+                        <div class='action-link'>The Ritz-Carlton Amelia Island</div>
+                        <div class='location-name'>Amelia Island, Florida</div>
+                        <div class='item-id'>ID: 1235</div>
+                        <div class='action-link'>The Ritz-Carlton Downtown</div>
+                        <div class='location-name'>New York, New York</div>
+                        <div class='item-id'>ID: 1236</div>
+                        <div class='action-link'>The Ritz-Carlton Grand Lakes</div>
+                        <div class='location-name'>Orlando, Florida</div>
+                        <div class='item-id'>ID: 1237</div>
+                        <div class='action-link'>The Ritz-Carlton Phuket</div>
+                        <div class='location-name'>Phuket, Thailand</div>
+                        <div class='item-id'>ID: 1238</div>
+                        <div class='action-link'>The Ritz-Carlton Riviera</div>
+                        <div class='location-name'>Monaco City, Monaco</div>
+                        <div class='item-id'>ID: 1239</div>
+                        <div class='action-link'>The Ritz-Carlton Sarasota</div>
+                        <div class='location-name'>Sarasota, Florida</div>
+                        <div class='item-id'>ID: 1240</div>
+                    </div>
                 </main>
             </div>
         );

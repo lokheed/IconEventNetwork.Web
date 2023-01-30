@@ -428,6 +428,26 @@
         .tab-grid.company {
             grid-template-columns: repeat(6, auto);
         }
+        .revo-grid {
+            width: 80%;
+            height: 300px;
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        .company-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 1em;
+            grid-row-gap: .5em;
+            .location-name,
+            .item-id {
+                font-size: 1.5em;
+                font-weight: 400;
+            }
+        }
+        .company-list.child-companies {
+            margin-bottom: 4em;
+        }
     }
 }
 
