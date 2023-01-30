@@ -29,7 +29,6 @@ export class PageProfilePersonAtCompany {
                     <div class='tab-grid'>
                         <div class='tab selected'>My Basic Information</div>
                         <div class='tab'>My Contact Information</div>
-                        <div class='tab'>My Media Gallery</div>
                     </div>
                     <a id='basic-information'></a>
                     <h2>My Basic Information</h2>
@@ -278,19 +277,7 @@ export class PageProfilePersonAtCompany {
                                </div>                                
                             </div>
                         </div>
-                    </div>
-                    <a id='media-gallery'></a>
-                    <h2>My Media Gallery</h2>
-                    <p>
-                        The information below will appear as your contact information within the company page.
-                    </p>
-                    <div class='profile-box box-container'>
-                        [NOT YET DESIGNED] 
-                    </div>                               
-                    <div class='id-timestamp'>
-                        <div class='item-id'>ID: 12345</div>
-                        <div class='updated-message'>Last updated January 5, 2023</div>
-                    </div>                
+                    </div>              
                 </main>
             </div>
         );

@@ -410,7 +410,7 @@
             display: grid;
             width: fit-content;
             max-width: 80%;
-            grid-template-columns: repeat(3, auto);
+            grid-template-columns: repeat(2, auto);
             grid-template-rows: 1fr;
             grid-column-gap: 3em;   
             .tab {
