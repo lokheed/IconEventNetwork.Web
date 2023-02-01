@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
+export { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
+export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
+export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export namespace Components {
     interface AppEnvironmentNag {
     }
