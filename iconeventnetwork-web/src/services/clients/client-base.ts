@@ -134,6 +134,16 @@ export interface ApiParameters {
     locale?: string | string[];
 }
 
+export interface CompanyInfo{
+    Name: string;
+    SearchableName: string;
+    InvoiceCompanyName: string;
+    Tagline?: string;
+    Description?: string;
+    Website?: string;
+    ParentCompanyId: number;
+}
+
 export interface ImageInfo{
     data: ImageData;
 }
@@ -168,6 +178,33 @@ export interface ImageFormatInfo{
     size: number;
     url: string;
     width: number;
+}
+
+export interface PersonInfo{
+    id: number;
+    attributes: PersonAttributes;
+}
+
+export interface PersonAttributes{
+    FirstName?: string;
+    MiddleName?: string;
+    LastName?: string;
+    DirectoryName?: string;
+    PreferredName?: string;  
+    createdAt?: Date,
+    updatedAt?: Date;
+}
+
+export interface PersonAtCompanyInfo{
+    JobTitle?: string;
+    Tagline?: string;
+    Description?: string;
+    Website?: string;
+    CanManageCompanyDetails?: boolean;
+    CanManageCompanyStaff?: boolean;
+    createdAt?: Date,
+    updatedAt?: Date;
+    Company?: DataResponse<CompanyInfo>;
 }
 
 export interface UserInfo{
