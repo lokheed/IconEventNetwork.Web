@@ -169,3 +169,9 @@ export interface ImageFormatInfo{
     url: string;
     width: number;
 }
+
+export interface UserInfo{
+    id: number;
+    username: string;
+    email: string;
+}

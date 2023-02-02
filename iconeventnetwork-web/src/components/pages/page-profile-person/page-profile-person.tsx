@@ -1,4 +1,9 @@
-import { Component, h } from '@stencil/core';
+import { Component, State, h } from '@stencil/core';
+
+// these three imports are just to test
+import { DataResponse } from '../../../services/clients/client-base';
+import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 
 @Component({
   tag: 'page-profile-person',
@@ -6,6 +11,29 @@ import { Component, h } from '@stencil/core';
   shadow: false,
 })
 export class PageProfilePerson {
+    // lines 15 - 35 are an example for David Poindexter on how to get the logged-in user's info for the profile menu
+    private readonly personClient: PersonClient;
+    constructor(){
+      this.personClient = new PersonClient();
+    }  
+    @State() me: DataResponse<GetRequestingPersonResponse>; 
+    private getMe() {
+        var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
+        if (storedMe) {
+          this.me = JSON.parse(storedMe);
+          return;
+        }
+        this.personClient.getRequestingPerson()
+        .then((response) => {
+          this.me = response.data;
+          sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
+        })
+        .catch(reason => console.error(reason));    
+    } 
+    componentWillLoad() {
+        this.getMe();
+    }    
+    
     render() {
         return (
             <div class='profile-page'>
