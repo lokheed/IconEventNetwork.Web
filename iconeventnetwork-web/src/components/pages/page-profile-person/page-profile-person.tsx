@@ -1,10 +1,14 @@
 import { Component, State, h } from '@stencil/core';
-
-// these three imports are just to test
 import { DataResponse } from '../../../services/clients/client-base';
-import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
-import { GetPersonsAtCompaniesResponse, PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
+import { GetPersonResponse, GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
+import { GetPersonsAtCompaniesResponse, PersonAtCompanyClient } from '../../../services/clients/person-at-company-client'; // this will be removed
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
+import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
+import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
+import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
+import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
+import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
+import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 @Component({
   tag: 'page-profile-person',
@@ -14,28 +18,70 @@ import { localStorageKeyService } from '../../../services/local-storage-key-serv
 export class PageProfilePerson {
     // lines 16 - 75 are an example for David and Daneil on how to get the logged-in user's info for the profile menu and the profile left navigation
     private readonly personClient: PersonClient;
-    private readonly personAtCompanyClient: PersonAtCompanyClient;
+    private readonly personAtCompanyClient: PersonAtCompanyClient; // this will be removed
     constructor(){
       this.personClient = new PersonClient();
-      this.personAtCompanyClient = new PersonAtCompanyClient();
+      this.personAtCompanyClient = new PersonAtCompanyClient(); // this will be removed
     }  
     @State() me: DataResponse<GetRequestingPersonResponse>; 
-    @State() pacs: DataResponse<GetPersonsAtCompaniesResponse>;
+    @State() person: DataResponse<GetPersonResponse>;
+    @State() pacs: DataResponse<GetPersonsAtCompaniesResponse>; // this will be removed
     private getMe() {
         var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
         if (storedMe) {
           this.me = JSON.parse(storedMe);
+          this.getPerson(this.me.id);
+          this.getPacs(this.me.id); // this will be removed
           return;
         }
         this.personClient.getRequestingPerson()
         .then((response) => {
           this.me = response.data;
           sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
-          this.getPacs(this.me.id); 
+          this.getPerson(this.me.id);
+          this.getPacs(this.me.id); // this will be removed
         })
         .catch(reason => console.error(reason));
     } 
-    private getPacs(personId) {
+    private getPerson(personId) {
+        this.personClient.getPerson(personId, {
+            fields: ['FirstName', 'LastName', 'DirectoryName', 'updatedAt'],
+            populate: {
+                Addresses: {
+                     populate: ['country', 'country_subdivision', 'address_type'],
+                },
+                EmailAddresses: {
+                    populate: ['email_address_type'],
+                },
+                PhoneNumbers: {
+                    populate: ['phone_number_type'],
+                },
+                prefix: {
+                    fields: ['Name'],
+                },
+                ProfileImage: {
+                    fields: ['formats'],
+                },
+                Pronoun: {
+                    fields: ['Name'],
+                },
+                SocialMediaAccounts: {
+                    populate: ['social_media_type'],
+                },
+                Suffix: {
+                    fields: ['Name'],
+                },
+                Users: {
+                    fields: ['username', 'email'],
+                }
+            },
+          })
+          .then((response) => {
+            this.person = response.data;
+         })
+          .catch(reason => console.error(reason));  
+    }
+    private getPacs(personId) { // this will be removed
         var storedPacs = sessionStorage.getItem('pacs');
         if (storedPacs) {
           this.pacs = JSON.parse(storedPacs);
@@ -70,6 +116,7 @@ export class PageProfilePerson {
         })
           .catch(reason => console.error(reason));  
     }
+
     componentWillLoad() {
         this.getMe();
     }    
@@ -81,7 +128,7 @@ export class PageProfilePerson {
                     PROFILE LEFT NAV GOES HERE
                 </aside>
                 <main>
-                    <h1>Welcome, Ron M.</h1>
+                    <WelcomePersonName person={this.person} />
                     <h2>My Personal Profile Information</h2>
                     <p>The information below is associated with your account and will not appear in the directory.</p>
                     <div class='profile-box box-container'>
@@ -114,7 +161,7 @@ export class PageProfilePerson {
                             <div class='content'>
                                 <div class='profile-item-row'>
                                     <div class='value'>
-                                        Ron Miles <span class='pronouns'>(he/him/his)</span>
+                                        <PersonNameAndPronouns person={this.person} />
                                     </div>
                                     <div class='actions'>
                                         <div class='action'>
@@ -134,7 +181,7 @@ export class PageProfilePerson {
                             <div class='content'>
                                 <div class='profile-item-row'>
                                     <div class='value'>
-                                        rmiles
+                                        {this.person?.attributes?.Users?.data[0]?.attributes.username}
                                     </div>
                                     <div class='actions'>
                                         <div class='action disabled'>
@@ -152,24 +199,9 @@ export class PageProfilePerson {
                                 Email
                             </div>
                             <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='label'>
-                                            Personal
-                                        </div>
-                                        <div class='value'>
-                                            rmiles@theiconnetwork.com
-                                        </div>
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                        </div>                                       
-                                    </div>
-                                </div>
+                                {this.person?.attributes?.EmailAddresses?.data && this.person?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
+                                    <ProfileEmailAddressItem emailAddressItem={emailAddressItem} />
+                                )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>
                                         <div class='add-another'>
@@ -185,43 +217,9 @@ export class PageProfilePerson {
                                 Phone
                             </div>
                             <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='label'>
-                                            Mobile
-                                        </div>
-                                        <div class='value'>
-                                            +1 (234) 567-8910
-                                        </div>
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                        </div>                                       
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='label'>
-                                            Work
-                                        </div>
-                                        <div class='value'>
-                                            +1 (917) 123-4567
-                                        </div>
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                        </div>                                       
-                                    </div>
-                                </div>
+                                {this.person?.attributes?.PhoneNumbers?.data && this.person?.attributes?.PhoneNumbers?.data.map(phoneNumberItem => 
+                                    <ProfilePhoneNumberItem phoneNumberItem={phoneNumberItem} />
+                                )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>
                                         <div class='add-another'>
@@ -237,29 +235,13 @@ export class PageProfilePerson {
                                 Address
                             </div>
                             <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='label'>
-                                            Home
-                                        </div>
-                                        <div class='value'>
-                                            100 Main Street<br/>
-                                            Dallas, TX 75218
-                                        </div>
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                        </div>                                       
-                                    </div>
-                                </div>
+                                {this.person?.attributes?.Addresses?.data && this.person?.attributes?.Addresses?.data.map(addressItem => 
+                                    <ProfileAddressItem addressItem={addressItem} />
+                                )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>
                                         <div class='add-another'>
-                                            + <span class='action-link'>Add another email address</span>
+                                            + <span class='action-link'>Add another address</span>
                                         </div>
                                     </div>                                   
                                     <div class='actions'></div>
@@ -268,8 +250,8 @@ export class PageProfilePerson {
                         </div>
                     </div>
                     <div class='id-timestamp'>
-                        <div class='item-id'>ID: 12345</div>
-                        <div class='updated-message'>Last updated January 5, 2023</div>
+                        <div class='item-id'>ID: {this.person?.id}</div>
+                        <LastUpdated updatedAt={new Date(this.person?.attributes.updatedAt)} />
                     </div>
                 </main>
             </div>
