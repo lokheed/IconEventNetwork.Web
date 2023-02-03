@@ -134,6 +134,49 @@ export interface ApiParameters {
     locale?: string | string[];
 }
 
+export interface AddressData{
+    data: DataResponse<AddressAttributes>[];
+}
+
+export interface AddressAttributes{
+    Line1?: string;
+    Line2?: string;
+    City?: string;
+    PostalCode?: string;
+    country?: CountryData;
+    country_subdivision?: CountrySubdivisionData;
+    address_type?: AddressTypeData;
+}
+
+export interface AddressTypeData{
+    data: DataResponse<AddressTypeAttributes>;
+}
+
+export interface AddressTypeAttributes{
+    Name: string;
+    Rank: number;
+}
+
+export interface CountryData{
+    data: DataResponse<CountryAttributes>;
+}
+
+export interface CountryAttributes{
+    Name: string;
+    A2: string;
+    A3: string;
+    Number: number;
+}
+
+export interface CountrySubdivisionData{
+    data: DataResponse<CountrySubdivisionAttributes>;
+}
+
+export interface CountrySubdivisionAttributes{
+    Name: string;
+    Code: string;
+}
+
 export interface CompanyInfo{
     Name: string;
     SearchableName: string;
@@ -142,6 +185,25 @@ export interface CompanyInfo{
     Description?: string;
     Website?: string;
     ParentCompanyId: number;
+}
+
+export interface EmailAddressData{
+    data: DataResponse<EmailAddressAttributes>[];
+}
+
+export interface EmailAddressAttributes{
+    IsValidated: boolean;
+    EmailAddress: string;
+    email_address_type: EmailAddressTypeData;
+}
+
+export interface EmailAddressTypeData{
+    data: DataResponse<EmailAddressTypeAttributes>;
+}
+
+export interface EmailAddressTypeAttributes{
+    Name: string;
+    Rank: number;
 }
 
 export interface ImageInfo{
@@ -180,21 +242,6 @@ export interface ImageFormatInfo{
     width: number;
 }
 
-export interface PersonInfo{
-    id: number;
-    attributes: PersonAttributes;
-}
-
-export interface PersonAttributes{
-    FirstName?: string;
-    MiddleName?: string;
-    LastName?: string;
-    DirectoryName?: string;
-    PreferredName?: string;  
-    createdAt?: Date,
-    updatedAt?: Date;
-}
-
 export interface PersonAtCompanyInfo{
     JobTitle?: string;
     Tagline?: string;
@@ -205,6 +252,113 @@ export interface PersonAtCompanyInfo{
     createdAt?: Date,
     updatedAt?: Date;
     Company?: DataResponse<CompanyInfo>;
+}
+
+export interface PhoneNumberData{
+    data: DataResponse<PhoneNumberAttributes>[];
+}
+
+export interface PhoneNumberAttributes{
+    RawFormat?: string;
+    IsValidated: boolean;
+    E164Format?: string;
+    InternationalFormat?: string;
+    NationalFormat?: string;
+    country?: CountryData;
+    phone_number_type?: PhoneNumberTypeData;
+}
+
+export interface PhoneNumberTypeData{
+    data: DataResponse<PhoneNumberTypeAttributes>;
+}
+
+export interface PhoneNumberTypeAttributes{
+    Name: string;
+    Rank: number;
+}
+
+export interface PrefixData{
+    data: PrefixInfo;
+}
+
+export interface PrefixInfo{
+    id: number;
+    attributes: PrefixAttributes;
+}
+
+export interface PrefixAttributes{
+    Name: string;
+    Rank: number;
+}
+
+export interface PronounData{
+    data: PronounInfo;
+}
+
+export interface PronounInfo{
+    id: number;
+    attributes: PronounAttributes;
+}
+
+export interface PronounAttributes{
+    Name: string;
+}
+
+export interface SocialMediaData{
+    data: SocialMediaInfo;
+}
+
+export interface SocialMediaInfo{
+    id: number;
+    attributes: SocialMediaAttributes;
+}
+
+export interface SocialMediaAttributes{
+    Name: string;
+    URL: string;
+    social_media_type: SocialMediaTypeData;
+}
+
+export interface SocialMediaTypeData{
+    data: SocialMediaTypeInfo;
+}
+
+export interface SocialMediaTypeInfo{
+    id: number;
+    attributes: SocialMediaTypeAttributes;
+}
+
+export interface SocialMediaTypeAttributes{
+    Name: string;
+    Rank: number;
+}
+
+export interface SuffixData{
+    data: SuffixInfo;
+}
+
+export interface SuffixInfo{
+    id: number;
+    attributes: SuffixAttributes;
+}
+
+export interface SuffixAttributes{
+    Name: string;
+    Rank: number;
+}
+
+export interface UserData{
+    data: UserDataInfo[];
+}
+
+export interface UserDataInfo{
+    id: number;
+    attributes: UserDataAttributes;
+}
+
+export interface UserDataAttributes{
+    username: string;
+    email: string;
 }
 
 export interface UserInfo{
