@@ -1,7 +1,6 @@
 import { Component, State, h } from '@stencil/core';
 import { DataResponse } from '../../../services/clients/client-base';
 import { GetPersonResponse, GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
-import { GetPersonsAtCompaniesResponse, PersonAtCompanyClient } from '../../../services/clients/person-at-company-client'; // this will be removed
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
@@ -16,22 +15,17 @@ import { LastUpdated } from '../../functionalComponents/LastUpdated';
   shadow: false,
 })
 export class PageProfilePerson {
-    // lines 16 - 75 are an example for David and Daneil on how to get the logged-in user's info for the profile menu and the profile left navigation
     private readonly personClient: PersonClient;
-    private readonly personAtCompanyClient: PersonAtCompanyClient; // this will be removed
     constructor(){
       this.personClient = new PersonClient();
-      this.personAtCompanyClient = new PersonAtCompanyClient(); // this will be removed
     }  
     @State() me: DataResponse<GetRequestingPersonResponse>; 
     @State() person: DataResponse<GetPersonResponse>;
-    @State() pacs: DataResponse<GetPersonsAtCompaniesResponse>; // this will be removed
     private getMe() {
         var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
         if (storedMe) {
           this.me = JSON.parse(storedMe);
           this.getPerson(this.me.id);
-          this.getPacs(this.me.id); // this will be removed
           return;
         }
         this.personClient.getRequestingPerson()
@@ -39,7 +33,6 @@ export class PageProfilePerson {
           this.me = response.data;
           sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
           this.getPerson(this.me.id);
-          this.getPacs(this.me.id); // this will be removed
         })
         .catch(reason => console.error(reason));
     } 
@@ -71,49 +64,11 @@ export class PageProfilePerson {
                 Suffix: {
                     fields: ['Name'],
                 },
-                Users: {
-                    fields: ['username', 'email'],
-                }
             },
           })
           .then((response) => {
             this.person = response.data;
          })
-          .catch(reason => console.error(reason));  
-    }
-    private getPacs(personId) { // this will be removed
-        var storedPacs = sessionStorage.getItem('pacs');
-        if (storedPacs) {
-          this.pacs = JSON.parse(storedPacs);
-          return;
-        }
-        this.personAtCompanyClient.getPersonsAtCompanies({
-            fields: ['JobTitle'],
-            populate: {
-              Company: {
-                fields: ['Name'],
-              },
-            },
-            filters: {
-                Person: {
-                    id: {
-                        $eq: personId,
-                    },
-                    IsActive: {
-                        $eq: 1,
-                    }
-                },
-                Company: {
-                    IsActive: {
-                        $eq: 1
-                    },
-                }
-            }
-          })
-          .then((response) => {
-            this.pacs = response.data;
-            sessionStorage.setItem('pacs', JSON.stringify(this.pacs));
-        })
           .catch(reason => console.error(reason));  
     }
 
@@ -122,6 +77,7 @@ export class PageProfilePerson {
     }    
     
     render() {
+        const username: string = localStorage.getItem(localStorageKeyService.Username);
         return (
             <div class='profile-page'>
                 <aside>
@@ -181,7 +137,7 @@ export class PageProfilePerson {
                             <div class='content'>
                                 <div class='profile-item-row'>
                                     <div class='value'>
-                                        {this.person?.attributes?.Users?.data[0]?.attributes.username}
+                                        {username}
                                     </div>
                                     <div class='actions'>
                                         <div class='action disabled'>
