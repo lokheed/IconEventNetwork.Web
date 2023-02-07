@@ -38,7 +38,7 @@ export class PageProfilePerson {
     } 
     private getPerson(personId) {
         this.personClient.getPerson(personId, {
-            fields: ['FirstName', 'LastName', 'DirectoryName', 'updatedAt'],
+            fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName', 'updatedAt'],
             populate: {
                 Addresses: {
                      populate: ['country', 'country_subdivision', 'address_type'],
