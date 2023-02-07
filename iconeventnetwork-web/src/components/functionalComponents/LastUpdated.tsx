@@ -6,6 +6,6 @@ interface LastUpdatedProps {
 
 export const LastUpdated: FunctionalComponent<LastUpdatedProps> = (props => (
     <div class='updated-message'>
-        Last updated {props.updatedAt.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"long", day:"numeric"})} {props.updatedAt.toLocaleTimeString('en-US')}
+        Last updated {props.updatedAt.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}, {props.updatedAt.toLocaleTimeString('en-US')}
     </div>
 ));
