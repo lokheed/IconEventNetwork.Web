@@ -1,4 +1,4 @@
-import { AddressData, ApiParameters, ClientBase, EmailAddressData, ImageFormatsInfo, PhoneNumberData, PrefixData, 
+import { AddressData, ApiParameters, ClientBase, EmailAddressData, ImageInfo, ImageFormatsInfo, PhoneNumberData, PrefixData, 
          PronounData, SocialMediaData, SuccessResponse, SuffixData, UserData, UserInfo } from "./client-base";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
@@ -56,7 +56,7 @@ export interface GetPersonResponse{
     EmailAddresses?: EmailAddressData;
     PhoneNumbers?: PhoneNumberData;
     prefix?: PrefixData;
-    ProfileImage?: ImageData;
+    ProfileImage?: ImageInfo;
     Pronoun?: PronounData;
     SocialMediaAccounts?: SocialMediaData[];
     Suffix?: SuffixData;

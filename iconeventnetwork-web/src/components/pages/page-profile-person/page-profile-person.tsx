@@ -8,6 +8,7 @@ import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmail
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
+import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 
 @Component({
   tag: 'page-profile-person',
@@ -95,9 +96,7 @@ export class PageProfilePerson {
                             <div class='content'>
                                 <div class='profile-item-row'>
                                     <div class='value'>
-                                        <div class='profile-image'>
-                                            RM
-                                        </div>
+                                        <ProfileImageDisc profileImage={this.person?.attributes?.ProfileImage} firstName={this.person?.attributes?.FirstName} lastName={this.person?.attributes?.LastName} />
                                     </div>
                                     <div class='actions centered'>
                                         <div class='action'>
