@@ -24,8 +24,8 @@ export const CompanyBox: FunctionalComponent<CompanyBoxProps> = (props => (
         </div>
         <hr />
         <div class='company-row'>
-            <button class='primary-action' onClick={() => window.location.pathname = ('/profile-pac/' + props.pacId)}>View profile</button>
-            <button class='secondary-action' onClick={() => window.location.pathname = ('/profile-company/' + props.company.data.id)}>View company</button>
+            <button class='primary-action' onClick={() => window.location.pathname = ('/profile-pac/' + props.pacId)}>View my work profile</button>
+            <button class='secondary-action' onClick={() => window.location.pathname = ('/profile-company/' + props.company.data.id)}>View company profile</button>
         </div>
     </div>
 ));

@@ -83,12 +83,12 @@ export class PageProfilePersonAtCompanies {
                     <WelcomePersonName person={this.person} />
                     <h2>My Company Profiles</h2>
                     <p>
-                        Below are the companies you are currently associated with. To view your profile
-                        within the company, <b>View profile</b>. To view the company page, <b>View company</b>.
+                        Below are the companies your personal profile is currently associated with. To view your details 
+                        at a company, select <b>View my work profile</b>. To view a company's details, select <b>View company profile</b>.
                     </p>
                     <div class='companies-grid'>
                     { 
-                        this.activePacs ? 
+                        this.activePacs && this.activePacs.length > 0 ? 
                             this.activePacs.map(pac => 
                                 <CompanyBox company={pac.attributes.Company} pacId={pac.id} />
                             ) : 
@@ -96,7 +96,7 @@ export class PageProfilePersonAtCompanies {
                     }
                     </div>
                     {
-                        this.inactivePacs ?
+                        this.inactivePacs && this.inactivePacs.length > 0 ?
                             this.inactivePacsAreVisible ?
                                 <div>
                                     <div class='companies-list box-container'>
@@ -106,7 +106,7 @@ export class PageProfilePersonAtCompanies {
                                                     {pac.attributes.Company.data.attributes.Name}
                                                 </div>
                                                 <div class='status'>
-                                                    Status: {pac.attributes.Company.data.attributes.CompanyStatus?.data?.attributes?.DisplayName??'Unknown'}
+                                                    Company Status: {pac.attributes.Company.data.attributes.CompanyStatus?.data?.attributes?.DisplayName??'Unknown'}
                                                 </div>
                                                 <div class='contact'>
                                                     <span class='action-link'>Contact admin</span>
