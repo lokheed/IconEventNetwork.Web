@@ -63,7 +63,15 @@ export class PageProfilePersonAtCompanies {
         })
         .catch(reason => console.error(reason));  
     }
-
+    private comparePacs( a, b ) {
+        if (a.attributes.Company.data.attributes.Name < b.attributes.Company.data.attributes.Name ) {
+            return -1;
+        }
+        if (a.attributes.Company.data.attributes.Name > b.attributes.Company.data.attributes.Name ) {
+            return 1;
+        }
+        return 0;
+    }
     componentWillLoad() {
         this.getMe();
     }        
@@ -89,7 +97,7 @@ export class PageProfilePersonAtCompanies {
                     <div class='companies-grid'>
                     { 
                         this.activePacs && this.activePacs.length > 0 ? 
-                            this.activePacs.map(pac => 
+                            this.activePacs.sort(this.comparePacs).map(pac => 
                                 <CompanyBox company={pac.attributes.Company} pacId={pac.id} />
                             ) : 
                             <h3>You do not have any current companies</h3>
@@ -100,7 +108,7 @@ export class PageProfilePersonAtCompanies {
                             this.inactivePacsAreVisible ?
                                 <div>
                                     <div class='companies-list box-container'>
-                                        { this.inactivePacs.map(pac => 
+                                        { this.inactivePacs.sort(this.comparePacs).map(pac => 
                                             <div class={pac.attributes.Company.data.attributes.IsActive ? 'company-item' : 'company-item disabled'}>
                                                 <div class='label'>
                                                     {pac.attributes.Company.data.attributes.Name}
