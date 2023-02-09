@@ -72,6 +72,9 @@ export namespace Components {
     }
     interface PageAboutUs {
     }
+    interface PageAccessDenied {
+        "message": string;
+    }
     interface PageCodeOfConduct {
     }
     interface PageCookiePolicy {
@@ -199,6 +202,12 @@ declare global {
     var HTMLPageAboutUsElement: {
         prototype: HTMLPageAboutUsElement;
         new (): HTMLPageAboutUsElement;
+    };
+    interface HTMLPageAccessDeniedElement extends Components.PageAccessDenied, HTMLStencilElement {
+    }
+    var HTMLPageAccessDeniedElement: {
+        prototype: HTMLPageAccessDeniedElement;
+        new (): HTMLPageAccessDeniedElement;
     };
     interface HTMLPageCodeOfConductElement extends Components.PageCodeOfConduct, HTMLStencilElement {
     }
@@ -328,6 +337,7 @@ declare global {
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
         "page-about-us": HTMLPageAboutUsElement;
+        "page-access-denied": HTMLPageAccessDeniedElement;
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
         "page-cookie-policy": HTMLPageCookiePolicyElement;
         "page-dashboard": HTMLPageDashboardElement;
@@ -412,6 +422,9 @@ declare namespace LocalJSX {
     }
     interface PageAboutUs {
     }
+    interface PageAccessDenied {
+        "message"?: string;
+    }
     interface PageCodeOfConduct {
     }
     interface PageCookiePolicy {
@@ -466,6 +479,7 @@ declare namespace LocalJSX {
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
         "page-about-us": PageAboutUs;
+        "page-access-denied": PageAccessDenied;
         "page-code-of-conduct": PageCodeOfConduct;
         "page-cookie-policy": PageCookiePolicy;
         "page-dashboard": PageDashboard;
@@ -504,6 +518,7 @@ declare module "@stencil/core" {
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
+            "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
             "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;

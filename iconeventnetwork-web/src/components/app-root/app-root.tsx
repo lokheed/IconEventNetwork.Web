@@ -148,6 +148,9 @@ export class AppRoot {
               <Route path="/profile-company " to="/prelaunch" />
             )}                    
 
+            <Route path={match('/access-denied/:message')} 
+              render={({message}) => <page-access-denied message={message}/> }>                
+            </Route>  
             <Route path={NotFound}>
               <page-not-found />
             </Route>

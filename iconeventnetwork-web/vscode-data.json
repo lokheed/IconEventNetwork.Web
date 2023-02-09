@@ -129,6 +129,19 @@
       "attributes": []
     },
     {
+      "name": "page-access-denied",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "message",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "page-code-of-conduct",
       "description": {
         "kind": "markdown",
