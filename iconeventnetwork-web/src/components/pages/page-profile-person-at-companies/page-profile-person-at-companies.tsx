@@ -1,4 +1,10 @@
-import { Component, h } from '@stencil/core';
+import { Component, State, h } from '@stencil/core';
+import { DataResponse, PersonInfo, PersonAtCompanyInfo } from '../../../services/clients/client-base';
+import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
+import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
+import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
+import { CompanyBox } from '../../functionalComponents/CompanyBox';
 
 @Component({
   tag: 'page-profile-person-at-companies',
@@ -6,6 +12,67 @@ import { Component, h } from '@stencil/core';
   shadow: false,
 })
 export class PageProfilePersonAtCompanies {
+    private readonly personClient: PersonClient;
+    private readonly personAtCompanyClient: PersonAtCompanyClient;
+    constructor(){
+      this.personClient = new PersonClient();
+      this.personAtCompanyClient = new PersonAtCompanyClient();
+    }  
+    @State() me: DataResponse<GetRequestingPersonResponse>; 
+    @State() person: DataResponse<PersonInfo>;
+    @State() pacs: DataResponse<PersonAtCompanyInfo>[];
+    @State() activePacs: DataResponse<PersonAtCompanyInfo>[];
+    @State() inactivePacs: DataResponse<PersonAtCompanyInfo>[];
+    @State() inactivePacsAreVisible: boolean = false;
+    private getMe() {
+        var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
+        if (storedMe) {
+          this.me = JSON.parse(storedMe);
+          this.getPacs(this.me.id);
+          return;
+        }
+        this.personClient.getRequestingPerson()
+        .then((response) => {
+          this.me = response.data;
+          sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
+          this.getPacs(this.me.id);
+        })
+        .catch(reason => console.error(reason));
+    } 
+    private getPacs(personId) {
+        this.personAtCompanyClient.getPersonsAtCompanies({
+            fields: ['IsActive', 'CanManageCompanyDetails', 'CanManageCompanyStaff'],
+            populate: {
+                Company: {
+                    fields: ['Name', 'IsActive'],
+                    populate: ['CompanyStatus', 'PrimaryContact', 'LogoImage'],
+                },
+            },
+            filters: {
+                Person: {
+                    id: {
+                        $eq: personId,
+                    },
+                },
+            }
+        })
+        .then((response) => {
+            this.pacs = response.data;
+            this.activePacs = this.pacs.filter(pac => pac.attributes.IsActive && pac.attributes.Company);
+            this.inactivePacs = this.pacs.filter(pac => !pac.attributes.IsActive && pac.attributes.Company);
+        })
+        .catch(reason => console.error(reason));  
+    }
+
+    componentWillLoad() {
+        this.getMe();
+    }        
+
+    toggleInactiveCompaniesClick(e: MouseEvent) {
+        e.preventDefault();
+        this.inactivePacsAreVisible = !this.inactivePacsAreVisible;
+    }
+    
     render() {
         return (
             <div class='profile-page'>
@@ -13,122 +80,52 @@ export class PageProfilePersonAtCompanies {
                     PROFILE LEFT NAV GOES HERE
                 </aside>
                 <main>
-                    <h1>Welcome, Ron M.</h1>
+                    <WelcomePersonName person={this.person} />
                     <h2>My Company Profiles</h2>
                     <p>
                         Below are the companies you are currently associated with. To view your profile
                         within the company, <b>View profile</b>. To view the company page, <b>View company</b>.
                     </p>
                     <div class='companies-grid'>
-                        <div class='company-box box-container'>
-                            <div class='company-row'>
-                                <div class='logo'>
-                                    <i class="fa-regular fa-image"></i>
-                                </div>
-                                <div class='company-name'>
-                                    The Icon Network
-                                </div>
-                            </div>
-                            <hr />
-                            <div class='company-row'>
-                                <button class='primary-action'>View profile</button>
-                                <button class='secondary-action'>View company</button>
-                            </div>
-                        </div>
-                        <div class='company-box box-container'>
-                            <div class='company-row'>
-                                <div class='logo'>
-                                    <i class="fa-regular fa-image"></i>
-                                </div>
-                                <div class='company-name'>
-                                    Lokheed Enterprises
-                                </div>
-                            </div>
-                            <hr />
-                            <div class='company-row'>
-                                <button class='primary-action'>View profile</button>
-                                <button class='secondary-action'>View company</button>
-                            </div>                        
-                        </div> 
-                        <div class='company-box box-container'>
-                            <div class='company-row'>
-                                <div class='logo'>
-                                    <i class="fa-regular fa-image"></i>
-                                </div>
-                                <div class='company-name'>
-                                    Ron's Super Awesome Happy Funtime Party Planning Service
-                                </div>
-                            </div>
-                            <hr />
-                            <div class='company-row'>
-                                <button class='primary-action'>View profile</button>
-                                <button class='secondary-action'>View company</button>
-                            </div>                        
-                        </div>                          
+                    { 
+                        this.activePacs ? 
+                            this.activePacs.map(pac => 
+                                <CompanyBox company={pac.attributes.Company} pacId={pac.id} />
+                            ) : 
+                            <h3>You do not have any current companies</h3>
+                    }
                     </div>
-                    <div>
-                        <span class='action-link'>View my former companies</span>
-                    </div>
-                    <div class='companies-list box-container'>
-                        <div class='company-item'>
-                            <div class='label'>
-                                Company Name One
-                            </div>
-                            <div class='status'>
-                                Status: Active
-                            </div>
-                            <div class='contact'>
-                                <span class='action-link'>Contact admin</span>
-                            </div>
-                        </div>
-                        <div class='company-item'>
-                            <div class='label'>
-                                Company Name Two
-                            </div>
-                            <div class='status'>
-                                Status: Active
-                            </div>
-                            <div class='contact'>
-                                <span class='action-link'>Contact admin</span>
-                            </div>
-                        </div>
-                        <div class='company-item'>
-                            <div class='label'>
-                                Company Name Three
-                            </div>
-                            <div class='status'>
-                                Status: Active
-                            </div>
-                            <div class='contact'>
-                                <span class='action-link'>Contact admin</span>
-                            </div>
-                        </div>
-                        <div class='company-item disabled'>
-                            <div class='label'>
-                                Company Name Four
-                            </div>
-                            <div class='status'>
-                                Status: Inactive
-                            </div>
-                            <div class='contact'>
-                                <span class='action-link'>Contact admin</span>
-                            </div>
-                        </div>
-                        <div class='company-item disabled last'>
-                            <div class='label'>
-                                Company Name Five
-                            </div>
-                            <div class='status'>
-                                Status: Inactive
-                            </div>
-                            <div class='contact'>
-                                <span class='action-link'>Contact admin</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='collapse-container'>
-                        <span class='action-link'>Collapse</span>
-                    </div>                
+                    {
+                        this.inactivePacs ?
+                            this.inactivePacsAreVisible ?
+                                <div>
+                                    <div class='companies-list box-container'>
+                                        { this.inactivePacs.map(pac => 
+                                            <div class={pac.attributes.Company.data.attributes.IsActive ? 'company-item' : 'company-item disabled'}>
+                                                <div class='label'>
+                                                    {pac.attributes.Company.data.attributes.Name}
+                                                </div>
+                                                <div class='status'>
+                                                    Status: {pac.attributes.Company.data.attributes.CompanyStatus?.data?.attributes?.DisplayName??'Unknown'}
+                                                </div>
+                                                <div class='contact'>
+                                                    <span class='action-link'>Contact admin</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>                                    
+                                    <div class='collapse-container'>
+                                        <span class='action-link' onClick={e => this.toggleInactiveCompaniesClick(e)}>Collapse</span>
+                                    </div>                                 
+                                </div> 
+                                :
+                                <div class='expand-container'>
+                                    <span class='action-link' onClick={e => this.toggleInactiveCompaniesClick(e)}>View my former companies</span>
+                                </div>
+                            :
+                            ''
+                    }
+          
                 </main>
             </div>
         );

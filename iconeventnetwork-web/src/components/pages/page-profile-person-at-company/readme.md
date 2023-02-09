@@ -9,7 +9,7 @@
 
 | Property            | Attribute              | Description | Type     | Default     |
 | ------------------- | ---------------------- | ----------- | -------- | ----------- |
-| `personAtCompanyId` | `person-at-company-id` |             | `number` | `undefined` |
+| `personAtCompanyId` | `person-at-company-id` |             | `string` | `undefined` |
 
 
 ## Dependencies

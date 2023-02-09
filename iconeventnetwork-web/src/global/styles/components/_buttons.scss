@@ -14,7 +14,7 @@ button {
 }
 
 button.primary-action {
-    border: solid var(--color-button-border-primary) 1px;
+    border: solid var(--color-button-background-primary) 1px;
     background-color: var(--color-button-background-primary);
     color: var(--color-button-text-primary);
 }
@@ -25,15 +25,13 @@ button.secondary-action {
     color: var(--color-button-text-secondary);
 }
 
-button:hover{
+button.primary-action:hover {
     transition : 1000ms;
-    padding: 10px 60px;
-    transform : translateY(-0px);
-    background-color: #fff;
+    border: solid var(--color-button-hover-primary) 1px;
+    background-color: var(--color-button-hover-primary);
 }
 
-button.primary-action:hover,
 button.secondary-action:hover {
-    color: var(--color-button-background-primary);
-    border: solid var(--color-button-background-primary) 1px;    
+    transition : 1000ms;
+    background-color: var(--color-button-hover-secondary);
 }

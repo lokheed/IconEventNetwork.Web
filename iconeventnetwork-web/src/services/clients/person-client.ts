@@ -1,5 +1,4 @@
-import { AddressData, ApiParameters, ClientBase, EmailAddressData, ImageInfo, ImageFormatsInfo, PhoneNumberData, PrefixData, 
-         PronounData, SocialMediaData, SuccessResponse, SuffixData, UserData, UserInfo } from "./client-base";
+import { ApiParameters, ClientBase, ImageFormatsInfo, PersonInfo, SuccessResponse, UserInfo } from "./client-base";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 export class PersonClient extends ClientBase {
@@ -27,7 +26,7 @@ export class PersonClient extends ClientBase {
     }
   
     public getPerson(personId: number, parameters?: ApiParameters) {
-        return new Promise<SuccessResponse<GetPersonResponse>>((resolve, reject) => {
+        return new Promise<SuccessResponse<PersonInfo>>((resolve, reject) => {
             let query = this.stringifyParameters(parameters);
             const token = localStorage.getItem(localStorageKeyService.Jwt);
             fetch(
@@ -44,23 +43,6 @@ export class PersonClient extends ClientBase {
         });
     }
 
-}
-
-export interface GetPersonResponse{
-    FirstName?: string;
-    MiddleName?: string;
-    LastName?: string;
-    DirectoryName?: string;
-    PreferredName?: string;  
-    Addresses?: AddressData;
-    EmailAddresses?: EmailAddressData;
-    PhoneNumbers?: PhoneNumberData;
-    prefix?: PrefixData;
-    ProfileImage?: ImageInfo;
-    Pronoun?: PronounData;
-    SocialMediaAccounts?: SocialMediaData[];
-    Suffix?: SuffixData;
-    Users?: UserData;
 }
 
 export interface GetRequestingPersonResponse{

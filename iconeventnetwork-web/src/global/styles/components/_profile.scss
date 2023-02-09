@@ -190,6 +190,11 @@
             text-align: center;
             .company-row {
                 padding: 0 2em;
+                .logo-image {
+                    img {
+                        max-width: 50%;
+                    }
+                }
                 .logo {
                     background-color: var(--color-medium-gray);
                     color: var(--color-white);
@@ -354,6 +359,9 @@
     .collapse-container {
         width: 80%;
         text-align: right;
+        margin-bottom: 2em;
+    }
+    .expand-container {
         margin-bottom: 2em;
     }
 

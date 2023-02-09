@@ -21,12 +21,14 @@
 
  - [app-event-planner-item](../app-event-planner-item)
  - [page-profile-person](../pages/page-profile-person)
+ - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
 
 ### Graph
 ```mermaid
 graph TD;
   app-event-planner-item --> app-responsive-image
   page-profile-person --> app-responsive-image
+  page-profile-person-at-companies --> app-responsive-image
   style app-responsive-image fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

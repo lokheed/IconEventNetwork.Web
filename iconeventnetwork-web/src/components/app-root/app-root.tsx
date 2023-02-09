@@ -1,5 +1,5 @@
 import { Component, Host, State, h } from '@stencil/core';
-import { createRouter, Route, NotFound } from 'stencil-router-v2';
+import { createRouter, Route, NotFound, match } from 'stencil-router-v2';
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 const Router = createRouter();
@@ -132,16 +132,16 @@ export class AppRoot {
               <Route path="/profile-pacs " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
-              <Route path="/profile-pac">
-                <page-profile-person-at-company/>
+              <Route path={match('/profile-pac/:id')} 
+                render={({id}) => <page-profile-person-at-company personAtCompanyId={id}/> }>                
               </Route>  
             )}
             {!this.isAuthenticated && (
               <Route path="/profile-pac " to="/prelaunch" />
             )}
             {this.isAuthenticated && (
-              <Route path="/profile-company">
-                <page-profile-company />
+              <Route path={match('/profile-company/:id')}
+                render={({id}) => <page-profile-company companyId={id} /> }>                
               </Route>
             )}
             {!this.isAuthenticated && (
