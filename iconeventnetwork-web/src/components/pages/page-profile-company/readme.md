@@ -9,7 +9,7 @@
 
 | Property    | Attribute    | Description | Type     | Default     |
 | ----------- | ------------ | ----------- | -------- | ----------- |
-| `companyId` | `company-id` |             | `number` | `undefined` |
+| `companyId` | `company-id` |             | `string` | `undefined` |
 
 
 ## Dependencies

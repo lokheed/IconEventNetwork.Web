@@ -177,6 +177,10 @@ export interface CountrySubdivisionAttributes{
     Code: string;
 }
 
+export interface CompanyData{
+    data: DataResponse<CompanyInfo>;
+}
+
 export interface CompanyInfo{
     Name: string;
     SearchableName: string;
@@ -185,6 +189,17 @@ export interface CompanyInfo{
     Description?: string;
     Website?: string;
     ParentCompanyId: number;
+    IsActive?: boolean;
+    CompanyStatus?: CompanyStatusData;
+    PrimaryContact?: DataResponse<PersonInfo>;
+    LogoImage?: ImageInfo;
+}
+
+export interface CompanyStatusData{
+    data: DataResponse<CompanyStatusInfo>
+}
+export interface CompanyStatusInfo{
+    DisplayName: string;
 }
 
 export interface EmailAddressData{
@@ -242,6 +257,23 @@ export interface ImageFormatInfo{
     width: number;
 }
 
+export interface PersonInfo{
+    FirstName?: string;
+    MiddleName?: string;
+    LastName?: string;
+    DirectoryName?: string;
+    PreferredName?: string;  
+    Addresses?: AddressData;
+    EmailAddresses?: EmailAddressData;
+    PhoneNumbers?: PhoneNumberData;
+    prefix?: PrefixData;
+    ProfileImage?: ImageInfo;
+    Pronoun?: PronounData;
+    SocialMediaAccounts?: SocialMediaData[];
+    Suffix?: SuffixData;
+    Users?: UserData;
+}
+
 export interface PersonAtCompanyInfo{
     JobTitle?: string;
     Tagline?: string;
@@ -249,9 +281,11 @@ export interface PersonAtCompanyInfo{
     Website?: string;
     CanManageCompanyDetails?: boolean;
     CanManageCompanyStaff?: boolean;
+    IsActive?: boolean;
     createdAt?: Date,
     updatedAt?: Date;
-    Company?: DataResponse<CompanyInfo>;
+    Company?: CompanyData;
+    Person?: DataResponse<PersonInfo>;
 }
 
 export interface PhoneNumberData{

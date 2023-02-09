@@ -66,6 +66,7 @@ graph TD;
   page-about-us --> app-leadership-team-item
   page-about-us --> app-testimonial-carousel
   page-profile-person --> app-responsive-image
+  page-profile-person-at-companies --> app-responsive-image
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

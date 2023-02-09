@@ -28,7 +28,7 @@ export class PageProfileCompany {
 
     }
 
-    @Prop() companyId: number;
+    @Prop() companyId: string;
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
     // with a proper client and definted data

@@ -101,14 +101,14 @@ export namespace Components {
     interface PagePrivacyPolicy {
     }
     interface PageProfileCompany {
-        "companyId": number;
+        "companyId": string;
     }
     interface PageProfilePerson {
     }
     interface PageProfilePersonAtCompanies {
     }
     interface PageProfilePersonAtCompany {
-        "personAtCompanyId": number;
+        "personAtCompanyId": string;
     }
     interface PageTermsOfService {
     }
@@ -441,14 +441,14 @@ declare namespace LocalJSX {
     interface PagePrivacyPolicy {
     }
     interface PageProfileCompany {
-        "companyId"?: number;
+        "companyId"?: string;
     }
     interface PageProfilePerson {
     }
     interface PageProfilePersonAtCompanies {
     }
     interface PageProfilePersonAtCompany {
-        "personAtCompanyId"?: number;
+        "personAtCompanyId"?: string;
     }
     interface PageTermsOfService {
     }

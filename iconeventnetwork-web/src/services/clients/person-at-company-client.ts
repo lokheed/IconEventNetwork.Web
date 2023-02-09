@@ -1,4 +1,4 @@
-import { ApiParameters, ClientBase, PersonAtCompanyInfo, SuccessResponse } from "./client-base";
+import { ApiParameters, ClientBase, PersonAtCompanyInfo, CollectionSuccessResponse } from "./client-base";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 export class PersonAtCompanyClient extends ClientBase {
@@ -9,7 +9,7 @@ export class PersonAtCompanyClient extends ClientBase {
     }
 
     public getPersonsAtCompanies(parameters?: ApiParameters) {
-        return new Promise<SuccessResponse<GetPersonsAtCompaniesResponse>>((resolve, reject) => {
+        return new Promise<CollectionSuccessResponse<PersonAtCompanyInfo>>((resolve, reject) => {
             let query = this.stringifyParameters(parameters);
             const token = localStorage.getItem(localStorageKeyService.Jwt);
             fetch(
@@ -25,9 +25,4 @@ export class PersonAtCompanyClient extends ClientBase {
                 .catch(error => reject(error));
         });
     }
-}
-
-export interface GetPersonsAtCompaniesResponse{
-    id: number;
-    attributes: PersonAtCompanyInfo[];
 }

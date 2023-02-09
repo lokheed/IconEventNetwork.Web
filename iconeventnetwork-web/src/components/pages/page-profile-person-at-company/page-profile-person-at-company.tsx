@@ -6,7 +6,7 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: false,
 })
 export class PageProfilePersonAtCompany {
-    @Prop() personAtCompanyId: number;
+    @Prop() personAtCompanyId: string;
 
     render() {
         return (

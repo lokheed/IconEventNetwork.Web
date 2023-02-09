@@ -1,9 +1,8 @@
 import {FunctionalComponent, h} from "@stencil/core"
-import { DataResponse } from '../../services/clients/client-base';
-import { GetPersonResponse } from '../../services/clients/person-client';
+import { DataResponse, PersonInfo } from '../../services/clients/client-base';
 
 interface PersonNameAndPronounsProps {
-    person: DataResponse<GetPersonResponse>;
+    person: DataResponse<PersonInfo>;
 }
 
 export const PersonNameAndPronouns: FunctionalComponent<PersonNameAndPronounsProps> = (props => (

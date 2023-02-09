@@ -1,6 +1,6 @@
 import { Component, State, h } from '@stencil/core';
-import { DataResponse } from '../../../services/clients/client-base';
-import { GetPersonResponse, GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
+import { DataResponse, PersonInfo } from '../../../services/clients/client-base';
+import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
@@ -21,7 +21,7 @@ export class PageProfilePerson {
       this.personClient = new PersonClient();
     }  
     @State() me: DataResponse<GetRequestingPersonResponse>; 
-    @State() person: DataResponse<GetPersonResponse>;
+    @State() person: DataResponse<PersonInfo>;
     private getMe() {
         var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
         if (storedMe) {
