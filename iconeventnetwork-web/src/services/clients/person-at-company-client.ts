@@ -25,4 +25,26 @@ export class PersonAtCompanyClient extends ClientBase {
                 .catch(error => reject(error));
         });
     }
+
+    public securityCheck(personAtCompanyId: string) {
+        return new Promise<SecurityCheckResponse>((resolve, reject) => {
+            const token = localStorage.getItem(localStorageKeyService.Jwt);
+            fetch(
+                `${this.baseUrl}${this.endpoint}/security/${personAtCompanyId}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
+                .then(response => resolve(this.processResponse(response)))
+                .catch(error => reject(error));
+        });
+    }
+}
+export interface SecurityCheckResponse{
+    canManageProfileFields: boolean;
+    canManageActiveArchiveFlags: boolean;
+    canManageCompanyDetailsAndStaffFlags: boolean;
 }

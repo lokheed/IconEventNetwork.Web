@@ -1,4 +1,5 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, State, Prop, h } from '@stencil/core';
+import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
 
 @Component({
   tag: 'page-profile-person-at-company',
@@ -7,6 +8,23 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class PageProfilePersonAtCompany {
     @Prop() personAtCompanyId: string;
+    @State() security: SecurityCheckResponse;
+    private readonly personAtCompanyClient: PersonAtCompanyClient;
+    constructor(){
+      this.personAtCompanyClient = new PersonAtCompanyClient();
+    }  
+
+    private securityCheck() {
+        this.personAtCompanyClient.securityCheck(this.personAtCompanyId)
+        .then((response) => {
+            this.security = response;
+        })
+        .catch((reason) => window.location.pathname = '/access-denied/' + encodeURI(reason.error.message));  
+    }
+
+    componentWillLoad() {
+        this.securityCheck();
+    }        
 
     render() {
         return (
