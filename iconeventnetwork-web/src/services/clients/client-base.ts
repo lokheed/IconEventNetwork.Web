@@ -193,6 +193,10 @@ export interface CompanyInfo{
     CompanyStatus?: CompanyStatusData;
     PrimaryContact?: DataResponse<PersonInfo>;
     LogoImage?: ImageInfo;
+    Addresses?: AddressData;
+    EmailAddresses?: EmailAddressData;
+    PhoneNumbers?: PhoneNumberData;
+    SocialMediaAccounts?: SocialMediaData[];
 }
 
 export interface CompanyStatusData{
