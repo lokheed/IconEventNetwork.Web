@@ -368,9 +368,13 @@
     .action-link {
         font-size: 1.5em;
         font-weight: 600;
-        color: var(--color-blue);
+        color: var(--color-blue-main);
         text-decoration: underline;
         cursor: pointer;
+    }
+    .action-link:hover {
+        transition: 1000ms;
+        color: var(--color-blue-light);
     }
 
     .id-timestamp {
@@ -389,6 +393,10 @@
             justify-content: right;
         }
     }
+
+    .hidden {
+        display: none;
+    }
 }
 .profile-page.person-at-company,
 .profile-page.company {
@@ -401,9 +409,13 @@
         .action-link-navigation {
             font-size: 1.2em;
             font-weight: 700;
-            color: var(--color-blue);
+            color: var(--color-blue-main);
             text-decoration: none;
             cursor: pointer;    
+        }
+        .action-link-navigation:hover {
+            transition: 1000ms;
+            color: var(--color-blue-light);
         }
         .company-header {
             display: grid;
@@ -440,7 +452,7 @@
             .tab.selected,
             .tab:hover {
                 font-weight: 700;
-                border-bottom: 5px solid var(--color-green);
+                border-bottom: 5px solid var(--color-green-main);
             }
         }
         .tab-grid.company {

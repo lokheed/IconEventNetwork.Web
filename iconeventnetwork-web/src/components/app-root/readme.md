@@ -29,6 +29,7 @@
 - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
 - [page-profile-person-at-company](../pages/page-profile-person-at-company)
 - [page-profile-company](../pages/page-profile-company)
+- [page-access-denied](../pages/page-access-denied)
 - [page-not-found](../pages/page-not-found)
 - [app-footer](../app-footer)
 
@@ -55,6 +56,7 @@ graph TD;
   app-root --> page-profile-person-at-companies
   app-root --> page-profile-person-at-company
   app-root --> page-profile-company
+  app-root --> page-access-denied
   app-root --> page-not-found
   app-root --> app-footer
   app-header --> app-environment-nag
@@ -67,6 +69,7 @@ graph TD;
   page-about-us --> app-testimonial-carousel
   page-profile-person --> app-responsive-image
   page-profile-person-at-companies --> app-responsive-image
+  page-profile-person-at-company --> app-responsive-image
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

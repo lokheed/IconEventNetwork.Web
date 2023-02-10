@@ -257,6 +257,9 @@ export interface ImageFormatInfo{
     width: number;
 }
 
+export interface PersonData{
+    data: DataResponse<PersonInfo>;
+}
 export interface PersonInfo{
     FirstName?: string;
     MiddleName?: string;
@@ -274,18 +277,24 @@ export interface PersonInfo{
     Users?: UserData;
 }
 
+export interface PersonAtCompanyData{
+    data: DataResponse<PersonAtCompanyInfo>;
+}
+
 export interface PersonAtCompanyInfo{
     JobTitle?: string;
-    Tagline?: string;
-    Description?: string;
-    Website?: string;
+    Bio?: string;
     CanManageCompanyDetails?: boolean;
     CanManageCompanyStaff?: boolean;
     IsActive?: boolean;
     createdAt?: Date,
     updatedAt?: Date;
     Company?: CompanyData;
-    Person?: DataResponse<PersonInfo>;
+    Person?: PersonData;
+    Addresses?: AddressData;
+    EmailAddresses?: EmailAddressData;
+    PhoneNumbers?: PhoneNumberData;
+    SocialMediaAccounts?: SocialMediaData[];
 }
 
 export interface PhoneNumberData{
