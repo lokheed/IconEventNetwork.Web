@@ -9,7 +9,7 @@ export class PersonClient extends ClientBase {
     }
 
     public getRequestingPerson() {
-        return new Promise<SuccessResponse<GetRequestingPersonResponse>>((resolve, reject) => {
+        return new Promise<GetRequestingPersonResponse>((resolve, reject) => {
             const token = localStorage.getItem(localStorageKeyService.Jwt);
             fetch(
                 `${this.baseUrl}${this.endpoint}/me`,
@@ -20,7 +20,8 @@ export class PersonClient extends ClientBase {
                         'Authorization': `Bearer ${token}`,
                     }
                 })
-                .then(response => resolve(this.processResponse(response)))
+                .then(response => response.json())
+                .then(body => resolve(body.data))
                 .catch(error => reject(error));
         });
     }

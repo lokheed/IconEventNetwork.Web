@@ -20,6 +20,8 @@
 ### Used by
 
  - [app-event-planner-item](../app-event-planner-item)
+ - [app-nav-user-info](../app-nav-user-info)
+ - [page-profile-company](../pages/page-profile-company)
  - [page-profile-person](../pages/page-profile-person)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
  - [page-profile-person-at-company](../pages/page-profile-person-at-company)
@@ -28,6 +30,8 @@
 ```mermaid
 graph TD;
   app-event-planner-item --> app-responsive-image
+  app-nav-user-info --> app-responsive-image
+  page-profile-company --> app-responsive-image
   page-profile-person --> app-responsive-image
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-responsive-image

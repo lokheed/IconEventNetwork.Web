@@ -30,6 +30,8 @@ graph TD;
   app-header --> app-environment-nag
   app-header --> app-navigation
   app-header --> app-login-button
+  app-login-button --> app-nav-user-info
+  app-nav-user-info --> app-responsive-image
   app-root --> app-header
   style app-header fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -1,4 +1,4 @@
-# app-login-button
+# app-nav-user-info
 
 
 
@@ -9,19 +9,18 @@
 
 ### Used by
 
- - [app-header](../app-header)
+ - [app-login-button](../app-login-button)
 
 ### Depends on
 
-- [app-nav-user-info](../app-nav-user-info)
+- [app-responsive-image](../app-responsive-image)
 
 ### Graph
 ```mermaid
 graph TD;
-  app-login-button --> app-nav-user-info
   app-nav-user-info --> app-responsive-image
-  app-header --> app-login-button
-  style app-login-button fill:#f9f,stroke:#333,stroke-width:4px
+  app-login-button --> app-nav-user-info
+  style app-nav-user-info fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

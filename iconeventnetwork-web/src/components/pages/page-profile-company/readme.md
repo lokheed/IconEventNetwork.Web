@@ -18,9 +18,14 @@
 
  - [app-root](../../app-root)
 
+### Depends on
+
+- [app-responsive-image](../../app-responsive-image)
+
 ### Graph
 ```mermaid
 graph TD;
+  page-profile-company --> app-responsive-image
   app-root --> page-profile-company
   style page-profile-company fill:#f9f,stroke:#333,stroke-width:4px
 ```

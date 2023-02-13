@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  position: relative;
+}
+.nav-profile-button{
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  height: 3em;
+  width: 3em;
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+  .profile-image{
+    background-color: var(--color-purple);
+    color: white;
+    line-height: 2em;
+    text-align: center;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    margin: 0.5em auto;
+    position: relative;
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+  }
+}
+
+.popdown{
+  position: absolute;
+  display: none;
+  right: 0;
+
+  &.show{
+    display: inline-block;
+  }
+  .content{
+    min-width: 10em;
+    max-width: 15em;
+    box-shadow: 2px 2px 3px 1px rgb(0 0 0 / 25%);
+    padding: 0.5em;
+    margin-top: 0.5em;
+    color: black;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .profile-image{
+      background-color: var(--color-purple);
+      color: white;
+      line-height: 5em;
+      text-align: center;
+      height: 5em;
+      width: 5em;
+      border-radius: 50%;
+      margin: 0.5em auto;
+      position: relative;
+      img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+    }
+    .basic-info{
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
+      span{
+        font-size: 0.8em;
+      }
+    }
+    .controls{
+      border-top: 1px solid lightgray;
+      padding: 1.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      a{
+        white-space: nowrap;
+        font-size: 0.9em;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -76,6 +76,14 @@
       "attributes": []
     },
     {
+      "name": "app-nav-user-info",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
       "name": "app-navigation",
       "description": {
         "kind": "markdown",

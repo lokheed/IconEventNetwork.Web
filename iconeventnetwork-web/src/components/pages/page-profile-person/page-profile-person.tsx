@@ -20,7 +20,7 @@ export class PageProfilePerson {
     constructor(){
       this.personClient = new PersonClient();
     }  
-    @State() me: DataResponse<GetRequestingPersonResponse>; 
+    @State() me: GetRequestingPersonResponse; 
     @State() person: DataResponse<PersonInfo>;
     private getMe() {
         var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
@@ -31,7 +31,7 @@ export class PageProfilePerson {
         }
         this.personClient.getRequestingPerson()
         .then((response) => {
-          this.me = response.data;
+          this.me = response;
           sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
           this.getPerson(this.me.id);
         })

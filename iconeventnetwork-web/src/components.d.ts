@@ -46,6 +46,8 @@ export namespace Components {
     }
     interface AppLoginButton {
     }
+    interface AppNavUserInfo {
+    }
     interface AppNavigation {
     }
     interface AppResponsiveImage {
@@ -172,6 +174,12 @@ declare global {
     var HTMLAppLoginButtonElement: {
         prototype: HTMLAppLoginButtonElement;
         new (): HTMLAppLoginButtonElement;
+    };
+    interface HTMLAppNavUserInfoElement extends Components.AppNavUserInfo, HTMLStencilElement {
+    }
+    var HTMLAppNavUserInfoElement: {
+        prototype: HTMLAppNavUserInfoElement;
+        new (): HTMLAppNavUserInfoElement;
     };
     interface HTMLAppNavigationElement extends Components.AppNavigation, HTMLStencilElement {
     }
@@ -332,6 +340,7 @@ declare global {
         "app-header": HTMLAppHeaderElement;
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
+        "app-nav-user-info": HTMLAppNavUserInfoElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
@@ -395,6 +404,8 @@ declare namespace LocalJSX {
         "readMoreColor"?: string;
     }
     interface AppLoginButton {
+    }
+    interface AppNavUserInfo {
     }
     interface AppNavigation {
     }
@@ -474,6 +485,7 @@ declare namespace LocalJSX {
         "app-header": AppHeader;
         "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
+        "app-nav-user-info": AppNavUserInfo;
         "app-navigation": AppNavigation;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
@@ -513,6 +525,7 @@ declare module "@stencil/core" {
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
+            "app-nav-user-info": LocalJSX.AppNavUserInfo & JSXBase.HTMLAttributes<HTMLAppNavUserInfoElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;

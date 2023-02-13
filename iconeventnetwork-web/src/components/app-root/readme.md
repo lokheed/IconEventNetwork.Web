@@ -62,6 +62,8 @@ graph TD;
   app-header --> app-environment-nag
   app-header --> app-navigation
   app-header --> app-login-button
+  app-login-button --> app-nav-user-info
+  app-nav-user-info --> app-responsive-image
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
   app-event-planner-item --> app-responsive-image
@@ -70,6 +72,7 @@ graph TD;
   page-profile-person --> app-responsive-image
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-responsive-image
+  page-profile-company --> app-responsive-image
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```
