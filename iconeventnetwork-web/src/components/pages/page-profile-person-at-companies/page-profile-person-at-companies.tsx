@@ -85,7 +85,12 @@ export class PageProfilePersonAtCompanies {
         return (
             <div class='profile-page'>
                 <aside>
-                    PROFILE LEFT NAV GOES HERE
+                    {this.person && this.me &&
+                        <app-profile-left-nav
+                            person={this.person}
+                            me={this.me}
+                        />
+                    }
                 </aside>
                 <main>
                     <WelcomePersonName person={this.person} />

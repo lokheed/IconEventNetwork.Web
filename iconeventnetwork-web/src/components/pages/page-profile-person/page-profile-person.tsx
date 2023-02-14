@@ -82,7 +82,12 @@ export class PageProfilePerson {
         return (
             <div class='profile-page'>
                 <aside>
-                    PROFILE LEFT NAV GOES HERE
+                    {this.me && this.person &&
+                        <app-profile-left-nav
+                            me={this.me}
+                            person={this.person}
+                        />
+                    }
                 </aside>
                 <main>
                     <WelcomePersonName person={this.person} />

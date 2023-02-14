@@ -84,7 +84,6 @@ export class AppNavUserInfo {
   }
 
   render() {
-    console.log(this.me);
     return (
       <Host
         onMouseEnter={() => this.popdown.classList.add('show')}

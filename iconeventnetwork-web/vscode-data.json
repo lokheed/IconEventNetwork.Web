@@ -92,6 +92,14 @@
       "attributes": []
     },
     {
+      "name": "app-profile-left-nav",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
       "name": "app-responsive-image",
       "description": {
         "kind": "markdown",

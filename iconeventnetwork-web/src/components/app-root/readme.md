@@ -69,7 +69,9 @@ graph TD;
   app-event-planner-item --> app-responsive-image
   page-about-us --> app-leadership-team-item
   page-about-us --> app-testimonial-carousel
+  page-profile-person --> app-profile-left-nav
   page-profile-person --> app-responsive-image
+  page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-responsive-image
   page-profile-company --> app-responsive-image
