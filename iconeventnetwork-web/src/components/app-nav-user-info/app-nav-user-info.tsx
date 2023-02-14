@@ -84,8 +84,8 @@ export class AppNavUserInfo {
               <span>{this.me.Users[0].email}</span>
             </div>
             <div class="controls">
-              <a href="/profile-person">Edit my profile</a>
-              <a href="/profile-pacs">Edit my companies</a>
+              <a href="/profile-person">My Personal Profile</a>
+              <a href="/profile-pacs">My Work Profiles</a>
               <a href="/logout">Log Out</a>
             </div>
           </div>

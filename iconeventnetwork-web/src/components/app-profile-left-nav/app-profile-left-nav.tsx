@@ -68,7 +68,7 @@ export class AppProfileLeftNav {
           <div class="links">
             <a href="/profile-person">My Personal Profile</a>
             <div class={this.companyProfilesExpanded ? "expanded" : ""}>
-              <a href="/profile-pacs">My Company Profiles</a>
+              <a href="/profile-pacs">My Work Profiles</a>
               <button
                 onClick={() => {
                   this.companyProfilesExpanded = !this.companyProfilesExpanded;
