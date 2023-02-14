@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, State } from '@stencil/core';
 import { DataResponse } from '../../components';
-import { PersonAtCompanyInfo, PersonInfo } from '../../services/clients/client-base';
+import { PersonAtCompanyInfo } from '../../services/clients/client-base';
 import { PersonAtCompanyClient } from '../../services/clients/person-at-company-client';
 import { GetRequestingPersonResponse } from '../../services/clients/person-client';
 
@@ -13,7 +13,6 @@ import { GetRequestingPersonResponse } from '../../services/clients/person-clien
 export class AppProfileLeftNav {
   
   @Prop() me!: GetRequestingPersonResponse; 
-  @Prop() person!: DataResponse<PersonInfo>;
 
   @State() pacs: DataResponse<PersonAtCompanyInfo>[];
   @State() companyProfilesExpanded: boolean = false;
@@ -25,10 +24,10 @@ export class AppProfileLeftNav {
 
   componentWillLoad() {
     this.personAtCompanyClient = new PersonAtCompanyClient();
-    this.getPerson();
+    this.getPacs();
   }
 
-  private getPerson() {
+  private getPacs() {
     this.personAtCompanyClient.getPersonsAtCompanies({
       fields: ['JobTitle'],
       populate: {
@@ -39,7 +38,7 @@ export class AppProfileLeftNav {
       filters: {
         Person: {
           id: {
-            $eq: this.person.id,
+            $eq: this.me.id,
           },
           IsActive: {
             $eq: 1,
@@ -63,7 +62,7 @@ export class AppProfileLeftNav {
       <Host>
         <div class="profile-left-container">
           <div class="user-info">
-            <strong>{this.person?.attributes?.FirstName} {this.person?.attributes?.LastName}</strong>
+            <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
             <span>{this.me.Users[0].email}</span>
           </div>
           <div class="links">

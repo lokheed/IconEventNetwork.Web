@@ -5,16 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DataResponse, ImageInfo, MenuLink, PersonInfo } from "./services/clients/client-base";
+import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-import { DataResponse as DataResponse1 } from "./components";
-export { DataResponse, ImageInfo, MenuLink, PersonInfo } from "./services/clients/client-base";
+export { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { DataResponse as DataResponse1 } from "./components";
 export namespace Components {
     interface AppEnvironmentNag {
     }
@@ -56,7 +54,6 @@ export namespace Components {
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
-        "person": DataResponse1<PersonInfo>;
     }
     interface AppResponsiveImage {
         /**
@@ -426,7 +423,6 @@ declare namespace LocalJSX {
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
-        "person": DataResponse1<PersonInfo>;
     }
     interface AppResponsiveImage {
         /**

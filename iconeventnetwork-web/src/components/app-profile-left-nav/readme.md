@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property              | Attribute | Description | Type                          | Default     |
-| --------------------- | --------- | ----------- | ----------------------------- | ----------- |
-| `me` _(required)_     | --        |             | `GetRequestingPersonResponse` | `undefined` |
-| `person` _(required)_ | --        |             | `DataResponse<PersonInfo>`    | `undefined` |
+| Property          | Attribute | Description | Type                          | Default     |
+| ----------------- | --------- | ----------- | ----------------------------- | ----------- |
+| `me` _(required)_ | --        |             | `GetRequestingPersonResponse` | `undefined` |
 
 
 ## Dependencies

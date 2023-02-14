@@ -87,7 +87,6 @@ export class PageProfilePersonAtCompanies {
                 <aside>
                     {this.person && this.me &&
                         <app-profile-left-nav
-                            person={this.person}
                             me={this.me}
                         />
                     }

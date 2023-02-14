@@ -85,7 +85,6 @@ export class PageProfilePerson {
                     {this.me && this.person &&
                         <app-profile-left-nav
                             me={this.me}
-                            person={this.person}
                         />
                     }
                 </aside>
