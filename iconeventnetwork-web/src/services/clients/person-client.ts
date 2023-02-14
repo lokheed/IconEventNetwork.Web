@@ -56,6 +56,6 @@ export interface GetRequestingPersonResponse{
     Users: UserInfo[];
     ProfileImage: {
         id: number;
-        formats: ImageFormatsInfo[];
+        formats: ImageFormatsInfo;
     }
 }

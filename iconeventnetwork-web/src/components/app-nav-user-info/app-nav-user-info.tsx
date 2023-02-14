@@ -1,6 +1,4 @@
 import { Component, Host, h, State } from '@stencil/core';
-import { DataResponse } from '../../components';
-import { PersonInfo } from '../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../services/clients/person-client';
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
@@ -15,8 +13,6 @@ export class AppNavUserInfo {
   private readonly personClient: PersonClient;
   private popdown!: HTMLDivElement;
 
-  
-  @State() person: DataResponse<PersonInfo>;
   @State() me: GetRequestingPersonResponse;
 
 
@@ -35,52 +31,29 @@ export class AppNavUserInfo {
     var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
     if (storedMe) {
       this.me = JSON.parse(storedMe);
-      this.getPerson(this.me.id);
       return;
     }
     this.personClient.getRequestingPerson()
     .then((response) => {
       this.me = response;
       sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
-      this.getPerson(this.me.id);
     })
     .catch(reason => console.error(reason));
   }
 
-  private getPerson(personId) {
-    this.personClient.getPerson(personId, {
-        fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName', 'updatedAt'],
-        populate: {
-            Addresses: {
-                 populate: ['country', 'country_subdivision', 'address_type'],
-            },
-            EmailAddresses: {
-                populate: ['email_address_type'],
-            },
-            PhoneNumbers: {
-                populate: ['phone_number_type'],
-            },
-            prefix: {
-                fields: ['Name'],
-            },
-            ProfileImage: {
-                fields: ['formats'],
-            },
-            Pronoun: {
-                fields: ['Name'],
-            },
-            SocialMediaAccounts: {
-                populate: ['social_media_type'],
-            },
-            Suffix: {
-                fields: ['Name'],
-            },
-        },
-      })
-      .then((response) => {
-        this.person = response.data;
-     })
-      .catch(reason => console.error(reason));  
+  // hacky way to do this, talk to Daniel to clean up
+  // Basically, the query for Me returns a flatter structure tna the other calls, so the types don't match
+  getProfileImage() {
+    return {
+      data: {
+        id: this.me.ProfileImage.id,
+        attributes: {
+          alternativeText: '',
+          url: '',
+          formats: this.me.ProfileImage.formats
+        }
+      }
+    }
   }
 
   render() {
@@ -94,20 +67,20 @@ export class AppNavUserInfo {
           onClick={() => this.popdown.classList.toggle('show')}
         >
           <ProfileImageDisc
-            profileImage={this.person?.attributes?.ProfileImage}
-            firstName={this.person?.attributes?.FirstName}
-            lastName={this.person?.attributes?.LastName}
+            profileImage={this.getProfileImage()}
+            firstName={this.me?.FirstName}
+            lastName={this.me?.LastName}
           />
         </button>
         <div class="popdown" ref={el => this.popdown = el}>
           <div class="content">
             <div class="basic-info">
               <ProfileImageDisc
-                profileImage={this.person?.attributes?.ProfileImage}
-                firstName={this.person?.attributes?.FirstName}
-                lastName={this.person?.attributes?.LastName}
+                profileImage={this.getProfileImage()}
+                firstName={this.me?.FirstName}
+                lastName={this.me?.LastName}
               />
-              <strong>{this.person?.attributes?.FirstName} {this.person?.attributes?.LastName}</strong>
+              <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
               <span>{this.me.Users[0].email}</span>
             </div>
             <div class="controls">
