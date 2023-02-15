@@ -3,6 +3,7 @@ import { DataResponse } from '../../components';
 import { PersonAtCompanyInfo } from '../../services/clients/client-base';
 import { PersonAtCompanyClient } from '../../services/clients/person-at-company-client';
 import { GetRequestingPersonResponse } from '../../services/clients/person-client';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
   tag: 'app-profile-left-nav',
@@ -28,6 +29,11 @@ export class AppProfileLeftNav {
   }
 
   private getPacs() {
+    var storedPacs = sessionStorage.getItem(localStorageKeyService.ProfileNav);
+    if (storedPacs) {
+      this.pacs = JSON.parse(storedPacs);
+      return;
+    }
     this.personAtCompanyClient.getPersonsAtCompanies({
       fields: ['JobTitle'],
       populate: {
@@ -53,6 +59,7 @@ export class AppProfileLeftNav {
     })
     .then((response) => {
       this.pacs = response.data;
+      sessionStorage.setItem(localStorageKeyService.ProfileNav, JSON.stringify(this.pacs));
     })
     .catch(reason => console.error(reason)); 
   }
