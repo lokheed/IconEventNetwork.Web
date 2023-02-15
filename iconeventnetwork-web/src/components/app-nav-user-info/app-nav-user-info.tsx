@@ -46,11 +46,11 @@ export class AppNavUserInfo {
   getProfileImage() {
     return {
       data: {
-        id: this.me.ProfileImage.id,
+        id: this.me?.ProfileImage?.id,
         attributes: {
           alternativeText: '',
           url: '',
-          formats: this.me.ProfileImage.formats
+          formats: this.me?.ProfileImage?.formats
         }
       }
     }
@@ -84,7 +84,7 @@ export class AppNavUserInfo {
                 lastName={this.me?.LastName}
               />
               <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
-              <span>{this.me.Users[0].email}</span>
+              <span>{this.me?.Users[0]?.email}</span>
             </div>
             <div class="controls">
               <a href="/profile-person">My Personal Profile</a>

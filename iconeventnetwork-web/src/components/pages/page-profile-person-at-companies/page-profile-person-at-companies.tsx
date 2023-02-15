@@ -85,12 +85,10 @@ export class PageProfilePersonAtCompanies {
         return (
             <div class='profile-page'>
                 <aside>
-                    {this.me &&
-                        <app-profile-left-nav me={this.me} />
-                    }
+                    <app-profile-left-nav me={this.me} />
                 </aside>
                 <main>
-                    <WelcomePersonName person={this.person} />
+                    <WelcomePersonName me={this.me} />
                     <h2>My Company Profiles</h2>
                     <p>
                         Below are the companies your personal profile is currently associated with. To view your details 

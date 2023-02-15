@@ -15,6 +15,7 @@ export class PageLogout {;
     } else {
       localStorage.removeItem(localStorageKeyService.Jwt);
       localStorage.removeItem(localStorageKeyService.Username);
+      sessionStorage.removeItem(localStorageKeyService.Me);
       window.location.replace(urlService.CognitoBaseUrl + '/logout?client_id=' + urlService.CognitoClientId + '&logout_uri=' + window.location.href);
     }
   }

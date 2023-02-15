@@ -144,9 +144,7 @@ export class PageProfilePersonAtCompany {
         return (
             <div class='profile-page person-at-company'>
                 <aside>
-                    {this.me &&
-                        <app-profile-left-nav me={this.me} />
-                    }
+                    <app-profile-left-nav me={this.me} />
                 </aside>
                 <main>
                     <div>
