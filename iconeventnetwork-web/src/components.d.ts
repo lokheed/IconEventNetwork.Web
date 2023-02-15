@@ -8,9 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
+import { GetRequestingPersonResponse } from "./services/clients/person-client";
 export { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
+export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export namespace Components {
     interface AppEnvironmentNag {
     }
@@ -46,7 +48,12 @@ export namespace Components {
     }
     interface AppLoginButton {
     }
+    interface AppNavUserInfo {
+    }
     interface AppNavigation {
+    }
+    interface AppProfileLeftNav {
+        "me": GetRequestingPersonResponse;
     }
     interface AppResponsiveImage {
         /**
@@ -173,11 +180,23 @@ declare global {
         prototype: HTMLAppLoginButtonElement;
         new (): HTMLAppLoginButtonElement;
     };
+    interface HTMLAppNavUserInfoElement extends Components.AppNavUserInfo, HTMLStencilElement {
+    }
+    var HTMLAppNavUserInfoElement: {
+        prototype: HTMLAppNavUserInfoElement;
+        new (): HTMLAppNavUserInfoElement;
+    };
     interface HTMLAppNavigationElement extends Components.AppNavigation, HTMLStencilElement {
     }
     var HTMLAppNavigationElement: {
         prototype: HTMLAppNavigationElement;
         new (): HTMLAppNavigationElement;
+    };
+    interface HTMLAppProfileLeftNavElement extends Components.AppProfileLeftNav, HTMLStencilElement {
+    }
+    var HTMLAppProfileLeftNavElement: {
+        prototype: HTMLAppProfileLeftNavElement;
+        new (): HTMLAppProfileLeftNavElement;
     };
     interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
     }
@@ -332,7 +351,9 @@ declare global {
         "app-header": HTMLAppHeaderElement;
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
+        "app-nav-user-info": HTMLAppNavUserInfoElement;
         "app-navigation": HTMLAppNavigationElement;
+        "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
@@ -396,7 +417,12 @@ declare namespace LocalJSX {
     }
     interface AppLoginButton {
     }
+    interface AppNavUserInfo {
+    }
     interface AppNavigation {
+    }
+    interface AppProfileLeftNav {
+        "me": GetRequestingPersonResponse;
     }
     interface AppResponsiveImage {
         /**
@@ -474,7 +500,9 @@ declare namespace LocalJSX {
         "app-header": AppHeader;
         "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
+        "app-nav-user-info": AppNavUserInfo;
         "app-navigation": AppNavigation;
+        "app-profile-left-nav": AppProfileLeftNav;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
@@ -513,7 +541,9 @@ declare module "@stencil/core" {
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
+            "app-nav-user-info": LocalJSX.AppNavUserInfo & JSXBase.HTMLAttributes<HTMLAppNavUserInfoElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
+            "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;

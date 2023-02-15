@@ -18,7 +18,7 @@ export class PageProfilePersonAtCompanies {
       this.personClient = new PersonClient();
       this.personAtCompanyClient = new PersonAtCompanyClient();
     }  
-    @State() me: DataResponse<GetRequestingPersonResponse>; 
+    @State() me: GetRequestingPersonResponse;
     @State() person: DataResponse<PersonInfo>;
     @State() pacs: DataResponse<PersonAtCompanyInfo>[];
     @State() activePacs: DataResponse<PersonAtCompanyInfo>[];
@@ -33,7 +33,7 @@ export class PageProfilePersonAtCompanies {
         }
         this.personClient.getRequestingPerson()
         .then((response) => {
-          this.me = response.data;
+          this.me = response;
           sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
           this.getPacs(this.me.id);
         })
@@ -85,7 +85,9 @@ export class PageProfilePersonAtCompanies {
         return (
             <div class='profile-page'>
                 <aside>
-                    PROFILE LEFT NAV GOES HERE
+                    {this.me &&
+                        <app-profile-left-nav me={this.me} />
+                    }
                 </aside>
                 <main>
                     <WelcomePersonName person={this.person} />

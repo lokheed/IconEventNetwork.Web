@@ -12,11 +12,7 @@ export class AppLoginButton {
     var isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);    
     if (isAuthenticated) {
       return (
-        <div class='login-button'>
-          <a href='/logout'>
-            Log&nbsp;Out
-          </a> 
-        </div>
+        <app-nav-user-info />
       );  
     } else {
       return (

@@ -1,0 +1,77 @@
+:host {
+  display: block;
+}
+
+.profile-left-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .user-info{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+  .links{
+    display: flex;
+    flex-direction: column;
+    a {
+      padding: 1em;
+      margin: 0;
+      border: none;
+      font-size: 1em;
+      background-color: transparent;
+      display: block;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      white-space: nowrap;
+      color: black;
+      display: flex;
+      gap: 1em;
+      justify-content: space-between;
+      align-items: center;
+    }
+    div{
+      display: flex;
+      gap: 1em;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+      }
+      .company-profiles, .companies{
+        background-color: #f5fafc;
+        overflow: hidden;
+        transition: height 300ms ease-in-out;
+        height: 0;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    .company-profiles, .companies{
+      background-color: #f5fafc;
+      overflow: hidden;
+      transition: height 300ms ease-in-out;
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .expanded{
+      background-color: var(--color-blue-main);
+      a{
+        color: white;
+      }
+      button{
+        color: white;
+      }
+      color: white;
+    }
+  }
+}

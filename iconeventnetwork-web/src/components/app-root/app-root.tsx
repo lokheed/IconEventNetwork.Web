@@ -145,7 +145,7 @@ export class AppRoot {
               </Route>
             )}
             {!this.isAuthenticated && (
-              <Route path="/profile-company " to="/prelaunch" />
+              <Route path="/profile-company" to="/prelaunch" />
             )}                    
 
             <Route path={match('/access-denied/:message')} 
