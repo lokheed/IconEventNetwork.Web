@@ -189,9 +189,7 @@ export class PageProfileCompany {
         return (
             <div class='profile-page company'>
                 <aside>
-                    {this.me &&
-                        <app-profile-left-nav me={this.me} />
-                    }
+                    <app-profile-left-nav me={this.me} />
                 </aside>
                 <main>
                     <div>

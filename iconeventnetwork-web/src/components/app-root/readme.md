@@ -73,7 +73,9 @@ graph TD;
   page-profile-person --> app-responsive-image
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
+  page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-responsive-image
+  page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px

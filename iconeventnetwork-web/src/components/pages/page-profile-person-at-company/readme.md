@@ -20,11 +20,13 @@
 
 ### Depends on
 
+- [app-profile-left-nav](../../app-profile-left-nav)
 - [app-responsive-image](../../app-responsive-image)
 
 ### Graph
 ```mermaid
 graph TD;
+  page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-responsive-image
   app-root --> page-profile-person-at-company
   style page-profile-person-at-company fill:#f9f,stroke:#333,stroke-width:4px
