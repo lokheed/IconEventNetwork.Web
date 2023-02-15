@@ -2,6 +2,7 @@ class LocalStorageKeyService{
     private readonly jwt: string;
     private readonly username: string;
     private readonly me: string;
+    private readonly profileNav: string;
 
     constructor() {
         if (window.location.hostname.toLowerCase() === 'localhost')
@@ -9,6 +10,7 @@ class LocalStorageKeyService{
             this.jwt = 'dev-jwt';
             this.username = 'dev-username';
             this.me = 'dev-me';
+            this.profileNav = 'dev-profile-nav';
             return;
         }
 
@@ -17,6 +19,7 @@ class LocalStorageKeyService{
             this.jwt = 'qa-jwt';
             this.username = 'qa-username';
             this.me = 'qa-me';
+            this.profileNav = 'qa-profile-nav';
             return;
         } 
 
@@ -25,12 +28,14 @@ class LocalStorageKeyService{
             this.jwt = 'stg-jwt';
             this.username = 'stg-username';
             this.me = 'stg-me';
+            this.profileNav = 'stg-profile-nav';
             return;
         }
         
         this.jwt = 'jwt';
         this.username = 'username';
         this.me = 'me';
+        this.profileNav = 'profile-nav';
     }
 
     /** Gets the strapi URL to use depending on the environment. */
@@ -40,6 +45,8 @@ class LocalStorageKeyService{
     public get Username() { return this.username };
 
     public get Me() { return this.me };
+
+    public get ProfileNav() { return this.profileNav };
 }
 
 export const localStorageKeyService = new LocalStorageKeyService();
