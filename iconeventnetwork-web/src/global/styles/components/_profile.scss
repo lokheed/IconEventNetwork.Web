@@ -449,10 +449,12 @@
                 padding-bottom: .75em;
                 cursor: pointer;
             } 
-            .tab.selected,
-            .tab:hover {
+            .tab.selected {
                 font-weight: 700;
                 border-bottom: 5px solid var(--color-green-main);
+            }
+            .tab:hover {
+                color: var(--color-medium-gray);
             }
         }
         .tab-grid.company {
