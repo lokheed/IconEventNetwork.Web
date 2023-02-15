@@ -1,7 +1,9 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
 import { CompanyData } from '../../../services/clients/client-base';
+import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
@@ -28,14 +30,17 @@ type teamMember = {
   shadow: false,
 })
 export class PageProfileCompany {
+    private readonly personClient: PersonClient;
     private readonly companyClient: CompanyClient;
     constructor() {
         defineCustomElements();
+        this.personClient = new PersonClient();
         this.companyClient = new CompanyClient();
     }
 
     @Prop() companyId: string;
     @State() security: SecurityCheckResponse; 
+    @State() me: GetRequestingPersonResponse; 
     @State() company: CompanyData;  
     @State() basicInformationTabClass: string = 'tab selected';
     @State() basicInformationClass: string = '';
@@ -67,11 +72,26 @@ export class PageProfileCompany {
         this.companyClient.securityCheck(this.companyId)
         .then((response) => {
             this.security = response;
+            this.getMe();
             this.getCompany();
         })
         .catch((reason) => window.location.pathname = '/access-denied/' + encodeURI(reason.error.message));  
     }
  
+    private getMe() {
+        var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
+        if (storedMe) {
+          this.me = JSON.parse(storedMe);
+          return;
+        }
+        this.personClient.getRequestingPerson()
+        .then((response) => {
+          this.me = response;
+          sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
+        })
+        .catch(reason => console.error(reason));
+    } 
+
     private getCompany() {
         this.companyClient.getCompany(this.companyId, {
             fields: ['Description', 'Name', 'ParentCompanyId', 'Tagline', 'Website'],
@@ -169,7 +189,9 @@ export class PageProfileCompany {
         return (
             <div class='profile-page company'>
                 <aside>
-                    PROFILE LEFT NAV GOES HERE
+                    {this.me &&
+                        <app-profile-left-nav me={this.me} />
+                    }
                 </aside>
                 <main>
                     <div>

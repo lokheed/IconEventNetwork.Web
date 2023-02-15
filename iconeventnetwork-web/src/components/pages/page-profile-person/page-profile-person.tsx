@@ -82,10 +82,8 @@ export class PageProfilePerson {
         return (
             <div class='profile-page'>
                 <aside>
-                    {this.me && this.person &&
-                        <app-profile-left-nav
-                            me={this.me}
-                        />
+                    {this.me &&
+                        <app-profile-left-nav me={this.me} />
                     }
                 </aside>
                 <main>

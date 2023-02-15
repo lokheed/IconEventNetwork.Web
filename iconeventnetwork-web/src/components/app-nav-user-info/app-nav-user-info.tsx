@@ -66,11 +66,14 @@ export class AppNavUserInfo {
           class="nav-profile-button"
           onClick={() => this.popdown.classList.toggle('show')}
         >
-          <ProfileImageDisc
-            profileImage={this.getProfileImage()}
-            firstName={this.me?.FirstName}
-            lastName={this.me?.LastName}
-          />
+          {
+            this.me &&
+              <ProfileImageDisc
+                profileImage={this.getProfileImage()}
+                firstName={this.me?.FirstName}
+                lastName={this.me?.LastName}
+              />
+        }
         </button>
         <div class="popdown" ref={el => this.popdown = el}>
           <div class="content">

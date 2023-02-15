@@ -1,6 +1,8 @@
 import { Component, State, Prop, h } from '@stencil/core';
 import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
 import { PersonAtCompanyData } from '../../../services/clients/client-base';
+import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
+import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
 import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
@@ -12,8 +14,15 @@ import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressIte
   shadow: false,
 })
 export class PageProfilePersonAtCompany {
+    private readonly personClient: PersonClient;
+    private readonly personAtCompanyClient: PersonAtCompanyClient;
+    constructor(){
+      this.personClient = new PersonClient();
+      this.personAtCompanyClient = new PersonAtCompanyClient();
+    }  
     @Prop() personAtCompanyId: string;
     @State() security: SecurityCheckResponse;   
+    @State() me: GetRequestingPersonResponse; 
     @State() personAtCompany: PersonAtCompanyData;
     @State() bioDisplay: string = '';
     @State() bioReadMoreText: string = '';
@@ -21,19 +30,30 @@ export class PageProfilePersonAtCompany {
     @State() basicInformationTabClass: string = 'tab selected';
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
-    private readonly personAtCompanyClient: PersonAtCompanyClient;
-    constructor(){
-      this.personAtCompanyClient = new PersonAtCompanyClient();
-    }  
+ 
 
     private securityCheck() {
         this.personAtCompanyClient.securityCheck(this.personAtCompanyId)
         .then((response) => {
             this.security = response;
+            this.getMe();
             this.getPac();
         })
         .catch((reason) => window.location.pathname = '/access-denied/' + encodeURI(reason.error.message));  
     }
+    private getMe() {
+        var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
+        if (storedMe) {
+          this.me = JSON.parse(storedMe);
+          return;
+        }
+        this.personClient.getRequestingPerson()
+        .then((response) => {
+          this.me = response;
+          sessionStorage.setItem(localStorageKeyService.Me, JSON.stringify(this.me));
+        })
+        .catch(reason => console.error(reason));
+    } 
     private getPac() {
         this.personAtCompanyClient.getPersonAtCompany(this.personAtCompanyId, {
             fields: ['Bio', 'JobTitle'],
@@ -124,7 +144,9 @@ export class PageProfilePersonAtCompany {
         return (
             <div class='profile-page person-at-company'>
                 <aside>
-                    PROFILE LEFT NAV GOES HERE
+                    {this.me &&
+                        <app-profile-left-nav me={this.me} />
+                    }
                 </aside>
                 <main>
                     <div>

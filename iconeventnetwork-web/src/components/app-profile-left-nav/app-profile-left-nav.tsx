@@ -96,7 +96,7 @@ export class AppProfileLeftNav {
             </div>
 
             <div class={this.companiesExpanded ? "expanded" : ""}>
-              <a href="/profile-company">My Companies</a>
+              <a href="/profile-pacs">My Companies</a>
               <button
                 onClick={() => {
                   this.companiesExpanded = !this.companiesExpanded;
