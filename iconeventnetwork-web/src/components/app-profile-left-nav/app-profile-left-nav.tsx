@@ -17,10 +17,10 @@ export class AppProfileLeftNav {
 
   @State() pacs: DataResponse<PersonAtCompanyInfo>[];
   @State() companyProfilesExpanded: boolean = false;
+  @State() companiesExpanded: boolean = false;
 
   private personAtCompanyClient : PersonAtCompanyClient;
   private companyProfiles: HTMLDivElement;
-  private companiesExpanded: boolean = false;
   private companies: HTMLDivElement;
 
   componentWillLoad() {
@@ -70,7 +70,7 @@ export class AppProfileLeftNav {
         <div class="profile-left-container">
           <div class="user-info">
             <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
-            <span>{this.me.Users[0].email}</span>
+            <span>{this.me?.Users[0].email}</span>
           </div>
           <div class="links">
             <a href="/profile-person">My Personal Profile</a>
@@ -108,7 +108,7 @@ export class AppProfileLeftNav {
                 onClick={() => {
                   this.companiesExpanded = !this.companiesExpanded;
                   if (this.companiesExpanded) {
-                    this.companies.style.height = this.companyProfiles.scrollHeight + "px";
+                    this.companies.style.height = this.companies.scrollHeight + "px";
                     return;
                   }
                   this.companies.style.height = "0px";

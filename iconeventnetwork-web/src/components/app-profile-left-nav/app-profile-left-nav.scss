@@ -46,7 +46,7 @@
         text-align: center;
       }
       .company-profiles, .companies{
-        background-color: #f5fafc;
+        background-color: var(--color-blue-light);
         overflow: hidden;
         transition: height 300ms ease-in-out;
         height: 0;
@@ -55,7 +55,7 @@
       }
     }
     .company-profiles, .companies{
-      background-color: #f5fafc;
+      background-color: var(--color-blue-light);
       overflow: hidden;
       transition: height 300ms ease-in-out;
       height: 0;
