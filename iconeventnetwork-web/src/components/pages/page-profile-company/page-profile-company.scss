@@ -1,0 +1,44 @@
+.revo-grid[theme=material] {
+    font-family: "Montserrat", sans-serif, -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.25em;
+    .rgHeaderCell {
+        .header-content {
+            font-weight: 700;
+        }
+        i:after {
+            font-size: 1.5em;
+            font-weight: 600;  
+            font-style: normal;          
+        }
+        .rv-filter {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+        }
+    }
+    .revo-button {
+        font-size: 1em;
+    }
+    .revo-button.red {
+        border: solid var(--color-button-background-primary) 1px;
+        background-color: var(--color-button-background-primary);
+        color: var(--color-button-text-primary);
+        border-radius: 50px;
+    }
+    .revo-button.red:hover {
+        transition: 1000ms;
+        border: solid var(--color-button-hover-primary) 1px;
+        background-color: var(--color-button-hover-primary);
+    }
+    .revo-button.light {
+        border: solid var(--color-button-border-secondary) 1px;
+        background-color: var(--color-button-background-secondary);
+        color: var(--color-button-text-secondary);
+        border-radius: 50px;        
+    }
+    .revo-button.light:hover {
+        transition: 1000ms;
+        border: solid var(--color-button-hover-secondary) 1px;
+        background-color: var(--color-button-hover-secondary);
+    }
+}

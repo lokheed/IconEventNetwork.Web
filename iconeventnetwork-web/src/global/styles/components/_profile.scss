@@ -162,6 +162,9 @@
                             font-size: .8em;
                         }
                     }
+                    img.logo-image.hydrated {
+                        max-height: 150px;
+                    }
                 }
                 hr {
                     height: 2px;
@@ -365,12 +368,19 @@
         margin-bottom: 2em;
     }
 
-    .action-link {
+    .action-link  {
         font-size: 1.5em;
         font-weight: 600;
         color: var(--color-blue-main);
         text-decoration: underline;
         cursor: pointer;
+        a, a:active, a:link, a:visited {
+            color:  var(--color-blue-main);
+        }
+        a:hover {
+            transition: 1000ms;
+            color: var(--color-blue-light);    
+        }
     }
     .action-link:hover {
         transition: 1000ms;
@@ -471,6 +481,7 @@
             grid-template-columns: repeat(3, 1fr);
             grid-column-gap: 1em;
             grid-row-gap: .5em;
+            margin-bottom: 4em;
             .location-name,
             .item-id {
                 font-size: 1.5em;
@@ -478,7 +489,13 @@
             }
         }
         .company-list.child-companies {
+            margin-bottom: 0.25em;
+        }
+        .child-companies-group {
             margin-bottom: 4em;
+        }
+        .include-inactive {
+            margin-bottom: 2em;
         }
     }
 }
