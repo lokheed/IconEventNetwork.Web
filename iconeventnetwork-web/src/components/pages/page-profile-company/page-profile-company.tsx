@@ -1,12 +1,14 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
-import { CompanyData } from '../../../services/clients/client-base';
+import { CompanyData, CompanyInfo, DataResponse } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
+import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
+import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 // stubbing in some fake types for the Team Members grid, these will be replaced later
 // wither properly defined types in the data client
@@ -18,10 +20,12 @@ type revoGridColumn = {
     size: number;
 }
 type teamMember = {
-    DisplayName: string;
+    FirstName: string;
+    LastName: string;
+    PreferredName: string;
     JobTitle: string;
-    Department: string;
     id: number;
+    IsActive: boolean;
 }
 
 @Component({
@@ -32,16 +36,20 @@ type teamMember = {
 export class PageProfileCompany {
     private readonly personClient: PersonClient;
     private readonly companyClient: CompanyClient;
+    private readonly personAtCompanyClient: PersonAtCompanyClient;
     constructor() {
         defineCustomElements();
         this.personClient = new PersonClient();
         this.companyClient = new CompanyClient();
+        this.personAtCompanyClient = new PersonAtCompanyClient();
     }
 
     @Prop() companyId: string;
     @State() security: SecurityCheckResponse; 
     @State() me: GetRequestingPersonResponse; 
     @State() company: CompanyData;  
+    @State() parentCompany: CompanyData;
+    @State() siblingCompanies: DataResponse<CompanyInfo>[];
     @State() basicInformationTabClass: string = 'tab selected';
     @State() basicInformationClass: string = '';
     @State() contactInformationTabClass: string = 'tab';
@@ -56,17 +64,11 @@ export class PageProfileCompany {
     @State() companyFamilyClass: string = 'hidden';
     @State() descriptionDisplay: string = '';
     @State() descriptionReadMoreText: string = '';
+    @State() includeInactiveTeamMembers: boolean = false;
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
     // with a proper client and definted data
-    @State() teamMembers: teamMember[] =
-        [
-            { DisplayName: 'James Doe', JobTitle: 'Office Assistant', Department: 'Administration', id: 98413 },
-            { DisplayName: 'Abbey Hansen', JobTitle: 'Senior Designer', Department: 'Marketing', id: 12345 },
-            { DisplayName: 'David Hansen', JobTitle: 'Co-Founder', Department: 'Operations', id: 43456 },
-            { DisplayName: 'Ron Miles', JobTitle: 'Head of Technology', Department: 'Technology', id: 96587 },
-            { DisplayName: 'Amelia Ross', JobTitle: 'Head of Digital Product', Department: 'Technology', id: 23477 },
-        ];
+    @State() teamMembers: teamMember[];
 
     private securityCheck() {
         this.companyClient.securityCheck(this.companyId)
@@ -94,7 +96,7 @@ export class PageProfileCompany {
 
     private getCompany() {
         this.companyClient.getCompany(this.companyId, {
-            fields: ['Description', 'Name', 'ParentCompanyId', 'Tagline', 'Website'],
+            fields: ['Description', 'Name', 'ParentCompanyId', 'Tagline', 'Website', 'updatedAt'],
             populate: {
                 AccountManager: {
                     fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],                 
@@ -144,6 +146,114 @@ export class PageProfileCompany {
         .catch(reason => console.error(reason));  
     }
 
+    private getParentCompanyAndSiblings() {
+        if (this.company?.data?.attributes?.ParentCompanyId == 0) {
+            this.parentCompany = this.company;
+            this.getSiblingCompanies();
+        } else {
+            this.companyClient.getCompany(this.company.data.attributes.ParentCompanyId.toString(), {
+                fields: ['Name'],
+                populate: {
+                   Addresses: {
+                        populate: ['country', 'country_subdivision', 'address_type'],
+                    },
+               },
+            })
+            .then((response) => {
+                this.parentCompany = response;
+                this.getSiblingCompanies();
+            })
+            .catch(reason => console.error(reason));      
+        }
+    }
+
+    private getSiblingCompanies() {
+        this.companyClient.getCompanies({
+            fields: ['Name'],
+            populate: {
+               Addresses: {
+                    populate: ['country', 'country_subdivision', 'address_type'],
+                },
+           },
+           filters: {
+                ParentCompanyId: {
+                    $eq: this.parentCompany.data.id,
+                },
+                IsActive: true,
+            },
+        })
+        .then((response) => {
+            this.siblingCompanies = response.data
+        })
+        .catch(reason => console.error(reason));      
+
+    }
+
+    private getActiveTeamMembers() {
+        this.personAtCompanyClient.getPersonsAtCompanies({
+          fields: ['JobTitle'],
+          populate: {
+            Person: {
+              fields: ['LastName','FirstName','PreferredName'],
+            },
+          },
+          filters: {
+            IsActive: {
+              $eq: 1,
+            },
+            Company: {
+              id: {
+                $eq: this.companyId,
+              },
+            }
+          }
+        })
+        .then((response) => {
+            this.teamMembers = response.data.map((pac) => {
+                return {
+                    FirstName: pac.attributes?.Person?.data?.attributes?.FirstName??'',
+                    LastName: pac.attributes?.Person?.data?.attributes?.LastName??'',
+                    PreferredName: pac.attributes?.Person?.data?.attributes?.PreferredName??'',
+                    JobTitle: pac.attributes?.JobTitle??'',
+                    id: pac.id,
+                    IsActive: pac.attributes?.IsActive??false,
+                }
+            });
+        })
+        .catch(reason => console.error(reason)); 
+    }
+
+    private getAllTeamMembers() {
+        this.personAtCompanyClient.getPersonsAtCompanies({
+          fields: ['JobTitle'],
+          populate: {
+            Person: {
+              fields: ['LastName','FirstName','PreferredName'],
+            },
+          },
+          filters: {
+            Company: {
+              id: {
+                $eq: this.companyId,
+              },
+            }
+          }
+        })
+        .then((response) => {
+            this.teamMembers = response.data.map((pac) => {
+                return {
+                    FirstName: pac.attributes?.Person?.data?.attributes?.FirstName??'',
+                    LastName: pac.attributes?.Person?.data?.attributes?.LastName??'',
+                    PreferredName: pac.attributes?.Person?.data?.attributes?.PreferredName??'',
+                    JobTitle: pac.attributes?.JobTitle??'',
+                    id: pac.id,
+                    IsActive: pac.attributes?.IsActive??false,
+                }
+            });
+        })
+        .catch(reason => console.error(reason)); 
+    }
+    
     componentWillLoad() {
         this.securityCheck();
     }        
@@ -162,9 +272,16 @@ export class PageProfileCompany {
         this.teamMembersClass = tab == 'team-members' ? '' : 'hidden';
         this.companyFamilyTabClass = tab == 'company-family' ? 'tab selected' : 'tab';
         this.companyFamilyClass = tab == 'company-family' ? '' : 'hidden';
-     }
 
-     readMoreClick(e: MouseEvent) {
+        if (tab == 'team-members') {
+            this.includeInactiveTeamMembers ? this.getAllTeamMembers() : this.getActiveTeamMembers();
+        }
+        if (tab == 'company-family') {
+            this.getParentCompanyAndSiblings();
+        }
+    }
+
+    readMoreClick(e: MouseEvent) {
         e.preventDefault();
         switch (this.descriptionReadMoreText) {
             case 'Read more':
@@ -181,10 +298,12 @@ export class PageProfileCompany {
     render() {
         const columns: revoGridColumn[] = 
         [
-            { prop: 'DisplayName', name: 'Name', sortable: true, autoSize: true, size: 500 },
+            { prop: 'LastName', name: 'Last Name', sortable: true, autoSize: true, size: 200 },
+            { prop: 'FirstName', name: 'First Name', sortable: true, autoSize: false, size: 200 },
+            { prop: 'PreferredName', name: 'Preferred Name', sortable: true, autoSize: true, size: 300 },
             { prop: 'JobTitle', name: 'Title', sortable: true, autoSize: true, size: 300 },
-            { prop: 'Department', name: 'Department', sortable: true, autoSize: true, size: 200 },
-            { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 }
+            { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 },
+            { prop: 'id', name: '', sortable: false, autoSize: true, size: 50 }
         ];
         return (
             <div class='profile-page company'>
@@ -301,6 +420,10 @@ export class PageProfileCompany {
                                 </div>
                             </div>
                         </div>
+                        <div class='id-timestamp'>
+                            <div class='item-id'>ID: {this.company?.data?.id}</div>
+                            <LastUpdated updatedAt={new Date(this.company?.data?.attributes.updatedAt)} />
+                        </div>                    
                     </div>
 
                     <div class={this.contactInformationClass}>
@@ -622,9 +745,18 @@ export class PageProfileCompany {
                             columns={columns}
                             source={this.teamMembers}
                         />
-                        <div>
-                            <input type='checkbox' id='include-inactive-team-members' />
-                            <label>Include inactive team members</label>
+                        <div class='include-inactive'>
+                            <label class="checkbox-container">
+                                Include inactive team members
+                                <input 
+                                    type='checkbox' 
+                                    onChange={() => {
+                                        this.includeInactiveTeamMembers = !this.includeInactiveTeamMembers;
+                                        this.includeInactiveTeamMembers ? this.getAllTeamMembers() : this.getActiveTeamMembers();
+                                    }} 
+                                />
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
                     </div>
 
@@ -636,31 +768,66 @@ export class PageProfileCompany {
                         </p>
                         <h3>Parent Company</h3>
                         <div class='company-list'>
-                            <div class='action-link'>The Ritz-Carlton Hotel Company</div>
-                            <div class='location-name'>New York, New York</div>
-                            <div class='item-id'>ID: 1234</div>
+                            <div class='action-link'>
+                                <a
+                                    href={`/profile-company/${this.parentCompany?.data?.id??0}`}>
+                                    {this.parentCompany?.data?.attributes?.Name??''}
+                                </a>                               
+                            </div>
+                            <div class='location-name'>
+                                {(this.parentCompany?.data?.attributes?.Addresses?.data?.length??0) > 0 &&
+                                    <div>
+                                        {this.parentCompany.data.attributes.Addresses.data[0].attributes.City??''}
+                                        ,&nbsp;
+                                        {(this.parentCompany.data.attributes.Addresses.data[0].attributes.country?.data?.attributes?.A2??'') == 'US' &&
+                                            <span>
+                                                {this.parentCompany.data.attributes.Addresses.data[0].attributes.country_subdivision?.data?.attributes?.Name??''}
+                                            </span>
+                                        }
+                                        {(this.parentCompany.data.attributes.Addresses.data[0].attributes.country?.data?.attributes?.A2??'') != 'US' &&
+                                            <span>
+                                                {this.parentCompany.data.attributes.Addresses.data[0].attributes.country?.data?.attributes?.Name??''}
+                                            </span>
+                                        }                                    
+                                    </div>
+                                }
+                            </div>
+                            <div class='item-id'>ID: {this.parentCompany?.data?.id??0}</div>
                         </div>
-                        <h3>Children Companies</h3>
-                        <div class='company-list child-companies'>
-                            <div class='action-link'>The Ritz-Carlton Amelia Island</div>
-                            <div class='location-name'>Amelia Island, Florida</div>
-                            <div class='item-id'>ID: 1235</div>
-                            <div class='action-link'>The Ritz-Carlton Downtown</div>
-                            <div class='location-name'>New York, New York</div>
-                            <div class='item-id'>ID: 1236</div>
-                            <div class='action-link'>The Ritz-Carlton Grand Lakes</div>
-                            <div class='location-name'>Orlando, Florida</div>
-                            <div class='item-id'>ID: 1237</div>
-                            <div class='action-link'>The Ritz-Carlton Phuket</div>
-                            <div class='location-name'>Phuket, Thailand</div>
-                            <div class='item-id'>ID: 1238</div>
-                            <div class='action-link'>The Ritz-Carlton Riviera</div>
-                            <div class='location-name'>Monaco City, Monaco</div>
-                            <div class='item-id'>ID: 1239</div>
-                            <div class='action-link'>The Ritz-Carlton Sarasota</div>
-                            <div class='location-name'>Sarasota, Florida</div>
-                            <div class='item-id'>ID: 1240</div>
-                        </div>
+                        {(this.siblingCompanies?.length??0) > 0 &&  
+                            <div class='child-companies-group'>
+                                <h3>Children Companies</h3>                             
+                                {this.siblingCompanies.map(company => 
+                                    <div class='company-list child-companies'>
+                                        <div class='action-link'>
+                                            <a
+                                                href={`/profile-company/${company?.id??0}`}>
+                                                {company?.attributes?.Name??''}
+                                            </a>                               
+                                        </div>
+                                        <div class='location-name'>
+                                            {(company?.attributes?.Addresses?.data?.length??0) > 0 &&
+                                                <div>
+                                                    {company.attributes.Addresses.data[0].attributes.City??''}
+                                                    ,&nbsp;
+                                                    {(company.attributes.Addresses.data[0].attributes.country?.data?.attributes?.A2??'') == 'US' &&
+                                                        <span>
+                                                            {company.attributes.Addresses.data[0].attributes.country_subdivision?.data?.attributes?.Name??''}
+                                                        </span>
+                                                    }
+                                                    {(company.attributes.Addresses.data[0].attributes.country?.data?.attributes?.A2??'') != 'US' &&
+                                                        <span>
+                                                            {company.attributes.Addresses.data[0].attributes.country?.data?.attributes?.Name??''}
+                                                        </span>
+                                                    }                                    
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class='item-id'>ID: {company?.id??0}</div>
+                                    </div>
+                                )} 
+                            </div>
+                        }                        
                     </div>
                 </main>
             </div>

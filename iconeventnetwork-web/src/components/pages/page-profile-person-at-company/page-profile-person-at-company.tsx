@@ -8,6 +8,7 @@ import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndP
 import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
+import { LastUpdated } from '../../functionalComponents/LastUpdated';
 @Component({
   tag: 'page-profile-person-at-company',
   styleUrl: 'page-profile-person-at-company.scss',
@@ -56,7 +57,7 @@ export class PageProfilePersonAtCompany {
     } 
     private getPac() {
         this.personAtCompanyClient.getPersonAtCompany(this.personAtCompanyId, {
-            fields: ['Bio', 'JobTitle'],
+            fields: ['Bio', 'JobTitle', 'updatedAt'],
             populate: {
                 Addresses: {
                     populate: ['country', 'country_subdivision', 'address_type'],
@@ -253,8 +254,11 @@ export class PageProfilePersonAtCompany {
                                 </div>
                             </div>
                         </div>
+                        <div class='id-timestamp'>
+                            <div class='item-id'>ID: {this.personAtCompany?.data?.id}</div>
+                            <LastUpdated updatedAt={new Date(this.personAtCompany?.data?.attributes.updatedAt)} />
+                        </div>                     
                     </div>
-
                     <div class={this.contactInformationClass}>
                         <h2>My Contact Information</h2>
                         <p>
