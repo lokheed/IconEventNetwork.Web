@@ -16,6 +16,21 @@
             padding: 0;
         }
     }
+    .rgRow {
+        .rgCell {
+            .first-name, .last-name {
+                font-weight: 600;
+            }
+            a.edit-person,
+            a.edit-person:visited {
+                color: var(--color-black);
+            }
+            a.edit-person:hover {
+                transition: 1000ms;
+                color: var(--color-blue-light);  
+            }
+        }
+    }
     .revo-button {
         font-size: 1em;
     }
