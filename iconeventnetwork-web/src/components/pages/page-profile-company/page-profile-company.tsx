@@ -10,15 +10,7 @@ import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneN
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
-// stubbing in some fake types for the Team Members grid, these will be replaced later
-// wither properly defined types in the data client
-type revoGridColumn = {
-    prop: string;
-    name: string;
-    sortable: boolean;
-    autoSize: boolean;
-    size: number;
-}
+
 type teamMember = {
     FirstName: string;
     LastName: string;
@@ -296,14 +288,52 @@ export class PageProfileCompany {
     }
   
     render() {
-        const columns: revoGridColumn[] = 
+        const columns: any[] = 
         [
-            { prop: 'LastName', name: 'Last Name', sortable: true, autoSize: true, size: 200 },
-            { prop: 'FirstName', name: 'First Name', sortable: true, autoSize: false, size: 200 },
+            { 
+                prop: 'LastName', 
+                name: 'Last Name', 
+                sortable: true, 
+                autoSize: true, 
+                size: 200,
+                cellTemplate: (createElement, props) => {
+                  return createElement('span', {
+                    class: 'last-name',
+                  }, props.model[props.prop]);
+                },
+            },
+            { 
+                prop: 'FirstName', 
+                name: 'First Name', 
+                sortable: true, 
+                autoSize: false, 
+                size: 200,
+                cellTemplate: (createElement, props) => {
+                  return createElement('span', {
+                    class: 'first-name',
+                  }, props.model[props.prop]);
+                },
+             },
             { prop: 'PreferredName', name: 'Preferred Name', sortable: true, autoSize: true, size: 300 },
             { prop: 'JobTitle', name: 'Title', sortable: true, autoSize: true, size: 300 },
             { prop: 'id', name: 'ID', sortable: true, autoSize: true, size: 200 },
-            { prop: 'id', name: '', sortable: false, autoSize: true, size: 50 }
+            { 
+                prop: 'id', 
+                name: '', 
+                sortable: false, 
+                autoSize: true, 
+                size: 50, 
+                filter: false, 
+                pin: 'colPinEnd',
+                cellTemplate: (createElement, props) => {
+                    return createElement('a', {
+                        href: '/profile-pac/' + props.model[props.prop], 
+                        class: 'edit-person',                      
+                    }, createElement('i', {
+                        class: 'fa-solid fa-pencil',
+                    }), '');
+                }, 
+            }
         ];
         return (
             <div class='profile-page company'>
