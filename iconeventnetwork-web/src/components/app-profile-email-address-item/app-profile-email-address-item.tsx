@@ -1,5 +1,8 @@
-import { Component, Listen, Prop, h } from "@stencil/core";
-import { DataResponse, EmailAddressAttributes } from '../../services/clients/client-base';
+import { Component, Listen, Prop, State, h } from "@stencil/core";
+import { DataResponse, EmailAddressAttributes, EmailAddressTypeAttributes } from '../../services/clients/client-base';
+import { EmailAddressTypeClient } from "../../services/clients/email-address-type-client";
+import { AppliesTo } from "./applies-to";
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
   tag: "app-profile-email-address-item",
@@ -8,7 +11,13 @@ import { DataResponse, EmailAddressAttributes } from '../../services/clients/cli
 })
 export class AppProfileEmailAddressItem {
     private editDialog: HTMLAppModalElement;
+    private emailAddressTypeClient: EmailAddressTypeClient;
+    constructor(){
+        this.emailAddressTypeClient = new EmailAddressTypeClient();
+      }  
     @Prop() emailAddressItem: DataResponse<EmailAddressAttributes>;
+    @Prop() appliesTo!: AppliesTo;
+    @State() emailAddressTypes: DataResponse<EmailAddressTypeAttributes>[];
     @Listen('primaryModalClick') primaryModalClickHandler() {
         alert('Primary Modal Button Clicked');
         this.editDialog.visible = false;
@@ -22,6 +31,92 @@ export class AppProfileEmailAddressItem {
         e.preventDefault();
         this.editDialog.visible = true;
     }
+
+    private getPersonEmailAddressTypes() {
+        var storedPersonEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesPerson);
+        if (storedPersonEmailAddressTypes) {
+          this.emailAddressTypes = JSON.parse(storedPersonEmailAddressTypes);
+          return;
+        }
+        this.emailAddressTypeClient.getEmailAddressTypes({
+            fields: ['Name', 'Rank'],
+            filters: {
+                IsActive: {
+                    $eq: true,
+                },
+                AppliesToPerson: {
+                    $eq: true,
+                },
+            }
+        })
+        .then((response) => {
+            this.emailAddressTypes = response.data;
+            sessionStorage.setItem(localStorageKeyService.EmailTypesPerson, JSON.stringify(this.emailAddressTypes));
+        })
+        .catch(reason => console.error(reason));  
+    }
+
+    private getPersonAtCompanyEmailAddressTypes() {
+        var storedPersonAtCompanyEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesPersonAtCompany);
+        if (storedPersonAtCompanyEmailAddressTypes) {
+          this.emailAddressTypes = JSON.parse(storedPersonAtCompanyEmailAddressTypes);
+          return;
+        }
+        this.emailAddressTypeClient.getEmailAddressTypes({
+            fields: ['Name', 'Rank'],
+            filters: {
+                IsActive: {
+                    $eq: true,
+                },
+                AppliesToPersonCompany: {
+                    $eq: true,
+                },
+            }
+        })
+        .then((response) => {
+            this.emailAddressTypes = response.data;
+            sessionStorage.setItem(localStorageKeyService.EmailTypesPersonAtCompany, JSON.stringify(this.emailAddressTypes));
+        })
+        .catch(reason => console.error(reason));  
+    }
+
+    private getCompanyEmailAddressTypes() {
+        var storedCompanyEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesCompany);
+        if (storedCompanyEmailAddressTypes) {
+          this.emailAddressTypes = JSON.parse(storedCompanyEmailAddressTypes);
+          return;
+        }
+        this.emailAddressTypeClient.getEmailAddressTypes({
+            fields: ['Name', 'Rank'],
+            filters: {
+                IsActive: {
+                    $eq: true,
+                },
+                AppliesToCompany: {
+                    $eq: true,
+                },
+            }
+        })
+        .then((response) => {
+            this.emailAddressTypes = response.data;
+            sessionStorage.setItem(localStorageKeyService.EmailTypesPersonAtCompany, JSON.stringify(this.emailAddressTypes));
+        })
+        .catch(reason => console.error(reason));  
+    }
+        
+    componentWillLoad() {
+        switch (this.appliesTo) {
+            case AppliesTo.Person:
+                this.getPersonEmailAddressTypes();
+                break;
+            case AppliesTo.PersonAtCompany:
+                this.getPersonAtCompanyEmailAddressTypes();
+                break;
+            case AppliesTo.Company:
+                this.getCompanyEmailAddressTypes();
+                break;
+        }
+    }        
 
     render() {
         return (
@@ -52,3 +147,4 @@ export class AppProfileEmailAddressItem {
         );
     }
 }
+

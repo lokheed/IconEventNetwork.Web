@@ -8,6 +8,7 @@ import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndP
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
+import { AppliesTo } from '../../app-profile-email-address-item/applies-to';
 @Component({
   tag: 'page-profile-person-at-company',
   styleUrl: 'page-profile-person-at-company.scss',
@@ -270,7 +271,7 @@ export class PageProfilePersonAtCompany {
                                 </div>
                                 <div class='content'>
                                     {this.personAtCompany?.data?.attributes?.EmailAddresses?.data && this.personAtCompany?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.PersonAtCompany} />
                                     )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>

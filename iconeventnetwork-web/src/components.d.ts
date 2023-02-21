@@ -8,10 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
+import { AppliesTo } from "./components/app-profile-email-address-item/applies-to";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
 export { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
+export { AppliesTo } from "./components/app-profile-email-address-item/applies-to";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export namespace Components {
     interface AppEnvironmentNag {
@@ -59,6 +61,7 @@ export namespace Components {
     interface AppNavigation {
     }
     interface AppProfileEmailAddressItem {
+        "appliesTo": AppliesTo;
         "emailAddressItem": DataResponse<EmailAddressAttributes>;
     }
     interface AppProfileLeftNav {
@@ -457,6 +460,7 @@ declare namespace LocalJSX {
     interface AppNavigation {
     }
     interface AppProfileEmailAddressItem {
+        "appliesTo": AppliesTo;
         "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
     }
     interface AppProfileLeftNav {

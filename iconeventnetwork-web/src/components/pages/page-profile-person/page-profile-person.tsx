@@ -8,6 +8,7 @@ import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneN
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
+import { AppliesTo } from '../../app-profile-email-address-item/applies-to';
 
 @Component({
   tag: 'page-profile-person',
@@ -154,7 +155,7 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 {this.person?.attributes?.EmailAddresses?.data && this.person?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} />
+                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Person} />
                                 )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>

@@ -8,6 +8,7 @@ import { localStorageKeyService } from '../../../services/local-storage-key-serv
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
+import { AppliesTo } from '../../app-profile-email-address-item/applies-to';
 
 
 type teamMember = {
@@ -329,7 +330,7 @@ export class PageProfileCompany {
                         href: '/profile-pac/' + props.model[props.prop], 
                         class: 'edit-person',                      
                     }, createElement('i', {
-                        class: 'fa-solid fa-pencil',
+                        class: 'fa-solid fa-user',
                     }), '');
                 }, 
             }
@@ -468,7 +469,7 @@ export class PageProfileCompany {
                                 </div>
                                 <div class='content'>
                                     {this.company?.data?.attributes?.EmailAddresses?.data && this.company?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Company} />
                                     )}    
                                     <div class='profile-item-row'>
                                         <div class='value'>
