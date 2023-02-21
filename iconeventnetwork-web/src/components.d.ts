@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
+import { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { DataResponse, ImageInfo, MenuLink } from "./services/clients/client-base";
+export { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -48,9 +48,18 @@ export namespace Components {
     }
     interface AppLoginButton {
     }
+    interface AppModal {
+        "dialogTitle": string;
+        "primaryActionText": string;
+        "secondaryActionText": string;
+        "visible": boolean;
+    }
     interface AppNavUserInfo {
     }
     interface AppNavigation {
+    }
+    interface AppProfileEmailAddressItem {
+        "emailAddressItem": DataResponse<EmailAddressAttributes>;
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
@@ -131,6 +140,10 @@ export interface AppEventPlannerItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppEventPlannerItemElement;
 }
+export interface AppModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppModalElement;
+}
 declare global {
     interface HTMLAppEnvironmentNagElement extends Components.AppEnvironmentNag, HTMLStencilElement {
     }
@@ -180,6 +193,12 @@ declare global {
         prototype: HTMLAppLoginButtonElement;
         new (): HTMLAppLoginButtonElement;
     };
+    interface HTMLAppModalElement extends Components.AppModal, HTMLStencilElement {
+    }
+    var HTMLAppModalElement: {
+        prototype: HTMLAppModalElement;
+        new (): HTMLAppModalElement;
+    };
     interface HTMLAppNavUserInfoElement extends Components.AppNavUserInfo, HTMLStencilElement {
     }
     var HTMLAppNavUserInfoElement: {
@@ -191,6 +210,12 @@ declare global {
     var HTMLAppNavigationElement: {
         prototype: HTMLAppNavigationElement;
         new (): HTMLAppNavigationElement;
+    };
+    interface HTMLAppProfileEmailAddressItemElement extends Components.AppProfileEmailAddressItem, HTMLStencilElement {
+    }
+    var HTMLAppProfileEmailAddressItemElement: {
+        prototype: HTMLAppProfileEmailAddressItemElement;
+        new (): HTMLAppProfileEmailAddressItemElement;
     };
     interface HTMLAppProfileLeftNavElement extends Components.AppProfileLeftNav, HTMLStencilElement {
     }
@@ -351,8 +376,10 @@ declare global {
         "app-header": HTMLAppHeaderElement;
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
+        "app-modal": HTMLAppModalElement;
         "app-nav-user-info": HTMLAppNavUserInfoElement;
         "app-navigation": HTMLAppNavigationElement;
+        "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
@@ -417,9 +444,20 @@ declare namespace LocalJSX {
     }
     interface AppLoginButton {
     }
+    interface AppModal {
+        "dialogTitle"?: string;
+        "onPrimaryModalClick"?: (event: AppModalCustomEvent<any>) => void;
+        "onSecondaryModalClick"?: (event: AppModalCustomEvent<any>) => void;
+        "primaryActionText"?: string;
+        "secondaryActionText"?: string;
+        "visible"?: boolean;
+    }
     interface AppNavUserInfo {
     }
     interface AppNavigation {
+    }
+    interface AppProfileEmailAddressItem {
+        "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
@@ -500,8 +538,10 @@ declare namespace LocalJSX {
         "app-header": AppHeader;
         "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
+        "app-modal": AppModal;
         "app-nav-user-info": AppNavUserInfo;
         "app-navigation": AppNavigation;
+        "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-left-nav": AppProfileLeftNav;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
@@ -541,8 +581,10 @@ declare module "@stencil/core" {
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
+            "app-modal": LocalJSX.AppModal & JSXBase.HTMLAttributes<HTMLAppModalElement>;
             "app-nav-user-info": LocalJSX.AppNavUserInfo & JSXBase.HTMLAttributes<HTMLAppNavUserInfoElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
+            "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;

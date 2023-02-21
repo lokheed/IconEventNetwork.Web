@@ -70,13 +70,17 @@ graph TD;
   page-about-us --> app-leadership-team-item
   page-about-us --> app-testimonial-carousel
   page-profile-person --> app-profile-left-nav
+  page-profile-person --> app-profile-email-address-item
   page-profile-person --> app-responsive-image
+  app-profile-email-address-item --> app-modal
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-profile-left-nav
+  page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-responsive-image
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
+  page-profile-company --> app-profile-email-address-item
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

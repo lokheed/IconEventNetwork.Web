@@ -5,7 +5,6 @@ import { GetRequestingPersonResponse, PersonClient } from '../../../services/cli
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
 import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
-import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
@@ -469,7 +468,7 @@ export class PageProfileCompany {
                                 </div>
                                 <div class='content'>
                                     {this.company?.data?.attributes?.EmailAddresses?.data && this.company?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <ProfileEmailAddressItem emailAddressItem={emailAddressItem} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} />
                                     )}    
                                     <div class='profile-item-row'>
                                         <div class='value'>
@@ -510,7 +509,7 @@ export class PageProfileCompany {
                                     <div class='profile-item-row'>
                                         <div class='value'>
                                             <div class='add-another'>
-                                                + <span class='action-link'>Add another email address</span>
+                                                + <span class='action-link'>Add another address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
