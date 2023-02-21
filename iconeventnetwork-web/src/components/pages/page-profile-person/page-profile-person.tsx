@@ -4,7 +4,6 @@ import { GetRequestingPersonResponse, PersonClient } from '../../../services/cli
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
-import { ProfileEmailAddressItem } from '../../functionalComponents/ProfileEmailAddressItem';
 import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
@@ -155,7 +154,7 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 {this.person?.attributes?.EmailAddresses?.data && this.person?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                    <ProfileEmailAddressItem emailAddressItem={emailAddressItem} />
+                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} />
                                 )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>

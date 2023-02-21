@@ -76,6 +76,31 @@
       "attributes": []
     },
     {
+      "name": "app-modal",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "dialog-title",
+          "description": ""
+        },
+        {
+          "name": "primary-action-text",
+          "description": ""
+        },
+        {
+          "name": "secondary-action-text",
+          "description": ""
+        },
+        {
+          "name": "visible",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-nav-user-info",
       "description": {
         "kind": "markdown",
@@ -85,6 +110,14 @@
     },
     {
       "name": "app-navigation",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
+      "name": "app-profile-email-address-item",
       "description": {
         "kind": "markdown",
         "value": ""
