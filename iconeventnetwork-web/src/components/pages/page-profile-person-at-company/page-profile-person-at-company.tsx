@@ -1,4 +1,4 @@
-import { Component, State, Prop, h } from '@stencil/core';
+import { Component, Listen, State, Prop, h } from '@stencil/core';
 import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
 import { PersonAtCompanyData } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
@@ -31,7 +31,13 @@ export class PageProfilePersonAtCompany {
     @State() basicInformationTabClass: string = 'tab selected';
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
- 
+    @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
+        const updatedPersonAtCompany = Object.assign({}, this.personAtCompany);
+        updatedPersonAtCompany.data.attributes.EmailAddresses.data = updatedPersonAtCompany.data.attributes.EmailAddresses.data.filter(function(emailAddress) {
+            return emailAddress.id != event.detail;
+        });
+        this.personAtCompany = updatedPersonAtCompany;
+    }
 
     private securityCheck() {
         this.personAtCompanyClient.securityCheck(this.personAtCompanyId)
@@ -139,7 +145,6 @@ export class PageProfilePersonAtCompany {
         this.contactInformationClass = '';
         this.contactInformationTabClass = 'tab selected';
     }
-
 
     render() {
         return (
@@ -271,7 +276,7 @@ export class PageProfilePersonAtCompany {
                                 </div>
                                 <div class='content'>
                                     {this.personAtCompany?.data?.attributes?.EmailAddresses?.data && this.personAtCompany?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.PersonAtCompany} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.PersonAtCompany} personAtCompanyId={this.personAtCompany?.data?.id??0} />
                                     )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>

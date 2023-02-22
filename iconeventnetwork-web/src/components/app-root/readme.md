@@ -73,6 +73,7 @@ graph TD;
   page-profile-person --> app-profile-email-address-item
   page-profile-person --> app-responsive-image
   app-profile-email-address-item --> app-modal
+  app-profile-email-address-item --> app-confirmation
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-profile-left-nav
