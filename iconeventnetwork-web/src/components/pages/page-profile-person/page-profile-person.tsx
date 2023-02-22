@@ -1,4 +1,4 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, Listen, State, h } from '@stencil/core';
 import { DataResponse, PersonInfo } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
@@ -21,7 +21,15 @@ export class PageProfilePerson {
       this.personClient = new PersonClient();
     }  
     @State() me: GetRequestingPersonResponse; 
-    @State() person: DataResponse<PersonInfo>;
+    @State() person: DataResponse<PersonInfo>;   
+    @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
+        const updatedPerson = Object.assign({}, this.person);
+        updatedPerson.attributes.EmailAddresses.data = updatedPerson.attributes.EmailAddresses.data.filter(function(emailAddress) {
+            return emailAddress.id != event.detail;
+        });
+        this.person = updatedPerson;
+    }
+
     private getMe() {
         var storedMe = sessionStorage.getItem(localStorageKeyService.Me);
         if (storedMe) {
@@ -155,7 +163,7 @@ export class PageProfilePerson {
                             </div>
                             <div class='content'>
                                 {this.person?.attributes?.EmailAddresses?.data && this.person?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Person} />
+                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Person} personId={this.person?.id??0} />
                                 )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>

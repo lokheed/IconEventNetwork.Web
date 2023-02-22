@@ -2,6 +2,31 @@
   "version": 1.1,
   "tags": [
     {
+      "name": "app-confirmation",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "message",
+          "description": ""
+        },
+        {
+          "name": "primary-action-text",
+          "description": ""
+        },
+        {
+          "name": "secondary-action-text",
+          "description": ""
+        },
+        {
+          "name": "visible",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-environment-nag",
       "description": {
         "kind": "markdown",

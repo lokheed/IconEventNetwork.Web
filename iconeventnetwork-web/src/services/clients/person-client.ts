@@ -1,4 +1,4 @@
-import { ApiParameters, ClientBase, ImageFormatsInfo, PersonInfo, SuccessResponse, UserInfo } from "./client-base";
+import { ApiParameters, ClientBase, ImageFormatsInfo, PersonInfo, PersonSaveData, SuccessResponse, UserInfo } from "./client-base";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 export class PersonClient extends ClientBase {
@@ -38,6 +38,24 @@ export class PersonClient extends ClientBase {
                         'Content-type': 'application/json',
                         'Authorization': `Bearer ${token}`,
                     }
+                })
+                .then(response => resolve(this.processResponse(response)))
+                .catch(error => reject(error));
+        });
+    }
+
+    public updatePerson(personId: number, data: PersonSaveData) {
+        return new Promise<SuccessResponse<PersonSaveData>>((resolve, reject) => {
+            const token = localStorage.getItem(localStorageKeyService.Jwt);
+            fetch(
+                `${this.baseUrl}${this.endpoint}/${personId}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(data)
                 })
                 .then(response => resolve(this.processResponse(response)))
                 .catch(error => reject(error));

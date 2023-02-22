@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
 import { CompanyData, CompanyInfo, DataResponse } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
@@ -57,6 +57,13 @@ export class PageProfileCompany {
     @State() descriptionDisplay: string = '';
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
+    @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
+        const updatedCompany = Object.assign({}, this.company);
+        updatedCompany.data.attributes.EmailAddresses.data = updatedCompany.data.attributes.EmailAddresses.data.filter(function(emailAddress) {
+            return emailAddress.id != event.detail;
+        });
+        this.company = updatedCompany;
+    }
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
     // with a proper client and definted data
@@ -469,7 +476,7 @@ export class PageProfileCompany {
                                 </div>
                                 <div class='content'>
                                     {this.company?.data?.attributes?.EmailAddresses?.data && this.company?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Company} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Company} companyId={this.company?.data?.id??0} />
                                     )}    
                                     <div class='profile-item-row'>
                                         <div class='value'>

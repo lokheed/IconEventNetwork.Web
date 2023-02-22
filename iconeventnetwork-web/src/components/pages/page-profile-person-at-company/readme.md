@@ -31,6 +31,7 @@ graph TD;
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-responsive-image
   app-profile-email-address-item --> app-modal
+  app-profile-email-address-item --> app-confirmation
   app-root --> page-profile-person-at-company
   style page-profile-person-at-company fill:#f9f,stroke:#333,stroke-width:4px
 ```

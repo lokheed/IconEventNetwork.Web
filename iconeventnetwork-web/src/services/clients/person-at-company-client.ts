@@ -1,4 +1,4 @@
-import { ApiParameters, ClientBase, PersonAtCompanyInfo, CollectionSuccessResponse, PersonAtCompanyData } from "./client-base";
+import { ApiParameters, ClientBase, PersonAtCompanyInfo, CollectionSuccessResponse, PersonAtCompanyData, PersonAtCompanySaveData, SuccessResponse } from "./client-base";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 export class PersonAtCompanyClient extends ClientBase {
@@ -56,6 +56,24 @@ export class PersonAtCompanyClient extends ClientBase {
                         'Content-type': 'application/json',
                         'Authorization': `Bearer ${token}`,
                     }
+                })
+                .then(response => resolve(this.processResponse(response)))
+                .catch(error => reject(error));
+        });
+    }
+
+    public updatePersonAtCompany(personAtCompanyId: number, data: PersonAtCompanySaveData) {
+        return new Promise<SuccessResponse<PersonAtCompanySaveData>>((resolve, reject) => {
+            const token = localStorage.getItem(localStorageKeyService.Jwt);
+            fetch(
+                `${this.baseUrl}${this.endpoint}/${personAtCompanyId}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(data)
                 })
                 .then(response => resolve(this.processResponse(response)))
                 .catch(error => reject(error));

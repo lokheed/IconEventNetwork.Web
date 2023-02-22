@@ -199,6 +199,13 @@ export interface CompanyInfo{
     SocialMediaAccounts?: SocialMediaData[];
 }
 
+export interface CompanySaveData{
+    data: {
+        EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
+}
+
+
 export interface CompanyStatusData{
     data: DataResponse<CompanyStatusInfo>
 }
@@ -288,6 +295,12 @@ export interface PersonInfo{
     Users?: UserData;
 }
 
+export interface PersonSaveData{
+    data: {
+        EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
+}
+
 export interface PersonAtCompanyData{
     data: DataResponse<PersonAtCompanyInfo>;
 }
@@ -306,6 +319,12 @@ export interface PersonAtCompanyInfo{
     EmailAddresses?: EmailAddressData;
     PhoneNumbers?: PhoneNumberData;
     SocialMediaAccounts?: SocialMediaData[];
+}
+
+export interface PersonAtCompanySaveData{
+    data: {
+        EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
 }
 
 export interface PhoneNumberData{

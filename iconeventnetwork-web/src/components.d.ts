@@ -16,6 +16,12 @@ export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-
 export { AppliesTo } from "./components/app-profile-email-address-item/applies-to";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export namespace Components {
+    interface AppConfirmation {
+        "message": string;
+        "primaryActionText"?: string;
+        "secondaryActionText"?: string;
+        "visible": boolean;
+    }
     interface AppEnvironmentNag {
     }
     interface AppEventPlannerBioItem {
@@ -62,7 +68,10 @@ export namespace Components {
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": AppliesTo;
+        "companyId"?: number;
         "emailAddressItem": DataResponse<EmailAddressAttributes>;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
@@ -135,6 +144,10 @@ export namespace Components {
     interface PageTermsOfService {
     }
 }
+export interface AppConfirmationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppConfirmationElement;
+}
 export interface AppEventPlannerBioItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppEventPlannerBioItemElement;
@@ -147,7 +160,17 @@ export interface AppModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppModalElement;
 }
+export interface AppProfileEmailAddressItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppProfileEmailAddressItemElement;
+}
 declare global {
+    interface HTMLAppConfirmationElement extends Components.AppConfirmation, HTMLStencilElement {
+    }
+    var HTMLAppConfirmationElement: {
+        prototype: HTMLAppConfirmationElement;
+        new (): HTMLAppConfirmationElement;
+    };
     interface HTMLAppEnvironmentNagElement extends Components.AppEnvironmentNag, HTMLStencilElement {
     }
     var HTMLAppEnvironmentNagElement: {
@@ -371,6 +394,7 @@ declare global {
         new (): HTMLPageTermsOfServiceElement;
     };
     interface HTMLElementTagNameMap {
+        "app-confirmation": HTMLAppConfirmationElement;
         "app-environment-nag": HTMLAppEnvironmentNagElement;
         "app-event-planner-bio-item": HTMLAppEventPlannerBioItemElement;
         "app-event-planner-item": HTMLAppEventPlannerItemElement;
@@ -411,6 +435,14 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppConfirmation {
+        "message"?: string;
+        "onPrimaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
+        "onSecondaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
+        "primaryActionText"?: string;
+        "secondaryActionText"?: string;
+        "visible"?: boolean;
+    }
     interface AppEnvironmentNag {
     }
     interface AppEventPlannerBioItem {
@@ -461,7 +493,11 @@ declare namespace LocalJSX {
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": AppliesTo;
+        "companyId"?: number;
         "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
+        "onEmailAddressDeleted"?: (event: AppProfileEmailAddressItemCustomEvent<number>) => void;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
@@ -534,6 +570,7 @@ declare namespace LocalJSX {
     interface PageTermsOfService {
     }
     interface IntrinsicElements {
+        "app-confirmation": AppConfirmation;
         "app-environment-nag": AppEnvironmentNag;
         "app-event-planner-bio-item": AppEventPlannerBioItem;
         "app-event-planner-item": AppEventPlannerItem;
@@ -577,6 +614,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-confirmation": LocalJSX.AppConfirmation & JSXBase.HTMLAttributes<HTMLAppConfirmationElement>;
             "app-environment-nag": LocalJSX.AppEnvironmentNag & JSXBase.HTMLAttributes<HTMLAppEnvironmentNagElement>;
             "app-event-planner-bio-item": LocalJSX.AppEventPlannerBioItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerBioItemElement>;
             "app-event-planner-item": LocalJSX.AppEventPlannerItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerItemElement>;

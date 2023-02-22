@@ -1,0 +1,36 @@
+.wrapper {
+    .confirmation {
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px; 
+        border-top: 5px solid var(--color-red-main);
+        .message {
+            padding: 1em;
+        }
+        .button-container {
+            padding: 1em;            
+            button {
+                float: right;
+                margin-left: 1em;
+                font-size: 1em;
+                font-weight: 600;
+                padding: 10px 30px;
+            }
+            button.primary-action {
+                border: solid var(--color-red-main) 1px;
+                background-color: var(--color-red-main);
+            }
+            button.primary-action:hover {
+                transition : 1000ms;
+                border: solid var(--color-red-light) 1px;
+                background-color: var(--color-red-light);
+            }
+            .clearfix {
+                clear: both;
+            }
+        }
+    }  
+}
