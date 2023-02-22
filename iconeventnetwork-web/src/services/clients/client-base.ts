@@ -225,6 +225,13 @@ export interface EmailAddressTypeAttributes{
     Rank: number;
 }
 
+export interface EmailAddressSaveData{
+    data: {
+        EmailAddress?: string;
+        email_address_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
+}
+
 export interface ImageInfo{
     data: ImageData;
 }
