@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property           | Attribute | Description | Type                                   | Default     |
-| ------------------ | --------- | ----------- | -------------------------------------- | ----------- |
-| `emailAddressItem` | --        |             | `DataResponse<EmailAddressAttributes>` | `undefined` |
+| Property                 | Attribute    | Description | Type                                                                 | Default     |
+| ------------------------ | ------------ | ----------- | -------------------------------------------------------------------- | ----------- |
+| `appliesTo` _(required)_ | `applies-to` |             | `AppliesTo.Company \| AppliesTo.Person \| AppliesTo.PersonAtCompany` | `undefined` |
+| `emailAddressItem`       | --           |             | `DataResponse<EmailAddressAttributes>`                               | `undefined` |
 
 
 ## Dependencies
