@@ -151,6 +151,18 @@
         {
           "name": "applies-to",
           "description": ""
+        },
+        {
+          "name": "company-id",
+          "description": ""
+        },
+        {
+          "name": "person-at-company-id",
+          "description": ""
+        },
+        {
+          "name": "person-id",
+          "description": ""
         }
       ]
     },

@@ -1,6 +1,6 @@
 import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
-import { CompanyData, CompanyInfo, DataResponse } from '../../../services/clients/client-base';
+import { CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
 import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
@@ -39,7 +39,8 @@ export class PageProfileCompany {
     @Prop() companyId: string;
     @State() security: SecurityCheckResponse; 
     @State() me: GetRequestingPersonResponse; 
-    @State() company: CompanyData;  
+    @State() company: CompanyData;
+    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];     
     @State() parentCompany: CompanyData;
     @State() siblingCompanies: DataResponse<CompanyInfo>[];
     @State() basicInformationTabClass: string = 'tab selected';
@@ -58,11 +59,12 @@ export class PageProfileCompany {
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
-        const updatedCompany = Object.assign({}, this.company);
-        updatedCompany.data.attributes.EmailAddresses.data = updatedCompany.data.attributes.EmailAddresses.data.filter(function(emailAddress) {
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
             return emailAddress.id != event.detail;
         });
-        this.company = updatedCompany;
+        this.emailAddresses = updatedEmailAddresses;
+
     }
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
@@ -141,6 +143,8 @@ export class PageProfileCompany {
                 this.descriptionDisplay = this.company.data.attributes.Description.substring(0, 250) + '...';
                 this.descriptionReadMoreText = 'Read more';
             }
+            
+            this.emailAddresses = this.company.data.attributes.EmailAddresses.data;
         })
         .catch(reason => console.error(reason));  
     }
@@ -251,6 +255,30 @@ export class PageProfileCompany {
             });
         })
         .catch(reason => console.error(reason)); 
+    }
+
+    private handleAddNewEmailAddress(e: MouseEvent) {
+        e.preventDefault();
+        let newEmailAddress = 
+        { 
+            id: 0,
+            attributes: {
+                IsValidated: false,
+                EmailAddress: '',
+                email_address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses.push(newEmailAddress);
+        this.emailAddresses = updatedEmailAddresses;   
     }
     
     componentWillLoad() {
@@ -475,17 +503,19 @@ export class PageProfileCompany {
                                     Email
                                 </div>
                                 <div class='content'>
-                                    {this.company?.data?.attributes?.EmailAddresses?.data && this.company?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Company} companyId={this.company?.data?.id??0} />
-                                    )}    
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='add-another'>
-                                                + <span class='action-link'>Add another email address</span>
-                                            </div>
-                                        </div>                                   
-                                        <div class='actions'></div>
-                                    </div>                                
+                                    {this.emailAddresses && this.emailAddresses.map(emailAddressItem => 
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageCompanyDetails} appliesTo={AppliesTo.Company} companyId={this.company?.data?.id??0} />
+                                    )}
+                                    {this.security?.canManageCompanyDetails && 
+                                        <div class='profile-item-row'>
+                                            <div class='value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
+                                                    + <span class='action-link'>Add another email address</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>   
+                                    }                             
                                 </div>
                             </div>
                             <div class='profile-item'>
