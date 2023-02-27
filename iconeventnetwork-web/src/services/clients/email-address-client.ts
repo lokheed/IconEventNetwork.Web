@@ -8,6 +8,24 @@ export class EmailAddressClient extends ClientBase {
         super();
     }
 
+    public addEmailAddress(data: EmailAddressSaveData) {
+        return new Promise<SuccessResponse<EmailAddressAttributes>>((resolve, reject) => {
+            const token = localStorage.getItem(localStorageKeyService.Jwt);
+            fetch(
+                `${this.baseUrl}${this.endpoint}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => resolve(this.processResponse(response)))
+                .catch(error => reject(error));
+        });
+    }
+
     public deleteEmailAddress(emailAddressId: number) {
         return new Promise<SuccessResponse<EmailAddressAttributes>>((resolve, reject) => {
             const token = localStorage.getItem(localStorageKeyService.Jwt);

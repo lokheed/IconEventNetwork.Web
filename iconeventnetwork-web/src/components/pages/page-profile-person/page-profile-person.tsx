@@ -1,5 +1,5 @@
 import { Component, Listen, State, h } from '@stencil/core';
-import { DataResponse, PersonInfo } from '../../../services/clients/client-base';
+import { DataResponse, EmailAddressAttributes, PersonInfo } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
@@ -21,13 +21,14 @@ export class PageProfilePerson {
       this.personClient = new PersonClient();
     }  
     @State() me: GetRequestingPersonResponse; 
-    @State() person: DataResponse<PersonInfo>;   
+    @State() person: DataResponse<PersonInfo>;
+    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];   
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
-        const updatedPerson = Object.assign({}, this.person);
-        updatedPerson.attributes.EmailAddresses.data = updatedPerson.attributes.EmailAddresses.data.filter(function(emailAddress) {
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
             return emailAddress.id != event.detail;
         });
-        this.person = updatedPerson;
+        this.emailAddresses = updatedEmailAddresses;
     }
 
     private getMe() {
@@ -77,8 +78,33 @@ export class PageProfilePerson {
           })
           .then((response) => {
             this.person = response.data;
+            this.emailAddresses = this.person.attributes.EmailAddresses.data;
          })
           .catch(reason => console.error(reason));  
+    }
+
+    private handleAddNewEmailAddress(e: MouseEvent) {
+        e.preventDefault();
+        let newEmailAddress = 
+        { 
+            id: 0,
+            attributes: {
+                IsValidated: false,
+                EmailAddress: '',
+                email_address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses.push(newEmailAddress);
+        this.emailAddresses = updatedEmailAddresses;   
     }
 
     componentWillLoad() {
@@ -162,12 +188,12 @@ export class PageProfilePerson {
                                 Email
                             </div>
                             <div class='content'>
-                                {this.person?.attributes?.EmailAddresses?.data && this.person?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.Person} personId={this.person?.id??0} />
+                                {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
+                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={true} appliesTo={AppliesTo.Person} personId={this.person?.id??0} />
                                 )}                                
                                 <div class='profile-item-row'>
                                     <div class='value'>
-                                        <div class='add-another'>
+                                        <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
                                             + <span class='action-link'>Add another email address</span>
                                         </div>
                                     </div>                                   

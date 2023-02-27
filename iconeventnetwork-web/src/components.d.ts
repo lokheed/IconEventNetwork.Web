@@ -68,6 +68,7 @@ export namespace Components {
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": AppliesTo;
+        "canEdit": boolean;
         "companyId"?: number;
         "emailAddressItem": DataResponse<EmailAddressAttributes>;
         "personAtCompanyId"?: number;
@@ -493,6 +494,7 @@ declare namespace LocalJSX {
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": AppliesTo;
+        "canEdit"?: boolean;
         "companyId"?: number;
         "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
         "onEmailAddressDeleted"?: (event: AppProfileEmailAddressItemCustomEvent<number>) => void;

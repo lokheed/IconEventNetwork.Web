@@ -29,6 +29,7 @@ export class AppProfileEmailAddressItem {
         this.companyClient = new CompanyClient();
     }  
     @Prop() emailAddressItem: DataResponse<EmailAddressAttributes>;
+    @Prop() canEdit: boolean;
     @Prop() appliesTo!: AppliesTo;
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
@@ -60,6 +61,9 @@ export class AppProfileEmailAddressItem {
         this.emailAddressClass = '';
         this.emailAddressErrorMessage.innerHTML = '';
         this.editDialog.visible = false;
+        if (this.emailAddressItem.id === 0) {
+            this.emailAddressDeleted.emit(this.emailAddressItem.id);
+        }
     }
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
@@ -111,7 +115,11 @@ export class AppProfileEmailAddressItem {
     @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
     }
-
+    @Listen('emailAddressAdded') emailAddressAddedHandler(event: CustomEvent<number>) {
+        if (this.emailAddressItem.id == event.detail) {
+            this.handleEditClick(new MouseEvent('click'));
+        }
+    }
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
         this.editEmailAddress = this.displayEmailAddress;        
@@ -218,12 +226,14 @@ export class AppProfileEmailAddressItem {
             this.displayEmailAddress = this.editEmailAddress.trim();
         }
         if (this.editEmailAddressTypeId != this.displayEmailAddressTypeId) {
-            emailAddressSaveData.data.email_address_type.disconnect = [{id: this.emailAddressItem.attributes.email_address_type.data.id}];
-            emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
             this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
             this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
         } 
         if (this.emailAddressItem.id > 0)  {
+            if (this.editEmailAddressTypeId != this.displayEmailAddressTypeId) {
+                emailAddressSaveData.data.email_address_type.disconnect = [{id: this.emailAddressItem.attributes.email_address_type.data.id}];
+                emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
+            } 
             this.emailAddressClient.updateEmailAddress(this.emailAddressItem.id, emailAddressSaveData)
             .then(() => {
 
@@ -231,6 +241,53 @@ export class AppProfileEmailAddressItem {
             .catch(reason => console.error(reason));
             return;  
         }
+        if (this.emailAddressItem.id === 0) {
+            emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
+            this.emailAddressClient.addEmailAddress(emailAddressSaveData)
+            .then((result) => {
+                this.emailAddressItem.id = result.data.id;
+                switch (this.appliesTo) {
+                    case AppliesTo.Person:
+                        let personSaveData: PersonSaveData = {
+                            data: {
+                                EmailAddresses: { 
+                                    connect: [{id: this.emailAddressItem.id}],
+                                },
+                            }
+                        };
+                        this.personClient.updatePerson(this.personId, personSaveData)
+                            .then(() => { })
+                            .catch(reason => console.error(reason));
+                        break;
+                    case AppliesTo.PersonAtCompany:
+                        let personAtCompanySaveData: PersonAtCompanySaveData = {
+                            data: {
+                                EmailAddresses: { 
+                                    connect: [{id: this.emailAddressItem.id}],
+                                },
+                            }
+                        };
+                        this.personAtCompanyClient.updatePersonAtCompany(this.personAtCompanyId, personAtCompanySaveData)
+                            .then(() => { })
+                            .catch(reason => console.error(reason));                
+                        break;
+                    case AppliesTo.Company:
+                        let companySaveData: CompanySaveData = {
+                            data: {
+                                EmailAddresses: { 
+                                    connect: [{id: this.emailAddressItem.id}],
+                                },
+                            }
+                        };
+                        this.companyClient.updateCompany(this.companyId, companySaveData)
+                            .then(() => { })
+                            .catch(reason => console.error(reason));                
+                        break;
+                }
+            })
+            .catch(reason => console.error(reason));
+            return;  
+        } 
   
     }
         
@@ -249,7 +306,22 @@ export class AppProfileEmailAddressItem {
                 this.getCompanyEmailAddressTypes();
                 break;
         }
-    }        
+    } 
+    
+    componentDidLoad() {
+        if (this.emailAddressItem.id === 0) {
+            const defaultEmailAddressType = this.emailAddressTypes?.sort((a,b) => {
+                var rankA = a.attributes.Rank;
+                var rankB = b.attributes.Rank;
+                return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+            })[0];
+            this.editEmailAddressTypeId = defaultEmailAddressType.id;
+            this.displayEmailAddressTypeId = defaultEmailAddressType.id;
+            this.editEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
+            this.displayEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
+            this.handleEditClick(new MouseEvent('click'));
+        }
+    }
 
     render() {
         return (
@@ -263,14 +335,16 @@ export class AppProfileEmailAddressItem {
                             {this.displayEmailAddress}
                         </div>
                     </div>
-                    <div class='actions'>
-                        <div class='action' onClick={e => this.handleEditClick(e)}>
-                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                    { this.canEdit && 
+                        <div class='actions'>
+                            <div class='action' onClick={e => this.handleEditClick(e)}>
+                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                            </div>
+                            <div class='action' onClick={e => this.handleDeleteClick(e)}>
+                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                            </div>                                       
                         </div>
-                        <div class='action' onClick={e => this.handleDeleteClick(e)}>
-                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                        </div>                                       
-                    </div>
+                    }       
                 </div>
                 <app-modal ref={el => this.editDialog = el} dialogTitle="Email" visible={false}>
                     <form ref={el => this.editForm = el} class='edit-form' >

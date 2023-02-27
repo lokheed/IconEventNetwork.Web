@@ -1,6 +1,6 @@
 import { Component, Listen, State, Prop, h } from '@stencil/core';
 import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
-import { PersonAtCompanyData } from '../../../services/clients/client-base';
+import { DataResponse, EmailAddressAttributes, PersonAtCompanyData } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
@@ -25,6 +25,7 @@ export class PageProfilePersonAtCompany {
     @State() security: SecurityCheckResponse;   
     @State() me: GetRequestingPersonResponse; 
     @State() personAtCompany: PersonAtCompanyData;
+    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];   
     @State() bioDisplay: string = '';
     @State() bioReadMoreText: string = '';
     @State() basicInformationClass: string = '';
@@ -32,11 +33,12 @@ export class PageProfilePersonAtCompany {
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
-        const updatedPersonAtCompany = Object.assign({}, this.personAtCompany);
-        updatedPersonAtCompany.data.attributes.EmailAddresses.data = updatedPersonAtCompany.data.attributes.EmailAddresses.data.filter(function(emailAddress) {
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
             return emailAddress.id != event.detail;
         });
-        this.personAtCompany = updatedPersonAtCompany;
+        this.emailAddresses = updatedEmailAddresses;
+
     }
 
     private securityCheck() {
@@ -107,7 +109,8 @@ export class PageProfilePersonAtCompany {
             if (this.personAtCompany?.data?.attributes?.Bio && this.personAtCompany.data.attributes.Bio.length > 250) {
                 this.bioDisplay = this.personAtCompany.data.attributes.Bio.substring(0, 250) + '...';
                 this.bioReadMoreText = 'Read more';
-            }
+            }           
+            this.emailAddresses = this.personAtCompany.data.attributes.EmailAddresses.data;
         })
         .catch(reason => console.error(reason));  
     }
@@ -144,6 +147,30 @@ export class PageProfilePersonAtCompany {
         this.basicInformationTabClass = 'tab';
         this.contactInformationClass = '';
         this.contactInformationTabClass = 'tab selected';
+    }
+
+    private handleAddNewEmailAddress(e: MouseEvent) {
+        e.preventDefault();
+        let newEmailAddress = 
+        { 
+            id: 0,
+            attributes: {
+                IsValidated: false,
+                EmailAddress: '',
+                email_address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }
+        let updatedEmailAddresses = Array.from(this.emailAddresses);
+        updatedEmailAddresses.push(newEmailAddress);
+        this.emailAddresses = updatedEmailAddresses;   
     }
 
     render() {
@@ -275,17 +302,19 @@ export class PageProfilePersonAtCompany {
                                     Email
                                 </div>
                                 <div class='content'>
-                                    {this.personAtCompany?.data?.attributes?.EmailAddresses?.data && this.personAtCompany?.data?.attributes?.EmailAddresses?.data.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} appliesTo={AppliesTo.PersonAtCompany} personAtCompanyId={this.personAtCompany?.data?.id??0} />
-                                    )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='add-another'>
-                                                + <span class='action-link'>Add another email address</span>
-                                            </div>
-                                        </div>                                   
-                                        <div class='actions'></div>
-                                    </div>                                
+                                    {this.emailAddresses && this.emailAddresses.map(emailAddressItem => 
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageProfileFields} appliesTo={AppliesTo.PersonAtCompany} personAtCompanyId={this.personAtCompany?.data?.id??0} />
+                                    )}    
+                                    {this.security?.canManageProfileFields &&
+                                        <div class='profile-item-row'>
+                                            <div class='value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
+                                                    + <span class='action-link'>Add another email address</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>    
+                                    }                                                        
                                 </div>
                             </div>
                             <div class='profile-item'>

@@ -7,10 +7,20 @@
 
 ## Properties
 
-| Property                 | Attribute    | Description | Type                                                                 | Default     |
-| ------------------------ | ------------ | ----------- | -------------------------------------------------------------------- | ----------- |
-| `appliesTo` _(required)_ | `applies-to` |             | `AppliesTo.Company \| AppliesTo.Person \| AppliesTo.PersonAtCompany` | `undefined` |
-| `emailAddressItem`       | --           |             | `DataResponse<EmailAddressAttributes>`                               | `undefined` |
+| Property                 | Attribute              | Description | Type                                                                 | Default     |
+| ------------------------ | ---------------------- | ----------- | -------------------------------------------------------------------- | ----------- |
+| `appliesTo` _(required)_ | `applies-to`           |             | `AppliesTo.Company \| AppliesTo.Person \| AppliesTo.PersonAtCompany` | `undefined` |
+| `companyId`              | `company-id`           |             | `number`                                                             | `undefined` |
+| `emailAddressItem`       | --                     |             | `DataResponse<EmailAddressAttributes>`                               | `undefined` |
+| `personAtCompanyId`      | `person-at-company-id` |             | `number`                                                             | `undefined` |
+| `personId`               | `person-id`            |             | `number`                                                             | `undefined` |
+
+
+## Events
+
+| Event                 | Description | Type                  |
+| --------------------- | ----------- | --------------------- |
+| `emailAddressDeleted` |             | `CustomEvent<number>` |
 
 
 ## Dependencies
