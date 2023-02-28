@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import { urlService } from '../../services/url-service';
 
 @Component({
   tag: 'app-header',
@@ -10,8 +11,10 @@ export class AppHeader {
 
   render() {
     return (
-      <nav class={this.backgroundClass}>     
-        <app-environment-nag></app-environment-nag> 
+      <nav class={this.backgroundClass}> 
+        {urlService.EnvironmentName != 'PROD' &&
+          <app-environment-nag></app-environment-nag>
+        }             
         <a href='/'><div class='logo'></div></a>       
         <app-navigation></app-navigation>
         <div class='user-container'>
