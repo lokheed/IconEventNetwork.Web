@@ -2,7 +2,7 @@ class UrlService{
     private readonly apiBaseUrl: string;
     private readonly cognitoBaseUrl: string;
     private readonly cognitoClientId: string;
-    private readonly environmentName: string;
+    private readonly environmentName: 'DEV' | 'QA' | 'STG' | 'PROD';
 
     constructor() {
         if (window.location.hostname.toLowerCase() === 'localhost')
