@@ -77,7 +77,7 @@ export class AppFooter {
             <br/>            
             <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a>       
             <br/>
-            +1-212-476-9444      
+            <a href="tel:12124769444">+1-212-476-9444</a>      
             </address>
         </div>
         <div class='container navigation-container'>
