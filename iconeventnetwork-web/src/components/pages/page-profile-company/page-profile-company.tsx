@@ -56,6 +56,7 @@ export class PageProfileCompany {
     @State() descriptionDisplay: string = '';
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
+    @State() teamGridColumns: any[];
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
         let updatedEmailAddresses = Array.from(this.emailAddresses);
         updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
@@ -325,50 +326,9 @@ export class PageProfileCompany {
         updatedPhoneNumbers.push(newPhoneNumber);
         this.phoneNumbers = updatedPhoneNumbers;   
     }
-    
-    componentWillLoad() {
-        this.securityCheck();
-    }        
 
-    tabClick(e: MouseEvent, tab: string) {
-        e.preventDefault();
-        this.basicInformationTabClass = tab == 'basic-information' ? 'tab selected' : 'tab';
-        this.basicInformationClass = tab == 'basic-information' ? '' : 'hidden';
-        this.contactInformationTabClass = tab == 'contact-information' ? 'tab selected' : 'tab';
-        this.contactInformationClass = tab == 'contact-information' ? '' : 'hidden';
-        this.featuresTabClass = tab == 'features' ? 'tab selected' : 'tab';
-        this.featuresClass = tab == 'features' ? '' : 'hidden';
-        this.mediaGalleryTabClass = tab == 'media-gallery' ? 'tab selected' : 'tab';
-        this.mediaGalleryClass = tab == 'media-gallery' ? '' : 'hidden';
-        this.teamMembersTabClass = tab == 'team-members' ? 'tab selected' : 'tab';
-        this.teamMembersClass = tab == 'team-members' ? '' : 'hidden';
-        this.companyFamilyTabClass = tab == 'company-family' ? 'tab selected' : 'tab';
-        this.companyFamilyClass = tab == 'company-family' ? '' : 'hidden';
-
-        if (tab == 'team-members') {
-            this.includeInactiveTeamMembers ? this.getAllTeamMembers() : this.getActiveTeamMembers();
-        }
-        if (tab == 'company-family') {
-            this.getParentCompanyAndSiblings();
-        }
-    }
-
-    readMoreClick(e: MouseEvent) {
-        e.preventDefault();
-        switch (this.descriptionReadMoreText) {
-            case 'Read more':
-                this.descriptionDisplay = this.company.data.attributes.Description;
-                this.descriptionReadMoreText = 'Read less';
-                break;
-            case 'Read less':
-                this.descriptionDisplay = this.company.data.attributes.Description.substring(0, 250) + '...';
-                this.descriptionReadMoreText = 'Read more';
-                break;
-        }
-    }
-  
-    render() {
-        const columns: any[] = 
+    private initializeTeamGridColumns() {
+        this.teamGridColumns = 
         [
             { 
                 prop: 'LastName', 
@@ -414,7 +374,52 @@ export class PageProfileCompany {
                     }), '');
                 }, 
             }
-        ];
+        ];    
+    }
+    
+    componentWillLoad() {
+        this.securityCheck();
+        this.initializeTeamGridColumns();
+    }        
+
+    tabClick(e: MouseEvent, tab: string) {
+        e.preventDefault();
+        this.basicInformationTabClass = tab == 'basic-information' ? 'tab selected' : 'tab';
+        this.basicInformationClass = tab == 'basic-information' ? '' : 'hidden';
+        this.contactInformationTabClass = tab == 'contact-information' ? 'tab selected' : 'tab';
+        this.contactInformationClass = tab == 'contact-information' ? '' : 'hidden';
+        this.featuresTabClass = tab == 'features' ? 'tab selected' : 'tab';
+        this.featuresClass = tab == 'features' ? '' : 'hidden';
+        this.mediaGalleryTabClass = tab == 'media-gallery' ? 'tab selected' : 'tab';
+        this.mediaGalleryClass = tab == 'media-gallery' ? '' : 'hidden';
+        this.teamMembersTabClass = tab == 'team-members' ? 'tab selected' : 'tab';
+        this.teamMembersClass = tab == 'team-members' ? '' : 'hidden';
+        this.companyFamilyTabClass = tab == 'company-family' ? 'tab selected' : 'tab';
+        this.companyFamilyClass = tab == 'company-family' ? '' : 'hidden';
+
+        if (tab == 'team-members') {
+            this.includeInactiveTeamMembers ? this.getAllTeamMembers() : this.getActiveTeamMembers();
+        }
+        if (tab == 'company-family') {
+            this.getParentCompanyAndSiblings();
+        }
+    }
+
+    readMoreClick(e: MouseEvent) {
+        e.preventDefault();
+        switch (this.descriptionReadMoreText) {
+            case 'Read more':
+                this.descriptionDisplay = this.company.data.attributes.Description;
+                this.descriptionReadMoreText = 'Read less';
+                break;
+            case 'Read less':
+                this.descriptionDisplay = this.company.data.attributes.Description.substring(0, 250) + '...';
+                this.descriptionReadMoreText = 'Read more';
+                break;
+        }
+    }
+  
+    render() {
         return (
             <div class='profile-page company'>
                 <aside>
@@ -854,7 +859,7 @@ export class PageProfileCompany {
                             resize
                             filter
                             theme='material'
-                            columns={columns}
+                            columns={this.teamGridColumns}
                             source={this.teamMembers}
                         />
                         <div class='include-inactive'>
