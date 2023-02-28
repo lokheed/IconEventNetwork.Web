@@ -345,7 +345,7 @@ export class AppProfileEmailAddressItem {
                         </div>
                     }       
                 </div>
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Email" visible={false}>
+                <app-modal ref={el => this.editDialog = el} dialogTitle="Email">
                     <form ref={el => this.editForm = el} class='edit-form' >
                         <div class='form-item'>
                             <label>Type</label>
@@ -371,7 +371,7 @@ export class AppProfileEmailAddressItem {
                         </div>
                     </form>
                 </app-modal>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} visible={false} message='Are you sure you want to delete this email address?'></app-confirmation>    
+                <app-confirmation ref={el => this.deleteConfirmationDialog = el} message='Are you sure you want to delete this email address?'></app-confirmation>    
                 <hr/>
             </div>
         );
