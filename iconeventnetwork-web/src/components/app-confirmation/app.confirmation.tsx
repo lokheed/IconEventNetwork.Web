@@ -6,7 +6,6 @@ import { Component, Event, EventEmitter, Prop, h } from "@stencil/core";
   shadow: false
 })
 export class Modal {
-    @Prop() message: string = '';
     @Prop() primaryActionText?: string = 'Delete';
     @Prop() secondaryActionText?: string = 'Cancel';
     @Prop( { mutable: true, reflect: true, } ) visible: boolean = false;
@@ -28,7 +27,7 @@ export class Modal {
             <div class={this.visible ? 'wrapper visible' : 'wrapper'}>
                 <div class="confirmation">
                     <div class='message'>
-                        {this.message}
+                        <slot></slot>
                     </div>
                     <hr/>
                     <div class="button-container">
