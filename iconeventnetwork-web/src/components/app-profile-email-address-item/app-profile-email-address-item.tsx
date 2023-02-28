@@ -5,7 +5,6 @@ import { EmailAddressTypeClient } from "../../services/clients/email-address-typ
 import { PersonClient } from "../../services/clients/person-client";
 import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 import { CompanyClient } from "../../services/clients/company-client";
-import { AppliesTo } from "./applies-to";
 import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
@@ -30,7 +29,7 @@ export class AppProfileEmailAddressItem {
     }  
     @Prop() emailAddressItem: DataResponse<EmailAddressAttributes>;
     @Prop() canEdit: boolean;
-    @Prop() appliesTo!: AppliesTo;
+    @Prop() appliesTo!: 'person' | 'personAtCompany' | 'company';
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
     @Prop() companyId?: number;
@@ -69,7 +68,7 @@ export class AppProfileEmailAddressItem {
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;    
         switch (this.appliesTo) {
-            case AppliesTo.Person:
+            case 'person':
                 let personSaveData: PersonSaveData = {
                     data: {
                         EmailAddresses: { 
@@ -81,7 +80,7 @@ export class AppProfileEmailAddressItem {
                     .then(() => { })
                     .catch(reason => console.error(reason));
                 break;
-            case AppliesTo.PersonAtCompany:
+            case 'personAtCompany':
                 let personAtCompanySaveData: PersonAtCompanySaveData = {
                     data: {
                         EmailAddresses: { 
@@ -93,7 +92,7 @@ export class AppProfileEmailAddressItem {
                     .then(() => { })
                     .catch(reason => console.error(reason));                
                 break;
-            case AppliesTo.Company:
+            case 'company':
                 let companySaveData: CompanySaveData = {
                     data: {
                         EmailAddresses: { 
@@ -209,7 +208,7 @@ export class AppProfileEmailAddressItem {
         })
         .then((response) => {
             this.emailAddressTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.EmailTypesPersonAtCompany, JSON.stringify(this.emailAddressTypes));
+            sessionStorage.setItem(localStorageKeyService.EmailTypesCompany, JSON.stringify(this.emailAddressTypes));
         })
         .catch(reason => console.error(reason));  
     }
@@ -247,7 +246,7 @@ export class AppProfileEmailAddressItem {
             .then((result) => {
                 this.emailAddressItem.id = result.data.id;
                 switch (this.appliesTo) {
-                    case AppliesTo.Person:
+                    case 'person':
                         let personSaveData: PersonSaveData = {
                             data: {
                                 EmailAddresses: { 
@@ -259,7 +258,7 @@ export class AppProfileEmailAddressItem {
                             .then(() => { })
                             .catch(reason => console.error(reason));
                         break;
-                    case AppliesTo.PersonAtCompany:
+                    case 'personAtCompany':
                         let personAtCompanySaveData: PersonAtCompanySaveData = {
                             data: {
                                 EmailAddresses: { 
@@ -271,7 +270,7 @@ export class AppProfileEmailAddressItem {
                             .then(() => { })
                             .catch(reason => console.error(reason));                
                         break;
-                    case AppliesTo.Company:
+                    case 'company':
                         let companySaveData: CompanySaveData = {
                             data: {
                                 EmailAddresses: { 
@@ -296,13 +295,13 @@ export class AppProfileEmailAddressItem {
         this.displayEmailAddressTypeId = this.emailAddressItem.attributes.email_address_type.data.id;
         this.displayEmailAddressTypeName = this.emailAddressItem.attributes.email_address_type.data.attributes.Name;
         switch (this.appliesTo) {
-            case AppliesTo.Person:
+            case 'person':
                 this.getPersonEmailAddressTypes();
                 break;
-            case AppliesTo.PersonAtCompany:
+            case 'personAtCompany':
                 this.getPersonAtCompanyEmailAddressTypes();
                 break;
-            case AppliesTo.Company:
+            case 'company':
                 this.getCompanyEmailAddressTypes();
                 break;
         }

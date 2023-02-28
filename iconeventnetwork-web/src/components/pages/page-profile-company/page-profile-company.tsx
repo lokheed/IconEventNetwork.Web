@@ -1,15 +1,12 @@
 import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
-import { CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes } from '../../../services/clients/client-base';
+import { CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
 import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
-import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
-import { AppliesTo } from '../../app-profile-email-address-item/applies-to';
-
 
 type teamMember = {
     FirstName: string;
@@ -40,7 +37,8 @@ export class PageProfileCompany {
     @State() security: SecurityCheckResponse; 
     @State() me: GetRequestingPersonResponse; 
     @State() company: CompanyData;
-    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];     
+    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];  
+    @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];  
     @State() parentCompany: CompanyData;
     @State() siblingCompanies: DataResponse<CompanyInfo>[];
     @State() basicInformationTabClass: string = 'tab selected';
@@ -65,6 +63,13 @@ export class PageProfileCompany {
         });
         this.emailAddresses = updatedEmailAddresses;
 
+    }    
+    @Listen('phoneNumberDeleted') phoneNumberDeletedHandler(event: CustomEvent<number>) {
+        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
+        updatedPhoneNumbers = updatedPhoneNumbers.filter(function(phoneNumber) {
+            return phoneNumber.id != event.detail;
+        });
+        this.phoneNumbers = updatedPhoneNumbers;
     }
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
@@ -124,7 +129,7 @@ export class PageProfileCompany {
                     fields: ['formats'],
                 },
                 PhoneNumbers: {
-                   populate: ['phone_number_type'],
+                   populate: ['phone_number_type', 'country'],
                 },
                 PrimaryContact: {
                     fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],                 
@@ -145,6 +150,7 @@ export class PageProfileCompany {
             }
             
             this.emailAddresses = this.company.data.attributes.EmailAddresses.data;
+            this.phoneNumbers = this.company.data.attributes.PhoneNumbers.data;
         })
         .catch(reason => console.error(reason));  
     }
@@ -279,6 +285,45 @@ export class PageProfileCompany {
         let updatedEmailAddresses = Array.from(this.emailAddresses);
         updatedEmailAddresses.push(newEmailAddress);
         this.emailAddresses = updatedEmailAddresses;   
+    }
+
+    private handleAddNewPhoneNumber(e: MouseEvent) {
+        e.preventDefault();
+        let newPhoneNumber = 
+        { 
+            id: 0,
+            attributes: {
+                RawFormat: '',
+                IsValidated: false,
+                E164Format: '',
+                InternationalFormat: '',
+                NationalFormat: '',
+                country: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                            A2: '',
+                            A3: '',
+                            Number: 0,
+                        }
+                    }
+                },
+                phone_number_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                },
+            }
+        }
+        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
+        updatedPhoneNumbers.push(newPhoneNumber);
+        this.phoneNumbers = updatedPhoneNumbers;   
     }
     
     componentWillLoad() {
@@ -504,7 +549,7 @@ export class PageProfileCompany {
                                 </div>
                                 <div class='content'>
                                     {this.emailAddresses && this.emailAddresses.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageCompanyDetails} appliesTo={AppliesTo.Company} companyId={this.company?.data?.id??0} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
                                     )}
                                     {this.security?.canManageCompanyDetails && 
                                         <div class='profile-item-row'>
@@ -523,12 +568,12 @@ export class PageProfileCompany {
                                     Phone
                                 </div>
                                 <div class='content'>
-                                    {this.company?.data?.attributes?.PhoneNumbers?.data && this.company?.data?.attributes?.PhoneNumbers?.data.map(phoneNumberItem => 
-                                        <ProfilePhoneNumberItem phoneNumberItem={phoneNumberItem} />
-                                    )}    
+                                    {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
+                                         <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
+                                         )}    
                                     <div class='profile-item-row'>
                                         <div class='value'>
-                                            <div class='add-another'>
+                                            <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
                                                 + <span class='action-link'>Add another phone number</span>
                                             </div>
                                         </div>                                   

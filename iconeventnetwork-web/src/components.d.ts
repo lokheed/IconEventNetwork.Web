@@ -5,15 +5,13 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
+import { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
-import { AppliesTo } from "./components/app-profile-email-address-item/applies-to";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink } from "./services/clients/client-base";
+export { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
-export { AppliesTo } from "./components/app-profile-email-address-item/applies-to";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export namespace Components {
     interface AppConfirmation {
@@ -67,7 +65,7 @@ export namespace Components {
     interface AppNavigation {
     }
     interface AppProfileEmailAddressItem {
-        "appliesTo": AppliesTo;
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
         "canEdit": boolean;
         "companyId"?: number;
         "emailAddressItem": DataResponse<EmailAddressAttributes>;
@@ -76,6 +74,14 @@ export namespace Components {
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
+    }
+    interface AppProfilePhoneNumberItem {
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
+        "canEdit": boolean;
+        "companyId"?: number;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
+        "phoneNumberItem": DataResponse<PhoneNumberAttributes>;
     }
     interface AppResponsiveImage {
         /**
@@ -165,6 +171,10 @@ export interface AppProfileEmailAddressItemCustomEvent<T> extends CustomEvent<T>
     detail: T;
     target: HTMLAppProfileEmailAddressItemElement;
 }
+export interface AppProfilePhoneNumberItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppProfilePhoneNumberItemElement;
+}
 declare global {
     interface HTMLAppConfirmationElement extends Components.AppConfirmation, HTMLStencilElement {
     }
@@ -249,6 +259,12 @@ declare global {
     var HTMLAppProfileLeftNavElement: {
         prototype: HTMLAppProfileLeftNavElement;
         new (): HTMLAppProfileLeftNavElement;
+    };
+    interface HTMLAppProfilePhoneNumberItemElement extends Components.AppProfilePhoneNumberItem, HTMLStencilElement {
+    }
+    var HTMLAppProfilePhoneNumberItemElement: {
+        prototype: HTMLAppProfilePhoneNumberItemElement;
+        new (): HTMLAppProfilePhoneNumberItemElement;
     };
     interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
     }
@@ -409,6 +425,7 @@ declare global {
         "app-navigation": HTMLAppNavigationElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
+        "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
@@ -493,7 +510,7 @@ declare namespace LocalJSX {
     interface AppNavigation {
     }
     interface AppProfileEmailAddressItem {
-        "appliesTo": AppliesTo;
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
         "canEdit"?: boolean;
         "companyId"?: number;
         "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
@@ -503,6 +520,15 @@ declare namespace LocalJSX {
     }
     interface AppProfileLeftNav {
         "me": GetRequestingPersonResponse;
+    }
+    interface AppProfilePhoneNumberItem {
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
+        "canEdit"?: boolean;
+        "companyId"?: number;
+        "onPhoneNumberDeleted"?: (event: AppProfilePhoneNumberItemCustomEvent<number>) => void;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
+        "phoneNumberItem"?: DataResponse<PhoneNumberAttributes>;
     }
     interface AppResponsiveImage {
         /**
@@ -586,6 +612,7 @@ declare namespace LocalJSX {
         "app-navigation": AppNavigation;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-left-nav": AppProfileLeftNav;
+        "app-profile-phone-number-item": AppProfilePhoneNumberItem;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
@@ -630,6 +657,7 @@ declare module "@stencil/core" {
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
+            "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;

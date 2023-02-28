@@ -1,14 +1,13 @@
 import { Component, Listen, State, Prop, h } from '@stencil/core';
 import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
-import { DataResponse, EmailAddressAttributes, PersonAtCompanyData } from '../../../services/clients/client-base';
+import { DataResponse, EmailAddressAttributes, PersonAtCompanyData, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
-import { ProfilePhoneNumberItem } from '../../functionalComponents/ProfilePhoneNumberItem';
 import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
-import { AppliesTo } from '../../app-profile-email-address-item/applies-to';
+
 @Component({
   tag: 'page-profile-person-at-company',
   styleUrl: 'page-profile-person-at-company.scss',
@@ -26,6 +25,7 @@ export class PageProfilePersonAtCompany {
     @State() me: GetRequestingPersonResponse; 
     @State() personAtCompany: PersonAtCompanyData;
     @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];   
+    @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];   
     @State() bioDisplay: string = '';
     @State() bioReadMoreText: string = '';
     @State() basicInformationClass: string = '';
@@ -39,7 +39,15 @@ export class PageProfilePersonAtCompany {
         });
         this.emailAddresses = updatedEmailAddresses;
 
+    }    
+    @Listen('phoneNumberDeleted') phoneNumberDeletedHandler(event: CustomEvent<number>) {
+        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
+        updatedPhoneNumbers = updatedPhoneNumbers.filter(function(phoneNumber) {
+            return phoneNumber.id != event.detail;
+        });
+        this.phoneNumbers = updatedPhoneNumbers;
     }
+
 
     private securityCheck() {
         this.personAtCompanyClient.securityCheck(this.personAtCompanyId)
@@ -77,7 +85,7 @@ export class PageProfilePersonAtCompany {
                    populate: ['email_address_type'],
                 },
                 PhoneNumbers: {
-                   populate: ['phone_number_type'],
+                   populate: ['phone_number_type', 'country'],
                 },
                 Person: {
                     fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],
@@ -111,6 +119,7 @@ export class PageProfilePersonAtCompany {
                 this.bioReadMoreText = 'Read more';
             }           
             this.emailAddresses = this.personAtCompany.data.attributes.EmailAddresses.data;
+            this.phoneNumbers = this.personAtCompany.data.attributes.PhoneNumbers.data;
         })
         .catch(reason => console.error(reason));  
     }
@@ -171,6 +180,45 @@ export class PageProfilePersonAtCompany {
         let updatedEmailAddresses = Array.from(this.emailAddresses);
         updatedEmailAddresses.push(newEmailAddress);
         this.emailAddresses = updatedEmailAddresses;   
+    }
+
+    private handleAddNewPhoneNumber(e: MouseEvent) {
+        e.preventDefault();
+        let newPhoneNumber = 
+        { 
+            id: 0,
+            attributes: {
+                RawFormat: '',
+                IsValidated: false,
+                E164Format: '',
+                InternationalFormat: '',
+                NationalFormat: '',
+                country: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                            A2: '',
+                            A3: '',
+                            Number: 0,
+                        }
+                    }
+                },
+                phone_number_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                },
+            }
+        }
+        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
+        updatedPhoneNumbers.push(newPhoneNumber);
+        this.phoneNumbers = updatedPhoneNumbers;   
     }
 
     render() {
@@ -303,7 +351,7 @@ export class PageProfilePersonAtCompany {
                                 </div>
                                 <div class='content'>
                                     {this.emailAddresses && this.emailAddresses.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageProfileFields} appliesTo={AppliesTo.PersonAtCompany} personAtCompanyId={this.personAtCompany?.data?.id??0} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
                                     )}    
                                     {this.security?.canManageProfileFields &&
                                         <div class='profile-item-row'>
@@ -322,12 +370,12 @@ export class PageProfilePersonAtCompany {
                                     Phone
                                 </div>
                                 <div class='content'>
-                                    {this.personAtCompany?.data?.attributes?.PhoneNumbers?.data && this.personAtCompany?.data?.attributes?.PhoneNumbers?.data.map(phoneNumberItem => 
-                                        <ProfilePhoneNumberItem phoneNumberItem={phoneNumberItem} />
-                                    )}                                
+                                    {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
+                                        <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
+                                        )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>
-                                            <div class='add-another'>
+                                            <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
                                                 + <span class='action-link'>Add another phone number</span>
                                             </div>
                                         </div>                                   

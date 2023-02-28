@@ -28,11 +28,13 @@
 ### Used by
 
  - [app-profile-email-address-item](../app-profile-email-address-item)
+ - [app-profile-phone-number-item](../app-profile-phone-number-item)
 
 ### Graph
 ```mermaid
 graph TD;
   app-profile-email-address-item --> app-modal
+  app-profile-phone-number-item --> app-modal
   style app-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

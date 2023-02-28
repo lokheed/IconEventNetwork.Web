@@ -1,4 +1,4 @@
-# app-profile-email-address-item
+# app-profile-phone-item
 
 
 
@@ -12,16 +12,16 @@
 | `appliesTo` _(required)_ | `applies-to`           |             | `"company" \| "person" \| "personAtCompany"` | `undefined` |
 | `canEdit`                | `can-edit`             |             | `boolean`                                    | `undefined` |
 | `companyId`              | `company-id`           |             | `number`                                     | `undefined` |
-| `emailAddressItem`       | --                     |             | `DataResponse<EmailAddressAttributes>`       | `undefined` |
 | `personAtCompanyId`      | `person-at-company-id` |             | `number`                                     | `undefined` |
 | `personId`               | `person-id`            |             | `number`                                     | `undefined` |
+| `phoneNumberItem`        | --                     |             | `DataResponse<PhoneNumberAttributes>`        | `undefined` |
 
 
 ## Events
 
-| Event                 | Description | Type                  |
-| --------------------- | ----------- | --------------------- |
-| `emailAddressDeleted` |             | `CustomEvent<number>` |
+| Event                | Description | Type                  |
+| -------------------- | ----------- | --------------------- |
+| `phoneNunberDeleted` |             | `CustomEvent<number>` |
 
 
 ## Dependencies
@@ -40,12 +40,12 @@
 ### Graph
 ```mermaid
 graph TD;
-  app-profile-email-address-item --> app-modal
-  app-profile-email-address-item --> app-confirmation
-  page-profile-company --> app-profile-email-address-item
-  page-profile-person --> app-profile-email-address-item
-  page-profile-person-at-company --> app-profile-email-address-item
-  style app-profile-email-address-item fill:#f9f,stroke:#333,stroke-width:4px
+  app-profile-phone-number-item --> app-modal
+  app-profile-phone-number-item --> app-confirmation
+  page-profile-company --> app-profile-phone-number-item
+  page-profile-person --> app-profile-phone-number-item
+  page-profile-person-at-company --> app-profile-phone-number-item
+  style app-profile-phone-number-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
