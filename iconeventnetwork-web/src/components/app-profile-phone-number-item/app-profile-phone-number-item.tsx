@@ -404,7 +404,7 @@ export class AppProfilePhoneItem {
                         </div>                    
                     }
                 </div>
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Email" visible={false}>
+                <app-modal ref={el => this.editDialog = el} dialogTitle="Phone">
                     <form ref={el => this.editForm = el} class='edit-form' >
                         <div class='form-item'>
                             <label>Type</label>
@@ -445,7 +445,7 @@ export class AppProfilePhoneItem {
                         </div>
                     </form>
                 </app-modal>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} visible={false} message='Are you sure you want to delete this phone number?'></app-confirmation>    
+                <app-confirmation ref={el => this.deleteConfirmationDialog = el} message='Are you sure you want to delete this phone number?'></app-confirmation>    
                 <hr/>            
             </div>
         );
