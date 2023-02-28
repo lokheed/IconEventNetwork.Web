@@ -202,6 +202,7 @@ export interface CompanyInfo{
 export interface CompanySaveData{
     data: {
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
 
@@ -298,6 +299,7 @@ export interface PersonInfo{
 export interface PersonSaveData{
     data: {
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
 
@@ -324,6 +326,7 @@ export interface PersonAtCompanyInfo{
 export interface PersonAtCompanySaveData{
     data: {
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
 
@@ -339,6 +342,14 @@ export interface PhoneNumberAttributes{
     NationalFormat?: string;
     country?: CountryData;
     phone_number_type?: PhoneNumberTypeData;
+}
+
+export interface PhoneNumberSaveData{
+    data: {
+        RawFormat?: string;
+        country?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        phone_number_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
 }
 
 export interface PhoneNumberTypeData{

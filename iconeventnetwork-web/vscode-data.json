@@ -150,6 +150,21 @@
       "attributes": [
         {
           "name": "applies-to",
+          "description": "",
+          "values": [
+            {
+              "name": "company"
+            },
+            {
+              "name": "person"
+            },
+            {
+              "name": "personAtCompany"
+            }
+          ]
+        },
+        {
+          "name": "can-edit",
           "description": ""
         },
         {
@@ -173,6 +188,46 @@
         "value": ""
       },
       "attributes": []
+    },
+    {
+      "name": "app-profile-phone-number-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "applies-to",
+          "description": "",
+          "values": [
+            {
+              "name": "company"
+            },
+            {
+              "name": "person"
+            },
+            {
+              "name": "personAtCompany"
+            }
+          ]
+        },
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "company-id",
+          "description": ""
+        },
+        {
+          "name": "person-at-company-id",
+          "description": ""
+        },
+        {
+          "name": "person-id",
+          "description": ""
+        }
+      ]
     },
     {
       "name": "app-responsive-image",
