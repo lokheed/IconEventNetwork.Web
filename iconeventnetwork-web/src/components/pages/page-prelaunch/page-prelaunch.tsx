@@ -23,7 +23,7 @@ export class PagePrelaunch{
                         <br/>
                         For more information, please contact us at <a href="mailto:info@theiconnetwork.com?subject=Inquiry about the Icon Network">info@theiconnetwork.com</a> 
                         <br/>
-                        or call +1-212-476-9444.
+                        or call <a href="tel:12124769444">+1-212-476-9444</a>.
                     </p> 
                 </div>        
             </Host>    
