@@ -84,13 +84,13 @@ export class AppNavUserInfo {
                 lastName={this.me?.LastName}
               />
               <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
-              <span>{this.me?.Users[0]?.email}</span>
+              <span>{this.me?.Users[0]?.username}</span>
             </div>
             <div class="controls">
               <a href="/profile-person">My Personal Profile</a>
               <a href="/profile-pacs">My Work Profiles</a>
             </div>
-            <div class="controls">
+            <div class="controls logout">
               <a href="/logout">Log Out</a>
             </div>
           </div>
