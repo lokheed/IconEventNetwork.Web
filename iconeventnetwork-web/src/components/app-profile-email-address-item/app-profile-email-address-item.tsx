@@ -371,7 +371,9 @@ export class AppProfileEmailAddressItem {
                         </div>
                     </form>
                 </app-modal>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} message='Are you sure you want to delete this email address?'></app-confirmation>    
+                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
+                    Are you sure you want to delete this email address?
+                </app-confirmation>    
                 <hr/>
             </div>
         );

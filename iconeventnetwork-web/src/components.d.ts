@@ -15,7 +15,6 @@ export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export namespace Components {
     interface AppConfirmation {
-        "message": string;
         "primaryActionText"?: string;
         "secondaryActionText"?: string;
         "visible": boolean;
@@ -454,7 +453,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppConfirmation {
-        "message"?: string;
         "onPrimaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
         "onSecondaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
         "primaryActionText"?: string;
