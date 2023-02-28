@@ -850,9 +850,9 @@ export class PageProfileCompany {
                         </p>
                         <revo-grid
                             class='revo-grid box-container'
-                            autoSizeColumn={true}
-                            resize={true}
-                            filter={true}
+                            autoSizeColumn
+                            resize
+                            filter
                             theme='material'
                             columns={columns}
                             source={this.teamMembers}
