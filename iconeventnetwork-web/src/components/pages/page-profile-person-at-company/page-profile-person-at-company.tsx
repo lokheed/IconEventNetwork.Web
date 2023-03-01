@@ -16,6 +16,10 @@ import { LastUpdated } from '../../functionalComponents/LastUpdated';
 export class PageProfilePersonAtCompany {
     private readonly personClient: PersonClient;
     private readonly personAtCompanyClient: PersonAtCompanyClient;
+    private basicInformationTab: HTMLDivElement;
+    private basicInformationTabContent: HTMLDivElement;
+    private contactInformationTab: HTMLDivElement;
+    private contactInformationTabContent: HTMLDivElement;
     constructor(){
       this.personClient = new PersonClient();
       this.personAtCompanyClient = new PersonAtCompanyClient();
@@ -28,8 +32,6 @@ export class PageProfilePersonAtCompany {
     @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];   
     @State() bioDisplay: string = '';
     @State() bioReadMoreText: string = '';
-    @State() basicInformationClass: string = '';
-    @State() basicInformationTabClass: string = 'tab selected';
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
@@ -140,22 +142,25 @@ export class PageProfilePersonAtCompany {
                 this.bioReadMoreText = 'Read more';
                 break;
         }
-    }
+    }   
 
-    basicInformationClick(e: MouseEvent) {
+    tabClick(e: MouseEvent, tab: string) {
         e.preventDefault();
-        this.basicInformationClass = '';
-        this.basicInformationTabClass = 'tab selected';
-        this.contactInformationClass = 'hidden';
-        this.contactInformationTabClass = 'tab';
-    }
+        switch (tab) {
+            case 'basic-information':
+                this.basicInformationTab.classList.add('selected');
+                this.basicInformationTabContent.classList.remove('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');                  
+                break;
+            case 'contact-information':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.add('selected');
+                this.contactInformationTabContent.classList.remove('hidden');                   
+                break;
+        }
 
-    contactInformationClick(e: MouseEvent) {
-        e.preventDefault();
-        this.basicInformationClass = 'hidden';
-        this.basicInformationTabClass = 'tab';
-        this.contactInformationClass = '';
-        this.contactInformationTabClass = 'tab selected';
     }
 
     private handleAddNewEmailAddress(e: MouseEvent) {
@@ -240,10 +245,10 @@ export class PageProfilePersonAtCompany {
                         </div>
                     </div>
                     <div class='tab-grid'>
-                        <div onClick={e => this.basicInformationClick(e)} class={this.basicInformationTabClass}>My Basic Information</div>
-                        <div onClick={e => this.contactInformationClick(e)} class={this.contactInformationTabClass}>My Contact Information</div>
+                        <div ref={el => this.basicInformationTab = el} onClick={e => this.tabClick(e, 'basic-information')} class='tab selected'>My Basic Information</div>
+                        <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>My Contact Information</div>
                     </div>
-                    <div class={this.basicInformationClass}>
+                    <div ref={el => this.basicInformationTabContent = el}>
                         <h2>My Basic Information</h2>
                         <p>
                             The information below will appear as your profile within the company page.
@@ -339,7 +344,7 @@ export class PageProfilePersonAtCompany {
                             <LastUpdated updatedAt={new Date(this.personAtCompany?.data?.attributes.updatedAt)} />
                         </div>                     
                     </div>
-                    <div class={this.contactInformationClass}>
+                    <div ref={el => this.contactInformationTabContent = el} class='hidden'>
                         <h2>My Contact Information</h2>
                         <p>
                             The information below will appear as your contact information within the company page.

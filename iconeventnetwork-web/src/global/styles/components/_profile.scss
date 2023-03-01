@@ -14,6 +14,9 @@
             text-align: left;
             padding-top: .5em;
         }
+        h1.welcome {
+            padding-bottom: .5em;
+        }
         h2 {
             text-align: left;
             text-transform: none;
@@ -33,6 +36,31 @@
     .box-container {
         border: 2px solid var(--color-light-gray);
         box-shadow:  rgb(0 0 0 / 15%) 0px 2px 8px;
+    }
+
+    .tab-grid {
+        display: grid;
+        width: fit-content;
+        max-width: 80%;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: 1fr;
+        grid-column-gap: 3em;   
+        .tab {
+            font-size: 1.2em;
+            font-weight: 500;
+            padding-bottom: .75em;
+            cursor: pointer;
+        } 
+        .tab.selected {
+            font-weight: 700;
+            border-bottom: 5px solid var(--color-green-main);
+        }
+        .tab:hover {
+            color: var(--color-medium-gray);
+        }
+    }
+    .tab-grid.company {
+        grid-template-columns: repeat(6, auto);
     }
 
     .profile-box {
@@ -445,30 +473,6 @@
                     font-size: 1.2em;
                 }
             }
-        }
-        .tab-grid {
-            display: grid;
-            width: fit-content;
-            max-width: 80%;
-            grid-template-columns: repeat(2, auto);
-            grid-template-rows: 1fr;
-            grid-column-gap: 3em;   
-            .tab {
-                font-size: 1.2em;
-                font-weight: 500;
-                padding-bottom: .75em;
-                cursor: pointer;
-            } 
-            .tab.selected {
-                font-weight: 700;
-                border-bottom: 5px solid var(--color-green-main);
-            }
-            .tab:hover {
-                color: var(--color-medium-gray);
-            }
-        }
-        .tab-grid.company {
-            grid-template-columns: repeat(6, auto);
         }
         .revo-grid {
             width: 80%;
