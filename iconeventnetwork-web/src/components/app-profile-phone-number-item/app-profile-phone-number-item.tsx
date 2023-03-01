@@ -277,13 +277,16 @@ export class AppProfilePhoneItem {
             this.phoneNumberClient.updatePhoneNumber(this.phoneNumberItem.id, phoneNumberSaveData)
             .then((response) => {
                 this.editDialog.visible = false;
-                this.displayPhoneNumber = response.data.attributes.NationalFormat ?? response.data.attributes.RawFormat;
+                this.displayPhoneNumber = response.data.attributes.NationalFormat &&
+                                          response.data.attributes.NationalFormat.length > 0 ? 
+                    response.data.attributes.NationalFormat :
+                    response.data.attributes.RawFormat;
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
             })
             .catch(reason => {
-                this.phoneNumberErrorMessage.innerHTML = reason;
+                this.phoneNumberErrorMessage.innerHTML = reason.error.message;
             });
             return;  
         }
@@ -294,7 +297,10 @@ export class AppProfilePhoneItem {
             .then((result) => {
                 this.editDialog.visible = false;
                 this.phoneNumberItem.id = result.data.id;
-                this.displayPhoneNumber = result.data.attributes.NationalFormat ?? result.data.attributes.RawFormat;
+                this.displayPhoneNumber = result.data.attributes.NationalFormat &&
+                                          result.data.attributes.NationalFormat.length > 0 ? 
+                    result.data.attributes.NationalFormat :
+                    result.data.attributes.RawFormat;
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
@@ -338,7 +344,7 @@ export class AppProfilePhoneItem {
                 }
             })
             .catch(reason => {
-                this.phoneNumberErrorMessage.innerHTML = reason;
+                this.phoneNumberErrorMessage.innerHTML = reason.error.message;
             });
             return;  
         } 
@@ -346,7 +352,10 @@ export class AppProfilePhoneItem {
     }
         
     componentWillLoad() { 
-        this.displayPhoneNumber = this.phoneNumberItem.attributes.NationalFormat ?? this.phoneNumberItem.attributes.RawFormat;
+        this.displayPhoneNumber = this.phoneNumberItem.attributes.NationalFormat && 
+                                  this.phoneNumberItem.attributes.NationalFormat.length > 0 ? 
+            this.phoneNumberItem.attributes.NationalFormat :
+            this.phoneNumberItem.attributes.RawFormat;
         this.displayPhoneNumberTypeId = this.phoneNumberItem.attributes.phone_number_type.data.id;
         this.displayPhoneNumberTypeName = this.phoneNumberItem.attributes.phone_number_type.data.attributes.Name;
         this.displayPhoneNumberCountryId = this.phoneNumberItem.attributes.country.data.id;

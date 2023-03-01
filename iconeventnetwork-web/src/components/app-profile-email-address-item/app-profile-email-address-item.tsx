@@ -49,7 +49,6 @@ export class AppProfileEmailAddressItem {
         this.emailAddressClass = '';
         let isValid = this.editForm.reportValidity();
         if (isValid) {
-            this.editDialog.visible = false;
             this.saveData();
             return;
         }
@@ -222,29 +221,33 @@ export class AppProfileEmailAddressItem {
         };
         if (this.editEmailAddress.trim() != this.displayEmailAddress) {
             emailAddressSaveData.data.EmailAddress = this.editEmailAddress.trim();
-            this.displayEmailAddress = this.editEmailAddress.trim();
         }
-        if (this.editEmailAddressTypeId != this.displayEmailAddressTypeId) {
-            this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
-            this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
-        } 
         if (this.emailAddressItem.id > 0)  {
             if (this.editEmailAddressTypeId != this.displayEmailAddressTypeId) {
-                emailAddressSaveData.data.email_address_type.disconnect = [{id: this.emailAddressItem.attributes.email_address_type.data.id}];
+                emailAddressSaveData.data.email_address_type.disconnect = [{id: this.displayEmailAddressTypeId}];
                 emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
             } 
             this.emailAddressClient.updateEmailAddress(this.emailAddressItem.id, emailAddressSaveData)
             .then(() => {
-
+                this.editDialog.visible = false;
+                this.displayEmailAddress = this.editEmailAddress;
+                this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
+                this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
             })
-            .catch(reason => console.error(reason));
+            .catch(reason => {
+                this.emailAddressErrorMessage.innerHTML = reason.error.message;
+            });
             return;  
         }
         if (this.emailAddressItem.id === 0) {
             emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
             this.emailAddressClient.addEmailAddress(emailAddressSaveData)
             .then((result) => {
+                this.editDialog.visible = false;
                 this.emailAddressItem.id = result.data.id;
+                this.displayEmailAddress = this.editEmailAddress;
+                this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
+                this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
                 switch (this.appliesTo) {
                     case 'person':
                         let personSaveData: PersonSaveData = {
@@ -284,7 +287,9 @@ export class AppProfileEmailAddressItem {
                         break;
                 }
             })
-            .catch(reason => console.error(reason));
+            .catch(reason => {
+                this.emailAddressErrorMessage.innerHTML = reason.error.message;
+            });
             return;  
         } 
   
