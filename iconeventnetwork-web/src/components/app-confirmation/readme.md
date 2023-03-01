@@ -9,7 +9,6 @@
 
 | Property              | Attribute               | Description | Type      | Default    |
 | --------------------- | ----------------------- | ----------- | --------- | ---------- |
-| `message`             | `message`               |             | `string`  | `''`       |
 | `primaryActionText`   | `primary-action-text`   |             | `string`  | `'Delete'` |
 | `secondaryActionText` | `secondary-action-text` |             | `string`  | `'Cancel'` |
 | `visible`             | `visible`               |             | `boolean` | `false`    |
