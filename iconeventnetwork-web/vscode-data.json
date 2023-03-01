@@ -9,10 +9,6 @@
       },
       "attributes": [
         {
-          "name": "message",
-          "description": ""
-        },
-        {
           "name": "primary-action-text",
           "description": ""
         },

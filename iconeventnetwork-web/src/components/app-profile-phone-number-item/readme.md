@@ -21,7 +21,7 @@
 
 | Event                | Description | Type                  |
 | -------------------- | ----------- | --------------------- |
-| `phoneNunberDeleted` |             | `CustomEvent<number>` |
+| `phoneNumberDeleted` |             | `CustomEvent<number>` |
 
 
 ## Dependencies

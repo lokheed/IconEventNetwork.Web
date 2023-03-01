@@ -372,15 +372,17 @@ export class PageProfilePersonAtCompany {
                                 <div class='content'>
                                     {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
                                         <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
-                                        )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
-                                                + <span class='action-link'>Add another phone number</span>
-                                            </div>
-                                        </div>                                   
-                                        <div class='actions'></div>
-                                    </div>                                
+                                    )}    
+                                    {this.security?.canManageProfileFields &&                                
+                                        <div class='profile-item-row'>
+                                            <div class='value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
+                                                    + <span class='action-link'>Add another phone number</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>   
+                                    }                             
                                 </div>
                             </div>
                             <div class='profile-item last'>
