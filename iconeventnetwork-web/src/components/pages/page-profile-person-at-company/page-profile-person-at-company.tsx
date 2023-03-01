@@ -137,16 +137,16 @@ export class PageProfilePersonAtCompany {
 
     tabClick(e: MouseEvent, tab: string) {
         e.preventDefault();
+        this.basicInformationTab.classList.remove('selected');
+        this.basicInformationTabContent.classList.add('hidden');
+        this.contactInformationTab.classList.remove('selected');
+        this.contactInformationTabContent.classList.add('hidden');          
         switch (tab) {
             case 'basic-information':
                 this.basicInformationTab.classList.add('selected');
-                this.basicInformationTabContent.classList.remove('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');                  
+                this.basicInformationTabContent.classList.remove('hidden');                
                 break;
             case 'contact-information':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
                 this.contactInformationTab.classList.add('selected');
                 this.contactInformationTabContent.classList.remove('hidden');                   
                 break;

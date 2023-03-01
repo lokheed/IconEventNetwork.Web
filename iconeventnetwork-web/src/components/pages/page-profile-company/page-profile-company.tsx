@@ -367,88 +367,40 @@ export class PageProfileCompany {
 
     tabClick(e: MouseEvent, tab: string) {
         e.preventDefault();
+        this.basicInformationTab.classList.remove('selected');
+        this.basicInformationTabContent.classList.add('hidden');
+        this.contactInformationTab.classList.remove('selected');
+        this.contactInformationTabContent.classList.add('hidden');  
+        this.featuresTab.classList.remove('selected');
+        this.featuresTabContent.classList.add('hidden');    
+        this.mediaGalleryTab.classList.remove('selected');
+        this.mediaGalleryTabContent.classList.add('hidden');    
+        this.teamMembersTab.classList.remove('selected');
+        this.teamMembersTabContent.classList.add('hidden');    
+        this.companyFamilyTab.classList.remove('selected');
+        this.companyFamilyTabContent.classList.add('hidden');         
         switch (tab) {
             case 'basic-information':
                 this.basicInformationTab.classList.add('selected');
-                this.basicInformationTabContent.classList.remove('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');  
-                this.featuresTab.classList.remove('selected');
-                this.featuresTabContent.classList.add('hidden');    
-                this.mediaGalleryTab.classList.remove('selected');
-                this.mediaGalleryTabContent.classList.add('hidden');    
-                this.teamMembersTab.classList.remove('selected');
-                this.teamMembersTabContent.classList.add('hidden');    
-                this.companyFamilyTab.classList.remove('selected');
-                this.companyFamilyTabContent.classList.add('hidden');                  
+                this.basicInformationTabContent.classList.remove('hidden');    
                 break;
             case 'contact-information':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
                 this.contactInformationTab.classList.add('selected');
-                this.contactInformationTabContent.classList.remove('hidden');  
-                this.featuresTab.classList.remove('selected');
-                this.featuresTabContent.classList.add('hidden');    
-                this.mediaGalleryTab.classList.remove('selected');
-                this.mediaGalleryTabContent.classList.add('hidden');    
-                this.teamMembersTab.classList.remove('selected');
-                this.teamMembersTabContent.classList.add('hidden');    
-                this.companyFamilyTab.classList.remove('selected');
-                this.companyFamilyTabContent.classList.add('hidden');                  
+                this.contactInformationTabContent.classList.remove('hidden');    
                 break;
             case 'features':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');  
                 this.featuresTab.classList.add('selected');
-                this.featuresTabContent.classList.remove('hidden');    
-                this.mediaGalleryTab.classList.remove('selected');
-                this.mediaGalleryTabContent.classList.add('hidden');    
-                this.teamMembersTab.classList.remove('selected');
-                this.teamMembersTabContent.classList.add('hidden');    
-                this.companyFamilyTab.classList.remove('selected');
-                this.companyFamilyTabContent.classList.add('hidden');                  
+                this.featuresTabContent.classList.remove('hidden');                
                 break;
             case 'media-gallery':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');  
-                this.featuresTab.classList.remove('selected');
-                this.featuresTabContent.classList.add('hidden');    
                 this.mediaGalleryTab.classList.add('selected');
-                this.mediaGalleryTabContent.classList.remove('hidden');    
-                this.teamMembersTab.classList.remove('selected');
-                this.teamMembersTabContent.classList.add('hidden');    
-                this.companyFamilyTab.classList.remove('selected');
-                this.companyFamilyTabContent.classList.add('hidden');                  
+                this.mediaGalleryTabContent.classList.remove('hidden');            
                 break;
             case 'team-members':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');  
-                this.featuresTab.classList.remove('selected');
-                this.featuresTabContent.classList.add('hidden');    
-                this.mediaGalleryTab.classList.remove('selected');
-                this.mediaGalleryTabContent.classList.add('hidden');    
                 this.teamMembersTab.classList.add('selected');
-                this.teamMembersTabContent.classList.remove('hidden');    
-                this.companyFamilyTab.classList.remove('selected');
-                this.companyFamilyTabContent.classList.add('hidden');                  
+                this.teamMembersTabContent.classList.remove('hidden');              
                 break;
             case 'company-family':
-                this.basicInformationTab.classList.remove('selected');
-                this.basicInformationTabContent.classList.add('hidden');
-                this.contactInformationTab.classList.remove('selected');
-                this.contactInformationTabContent.classList.add('hidden');  
-                this.featuresTab.classList.remove('selected');
-                this.featuresTabContent.classList.add('hidden');    
-                this.mediaGalleryTab.classList.remove('selected');
-                this.mediaGalleryTabContent.classList.add('hidden');    
-                this.teamMembersTab.classList.remove('selected');
-                this.teamMembersTabContent.classList.add('hidden');    
                 this.companyFamilyTab.classList.add('selected');
                 this.companyFamilyTabContent.classList.remove('hidden');                  
                 break;
