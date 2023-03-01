@@ -26,6 +26,18 @@ export class PageProfileCompany {
     private readonly personClient: PersonClient;
     private readonly companyClient: CompanyClient;
     private readonly personAtCompanyClient: PersonAtCompanyClient;
+    private basicInformationTab: HTMLDivElement;
+    private basicInformationTabContent: HTMLDivElement;
+    private contactInformationTab: HTMLDivElement;
+    private contactInformationTabContent: HTMLDivElement;
+    private featuresTab: HTMLDivElement;
+    private featuresTabContent: HTMLDivElement;
+    private mediaGalleryTab: HTMLDivElement;
+    private mediaGalleryTabContent: HTMLDivElement;
+    private teamMembersTab: HTMLDivElement;
+    private teamMembersTabContent: HTMLDivElement;
+    private companyFamilyTab: HTMLDivElement;
+    private companyFamilyTabContent: HTMLDivElement;
     constructor() {
         defineCustomElements();
         this.personClient = new PersonClient();
@@ -41,18 +53,6 @@ export class PageProfileCompany {
     @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];  
     @State() parentCompany: CompanyData;
     @State() siblingCompanies: DataResponse<CompanyInfo>[];
-    @State() basicInformationTabClass: string = 'tab selected';
-    @State() basicInformationClass: string = '';
-    @State() contactInformationTabClass: string = 'tab';
-    @State() contactInformationClass: string = 'hidden';
-    @State() featuresTabClass: string = 'tab';
-    @State() featuresClass: string = 'hidden';
-    @State() mediaGalleryTabClass: string = 'tab';
-    @State() mediaGalleryClass: string = 'hidden';
-    @State() teamMembersTabClass: string = 'tab';
-    @State() teamMembersClass: string = 'hidden';
-    @State() companyFamilyTabClass: string = 'tab';
-    @State() companyFamilyClass: string = 'hidden';
     @State() descriptionDisplay: string = '';
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
@@ -384,18 +384,93 @@ export class PageProfileCompany {
 
     tabClick(e: MouseEvent, tab: string) {
         e.preventDefault();
-        this.basicInformationTabClass = tab == 'basic-information' ? 'tab selected' : 'tab';
-        this.basicInformationClass = tab == 'basic-information' ? '' : 'hidden';
-        this.contactInformationTabClass = tab == 'contact-information' ? 'tab selected' : 'tab';
-        this.contactInformationClass = tab == 'contact-information' ? '' : 'hidden';
-        this.featuresTabClass = tab == 'features' ? 'tab selected' : 'tab';
-        this.featuresClass = tab == 'features' ? '' : 'hidden';
-        this.mediaGalleryTabClass = tab == 'media-gallery' ? 'tab selected' : 'tab';
-        this.mediaGalleryClass = tab == 'media-gallery' ? '' : 'hidden';
-        this.teamMembersTabClass = tab == 'team-members' ? 'tab selected' : 'tab';
-        this.teamMembersClass = tab == 'team-members' ? '' : 'hidden';
-        this.companyFamilyTabClass = tab == 'company-family' ? 'tab selected' : 'tab';
-        this.companyFamilyClass = tab == 'company-family' ? '' : 'hidden';
+        switch (tab) {
+            case 'basic-information':
+                this.basicInformationTab.classList.add('selected');
+                this.basicInformationTabContent.classList.remove('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');  
+                this.featuresTab.classList.remove('selected');
+                this.featuresTabContent.classList.add('hidden');    
+                this.mediaGalleryTab.classList.remove('selected');
+                this.mediaGalleryTabContent.classList.add('hidden');    
+                this.teamMembersTab.classList.remove('selected');
+                this.teamMembersTabContent.classList.add('hidden');    
+                this.companyFamilyTab.classList.remove('selected');
+                this.companyFamilyTabContent.classList.add('hidden');                  
+                break;
+            case 'contact-information':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.add('selected');
+                this.contactInformationTabContent.classList.remove('hidden');  
+                this.featuresTab.classList.remove('selected');
+                this.featuresTabContent.classList.add('hidden');    
+                this.mediaGalleryTab.classList.remove('selected');
+                this.mediaGalleryTabContent.classList.add('hidden');    
+                this.teamMembersTab.classList.remove('selected');
+                this.teamMembersTabContent.classList.add('hidden');    
+                this.companyFamilyTab.classList.remove('selected');
+                this.companyFamilyTabContent.classList.add('hidden');                  
+                break;
+            case 'features':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');  
+                this.featuresTab.classList.add('selected');
+                this.featuresTabContent.classList.remove('hidden');    
+                this.mediaGalleryTab.classList.remove('selected');
+                this.mediaGalleryTabContent.classList.add('hidden');    
+                this.teamMembersTab.classList.remove('selected');
+                this.teamMembersTabContent.classList.add('hidden');    
+                this.companyFamilyTab.classList.remove('selected');
+                this.companyFamilyTabContent.classList.add('hidden');                  
+                break;
+            case 'media-gallery':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');  
+                this.featuresTab.classList.remove('selected');
+                this.featuresTabContent.classList.add('hidden');    
+                this.mediaGalleryTab.classList.add('selected');
+                this.mediaGalleryTabContent.classList.remove('hidden');    
+                this.teamMembersTab.classList.remove('selected');
+                this.teamMembersTabContent.classList.add('hidden');    
+                this.companyFamilyTab.classList.remove('selected');
+                this.companyFamilyTabContent.classList.add('hidden');                  
+                break;
+            case 'team-members':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');  
+                this.featuresTab.classList.remove('selected');
+                this.featuresTabContent.classList.add('hidden');    
+                this.mediaGalleryTab.classList.remove('selected');
+                this.mediaGalleryTabContent.classList.add('hidden');    
+                this.teamMembersTab.classList.add('selected');
+                this.teamMembersTabContent.classList.remove('hidden');    
+                this.companyFamilyTab.classList.remove('selected');
+                this.companyFamilyTabContent.classList.add('hidden');                  
+                break;
+            case 'company-family':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');  
+                this.featuresTab.classList.remove('selected');
+                this.featuresTabContent.classList.add('hidden');    
+                this.mediaGalleryTab.classList.remove('selected');
+                this.mediaGalleryTabContent.classList.add('hidden');    
+                this.teamMembersTab.classList.remove('selected');
+                this.teamMembersTabContent.classList.add('hidden');    
+                this.companyFamilyTab.classList.add('selected');
+                this.companyFamilyTabContent.classList.remove('hidden');                  
+                break;
+    }
+
 
         if (tab == 'team-members') {
             this.includeInactiveTeamMembers ? this.getAllTeamMembers() : this.getActiveTeamMembers();
@@ -431,15 +506,15 @@ export class PageProfileCompany {
                     </div>
                     <h1>{this.company?.data?.attributes?.Name??''}</h1>
                     <div class='tab-grid company'>
-                        <div onClick={e => this.tabClick(e, 'basic-information')} class={this.basicInformationTabClass}>Basic Information</div>
-                        <div onClick={e => this.tabClick(e, 'contact-information')} class={this.contactInformationTabClass}>Contact Information</div>
-                        <div onClick={e => this.tabClick(e, 'features')} class={this.featuresTabClass}>Features</div>
-                        <div onClick={e => this.tabClick(e, 'media-gallery')} class={this.mediaGalleryTabClass}>Media Gallery</div>
-                        <div onClick={e => this.tabClick(e, 'team-members')} class={this.teamMembersTabClass}>Team Members</div>
-                        <div onClick={e => this.tabClick(e, 'company-family')} class={this.companyFamilyTabClass}>Company Family</div>
+                        <div ref={el => this.basicInformationTab = el} onClick={e => this.tabClick(e, 'basic-information')} class='tab selected'>Basic Information</div>
+                        <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>Contact Information</div>
+                        <div ref={el => this.featuresTab = el} onClick={e => this.tabClick(e, 'features')} class='tab'>Features</div>
+                        <div ref={el => this.mediaGalleryTab = el} onClick={e => this.tabClick(e, 'media-gallery')} class='tab'>Media Gallery</div>
+                        <div ref={el => this.teamMembersTab = el} onClick={e => this.tabClick(e, 'team-members')} class='tab'>Team Members</div>
+                        <div ref={el => this.companyFamilyTab = el} onClick={e => this.tabClick(e, 'company-family')} class='tab'>Company Family</div>
                     </div>
 
-                    <div class={this.basicInformationClass}>
+                    <div ref={el => this.basicInformationTabContent = el}>
                         <h2>Basic Information</h2>
                         <p>
                             The information below will appear as the company profile within the directory 
@@ -541,7 +616,7 @@ export class PageProfileCompany {
                         </div>                    
                     </div>
 
-                    <div class={this.contactInformationClass}>
+                    <div ref={el => this.contactInformationTabContent = el} class='hidden'>
                         <h2>Contact Information</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
@@ -609,7 +684,7 @@ export class PageProfileCompany {
                         </div>
                     </div>
 
-                    <div class={this.featuresClass}>
+                    <div ref={el => this.featuresTabContent = el} class='hidden'>
                         <h2>Features</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
@@ -744,7 +819,7 @@ export class PageProfileCompany {
                         </div>
                     </div>
 
-                    <div class={this.mediaGalleryClass}>
+                    <div ref={el => this.mediaGalleryTabContent = el} class='hidden'>
                         <h2>Media Gallery</h2>
                         <p>
                             The media assets below will appear alongside the company profile within the directory.<br/><b>NOTE: Media Gallery is not yet implemented or data bound.</b>
@@ -849,7 +924,7 @@ export class PageProfileCompany {
                         </div>
                     </div>
 
-                    <div class={this.teamMembersClass}>
+                    <div ref={el => this.teamMembersTabContent = el} class='hidden'>
                         <h2>Team Members</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
@@ -879,7 +954,7 @@ export class PageProfileCompany {
                         </div>
                     </div>
 
-                    <div class={this.companyFamilyClass}>
+                    <div ref={el => this.companyFamilyTabContent = el} class='hidden'>
                         <h2>Company Family</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 

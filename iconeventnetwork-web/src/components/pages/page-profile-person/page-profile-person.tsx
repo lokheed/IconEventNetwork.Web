@@ -15,6 +15,10 @@ import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 })
 export class PageProfilePerson {
     private readonly personClient: PersonClient;
+    private basicInformationTab: HTMLDivElement;
+    private basicInformationTabContent: HTMLDivElement;
+    private contactInformationTab: HTMLDivElement;
+    private contactInformationTabContent: HTMLDivElement;
     constructor(){
       this.personClient = new PersonClient();
     }  
@@ -151,6 +155,25 @@ export class PageProfilePerson {
         let updatedPhoneNumbers = Array.from(this.phoneNumbers);
         updatedPhoneNumbers.push(newPhoneNumber);
         this.phoneNumbers = updatedPhoneNumbers;   
+    } 
+
+    tabClick(e: MouseEvent, tab: string) {
+        e.preventDefault();
+        switch (tab) {
+            case 'basic-information':
+                this.basicInformationTab.classList.add('selected');
+                this.basicInformationTabContent.classList.remove('hidden');
+                this.contactInformationTab.classList.remove('selected');
+                this.contactInformationTabContent.classList.add('hidden');                  
+                break;
+            case 'contact-information':
+                this.basicInformationTab.classList.remove('selected');
+                this.basicInformationTabContent.classList.add('hidden');
+                this.contactInformationTab.classList.add('selected');
+                this.contactInformationTabContent.classList.remove('hidden');                   
+                break;
+        }
+
     }
 
     componentWillLoad() {
@@ -166,121 +189,133 @@ export class PageProfilePerson {
                 </aside>
                 <main>
                     <WelcomePersonName me={this.me} />
-                    <h2>My Personal Profile Information</h2>
-                    <p>The information below is associated with your account and will not appear in the directory.</p>
-                    <div class='profile-box box-container'>
-                        <div class='profile-item'>
-                            <div class='label centered'>
-                                Profile Picture
-                            </div>                            
-                            <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <ProfileImageDisc profileImage={this.person?.attributes?.ProfileImage} firstName={this.person?.attributes?.FirstName} lastName={this.person?.attributes?.LastName} />
-                                    </div>
-                                    <div class='actions centered'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                    <div class='tab-grid'>
+                        <div ref={el => this.basicInformationTab = el} onClick={e => this.tabClick(e, 'basic-information')} class='tab selected'>My Basic Information</div>
+                        <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>My Contact Information</div>
+                    </div>
+                    <div ref={el => this.basicInformationTabContent = el}>
+                        <h2>My Personal Profile Basic Information</h2>
+                        <p>The information below is associated with your account and will not appear in the directory.</p>
+                        <div class='profile-box box-container'>
+                            <div class='profile-item'>
+                                <div class='label centered'>
+                                    Profile Picture
+                                </div>                            
+                                <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <ProfileImageDisc profileImage={this.person?.attributes?.ProfileImage} firstName={this.person?.attributes?.FirstName} lastName={this.person?.attributes?.LastName} />
                                         </div>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                        </div>                                       
+                                        <div class='actions centered'>
+                                            <div class='action'>
+                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                            </div>
+                                            <div class='action'>
+                                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                            </div>                                       
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Name
+                                </div>
+                                <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <PersonNameAndPronouns person={this.person} />
+                                        </div>
+                                        <div class='actions'>
+                                            <div class='action'>
+                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                            </div>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                            </div>                                      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Username
+                                </div>                            
+                                <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            {username}
+                                        </div>
+                                        <div class='actions'>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                            </div>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                            </div>                                      
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class='profile-item'>
-                            <div class='label'>
-                                Name
-                            </div>
-                            <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <PersonNameAndPronouns person={this.person} />
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action'>
-                                            <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action disabled'>
-                                            <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                        </div>                                      
-                                    </div>
+                    </div>
+                    <div ref={el => this.contactInformationTabContent = el} class='hidden'>
+                        <h2>My Personal Profile Contact Information</h2>
+                        <p>The information below is associated with your account and will not appear in the directory.</p>
+                        <div class='profile-box box-container'>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Email
+                                </div>
+                                <div class='content'>
+                                    {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
+                                    )}                                
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
+                                                + <span class='action-link'>Add another email address</span>
+                                            </div>
+                                        </div>                                   
+                                        <div class='actions'></div>
+                                    </div>                                
                                 </div>
                             </div>
-                        </div>
-                        <div class='profile-item'>
-                            <div class='label'>
-                                Username
-                            </div>                            
-                            <div class='content'>
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        {username}
-                                    </div>
-                                    <div class='actions'>
-                                        <div class='action disabled'>
-                                            <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                        </div>
-                                        <div class='action disabled'>
-                                            <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                        </div>                                      
-                                    </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Phone
+                                </div>
+                                <div class='content'>
+                                    {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
+                                        <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
+                                    )}                                
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
+                                                + <span class='action-link'>Add another phone number</span>
+                                            </div>
+                                        </div>                                   
+                                        <div class='actions'></div>
+                                    </div>                                
                                 </div>
                             </div>
-                        </div>
-                        <div class='profile-item'>
-                            <div class='label'>
-                                Email
-                            </div>
-                            <div class='content'>
-                                {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
-                                    <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
-                                )}                                
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
-                                            + <span class='action-link'>Add another email address</span>
-                                        </div>
-                                    </div>                                   
-                                    <div class='actions'></div>
+                            <div class='profile-item last'>
+                                <div class='label'>
+                                    Address
+                                </div>
+                                <div class='content'>
+                                    {this.person?.attributes?.Addresses?.data && this.person?.attributes?.Addresses?.data.map(addressItem => 
+                                        <ProfileAddressItem addressItem={addressItem} />
+                                    )}                                
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <div class='add-another'>
+                                                + <span class='action-link'>Add another address</span>
+                                            </div>
+                                        </div>                                   
+                                        <div class='actions'></div>
                                 </div>                                
-                            </div>
-                        </div>
-                        <div class='profile-item'>
-                            <div class='label'>
-                                Phone
-                            </div>
-                            <div class='content'>
-                                {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
-                                    <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
-                                )}                                
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
-                                            + <span class='action-link'>Add another phone number</span>
-                                        </div>
-                                    </div>                                   
-                                    <div class='actions'></div>
-                                </div>                                
-                            </div>
-                        </div>
-                        <div class='profile-item last'>
-                            <div class='label'>
-                                Address
-                            </div>
-                            <div class='content'>
-                                {this.person?.attributes?.Addresses?.data && this.person?.attributes?.Addresses?.data.map(addressItem => 
-                                    <ProfileAddressItem addressItem={addressItem} />
-                                )}                                
-                                <div class='profile-item-row'>
-                                    <div class='value'>
-                                        <div class='add-another'>
-                                            + <span class='action-link'>Add another address</span>
-                                        </div>
-                                    </div>                                   
-                                    <div class='actions'></div>
-                               </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
