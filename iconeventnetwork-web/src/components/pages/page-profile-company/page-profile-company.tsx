@@ -58,19 +58,11 @@ export class PageProfileCompany {
     @State() includeInactiveTeamMembers: boolean = false;
     @State() teamGridColumns: any[];
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
-        let updatedEmailAddresses = Array.from(this.emailAddresses);
-        updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
-            return emailAddress.id != event.detail;
-        });
-        this.emailAddresses = updatedEmailAddresses;
+        this.emailAddresses = [...this.emailAddresses.filter(e => e.id != event.detail)];
 
     }    
     @Listen('phoneNumberDeleted') phoneNumberDeletedHandler(event: CustomEvent<number>) {
-        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
-        updatedPhoneNumbers = updatedPhoneNumbers.filter(function(phoneNumber) {
-            return phoneNumber.id != event.detail;
-        });
-        this.phoneNumbers = updatedPhoneNumbers;
+        this.phoneNumbers = [...this.phoneNumbers.filter(e => e.id != event.detail)];
     }
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
@@ -266,8 +258,7 @@ export class PageProfileCompany {
 
     private handleAddNewEmailAddress(e: MouseEvent) {
         e.preventDefault();
-        let newEmailAddress = 
-        { 
+        this.emailAddresses = [...this.emailAddresses, { 
             id: 0,
             attributes: {
                 IsValidated: false,
@@ -282,16 +273,12 @@ export class PageProfileCompany {
                     }
                 }
             }
-        }
-        let updatedEmailAddresses = Array.from(this.emailAddresses);
-        updatedEmailAddresses.push(newEmailAddress);
-        this.emailAddresses = updatedEmailAddresses;   
+        }];   
     }
 
     private handleAddNewPhoneNumber(e: MouseEvent) {
         e.preventDefault();
-        let newPhoneNumber = 
-        { 
+        this.phoneNumbers = [...this.phoneNumbers, { 
             id: 0,
             attributes: {
                 RawFormat: '',
@@ -304,7 +291,6 @@ export class PageProfileCompany {
                         id: 0,
                         attributes: {
                             Name: '',
-                            Rank: 0,
                             A2: '',
                             A3: '',
                             Number: 0,
@@ -321,10 +307,7 @@ export class PageProfileCompany {
                     }
                 },
             }
-        }
-        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
-        updatedPhoneNumbers.push(newPhoneNumber);
-        this.phoneNumbers = updatedPhoneNumbers;   
+        }];   
     }
 
     private initializeTeamGridColumns() {

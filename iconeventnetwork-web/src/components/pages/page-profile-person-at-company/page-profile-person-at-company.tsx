@@ -35,19 +35,10 @@ export class PageProfilePersonAtCompany {
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
-        let updatedEmailAddresses = Array.from(this.emailAddresses);
-        updatedEmailAddresses = updatedEmailAddresses.filter(function(emailAddress) {
-            return emailAddress.id != event.detail;
-        });
-        this.emailAddresses = updatedEmailAddresses;
-
+        this.emailAddresses = [...this.emailAddresses.filter(e => e.id != event.detail)];
     }    
     @Listen('phoneNumberDeleted') phoneNumberDeletedHandler(event: CustomEvent<number>) {
-        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
-        updatedPhoneNumbers = updatedPhoneNumbers.filter(function(phoneNumber) {
-            return phoneNumber.id != event.detail;
-        });
-        this.phoneNumbers = updatedPhoneNumbers;
+        this.phoneNumbers = [...this.phoneNumbers.filter(e => e.id != event.detail)];
     }
 
 
@@ -165,8 +156,7 @@ export class PageProfilePersonAtCompany {
 
     private handleAddNewEmailAddress(e: MouseEvent) {
         e.preventDefault();
-        let newEmailAddress = 
-        { 
+        this.emailAddresses = [...this.emailAddresses, { 
             id: 0,
             attributes: {
                 IsValidated: false,
@@ -181,16 +171,12 @@ export class PageProfilePersonAtCompany {
                     }
                 }
             }
-        }
-        let updatedEmailAddresses = Array.from(this.emailAddresses);
-        updatedEmailAddresses.push(newEmailAddress);
-        this.emailAddresses = updatedEmailAddresses;   
+        }];   
     }
 
     private handleAddNewPhoneNumber(e: MouseEvent) {
         e.preventDefault();
-        let newPhoneNumber = 
-        { 
+        this.phoneNumbers = [...this.phoneNumbers, { 
             id: 0,
             attributes: {
                 RawFormat: '',
@@ -203,7 +189,6 @@ export class PageProfilePersonAtCompany {
                         id: 0,
                         attributes: {
                             Name: '',
-                            Rank: 0,
                             A2: '',
                             A3: '',
                             Number: 0,
@@ -220,10 +205,7 @@ export class PageProfilePersonAtCompany {
                     }
                 },
             }
-        }
-        let updatedPhoneNumbers = Array.from(this.phoneNumbers);
-        updatedPhoneNumbers.push(newPhoneNumber);
-        this.phoneNumbers = updatedPhoneNumbers;   
+        }];   
     }
 
     render() {
