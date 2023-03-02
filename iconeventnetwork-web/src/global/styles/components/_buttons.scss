@@ -35,3 +35,10 @@ button.secondary-action:hover {
     transition : 1000ms;
     background-color: var(--color-button-hover-secondary);
 }
+
+button.action {
+    background: none;
+    border: none;
+    font-size: 1em;
+    padding: 0;
+}
