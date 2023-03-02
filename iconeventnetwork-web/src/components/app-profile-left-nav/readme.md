@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property          | Attribute | Description | Type                          | Default     |
-| ----------------- | --------- | ----------- | ----------------------------- | ----------- |
-| `me` _(required)_ | --        |             | `GetRequestingPersonResponse` | `undefined` |
+| Property                 | Attribute    | Description | Type                                         | Default     |
+| ------------------------ | ------------ | ----------- | -------------------------------------------- | ----------- |
+| `appliesTo` _(required)_ | `applies-to` |             | `"company" \| "person" \| "personAtCompany"` | `undefined` |
+| `me` _(required)_        | --           |             | `GetRequestingPersonResponse`                | `undefined` |
 
 
 ## Dependencies

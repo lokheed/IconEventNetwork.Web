@@ -167,7 +167,7 @@ export class PageProfilePerson {
         return (
             <div class='profile-page'>
                 <aside>
-                    <app-profile-left-nav me={this.me} />
+                    <app-profile-left-nav me={this.me} appliesTo='person' />
                 </aside>
                 <main>
                     <WelcomePersonName me={this.me} />

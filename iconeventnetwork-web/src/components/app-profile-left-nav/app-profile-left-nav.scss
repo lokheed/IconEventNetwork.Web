@@ -55,7 +55,8 @@
         height: 0;
         display: flex;
         flex-direction: column;
-        a:hover{
+        a:hover,
+        a.selected{
           color: var(--color-blue-dark);
         }
       }      
@@ -68,7 +69,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      a:hover{
+      a:hover,
+      a.selected{
         color: var(--color-blue-dark);
       }
     }    

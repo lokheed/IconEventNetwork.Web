@@ -183,7 +183,23 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "applies-to",
+          "description": "",
+          "values": [
+            {
+              "name": "company"
+            },
+            {
+              "name": "person"
+            },
+            {
+              "name": "personAtCompany"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "app-profile-phone-number-item",

@@ -212,7 +212,7 @@ export class PageProfilePersonAtCompany {
         return (
             <div class='profile-page person-at-company'>
                 <aside>
-                    <app-profile-left-nav me={this.me} />
+                    <app-profile-left-nav me={this.me} appliesTo='personAtCompany' selectedItemId={this.personAtCompanyId} />
                 </aside>
                 <main>
                     <div>
