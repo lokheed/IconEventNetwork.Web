@@ -353,8 +353,8 @@ export class AppProfileEmailAddressItem {
                 <app-modal ref={el => this.editDialog = el} dialogTitle="Email">
                     <form ref={el => this.editForm = el} class='edit-form' >
                         <div class='form-item'>
-                            <label>Type</label>
-                            <select onInput={(event) => this.handleEmailTypeSelect(event)}>
+                            <label htmlFor='email-address-type'>Type</label>
+                            <select id='email-address-type' name='email-address' onInput={(event) => this.handleEmailTypeSelect(event)}>
                                 {this.emailAddressTypes?.sort((a,b) => {
                                     var rankA = a.attributes.Rank;
                                     var rankB = b.attributes.Rank;
@@ -370,8 +370,8 @@ export class AppProfileEmailAddressItem {
                             </select>
                         </div>
                         <div class='form-item'>
-                            <label>Email Address</label>
-                            <input ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} class={this.emailAddressClass} required />
+                            <label htmlFor="email-address">Email Address</label>
+                            <input id='email-address' name='email-address' ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} class={this.emailAddressClass} required />
                             <div ref={el => this.emailAddressErrorMessage = el} class='form-error-message'></div>
                         </div>
                     </form>

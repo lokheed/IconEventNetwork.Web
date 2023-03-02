@@ -416,8 +416,8 @@ export class AppProfilePhoneItem {
                 <app-modal ref={el => this.editDialog = el} dialogTitle="Phone">
                     <form ref={el => this.editForm = el} class='edit-form' >
                         <div class='form-item'>
-                            <label>Type</label>
-                            <select onInput={(event) => this.handlePhoneTypeSelect(event)}>
+                            <label htmlFor="phone-number-type">Type</label>
+                            <select id='phone-number-type' name='phone-number-type' onInput={(event) => this.handlePhoneTypeSelect(event)}>
                                 {this.phoneNumberTypes?.sort((a,b) => {
                                     var rankA = a.attributes.Rank;
                                     var rankB = b.attributes.Rank;
@@ -433,8 +433,8 @@ export class AppProfilePhoneItem {
                             </select>
                         </div>
                         <div class='form-item'>
-                            <label>Phone Number</label>
-                            <select onInput={(event) => this.handlePhoneCountrySelect(event)}>
+                            <label htmlFor="phone-number">Phone Number</label>
+                            <select id='phone-number' name='phone-number' onInput={(event) => this.handlePhoneCountrySelect(event)}>
                                 {this.phoneNumberCountries?.sort((a,b) => {
                                     var rankA = a.attributes.A2;
                                     var rankB = b.attributes.A2;
