@@ -341,12 +341,12 @@ export class AppProfileEmailAddressItem {
                     </div>
                     { this.canEdit && 
                         <div class='actions'>
-                            <div class='action' onClick={e => this.handleEditClick(e)}>
+                            <button class='action' onClick={e => this.handleEditClick(e)}>
                                 <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </div>
-                            <div class='action' onClick={e => this.handleDeleteClick(e)}>
+                            </button>
+                            <button class='action' onClick={e => this.handleDeleteClick(e)}>
                                 <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </div>                                       
+                            </button>                                       
                         </div>
                     }       
                 </div>
