@@ -6,7 +6,7 @@ import { CountryClient } from "../../services/clients/country-client";
 import { PersonClient } from "../../services/clients/person-client";
 import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 import { CompanyClient } from "../../services/clients/company-client";
-import { localStorageKeyService } from '../../services/local-storage-key-service';
+import state from '../../services/store';
 
 
 @Component({
@@ -149,9 +149,8 @@ export class AppProfilePhoneItem {
     }
 
     private getPersonPhoneNumberTypes() {
-        var storedPersonPhoneNumberTypes = sessionStorage.getItem(localStorageKeyService.PhoneNumberTypesPerson);
-        if (storedPersonPhoneNumberTypes) {
-          this.phoneNumberTypes = JSON.parse(storedPersonPhoneNumberTypes);
+        if (state.personPhoneNumberTypes.length > 0) {
+          this.phoneNumberTypes = state.personPhoneNumberTypes;
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -167,15 +166,14 @@ export class AppProfilePhoneItem {
         })
         .then((response) => {
             this.phoneNumberTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.PhoneNumberTypesPerson, JSON.stringify(this.phoneNumberTypes));
+            state.personPhoneNumberTypes = response.data;
         })
         .catch(reason => console.error(reason));  
     }
 
     private getPersonAtCompanyPhoneNumberTypes() {
-        var storedPersonAtCompanyPhoneNumberTypes = sessionStorage.getItem(localStorageKeyService.PhoneNumberTypesPersonAtCompany);
-        if (storedPersonAtCompanyPhoneNumberTypes) {
-          this.phoneNumberTypes = JSON.parse(storedPersonAtCompanyPhoneNumberTypes);
+        if (state.personAtCompanyPhoneNumberTypes.length > 0) {
+          this.phoneNumberTypes = state.personAtCompanyPhoneNumberTypes;
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -191,15 +189,14 @@ export class AppProfilePhoneItem {
         })
         .then((response) => {
             this.phoneNumberTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.PhoneNumberTypesPersonAtCompany, JSON.stringify(this.phoneNumberTypes));
+            state.personAtCompanyPhoneNumberTypes = response.data;
         })
         .catch(reason => console.error(reason));  
     }
 
     private getCompanyPhoneNumberTypes() {
-        var storedCompanyPhoneNumberTypes = sessionStorage.getItem(localStorageKeyService.PhoneNumberTypesCompany);
-        if (storedCompanyPhoneNumberTypes) {
-          this.phoneNumberTypes = JSON.parse(storedCompanyPhoneNumberTypes);
+        if (state.companyPhoneNumberTypes.length > 0) {
+          this.phoneNumberTypes = state.companyPhoneNumberTypes;
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -215,15 +212,14 @@ export class AppProfilePhoneItem {
         })
         .then((response) => {
             this.phoneNumberTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.PhoneNumberTypesCompany, JSON.stringify(this.phoneNumberTypes));
+            state.companyPhoneNumberTypes = response.data;
         })
         .catch(reason => console.error(reason));  
     }
 
     private getPhoneNumberCountries() {
-        var storedPhoneNumberCountries = sessionStorage.getItem(localStorageKeyService.PhoneNumberCountries);
-        if (storedPhoneNumberCountries) {
-          this.phoneNumberCountries = JSON.parse(storedPhoneNumberCountries);
+        if (state.phoneNumberCountries.length > 0) {
+          this.phoneNumberCountries = state.phoneNumberCountries;
           return;
         }
         this.countryClient.getCountries({
@@ -241,7 +237,7 @@ export class AppProfilePhoneItem {
         })
         .then((response) => {
             this.phoneNumberCountries = response.data;
-            sessionStorage.setItem(localStorageKeyService.PhoneNumberCountries, JSON.stringify(this.phoneNumberCountries));
+            state.phoneNumberCountries = response.data;
         })
         .catch(reason => console.error(reason));  
     }

@@ -5,7 +5,7 @@ import { EmailAddressTypeClient } from "../../services/clients/email-address-typ
 import { PersonClient } from "../../services/clients/person-client";
 import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 import { CompanyClient } from "../../services/clients/company-client";
-import { localStorageKeyService } from '../../services/local-storage-key-service';
+import state from '../../services/store';
 
 @Component({
   tag: "app-profile-email-address-item",
@@ -141,9 +141,8 @@ export class AppProfileEmailAddressItem {
     }
 
     private getPersonEmailAddressTypes() {
-        var storedPersonEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesPerson);
-        if (storedPersonEmailAddressTypes) {
-          this.emailAddressTypes = JSON.parse(storedPersonEmailAddressTypes);
+        if (state.personEmailAddressTypes.length > 0) {
+          this.emailAddressTypes = state.personEmailAddressTypes;
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -159,15 +158,14 @@ export class AppProfileEmailAddressItem {
         })
         .then((response) => {
             this.emailAddressTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.EmailTypesPerson, JSON.stringify(this.emailAddressTypes));
+            state.personEmailAddressTypes = response.data;
         })
         .catch(reason => console.error(reason));  
     }
 
     private getPersonAtCompanyEmailAddressTypes() {
-        var storedPersonAtCompanyEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesPersonAtCompany);
-        if (storedPersonAtCompanyEmailAddressTypes) {
-          this.emailAddressTypes = JSON.parse(storedPersonAtCompanyEmailAddressTypes);
+        if (state.personAtCompanyEmailAddressTypes.length > 0) {
+          this.emailAddressTypes = state.personAtCompanyEmailAddressTypes;
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -183,15 +181,14 @@ export class AppProfileEmailAddressItem {
         })
         .then((response) => {
             this.emailAddressTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.EmailTypesPersonAtCompany, JSON.stringify(this.emailAddressTypes));
+            state.personAtCompanyEmailAddressTypes = response.data;
         })
         .catch(reason => console.error(reason));  
     }
 
     private getCompanyEmailAddressTypes() {
-        var storedCompanyEmailAddressTypes = sessionStorage.getItem(localStorageKeyService.EmailTypesCompany);
-        if (storedCompanyEmailAddressTypes) {
-          this.emailAddressTypes = JSON.parse(storedCompanyEmailAddressTypes);
+        if (state.companyEmailAddressTypes.length > 0) {
+          this.emailAddressTypes = state.companyEmailAddressTypes;
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -207,7 +204,7 @@ export class AppProfileEmailAddressItem {
         })
         .then((response) => {
             this.emailAddressTypes = response.data;
-            sessionStorage.setItem(localStorageKeyService.EmailTypesCompany, JSON.stringify(this.emailAddressTypes));
+            state.companyEmailAddressTypes = response.data;;
         })
         .catch(reason => console.error(reason));  
     }
