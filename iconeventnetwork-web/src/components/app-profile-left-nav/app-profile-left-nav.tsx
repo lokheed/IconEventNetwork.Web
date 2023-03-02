@@ -14,7 +14,8 @@ import { localStorageKeyService } from '../../services/local-storage-key-service
 export class AppProfileLeftNav {
   
   @Prop() me!: GetRequestingPersonResponse; 
-
+  @Prop() appliesTo!: 'person' | 'personAtCompany' | 'company';
+  @Prop() selectedItemId: string;
   @State() pacs: DataResponse<PersonAtCompanyInfo>[];
   @State() companyProfilesExpanded: boolean = false;
   @State() companiesExpanded: boolean = false;
@@ -26,6 +27,16 @@ export class AppProfileLeftNav {
   componentWillLoad() {
     this.personAtCompanyClient = new PersonAtCompanyClient();
     this.getPacs();
+  }
+
+  componentDidLoad() {
+    switch (this.appliesTo) {
+      case 'company':
+        this.toggleCompaniesSection();
+        break;
+      case 'personAtCompany':
+        this.toggleWorkProfilesSection();
+    }
   }
 
   private getPacs() {
@@ -42,6 +53,9 @@ export class AppProfileLeftNav {
         },
       },
       filters: {
+        IsActive: {
+          $eq: 1,
+        },
         Person: {
           id: {
             $eq: this.me.id,
@@ -63,6 +77,34 @@ export class AppProfileLeftNav {
     })
     .catch(reason => console.error(reason)); 
   }
+  
+  private handleWorkProfilesExpandClick(e: MouseEvent) {
+    e.preventDefault();
+    this.toggleWorkProfilesSection();
+  }
+
+  private handleCompaniesExpandClick(e: MouseEvent) {
+    e.preventDefault();
+    this.toggleCompaniesSection();
+  }
+  
+  private toggleWorkProfilesSection() {
+    this.companyProfilesExpanded = !this.companyProfilesExpanded;
+    if (this.companyProfilesExpanded) {
+      this.companyProfiles.style.height = this.companyProfiles.scrollHeight + "px";
+      return;
+    }
+    this.companyProfiles.style.height = "0px";
+  }
+
+  private toggleCompaniesSection() {
+    this.companiesExpanded = !this.companiesExpanded;
+    if (this.companiesExpanded) {
+      this.companies.style.height = this.companies.scrollHeight + "px";
+      return;
+    }
+    this.companies.style.height = "0px";
+  }
 
   render() {
     return (
@@ -76,16 +118,7 @@ export class AppProfileLeftNav {
             <a href="/profile-person">My Personal Profile</a>
             <div class={this.companyProfilesExpanded ? "expanded" : ""}>
               <a href="/profile-pacs">My Work Profiles</a>
-              <button
-                onClick={() => {
-                  this.companyProfilesExpanded = !this.companyProfilesExpanded;
-                  if (this.companyProfilesExpanded) {
-                    this.companyProfiles.style.height = this.companyProfiles.scrollHeight + "px";
-                    return;
-                  }
-                  this.companyProfiles.style.height = "0px";
-                }}
-              >
+              <button onClick={(e) => this.handleWorkProfilesExpandClick(e)} >
                 {this.companyProfilesExpanded ? "-" : "+"}
               </button>
             </div>
@@ -96,7 +129,8 @@ export class AppProfileLeftNav {
                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
               }).map(pac => (
                 <a
-                  href={`/profile-pac/${pac.attributes.Company.data.id}`}>
+                  href={`/profile-pac/${pac.attributes.Company.data.id}`}
+                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'selected' : ''}>
                     {pac.attributes.Company.data.attributes.Name}
                 </a>
               ))}
@@ -105,15 +139,7 @@ export class AppProfileLeftNav {
             <div class={this.companiesExpanded ? "expanded" : ""}>
               <a href="/profile-pacs">My Companies</a>
               <button
-                onClick={() => {
-                  this.companiesExpanded = !this.companiesExpanded;
-                  if (this.companiesExpanded) {
-                    this.companies.style.height = this.companies.scrollHeight + "px";
-                    return;
-                  }
-                  this.companies.style.height = "0px";
-                }}
-              >
+                onClick={(e) => this.handleCompaniesExpandClick(e)} >
                 {this.companiesExpanded ? "-" : "+"}
               </button>
             </div>
@@ -124,7 +150,8 @@ export class AppProfileLeftNav {
                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
               }).map(pac => (
                 <a
-                  href={`/profile-company/${pac.attributes.Company.data.id}`}>
+                  href={`/profile-company/${pac.attributes.Company.data.id}`}
+                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'selected' : ''}>
                     {pac.attributes.Company.data.attributes.Name}
                 </a>
               ))}

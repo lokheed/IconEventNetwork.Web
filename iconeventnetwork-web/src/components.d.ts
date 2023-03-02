@@ -72,7 +72,9 @@ export namespace Components {
         "personId"?: number;
     }
     interface AppProfileLeftNav {
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
         "me": GetRequestingPersonResponse;
+        "selectedItemId": string;
     }
     interface AppProfilePhoneNumberItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -517,7 +519,9 @@ declare namespace LocalJSX {
         "personId"?: number;
     }
     interface AppProfileLeftNav {
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
         "me": GetRequestingPersonResponse;
+        "selectedItemId"?: string;
     }
     interface AppProfilePhoneNumberItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
