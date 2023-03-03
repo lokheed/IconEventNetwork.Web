@@ -1,11 +1,10 @@
 import { Component, Listen, State, Prop, h } from '@stencil/core';
 import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/clients/person-at-company-client';
-import { DataResponse, EmailAddressAttributes, PersonAtCompanyData, PhoneNumberAttributes } from '../../../services/clients/client-base';
+import { AddressAttributes, DataResponse, EmailAddressAttributes, PersonAtCompanyData, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
-import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 @Component({
@@ -28,12 +27,16 @@ export class PageProfilePersonAtCompany {
     @State() security: SecurityCheckResponse;   
     @State() me: GetRequestingPersonResponse; 
     @State() personAtCompany: PersonAtCompanyData;
+    @State() addresses: DataResponse<AddressAttributes>[] = [];   
     @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];   
     @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];   
     @State() bioDisplay: string = '';
     @State() bioReadMoreText: string = '';
     @State() contactInformationClass: string = 'hidden';
     @State() contactInformationTabClass: string = 'tab';
+    @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
+        this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
+    }    
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
         this.emailAddresses = [...this.emailAddresses.filter(e => e.id != event.detail)];
     }    
@@ -110,7 +113,8 @@ export class PageProfilePersonAtCompany {
             if (this.personAtCompany?.data?.attributes?.Bio && this.personAtCompany.data.attributes.Bio.length > 250) {
                 this.bioDisplay = this.personAtCompany.data.attributes.Bio.substring(0, 250) + '...';
                 this.bioReadMoreText = 'Read more';
-            }           
+            }    
+            this.addresses = this.personAtCompany.data.attributes.Addresses.data;       
             this.emailAddresses = this.personAtCompany.data.attributes.EmailAddresses.data;
             this.phoneNumbers = this.personAtCompany.data.attributes.PhoneNumbers.data;
         })
@@ -152,6 +156,48 @@ export class PageProfilePersonAtCompany {
                 break;
         }
 
+    }
+
+    private handleAddNewAddress(e: MouseEvent) {
+        e.preventDefault();
+        this.addresses = [...this.addresses, {
+            id: 0,
+            attributes: {
+                Line1: '',
+                Line2: '',
+                City: '',
+                PostalCode: '',
+                country: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            A2: '',
+                            A3: '',
+                            Number: 0,
+                        }
+                    }
+                },
+                country_subdivision: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Code: '',
+                        }
+                    }
+                },
+                address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }];   
     }
 
     private handleAddNewEmailAddress(e: MouseEvent) {
@@ -375,17 +421,19 @@ export class PageProfilePersonAtCompany {
                                     Address
                                 </div>
                                 <div class='content'>
-                                    {this.personAtCompany?.data.attributes?.Addresses?.data && this.personAtCompany?.data?.attributes?.Addresses?.data.map(addressItem => 
-                                        <ProfileAddressItem addressItem={addressItem} />
-                                    )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='add-another'>
-                                                + <span class='action-link'>Add email address</span>
-                                            </div>
-                                        </div>                                   
-                                        <div class='actions'></div>
-                                </div>                                
+                                    {this.addresses && this.addresses.map(addressItem => 
+                                        <app-profile-address-item addressItem={addressItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
+                                    )}    
+                                    {this.security?.canManageProfileFields &&                                         
+                                        <div class='profile-item-row'>
+                                            <div class='value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
+                                                    + <span class='action-link'>Add email address</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>    
+                                    }                            
                                 </div>
                             </div>
                         </div>  

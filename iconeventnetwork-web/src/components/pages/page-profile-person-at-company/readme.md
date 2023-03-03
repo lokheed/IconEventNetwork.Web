@@ -23,6 +23,7 @@
 - [app-profile-left-nav](../../app-profile-left-nav)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
+- [app-profile-address-item](../../app-profile-address-item)
 - [app-responsive-image](../../app-responsive-image)
 
 ### Graph
@@ -31,11 +32,14 @@ graph TD;
   page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item
+  page-profile-person-at-company --> app-profile-address-item
   page-profile-person-at-company --> app-responsive-image
   app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-modal
   app-profile-phone-number-item --> app-confirmation
+  app-profile-address-item --> app-modal
+  app-profile-address-item --> app-confirmation
   app-root --> page-profile-person-at-company
   style page-profile-person-at-company fill:#f9f,stroke:#333,stroke-width:4px
 ```

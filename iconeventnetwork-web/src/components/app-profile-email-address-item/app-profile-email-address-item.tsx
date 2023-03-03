@@ -115,15 +115,12 @@ export class AppProfileEmailAddressItem {
     }
     @Listen('emailAddressAdded') emailAddressAddedHandler(event: CustomEvent<number>) {
         if (this.emailAddressItem.id == event.detail) {
-            this.handleEditClick(new MouseEvent('click'));
+            this.initializeEditDialog();
         }
     }
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
-        this.editEmailAddress = this.displayEmailAddress;        
-        this.editEmailAddressTypeId = this.displayEmailAddressTypeId;
-        this.editEmailAddressTypeName = this.displayEmailAddressTypeName;
-        this.editDialog.visible = true;
+        this.initializeEditDialog();
     }
 
     private handleDeleteClick(e: MouseEvent) {
@@ -138,6 +135,13 @@ export class AppProfileEmailAddressItem {
 
     private handleEmailAddressChange(event) {
         this.editEmailAddress = event.target.value;
+    }
+
+    private initializeEditDialog() {
+        this.editEmailAddress = this.displayEmailAddress;        
+        this.editEmailAddressTypeId = this.displayEmailAddressTypeId;
+        this.editEmailAddressTypeName = this.displayEmailAddressTypeName;
+        this.editDialog.visible = true;
     }
 
     private getPersonEmailAddressTypes() {
@@ -320,7 +324,7 @@ export class AppProfileEmailAddressItem {
             this.displayEmailAddressTypeId = defaultEmailAddressType.id;
             this.editEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
             this.displayEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
-            this.handleEditClick(new MouseEvent('click'));
+            this.initializeEditDialog();
         }
     }
 
@@ -351,7 +355,7 @@ export class AppProfileEmailAddressItem {
                     <form ref={el => this.editForm = el} class='edit-form' >
                         <div class='form-item'>
                             <label htmlFor='email-address-type'>Type</label>
-                            <select id='email-address-type' name='email-address' onInput={(event) => this.handleEmailTypeSelect(event)}>
+                            <select id='email-address-type' name='email-address-type' onInput={(event) => this.handleEmailTypeSelect(event)}>
                                 {this.emailAddressTypes?.sort((a,b) => {
                                     var rankA = a.attributes.Rank;
                                     var rankB = b.attributes.Rank;

@@ -1,10 +1,9 @@
 import { Component, Listen, State, h } from '@stencil/core';
-import { DataResponse, EmailAddressAttributes, PersonInfo, PhoneNumberAttributes } from '../../../services/clients/client-base';
+import { DataResponse, AddressAttributes, EmailAddressAttributes, PersonInfo, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
 import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
-import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 
@@ -24,6 +23,10 @@ export class PageProfilePerson {
     }  
     @State() me: GetRequestingPersonResponse; 
     @State() person: DataResponse<PersonInfo>;
+    @State() addresses: DataResponse<AddressAttributes>[] = [];   
+    @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
+        this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
+    }
     @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];   
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
         this.emailAddresses = [...this.emailAddresses.filter(e => e.id != event.detail)];
@@ -80,10 +83,53 @@ export class PageProfilePerson {
           })
           .then((response) => {
             this.person = response.data;
+            this.addresses = this.person.attributes.Addresses.data;
             this.emailAddresses = this.person.attributes.EmailAddresses.data;
             this.phoneNumbers = this.person.attributes.PhoneNumbers.data;
          })
           .catch(reason => console.error(reason));  
+    }
+
+    private handleAddNewAddress(e: MouseEvent) {
+        e.preventDefault();
+        this.addresses = [...this.addresses, {
+            id: 0,
+            attributes: {
+                Line1: '',
+                Line2: '',
+                City: '',
+                PostalCode: '',
+                country: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            A2: '',
+                            A3: '',
+                            Number: 0,
+                        }
+                    }
+                },
+                country_subdivision: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Code: '',
+                        }
+                    }
+                },
+                address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }];   
     }
 
     private handleAddNewEmailAddress(e: MouseEvent) {
@@ -249,7 +295,7 @@ export class PageProfilePerson {
                                 </div>
                                 <div class='content'>
                                     {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
-                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
+                                        <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>
@@ -267,7 +313,7 @@ export class PageProfilePerson {
                                 </div>
                                 <div class='content'>
                                     {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
-                                        <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={true} appliesTo='person' personId={this.person?.id??0} />
+                                        <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>
@@ -284,17 +330,17 @@ export class PageProfilePerson {
                                     Address
                                 </div>
                                 <div class='content'>
-                                    {this.person?.attributes?.Addresses?.data && this.person?.attributes?.Addresses?.data.map(addressItem => 
-                                        <ProfileAddressItem addressItem={addressItem} />
+                                    {this.addresses && this.addresses.map(addressItem => 
+                                        <app-profile-address-item addressItem={addressItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
                                     <div class='profile-item-row'>
                                         <div class='value'>
-                                            <div class='add-another'>
+                                            <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
                                                 + <span class='action-link'>Add address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
-                                </div>                                
+                                    </div>                                
                                 </div>
                             </div>
                         </div>

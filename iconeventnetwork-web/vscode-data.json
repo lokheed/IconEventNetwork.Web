@@ -138,6 +138,46 @@
       "attributes": []
     },
     {
+      "name": "app-profile-address-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "applies-to",
+          "description": "",
+          "values": [
+            {
+              "name": "company"
+            },
+            {
+              "name": "person"
+            },
+            {
+              "name": "personAtCompany"
+            }
+          ]
+        },
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "company-id",
+          "description": ""
+        },
+        {
+          "name": "person-at-company-id",
+          "description": ""
+        },
+        {
+          "name": "person-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-email-address-item",
       "description": {
         "kind": "markdown",
