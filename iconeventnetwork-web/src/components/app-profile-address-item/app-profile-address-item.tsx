@@ -204,13 +204,6 @@ export class AppProfileAddressItem {
         this.editCountrySubdivisionCode = this.displayCountrySubdivisionCode;
         this.editAddressTypeId = this.displayAddressTypeId;
         this.editAddressTypeName = this.displayAddressTypeName;
-        if (this.editCountryId == 0) {
-            const defaultCountry = this.countries.filter(country => country.attributes.A2 == 'US' )[0];
-            this.editCountryId = defaultCountry.id;
-            this.editCountryName = defaultCountry.attributes.Name;
-            this.editCountryA2 = defaultCountry.attributes.A2;
-        }
-        this.getCountrySubdivisions();
         this.editDialog.visible = true;
     }
 
@@ -234,7 +227,7 @@ export class AppProfileAddressItem {
         this.displayCountryName = defaultCountry.attributes.Name;
         this.editCountryA2 = defaultCountry.attributes.A2;
         this.displayCountryA2 = defaultCountry.attributes.A2;
-
+        this.getCountrySubdivisions();
     }
 
     private getCountries() {
