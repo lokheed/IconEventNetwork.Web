@@ -190,6 +190,7 @@ export class AppProfileAddressItem {
         this.editPostalCode = event.target.value;
     }
 
+
     private initializeEditDialog() {
         this.editLine1 = this.displayLine1;   
         this.editLine2 = this.displayLine2;    
@@ -225,9 +226,23 @@ export class AppProfileAddressItem {
         this.displayAddressTypeName = defaultAddressType.attributes.Name;
     }
 
+    private initializeDefaultCountry() {
+        const defaultCountry = this.countries.filter(country => country.attributes.A2 == 'US' )[0];
+        this.editCountryId = defaultCountry.id;
+        this.displayCountryId = defaultCountry.id;
+        this.editCountryName = defaultCountry.attributes.Name;
+        this.displayCountryName = defaultCountry.attributes.Name;
+        this.editCountryA2 = defaultCountry.attributes.A2;
+        this.displayCountryA2 = defaultCountry.attributes.A2;
+
+    }
+
     private getCountries() {
         if (state.countries.length > 0) {
           this.countries = state.countries;
+          if (this.addressItem.id === 0) {
+            this.initializeDefaultCountry();
+          }
           return;
         }
         this.countryClient.getCountries({
@@ -246,6 +261,9 @@ export class AppProfileAddressItem {
         .then((response) => {
             this.countries = response.data;
             state.countries = response.data;
+            if (this.addressItem.id === 0) {
+              this.initializeDefaultCountry();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -256,7 +274,7 @@ export class AppProfileAddressItem {
             selectedCountry = this.countries.filter(country => country.attributes.A2 == 'US' )[0];
         }
         this.countrySubdivisionClient.getCountrySubdivisions({
-            fields: ['Name'],
+            fields: ['Name', 'Code'],
             filters: {
                 IsActive: {
                     $eq: true,
@@ -296,8 +314,11 @@ export class AppProfileAddressItem {
 
     private getPersonAddressTypes() {
         if (state.personAddressTypes.length > 0) {
-          this.addressTypes = state.personAddressTypes;
-          return;
+            this.addressTypes = state.personAddressTypes;
+            if (this.addressItem.id === 0) {
+                this.initializeDefaultAddressType();
+            }
+            return;
         }
         this.addressTypeClient.getAddressTypes({
             fields: ['Name', 'Rank'],
@@ -313,7 +334,7 @@ export class AppProfileAddressItem {
         .then((response) => {
             this.addressTypes = response.data;
             state.personAddressTypes = response.data;
-            if (this.addressItem.id == 0) {
+            if (this.addressItem.id === 0) {
                 this.initializeDefaultAddressType();
             }
         })
@@ -323,6 +344,9 @@ export class AppProfileAddressItem {
     private getPersonAtCompanyAddressTypes() {
         if (state.personAtCompanyAddressTypes.length > 0) {
           this.addressTypes = state.personAtCompanyAddressTypes;
+          if (this.addressItem.id === 0) {
+              this.initializeDefaultAddressType();
+          }
           return;
         }
         this.addressTypeClient.getAddressTypes({
@@ -349,6 +373,9 @@ export class AppProfileAddressItem {
     private getCompanyAddressTypes() {
         if (state.companyAddressTypes.length > 0) {
           this.addressTypes = state.companyAddressTypes;
+          if (this.addressItem.id === 0) {
+              this.initializeDefaultAddressType();
+          }
           return;
         }
         this.addressTypeClient.getAddressTypes({
@@ -531,22 +558,6 @@ export class AppProfileAddressItem {
     
     componentDidLoad() {
         if (this.addressItem.id === 0) {
-            const defaultAddressType = this.addressTypes?.sort((a,b) => {
-                var rankA = a.attributes.Rank;
-                var rankB = b.attributes.Rank;
-                return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-            })[0];
-            this.editAddressTypeId = defaultAddressType.id;
-            this.displayAddressTypeId = defaultAddressType.id;
-            this.editAddressTypeName = defaultAddressType.attributes.Name;
-            this.displayAddressTypeName = defaultAddressType.attributes.Name;
-            const defaultCountry = this.countries.filter(country => country.attributes.A2 == 'US' )[0];
-            this.editCountryId = defaultCountry.id;
-            this.displayCountryId = defaultCountry.id;
-            this.editCountryName = defaultCountry.attributes.Name;
-            this.displayCountryName = defaultCountry.attributes.Name;
-            this.editCountryA2 = defaultCountry.attributes.A2;
-            this.displayCountryA2 = defaultCountry.attributes.A2;
             this.initializeEditDialog();
         }
     }
