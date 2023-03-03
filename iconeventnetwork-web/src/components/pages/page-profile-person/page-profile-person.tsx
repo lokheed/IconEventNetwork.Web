@@ -176,7 +176,6 @@ export class PageProfilePerson {
                         <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>My Contact Information</div>
                     </div>
                     <div ref={el => this.basicInformationTabContent = el}>
-                        <h2>My Personal Profile Basic Information</h2>
                         <p>The information below is associated with your account and will not appear in the directory.</p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -242,7 +241,6 @@ export class PageProfilePerson {
                         </div>
                     </div>
                     <div ref={el => this.contactInformationTabContent = el} class='hidden'>
-                        <h2>My Personal Profile Contact Information</h2>
                         <p>The information below is associated with your account and will not appear in the directory.</p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -256,7 +254,7 @@ export class PageProfilePerson {
                                     <div class='profile-item-row'>
                                         <div class='value'>
                                             <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
-                                                + <span class='action-link'>Add another email address</span>
+                                                + <span class='action-link'>Add email address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
@@ -274,7 +272,7 @@ export class PageProfilePerson {
                                     <div class='profile-item-row'>
                                         <div class='value'>
                                             <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
-                                                + <span class='action-link'>Add another phone number</span>
+                                                + <span class='action-link'>Add phone number</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
@@ -292,7 +290,7 @@ export class PageProfilePerson {
                                     <div class='profile-item-row'>
                                         <div class='value'>
                                             <div class='add-another'>
-                                                + <span class='action-link'>Add another address</span>
+                                                + <span class='action-link'>Add address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>

@@ -439,7 +439,9 @@ export class PageProfileCompany {
                     <div>
                         <span onClick={() => window.location.pathname = ('/profile-pacs')} class='action-link-navigation'>&lt; Back to My Companies</span>
                     </div>
-                    <h1>{this.company?.data?.attributes?.Name??''}</h1>
+                    <div class='company-header'>
+                            <h1>{this.company?.data?.attributes?.Name??''}</h1>
+                    </div>
                     <div class='tab-grid company'>
                         <div ref={el => this.basicInformationTab = el} onClick={e => this.tabClick(e, 'basic-information')} class='tab selected'>Basic Information</div>
                         <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>Contact Information</div>
@@ -450,7 +452,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.basicInformationTabContent = el}>
-                        <h2>Basic Information</h2>
                         <p>
                             The information below will appear as the company profile within the directory 
                             and can only be edited by those with admin privileges.
@@ -552,7 +553,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.contactInformationTabContent = el} class='hidden'>
-                        <h2>Contact Information</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                             ut labore et dolore magna aliqua.
@@ -570,7 +570,7 @@ export class PageProfileCompany {
                                         <div class='profile-item-row'>
                                             <div class='value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
-                                                    + <span class='action-link'>Add another email address</span>
+                                                    + <span class='action-link'>Add email address</span>
                                                 </div>
                                             </div>                                   
                                             <div class='actions'></div>
@@ -590,7 +590,7 @@ export class PageProfileCompany {
                                         <div class='profile-item-row'>
                                             <div class='value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
-                                                    + <span class='action-link'>Add another phone number</span>
+                                                    + <span class='action-link'>Add phone number</span>
                                                 </div>
                                             </div>                                   
                                             <div class='actions'></div>
@@ -609,7 +609,7 @@ export class PageProfileCompany {
                                     <div class='profile-item-row'>
                                         <div class='value'>
                                             <div class='add-another'>
-                                                + <span class='action-link'>Add another address</span>
+                                                + <span class='action-link'>Add address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
@@ -620,7 +620,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.featuresTabContent = el} class='hidden'>
-                        <h2>Features</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                             ut labore et dolore magna aliqua.<br/><b>NOTE: Features are not yet implemented or data bound.</b>
@@ -755,7 +754,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.mediaGalleryTabContent = el} class='hidden'>
-                        <h2>Media Gallery</h2>
                         <p>
                             The media assets below will appear alongside the company profile within the directory.<br/><b>NOTE: Media Gallery is not yet implemented or data bound.</b>
                         </p>
@@ -860,7 +858,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.teamMembersTabContent = el} class='hidden'>
-                        <h2>Team Members</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                             ut labore et dolore magna aliqua.
@@ -890,7 +887,6 @@ export class PageProfileCompany {
                     </div>
 
                     <div ref={el => this.companyFamilyTabContent = el} class='hidden'>
-                        <h2>Company Family</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                             ut labore et dolore magna aliqua.

@@ -103,7 +103,7 @@
                             }
                             .action-link.primary {
                                 font-size: 1.2em;
-                                color: var(--color-blue);
+                                color: var(--color-blue-main);
                             }
                             .action-link.secondary {
                                 color: var(--color-black);
@@ -164,9 +164,14 @@
                             padding-left: .2em;
                         }
                         .add-another {
-                            color: var(--color-blue);
+                            color: var(--color-blue-main);
                             font-weight: 600;
                             padding-top: 1em;
+                            cursor: pointer;
+                        }
+                        .add-another:hover {
+                            transition: 1000ms;
+                            color: var(--color-blue-light);
                         }
                         .label {
                             font-size: 1em;
