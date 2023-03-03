@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
+import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
+export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -62,6 +62,14 @@ export namespace Components {
     interface AppNavUserInfo {
     }
     interface AppNavigation {
+    }
+    interface AppProfileAddressItem {
+        "addressItem": DataResponse<AddressAttributes>;
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
+        "canEdit": boolean;
+        "companyId"?: number;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -168,6 +176,10 @@ export interface AppModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppModalElement;
 }
+export interface AppProfileAddressItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppProfileAddressItemElement;
+}
 export interface AppProfileEmailAddressItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppProfileEmailAddressItemElement;
@@ -248,6 +260,12 @@ declare global {
     var HTMLAppNavigationElement: {
         prototype: HTMLAppNavigationElement;
         new (): HTMLAppNavigationElement;
+    };
+    interface HTMLAppProfileAddressItemElement extends Components.AppProfileAddressItem, HTMLStencilElement {
+    }
+    var HTMLAppProfileAddressItemElement: {
+        prototype: HTMLAppProfileAddressItemElement;
+        new (): HTMLAppProfileAddressItemElement;
     };
     interface HTMLAppProfileEmailAddressItemElement extends Components.AppProfileEmailAddressItem, HTMLStencilElement {
     }
@@ -424,6 +442,7 @@ declare global {
         "app-modal": HTMLAppModalElement;
         "app-nav-user-info": HTMLAppNavUserInfoElement;
         "app-navigation": HTMLAppNavigationElement;
+        "app-profile-address-item": HTMLAppProfileAddressItemElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
@@ -508,6 +527,15 @@ declare namespace LocalJSX {
     interface AppNavUserInfo {
     }
     interface AppNavigation {
+    }
+    interface AppProfileAddressItem {
+        "addressItem"?: DataResponse<AddressAttributes>;
+        "appliesTo": 'person' | 'personAtCompany' | 'company';
+        "canEdit"?: boolean;
+        "companyId"?: number;
+        "onAddressDeleted"?: (event: AppProfileAddressItemCustomEvent<number>) => void;
+        "personAtCompanyId"?: number;
+        "personId"?: number;
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -612,6 +640,7 @@ declare namespace LocalJSX {
         "app-modal": AppModal;
         "app-nav-user-info": AppNavUserInfo;
         "app-navigation": AppNavigation;
+        "app-profile-address-item": AppProfileAddressItem;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-left-nav": AppProfileLeftNav;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
@@ -657,6 +686,7 @@ declare module "@stencil/core" {
             "app-modal": LocalJSX.AppModal & JSXBase.HTMLAttributes<HTMLAppModalElement>;
             "app-nav-user-info": LocalJSX.AppNavUserInfo & JSXBase.HTMLAttributes<HTMLAppNavUserInfoElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
+            "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;

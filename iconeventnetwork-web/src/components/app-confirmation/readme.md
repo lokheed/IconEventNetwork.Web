@@ -26,12 +26,14 @@
 
 ### Used by
 
+ - [app-profile-address-item](../app-profile-address-item)
  - [app-profile-email-address-item](../app-profile-email-address-item)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
 
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-address-item --> app-confirmation
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-confirmation
   style app-confirmation fill:#f9f,stroke:#333,stroke-width:4px

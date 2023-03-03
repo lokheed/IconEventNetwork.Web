@@ -1,11 +1,10 @@
 import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
-import { CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes, PhoneNumberAttributes } from '../../../services/clients/client-base';
+import { AddressAttributes, CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
 import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
-import { ProfileAddressItem } from '../../functionalComponents/ProfileAddressItem';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 type teamMember = {
@@ -49,6 +48,7 @@ export class PageProfileCompany {
     @State() security: SecurityCheckResponse; 
     @State() me: GetRequestingPersonResponse; 
     @State() company: CompanyData;
+    @State() addresses: DataResponse<AddressAttributes>[] = [];  
     @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];  
     @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];  
     @State() parentCompany: CompanyData;
@@ -57,6 +57,10 @@ export class PageProfileCompany {
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
     @State() teamGridColumns: any[];
+    @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
+        this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
+
+    }    
     @Listen('emailAddressDeleted') emailAddressDeletedHandler(event: CustomEvent<number>) {
         this.emailAddresses = [...this.emailAddresses.filter(e => e.id != event.detail)];
 
@@ -142,6 +146,7 @@ export class PageProfileCompany {
                 this.descriptionReadMoreText = 'Read more';
             }
             
+            this.addresses = this.company.data.attributes.Addresses.data;
             this.emailAddresses = this.company.data.attributes.EmailAddresses.data;
             this.phoneNumbers = this.company.data.attributes.PhoneNumbers.data;
         })
@@ -254,6 +259,48 @@ export class PageProfileCompany {
             });
         })
         .catch(reason => console.error(reason)); 
+    }
+
+    private handleAddNewAddress(e: MouseEvent) {
+        e.preventDefault();
+        this.addresses = [...this.addresses, {
+            id: 0,
+            attributes: {
+                Line1: '',
+                Line2: '',
+                City: '',
+                PostalCode: '',
+                country: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            A2: '',
+                            A3: '',
+                            Number: 0,
+                        }
+                    }
+                },
+                country_subdivision: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Code: '',
+                        }
+                    }
+                },
+                address_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                        }
+                    }
+                }
+            }
+        }];   
     }
 
     private handleAddNewEmailAddress(e: MouseEvent) {
@@ -603,17 +650,19 @@ export class PageProfileCompany {
                                     Address
                                 </div>
                                 <div class='content'>
-                                    {this.company?.data.attributes?.Addresses?.data && this.company?.data?.attributes?.Addresses?.data.map(addressItem => 
-                                        <ProfileAddressItem addressItem={addressItem} />
-                                    )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='add-another'>
-                                                + <span class='action-link'>Add address</span>
-                                            </div>
-                                        </div>                                   
-                                        <div class='actions'></div>
-                                </div>                                
+                                    {this.addresses && this.addresses.map(addressItem => 
+                                        <app-profile-address-item addressItem={addressItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
+                                    )}      
+                                    {this.security?.canManageCompanyDetails &&                               
+                                        <div class='profile-item-row'>
+                                            <div class='value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
+                                                    + <span class='action-link'>Add address</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>
+                                    }                                
                                 </div>
                             </div>
                         </div>

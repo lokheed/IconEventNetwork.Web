@@ -72,21 +72,26 @@ graph TD;
   page-profile-person --> app-profile-left-nav
   page-profile-person --> app-profile-email-address-item
   page-profile-person --> app-profile-phone-number-item
+  page-profile-person --> app-profile-address-item
   page-profile-person --> app-responsive-image
   app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-modal
   app-profile-phone-number-item --> app-confirmation
+  app-profile-address-item --> app-modal
+  app-profile-address-item --> app-confirmation
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item
+  page-profile-person-at-company --> app-profile-address-item
   page-profile-person-at-company --> app-responsive-image
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
+  page-profile-company --> app-profile-address-item
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

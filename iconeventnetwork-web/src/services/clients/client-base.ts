@@ -148,6 +148,18 @@ export interface AddressAttributes{
     address_type?: AddressTypeData;
 }
 
+export interface AddressSaveData{
+    data: {
+        Line1?: string;
+        Line2?: string;
+        City?: string;
+        PostalCode?: string;
+        country?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        country_subdivision?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        address_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
+}
+
 export interface AddressTypeData{
     data: DataResponse<AddressTypeAttributes>;
 }
@@ -201,6 +213,7 @@ export interface CompanyInfo{
 
 export interface CompanySaveData{
     data: {
+        Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
@@ -298,6 +311,7 @@ export interface PersonInfo{
 
 export interface PersonSaveData{
     data: {
+        Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
@@ -325,6 +339,7 @@ export interface PersonAtCompanyInfo{
 
 export interface PersonAtCompanySaveData{
     data: {
+        Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }

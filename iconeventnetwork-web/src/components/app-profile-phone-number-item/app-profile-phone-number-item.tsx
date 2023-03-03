@@ -218,8 +218,8 @@ export class AppProfilePhoneItem {
     }
 
     private getPhoneNumberCountries() {
-        if (state.phoneNumberCountries.length > 0) {
-          this.phoneNumberCountries = state.phoneNumberCountries;
+        if (state.countries.length > 0) {
+          this.phoneNumberCountries = state.countries;
           return;
         }
         this.countryClient.getCountries({
@@ -237,7 +237,7 @@ export class AppProfilePhoneItem {
         })
         .then((response) => {
             this.phoneNumberCountries = response.data;
-            state.phoneNumberCountries = response.data;
+            state.countries = response.data;
         })
         .catch(reason => console.error(reason));  
     }
