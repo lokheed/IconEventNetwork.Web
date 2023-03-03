@@ -235,6 +235,8 @@ export class AppProfileAddressItem {
           this.countries = state.countries;
           if (this.addressItem.id === 0) {
             this.initializeDefaultCountry();
+          } else {
+            this.getCountrySubdivisions();
           }
           return;
         }
@@ -256,6 +258,8 @@ export class AppProfileAddressItem {
             state.countries = response.data;
             if (this.addressItem.id === 0) {
               this.initializeDefaultCountry();
+            } else {
+                this.getCountrySubdivisions();
             }
         })
         .catch(reason => console.error(reason));  
@@ -528,6 +532,7 @@ export class AppProfileAddressItem {
         this.displayCity = this.addressItem.attributes.City;
         this.displayPostalCode = this.addressItem.attributes.PostalCode;
         this.displayCountryId = this.addressItem.attributes.country.data.id;
+        this.editCountryId = this.addressItem.attributes.country.data.id; // needed to initialize country subdivisions on initial load
         this.displayCountryName = this.addressItem.attributes.country.data.attributes.Name;
         this.displayCountryA2 = this.addressItem.attributes.country.data.attributes.A2;
         this.displayCountrySubdivisionId = this.addressItem.attributes.country_subdivision?.data?.id??0;
