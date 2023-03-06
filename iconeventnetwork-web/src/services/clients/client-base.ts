@@ -311,9 +311,17 @@ export interface PersonInfo{
 
 export interface PersonSaveData{
     data: {
+        FirstName?: string,
+        MiddleName?: string,
+        LastName?: string,
+        DirectoryName?: string,
+        PreferredName?: string,
         Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        prefix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        Pronoun?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        Suffix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
 
@@ -401,6 +409,7 @@ export interface PronounInfo{
 
 export interface PronounAttributes{
     Name: string;
+    Rank: number;
 }
 
 export interface SocialMediaData{

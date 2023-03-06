@@ -4,7 +4,6 @@ import { AddressAttributes, DataResponse, EmailAddressAttributes, PersonAtCompan
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
-import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 @Component({
@@ -84,7 +83,7 @@ export class PageProfilePersonAtCompany {
                    populate: ['phone_number_type', 'country'],
                 },
                 Person: {
-                    fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],
+                    fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName', 'PreferredName'],
                     populate: {
                         prefix: {
                             fields: ['Name'],
@@ -306,19 +305,9 @@ export class PageProfilePersonAtCompany {
                                     Name
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <PersonNameAndPronouns person={this.personAtCompany?.data?.attributes?.Person.data} />
-                                        </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.personAtCompany?.data?.attributes?.Person?.data &&
+                                        <app-profile-name-item canEdit={this.security.canManageProfileFields} personItem={this.personAtCompany.data.attributes.Person.data} />
+                                    }
                                 </div>
                             </div>
                             <div class='profile-item'>

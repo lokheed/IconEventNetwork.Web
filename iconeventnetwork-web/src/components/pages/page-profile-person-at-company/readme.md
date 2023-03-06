@@ -21,6 +21,7 @@
 ### Depends on
 
 - [app-profile-left-nav](../../app-profile-left-nav)
+- [app-profile-name-item](../../app-profile-name-item)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
 - [app-profile-address-item](../../app-profile-address-item)
@@ -30,10 +31,12 @@
 ```mermaid
 graph TD;
   page-profile-person-at-company --> app-profile-left-nav
+  page-profile-person-at-company --> app-profile-name-item
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-address-item
   page-profile-person-at-company --> app-responsive-image
+  app-profile-name-item --> app-modal
   app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-modal

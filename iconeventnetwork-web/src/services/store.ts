@@ -10,6 +10,9 @@ const { state } = createStore({
     personAtCompanyPhoneNumberTypes: [],
     companyPhoneNumberTypes: [],
     countries: [],
+    prefixes: [],
+    suffixes: [],
+    pronouns: [],
 });
 
 export default state;
