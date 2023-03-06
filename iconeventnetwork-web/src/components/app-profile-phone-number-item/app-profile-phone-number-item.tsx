@@ -151,6 +151,9 @@ export class AppProfilePhoneItem {
     private getPersonPhoneNumberTypes() {
         if (state.personPhoneNumberTypes.length > 0) {
           this.phoneNumberTypes = state.personPhoneNumberTypes;
+          if (this.phoneNumberItem.id === 0) {
+              this.initializeDefaultPhoneNumberType();
+          }
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -167,6 +170,9 @@ export class AppProfilePhoneItem {
         .then((response) => {
             this.phoneNumberTypes = response.data;
             state.personPhoneNumberTypes = response.data;
+            if (this.phoneNumberItem.id === 0) {
+                this.initializeDefaultPhoneNumberType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -174,6 +180,9 @@ export class AppProfilePhoneItem {
     private getPersonAtCompanyPhoneNumberTypes() {
         if (state.personAtCompanyPhoneNumberTypes.length > 0) {
           this.phoneNumberTypes = state.personAtCompanyPhoneNumberTypes;
+          if (this.phoneNumberItem.id === 0) {
+              this.initializeDefaultPhoneNumberType();
+          }
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -190,6 +199,9 @@ export class AppProfilePhoneItem {
         .then((response) => {
             this.phoneNumberTypes = response.data;
             state.personAtCompanyPhoneNumberTypes = response.data;
+            if (this.phoneNumberItem.id === 0) {
+                this.initializeDefaultPhoneNumberType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -197,6 +209,9 @@ export class AppProfilePhoneItem {
     private getCompanyPhoneNumberTypes() {
         if (state.companyPhoneNumberTypes.length > 0) {
           this.phoneNumberTypes = state.companyPhoneNumberTypes;
+          if (this.phoneNumberItem.id === 0) {
+              this.initializeDefaultPhoneNumberType();
+          }
           return;
         }
         this.phoneNumberTypeClient.getPhoneNumberTypes({
@@ -213,6 +228,9 @@ export class AppProfilePhoneItem {
         .then((response) => {
             this.phoneNumberTypes = response.data;
             state.companyPhoneNumberTypes = response.data;
+            if (this.phoneNumberItem.id === 0) {
+                this.initializeDefaultPhoneNumberType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -220,6 +238,11 @@ export class AppProfilePhoneItem {
     private getPhoneNumberCountries() {
         if (state.countries.length > 0) {
           this.phoneNumberCountries = state.countries;
+          if (this.phoneNumberItem.id === 0) {
+            const defaultPhoneNumberCountry = this.phoneNumberCountries.filter(country => country.attributes.A2 == 'US' )[0];
+            this.displayPhoneNumberCountryId = defaultPhoneNumberCountry.id;
+            this.editPhoneNumberCountryId = defaultPhoneNumberCountry.id;
+          }
           return;
         }
         this.countryClient.getCountries({
@@ -238,6 +261,11 @@ export class AppProfilePhoneItem {
         .then((response) => {
             this.phoneNumberCountries = response.data;
             state.countries = response.data;
+            if (this.phoneNumberItem.id === 0) {
+              const defaultPhoneNumberCountry = this.phoneNumberCountries.filter(country => country.attributes.A2 == 'US' )[0];
+              this.displayPhoneNumberCountryId = defaultPhoneNumberCountry.id;
+              this.editPhoneNumberCountryId = defaultPhoneNumberCountry.id;
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -248,6 +276,20 @@ export class AppProfilePhoneItem {
         this.editPhoneNumberTypeName = this.displayPhoneNumberTypeName;
         this.editPhoneNumberCountryId = this.displayPhoneNumberCountryId;
         this.editDialog.visible = true;
+    }
+
+    private initializeDefaultPhoneNumberType() {
+        if (this.phoneNumberItem.id === 0) {
+            const defaultPhoneNumberType = this.phoneNumberTypes?.sort((a,b) => {
+                var rankA = a.attributes.Rank;
+                var rankB = b.attributes.Rank;
+                return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+            })[0];
+            this.editPhoneNumberTypeId = defaultPhoneNumberType.id;
+            this.displayPhoneNumberTypeId = defaultPhoneNumberType.id;
+            this.editPhoneNumberTypeName = defaultPhoneNumberType.attributes.Name;
+            this.displayPhoneNumberTypeName = defaultPhoneNumberType.attributes.Name;
+        }    
     }
 
     private saveData() {
@@ -371,17 +413,6 @@ export class AppProfilePhoneItem {
     
     componentDidLoad() {
         if (this.phoneNumberItem.id === 0) {
-            const defaultPhoneNumberType = this.phoneNumberTypes?.sort((a,b) => {
-                var rankA = a.attributes.Rank;
-                var rankB = b.attributes.Rank;
-                return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-            })[0];
-            this.editPhoneNumberTypeId = defaultPhoneNumberType.id;
-            this.displayPhoneNumberTypeId = defaultPhoneNumberType.id;
-            this.editPhoneNumberTypeName = defaultPhoneNumberType.attributes.Name;
-            this.displayPhoneNumberTypeName = defaultPhoneNumberType.attributes.Name;
-            const defaultPhoneNumberCountry = this.phoneNumberCountries.filter(country => country.attributes.A2 == 'US' )[0];
-            this.displayPhoneNumberCountryId = defaultPhoneNumberCountry.id;
             this.initializeEditDialog();
         }
     }
