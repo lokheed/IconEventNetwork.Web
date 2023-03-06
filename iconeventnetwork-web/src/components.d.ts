@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
+import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PhoneNumberAttributes } from "./services/clients/client-base";
+export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -83,6 +83,10 @@ export namespace Components {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
         "me": GetRequestingPersonResponse;
         "selectedItemId": string;
+    }
+    interface AppProfileNameItem {
+        "canEdit": boolean;
+        "personItem": DataResponse<PersonInfo>;
     }
     interface AppProfilePhoneNumberItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -279,6 +283,12 @@ declare global {
         prototype: HTMLAppProfileLeftNavElement;
         new (): HTMLAppProfileLeftNavElement;
     };
+    interface HTMLAppProfileNameItemElement extends Components.AppProfileNameItem, HTMLStencilElement {
+    }
+    var HTMLAppProfileNameItemElement: {
+        prototype: HTMLAppProfileNameItemElement;
+        new (): HTMLAppProfileNameItemElement;
+    };
     interface HTMLAppProfilePhoneNumberItemElement extends Components.AppProfilePhoneNumberItem, HTMLStencilElement {
     }
     var HTMLAppProfilePhoneNumberItemElement: {
@@ -445,6 +455,7 @@ declare global {
         "app-profile-address-item": HTMLAppProfileAddressItemElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
+        "app-profile-name-item": HTMLAppProfileNameItemElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
@@ -551,6 +562,10 @@ declare namespace LocalJSX {
         "me": GetRequestingPersonResponse;
         "selectedItemId"?: string;
     }
+    interface AppProfileNameItem {
+        "canEdit"?: boolean;
+        "personItem"?: DataResponse<PersonInfo>;
+    }
     interface AppProfilePhoneNumberItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
         "canEdit"?: boolean;
@@ -643,6 +658,7 @@ declare namespace LocalJSX {
         "app-profile-address-item": AppProfileAddressItem;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-left-nav": AppProfileLeftNav;
+        "app-profile-name-item": AppProfileNameItem;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
@@ -689,6 +705,7 @@ declare module "@stencil/core" {
             "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
+            "app-profile-name-item": LocalJSX.AppProfileNameItem & JSXBase.HTMLAttributes<HTMLAppProfileNameItemElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;

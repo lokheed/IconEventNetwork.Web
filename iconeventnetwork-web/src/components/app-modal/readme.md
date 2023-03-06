@@ -29,6 +29,7 @@
 
  - [app-profile-address-item](../app-profile-address-item)
  - [app-profile-email-address-item](../app-profile-email-address-item)
+ - [app-profile-name-item](../app-profile-name-item)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
 
 ### Graph
@@ -36,6 +37,7 @@
 graph TD;
   app-profile-address-item --> app-modal
   app-profile-email-address-item --> app-modal
+  app-profile-name-item --> app-modal
   app-profile-phone-number-item --> app-modal
   style app-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -70,10 +70,12 @@ graph TD;
   page-about-us --> app-leadership-team-item
   page-about-us --> app-testimonial-carousel
   page-profile-person --> app-profile-left-nav
+  page-profile-person --> app-profile-name-item
   page-profile-person --> app-profile-email-address-item
   page-profile-person --> app-profile-phone-number-item
   page-profile-person --> app-profile-address-item
   page-profile-person --> app-responsive-image
+  app-profile-name-item --> app-modal
   app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-modal
@@ -83,6 +85,7 @@ graph TD;
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-profile-left-nav
+  page-profile-person-at-company --> app-profile-name-item
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-address-item

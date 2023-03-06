@@ -246,6 +246,19 @@
       ]
     },
     {
+      "name": "app-profile-name-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-phone-number-item",
       "description": {
         "kind": "markdown",

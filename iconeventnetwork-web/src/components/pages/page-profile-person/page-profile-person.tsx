@@ -3,7 +3,6 @@ import { DataResponse, AddressAttributes, EmailAddressAttributes, PersonInfo, Ph
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
-import { PersonNameAndPronouns } from '../../functionalComponents/PersonNameAndPronouns';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 
@@ -53,7 +52,7 @@ export class PageProfilePerson {
     } 
     private getPerson(personId) {
         this.personClient.getPerson(personId, {
-            fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName', 'updatedAt'],
+            fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName', 'PreferredName', 'updatedAt'],
             populate: {
                 Addresses: {
                      populate: ['country', 'country_subdivision', 'address_type'],
@@ -249,19 +248,9 @@ export class PageProfilePerson {
                                     Name
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <PersonNameAndPronouns person={this.person} />
-                                        </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.person &&
+                                        <app-profile-name-item canEdit personItem={this.person} />
+                                    }                                   
                                 </div>
                             </div>
                             <div class='profile-item'>
