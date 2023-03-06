@@ -144,9 +144,24 @@ export class AppProfileEmailAddressItem {
         this.editDialog.visible = true;
     }
 
+    private initializeDefaultEmailAddressType() {
+        const defaultEmailAddressType = this.emailAddressTypes?.sort((a,b) => {
+            var rankA = a.attributes.Rank;
+            var rankB = b.attributes.Rank;
+            return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+        })[0];
+        this.editEmailAddressTypeId = defaultEmailAddressType.id;
+        this.displayEmailAddressTypeId = defaultEmailAddressType.id;
+        this.editEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
+        this.displayEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
+    }
+
     private getPersonEmailAddressTypes() {
         if (state.personEmailAddressTypes.length > 0) {
           this.emailAddressTypes = state.personEmailAddressTypes;
+          if (this.emailAddressItem.id === 0) {
+              this.initializeDefaultEmailAddressType();
+          }
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -163,6 +178,9 @@ export class AppProfileEmailAddressItem {
         .then((response) => {
             this.emailAddressTypes = response.data;
             state.personEmailAddressTypes = response.data;
+            if (this.emailAddressItem.id === 0) {
+                this.initializeDefaultEmailAddressType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -170,6 +188,9 @@ export class AppProfileEmailAddressItem {
     private getPersonAtCompanyEmailAddressTypes() {
         if (state.personAtCompanyEmailAddressTypes.length > 0) {
           this.emailAddressTypes = state.personAtCompanyEmailAddressTypes;
+          if (this.emailAddressItem.id === 0) {
+              this.initializeDefaultEmailAddressType();
+          }
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -186,6 +207,9 @@ export class AppProfileEmailAddressItem {
         .then((response) => {
             this.emailAddressTypes = response.data;
             state.personAtCompanyEmailAddressTypes = response.data;
+            if (this.emailAddressItem.id === 0) {
+                this.initializeDefaultEmailAddressType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -193,6 +217,9 @@ export class AppProfileEmailAddressItem {
     private getCompanyEmailAddressTypes() {
         if (state.companyEmailAddressTypes.length > 0) {
           this.emailAddressTypes = state.companyEmailAddressTypes;
+          if (this.emailAddressItem.id === 0) {
+              this.initializeDefaultEmailAddressType();
+          }
           return;
         }
         this.emailAddressTypeClient.getEmailAddressTypes({
@@ -208,7 +235,10 @@ export class AppProfileEmailAddressItem {
         })
         .then((response) => {
             this.emailAddressTypes = response.data;
-            state.companyEmailAddressTypes = response.data;;
+            state.companyEmailAddressTypes = response.data;
+            if (this.emailAddressItem.id === 0) {
+                this.initializeDefaultEmailAddressType();
+            }
         })
         .catch(reason => console.error(reason));  
     }
@@ -315,15 +345,6 @@ export class AppProfileEmailAddressItem {
     
     componentDidLoad() {
         if (this.emailAddressItem.id === 0) {
-            const defaultEmailAddressType = this.emailAddressTypes?.sort((a,b) => {
-                var rankA = a.attributes.Rank;
-                var rankB = b.attributes.Rank;
-                return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-            })[0];
-            this.editEmailAddressTypeId = defaultEmailAddressType.id;
-            this.displayEmailAddressTypeId = defaultEmailAddressType.id;
-            this.editEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
-            this.displayEmailAddressTypeName = defaultEmailAddressType.attributes.Name;
             this.initializeEditDialog();
         }
     }

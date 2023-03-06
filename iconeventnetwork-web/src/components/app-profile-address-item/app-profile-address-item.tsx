@@ -190,7 +190,6 @@ export class AppProfileAddressItem {
         this.editPostalCode = event.target.value;
     }
 
-
     private initializeEditDialog() {
         this.editLine1 = this.displayLine1;   
         this.editLine2 = this.displayLine2;    
