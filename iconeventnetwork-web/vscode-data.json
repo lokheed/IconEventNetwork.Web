@@ -274,6 +274,23 @@
       ]
     },
     {
+      "name": "app-profile-preferred-language-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "person-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-responsive-image",
       "description": {
         "kind": "markdown",
