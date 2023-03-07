@@ -747,3 +747,62 @@
         }
     }
 }
+.edit-form {
+    width: 100%;
+    padding: 2em;
+    background-color: var(--color-light-gray);
+    .form-item {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+        label {
+            display: block;
+        }
+        label .optional {
+            font-size: 1em;
+            font-weight: 300;
+        }
+        input {
+            width: 100%;
+        }
+        select {
+            min-width: 50%;
+        }
+        select.phone-country {
+            display: inline-block;
+            width: 10%;
+            min-width: 10%;
+        }
+        input, select {
+            margin-top: .25em;
+            font-size: 1.5em;
+        }
+        input.invalid, input.invalid:focus {
+            border-color: var(--color-red-main);
+        }
+        input.phone-number {
+            display: inline-block;
+            width: 89%;
+        }
+        .form-error-message {
+            font-size: .75em;
+            margin-top: .25em;
+            color: var(--color-red-main);
+        }
+        .form-helper-text {
+            font-size: .75em;
+            margin-top: .25em;
+            font-style: italic;
+        }
+    }
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: flex-end;
+        align-content: flex-end;
+        button {
+            margin-left: 1em;
+        }
+    }
+}

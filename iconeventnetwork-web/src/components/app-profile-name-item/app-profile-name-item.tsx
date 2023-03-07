@@ -1,4 +1,4 @@
-import { Component, Listen, Prop, State, h } from "@stencil/core";
+import { Component, Prop, State, h } from "@stencil/core";
 import { DataResponse, PersonInfo, PersonSaveData, PrefixAttributes, PronounAttributes, SuffixAttributes } from '../../services/clients/client-base';
 import { PrefixClient } from "../../services/clients/prefix-client";
 import { SuffixClient } from "../../services/clients/suffix-client";
@@ -12,7 +12,6 @@ import state from '../../services/store';
   shadow: false
 })
 export class AppProfileNameItem {
-    private editDialog: HTMLAppModalElement;
     private prefixClient: PrefixClient;
     private suffixClient: SuffixClient;
     private pronounClient: PronounClient;
@@ -25,6 +24,7 @@ export class AppProfileNameItem {
     }  
     @Prop() personItem: DataResponse<PersonInfo>;
     @Prop() canEdit: boolean;
+    @State() isEditing: boolean = false;
     @State() displayFirstName: string = '';
     @State() editFirstName: string = '';
     @State() displayMiddleName: string = '';
@@ -57,7 +57,25 @@ export class AppProfileNameItem {
     private lastNameErrorMessage: HTMLDivElement;
     private directoryNameInput: HTMLInputElement;
     private directoryNameErrorMessage: HTMLDivElement;
-    @Listen('primaryModalClick') primaryModalClickHandler() {
+
+    private handleCancelClick(e: MouseEvent) {
+        e.preventDefault();
+        this.firstNameInput.classList.remove('invalid');
+        this.firstNameErrorMessage.innerHTML = '';
+        this.lastNameInput.classList.remove('invalid');
+        this.lastNameErrorMessage.innerHTML = '';
+        this.directoryNameInput.classList.remove('invalid');
+        this.directoryNameErrorMessage.innerHTML = '';
+        this.isEditing = false;
+    }
+
+    private handleEditClick(e: MouseEvent) {
+        e.preventDefault();
+        this.initializeEditForm();
+    }
+
+    private handleSaveClick(e: MouseEvent) {
+        e.preventDefault();
         this.firstNameInput.classList.remove('invalid');
         this.firstNameErrorMessage.innerHTML = '';
         this.lastNameInput.classList.remove('invalid');
@@ -76,18 +94,6 @@ export class AppProfileNameItem {
         this.lastNameErrorMessage.innerHTML = 'City is a required field';
         this.directoryNameInput.classList.add('invalid');
         this.directoryNameErrorMessage.innerHTML = 'Directory Name is a required field';
-    }
-    @Listen('secondaryModalClick') secondaryModalClickHandler() {
-        this.firstNameInput.classList.remove('invalid');
-        this.firstNameErrorMessage.innerHTML = '';
-        this.lastNameInput.classList.remove('invalid');
-        this.lastNameErrorMessage.innerHTML = '';
-        this.editDialog.visible = false;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditDialog();
     }
     
     private handlePrefixSelect(event) {
@@ -125,7 +131,7 @@ export class AppProfileNameItem {
         this.editPreferredName = event.target.value;
     }
 
-    private initializeEditDialog() {
+    private initializeEditForm() {
         this.editFirstName = this.displayFirstName;   
         this.editMiddleName = this.displayMiddleName;    
         this.editLastName = this.displayLastName; 
@@ -137,7 +143,7 @@ export class AppProfileNameItem {
         this.editSuffixName = this.displaySuffixName;
         this.editPronounId = this.displayPronounId;
         this.editPronounName = this.displayPronounName;
-        this.editDialog.visible = true;
+        this.isEditing = true;
     }
 
     private getPrefixes() {
@@ -284,7 +290,7 @@ export class AppProfileNameItem {
         } 
         this.personClient.updatePerson(this.personItem.id, personSaveData)
         .then(() => {
-            this.editDialog.visible = false;
+            this.isEditing = false;
             this.displayFirstName = this.editFirstName;
             this.displayMiddleName = this.editMiddleName;
             this.displayLastName = this.editLastName;
@@ -323,15 +329,17 @@ export class AppProfileNameItem {
         return (
             <div>
                 <div class='profile-item-row'>
-                    <div class='value'>
-                        { this.displayPrefixName ? this.displayPrefixName + ' ' : '' } 
-                        { this.displayFirstName ? this.displayFirstName + ' ' : '' }                                
-                        { this.displayMiddleName ? this.displayMiddleName + ' ' : '' }                                
-                        { this.displayLastName ? this.displayLastName + ' ' : '' }
-                        { this.displaySuffixName ? this.displaySuffixName + ' ' : '' }                                
-                        <span class='pronouns'>{this.displayPronounName ? '(' + this.displayPronounName + ')' : ''}</span>
-                    </div>
-                    { this.canEdit &&
+                    {!this.isEditing && 
+                        <div class='value'>
+                            { this.displayPrefixName ? this.displayPrefixName + ' ' : '' } 
+                            { this.displayFirstName ? this.displayFirstName + ' ' : '' }                                
+                            { this.displayMiddleName ? this.displayMiddleName + ' ' : '' }                                
+                            { this.displayLastName ? this.displayLastName + ' ' : '' }
+                            { this.displaySuffixName ? this.displaySuffixName + ' ' : '' }                                
+                            <span class='pronouns'>{this.displayPronounName ? '(' + this.displayPronounName + ')' : ''}</span>
+                        </div>
+                    }
+                    {!this.isEditing && this.canEdit &&
                         <div class='actions'>
                             <button class='action' onClick={e => this.handleEditClick(e)}>
                                 <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
@@ -340,88 +348,92 @@ export class AppProfileNameItem {
                                 <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
                             </button>                                      
                         </div>    
+                    }                    
+                    {this.isEditing &&
+                        <form ref={el => this.editForm = el} class='edit-form' >
+                            <div class='form-item'>
+                                <label htmlFor='prefix'>Title <span class='optional'>(Optional)</span></label>
+                                <select id='prefix-type' name='prefix-type' onInput={(event) => this.handlePrefixSelect(event)}>
+                                    {this.prefixes?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(prefix => (
+                                        <option
+                                            value={prefix.id}
+                                            selected={this.editPrefixId === prefix.id}
+                                        >
+                                            {prefix.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="first-name">First (Given) Name</label>
+                                <input id='first-name' name='first-name' type="text" required maxLength={50} ref={el => this.firstNameInput = el} value={this.editFirstName} onInput={(e) => this.handleFirstNameChange(e)} />
+                                <div ref={el => this.firstNameErrorMessage = el} class='form-error-message'></div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="middle-name">Middle Name <span class='optional'>(Optional)</span></label>
+                                <input id='middle-name' name='middle-name' type="text" maxLength={50} value={this.editMiddleName} onInput={(e) => this.handleMiddleNameChange(e)} />
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="last-name">Last (Family) Name</label>
+                                <input id='last-name' name='last-name' type="text" required maxLength={50} ref={el => this.lastNameInput = el} value={this.editLastName} onInput={(e) => this.handleLastNameChange(e)} />
+                                <div ref={el => this.lastNameErrorMessage = el} class='form-error-message'></div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="directory-name">Directory Name</label>
+                                <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
+                                <div class='form-helper-text'>This is how your name will be displayed in the Directory</div>
+                                <div ref={el => this.directoryNameErrorMessage = el} class='form-error-message'></div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
+                                <input id='preferred-name' name='preferred-name' type="text" maxLength={50} value={this.editPreferredName} onInput={(e) => this.handlePreferredNameChange(e)} />
+                                <div class='form-helper-text'>This is how your name will be displayed on a conference badge</div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor='suffix'>Suffix <span class='optional'>(Optional)</span></label>
+                                <select id='suffix' name='suffix' onInput={(event) => this.handleSuffixSelect(event)}>
+                                    {this.suffixes?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(suffix => (
+                                        <option
+                                            value={suffix.id}
+                                            selected={this.editSuffixId === suffix.id}
+                                        >
+                                            {suffix.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor='pronouns'>Pronouns <span class='optional'>(Optional)</span></label>
+                                <select id='pronouns' name='pronouns' onInput={(event) => this.handlePronounSelect(event)}>
+                                    {this.pronouns?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(pronoun => (
+                                        <option
+                                            value={pronoun.id}
+                                            selected={this.editPronounId === pronoun.id}
+                                        >
+                                            {pronoun.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class="button-container">
+                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
+                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                            </div>                        
+                        </form>
                     }
-                </div>                
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Name">
-                    <form ref={el => this.editForm = el} class='edit-form' >
-                        <div class='form-item'>
-                            <label htmlFor='prefix'>Title <span class='optional'>(Optional)</span></label>
-                            <select id='prefix-type' name='prefix-type' onInput={(event) => this.handlePrefixSelect(event)}>
-                                {this.prefixes?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(prefix => (
-                                    <option
-                                        value={prefix.id}
-                                        selected={this.editPrefixId === prefix.id}
-                                    >
-                                        {prefix.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="first-name">First (Given) Name</label>
-                            <input id='first-name' name='first-name' type="text" required maxLength={50} ref={el => this.firstNameInput = el} value={this.editFirstName} onInput={(e) => this.handleFirstNameChange(e)} />
-                            <div ref={el => this.firstNameErrorMessage = el} class='form-error-message'></div>
-                         </div>
-                        <div class='form-item'>
-                            <label htmlFor="middle-name">Middle Name <span class='optional'>(Optional)</span></label>
-                            <input id='middle-name' name='middle-name' type="text" maxLength={50} value={this.editMiddleName} onInput={(e) => this.handleMiddleNameChange(e)} />
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="last-name">Last (Family) Name</label>
-                            <input id='last-name' name='last-name' type="text" required maxLength={50} ref={el => this.lastNameInput = el} value={this.editLastName} onInput={(e) => this.handleLastNameChange(e)} />
-                            <div ref={el => this.lastNameErrorMessage = el} class='form-error-message'></div>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="directory-name">Directory Name</label>
-                            <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
-                            <div class='form-helper-text'>This is how your name will be displayed in the Directory</div>
-                            <div ref={el => this.directoryNameErrorMessage = el} class='form-error-message'></div>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
-                            <input id='preferred-name' name='preferred-name' type="text" maxLength={50} value={this.editPreferredName} onInput={(e) => this.handlePreferredNameChange(e)} />
-                            <div class='form-helper-text'>This is how your name will be displayed on a conference badge</div>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor='suffix'>Suffix <span class='optional'>(Optional)</span></label>
-                            <select id='suffix' name='suffix' onInput={(event) => this.handleSuffixSelect(event)}>
-                                {this.suffixes?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(suffix => (
-                                    <option
-                                        value={suffix.id}
-                                        selected={this.editSuffixId === suffix.id}
-                                    >
-                                        {suffix.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor='pronouns'>Pronouns <span class='optional'>(Optional)</span></label>
-                            <select id='pronouns' name='pronouns' onInput={(event) => this.handlePronounSelect(event)}>
-                                {this.pronouns?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(pronoun => (
-                                    <option
-                                        value={pronoun.id}
-                                        selected={this.editPronounId === pronoun.id}
-                                    >
-                                        {pronoun.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </form>
-                </app-modal>
+                </div>
             </div>
         );
     }

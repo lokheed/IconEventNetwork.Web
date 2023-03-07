@@ -15,7 +15,6 @@ import state from '../../services/store';
   shadow: false
 })
 export class AppProfileAddressItem {
-    private editDialog: HTMLAppModalElement;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private addressClient: AddressClient;
     private addressTypeClient: AddressTypeClient;
@@ -35,6 +34,7 @@ export class AppProfileAddressItem {
     }  
     @Prop() addressItem: DataResponse<AddressAttributes>;
     @Prop() canEdit: boolean;
+    @State() isEditing: boolean = false;
     @Prop() appliesTo!: 'person' | 'personAtCompany' | 'company';
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
@@ -70,25 +70,6 @@ export class AppProfileAddressItem {
     private editForm: HTMLFormElement;
     private cityInput: HTMLInputElement;
     private cityErrorMessage: HTMLDivElement;
-    @Listen('primaryModalClick') primaryModalClickHandler() {
-        this.cityInput.classList.remove('invalid');
-        this.cityErrorMessage.innerHTML = '';
-        let isValid = this.editForm.reportValidity();
-        if (isValid) {
-            this.saveData();
-            return;
-        }
-        this.cityInput.classList.add('invalid');
-        this.cityErrorMessage.innerHTML = 'City is a required field';
-    }
-    @Listen('secondaryModalClick') secondaryModalClickHandler() {
-        this.cityInput.classList.remove('invalid');
-        this.cityErrorMessage.innerHTML = '';
-        this.editDialog.visible = false;
-        if (this.addressItem.id === 0) {
-            this.addressDeleted.emit(this.addressItem.id);
-        }
-    }
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;    
@@ -144,14 +125,38 @@ export class AppProfileAddressItem {
             this.initializeEditDialog();
         }
     }
-    private handleEditClick(e: MouseEvent) {
+
+    private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
-        this.initializeEditDialog();
+        this.cityInput.classList.remove('invalid');
+        this.cityErrorMessage.innerHTML = '';
+        this.isEditing = false;
+        if (this.addressItem.id === 0) {
+            this.addressDeleted.emit(this.addressItem.id);
+        }
     }
 
     private handleDeleteClick(e: MouseEvent) {
         e.preventDefault();
         this.deleteConfirmationDialog.visible = true;
+    }
+
+    private handleEditClick(e: MouseEvent) {
+        e.preventDefault();
+        this.initializeEditDialog();
+    }
+
+    private handleSaveClick(e: MouseEvent) {
+        e.preventDefault();
+        this.cityInput.classList.remove('invalid');
+        this.cityErrorMessage.innerHTML = '';
+        let isValid = this.editForm.reportValidity();
+        if (isValid) {
+            this.saveData();
+            return;
+        }
+        this.cityInput.classList.add('invalid');
+        this.cityErrorMessage.innerHTML = 'City is a required field';
     }
     
     private handleCountrySelect(event) {
@@ -203,7 +208,7 @@ export class AppProfileAddressItem {
         this.editCountrySubdivisionCode = this.displayCountrySubdivisionCode;
         this.editAddressTypeId = this.displayAddressTypeId;
         this.editAddressTypeName = this.displayAddressTypeName;
-        this.editDialog.visible = true;
+        this.isEditing = true;
     }
 
     private initializeDefaultAddressType() {
@@ -438,7 +443,7 @@ export class AppProfileAddressItem {
             } 
             this.addressClient.updateAddress(this.addressItem.id, addressSaveData)
             .then(() => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.displayLine1 = this.editLine1;
                 this.displayLine2 = this.editLine2;
                 this.displayCity = this.editCity;
@@ -465,7 +470,7 @@ export class AppProfileAddressItem {
             addressSaveData.data.address_type.connect = [{id: this.editAddressTypeId}];
             this.addressClient.addAddress(addressSaveData)
             .then((result) => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.addressItem.id = result.data.id;
                 this.displayLine1 = this.editLine1;
                 this.displayLine2 = this.editLine2;
@@ -563,23 +568,25 @@ export class AppProfileAddressItem {
         return (
             <div>
                 <div class='profile-item-row'>
-                    <div class='value'>
-                        <div class='label'>
-                            {this.displayAddressTypeName}
-                        </div>
+                    { !this.isEditing &&
                         <div class='value'>
-                            {this.displayLine1 ?? ''}
-                            {this.displayLine1 ? <br/> : '' }
-                            {this.displayLine2 ?? ''}
-                            {this.displayLine2 ? <br/> : '' }
-                            {this.displayCity ? this.displayCity + ', ' : ''}
-                            {this.displayCountrySubdivisionCode ? this.displayCountrySubdivisionCode.substring(3, 5).toUpperCase() + ' ' : ''}
-                            {this.displayPostalCode ?? ''}
-                            {this.displayCountryA2 && this.displayCountryA2 != 'US' ? <br/> : '' }
-                            {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }
-                        </div>
-                    </div>
-                    { this.canEdit && 
+                            <div class='label'>
+                                {this.displayAddressTypeName}
+                            </div>
+                            <div class='value'>
+                                {this.displayLine1 ?? ''}
+                                {this.displayLine1 ? <br/> : '' }
+                                {this.displayLine2 ?? ''}
+                                {this.displayLine2 ? <br/> : '' }
+                                {this.displayCity ? this.displayCity + ', ' : ''}
+                                {this.displayCountrySubdivisionCode ? this.displayCountrySubdivisionCode.substring(3, 5).toUpperCase() + ' ' : ''}
+                                {this.displayPostalCode ?? ''}
+                                {this.displayCountryA2 && this.displayCountryA2 != 'US' ? <br/> : '' }
+                                {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }
+                            </div>
+                        </div>               
+                    }
+                    { !this.isEditing && this.canEdit && 
                         <div class='actions'>
                             <button class='action' onClick={e => this.handleEditClick(e)}>
                                 <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
@@ -589,79 +596,83 @@ export class AppProfileAddressItem {
                             </button>                                       
                         </div>
                     }       
+                    { this.isEditing &&
+                        <form ref={el => this.editForm = el} class='edit-form' >
+                            <div class='form-item'>
+                                <label htmlFor='address-type'>Type</label>
+                                <select id='address-type' name='address-type' onInput={(event) => this.handleAddressTypeSelect(event)}>
+                                    {this.addressTypes?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(addressType => (
+                                        <option
+                                            value={addressType.id}
+                                            selected={this.editAddressTypeId === addressType.id}
+                                        >
+                                            {addressType.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="line1">Line 1</label>
+                                <input id='line1' name='line1' type="text" value={this.editLine1} onInput={(e) => this.handleLine1Change(e)} />
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="line2">Line 2</label>
+                                <input id='line2' name='line2' type="text" value={this.editLine2} onInput={(e) => this.handleLine2Change(e)} />
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="city">City</label>
+                                <input id='city' name='city' ref={el => this.cityInput = el} type="text" value={this.editCity} onInput={(e) => this.handleCityChange(e)} required />
+                                <div ref={el => this.cityErrorMessage = el} class='form-error-message'></div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor='country'>Country</label>
+                                <select id='country' name='country' onInput={(event) => this.handleCountrySelect(event)}>
+                                    {this.countries?.sort((a,b) => {
+                                        var rankA = a.attributes.Name;
+                                        var rankB = b.attributes.Name;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(country => (
+                                        <option
+                                            value={country.id}
+                                            selected={this.editCountryId === country.id}
+                                        >
+                                            {country.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor='region'>State/Region</label>
+                                <select id='region' name='region' onInput={(event) => this.handleCountrySubdivisionSelect(event)}>
+                                    {this.countrySubdivisions?.sort((a,b) => {
+                                        var rankA = a.attributes.Name;
+                                        var rankB = b.attributes.Name;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(countrySubdivision => (
+                                        <option
+                                            value={countrySubdivision.id}
+                                            selected={this.editCountrySubdivisionId === countrySubdivision.id}
+                                        >
+                                            {countrySubdivision.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="postal-code">Postal Code</label>
+                                <input id='postal-code' name='postal-code' type="text" value={this.editPostalCode} onInput={(e) => this.handlePostalCodeChange(e)} />
+                            </div>
+                            <div class="button-container">
+                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
+                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                            </div>                        
+                        </form>
+                    }
                 </div>
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Email">
-                    <form ref={el => this.editForm = el} class='edit-form' >
-                        <div class='form-item'>
-                            <label htmlFor='address-type'>Type</label>
-                            <select id='address-type' name='address-type' onInput={(event) => this.handleAddressTypeSelect(event)}>
-                                {this.addressTypes?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(addressType => (
-                                    <option
-                                        value={addressType.id}
-                                        selected={this.editAddressTypeId === addressType.id}
-                                    >
-                                        {addressType.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="line1">Line 1</label>
-                            <input id='line1' name='line1' type="text" value={this.editLine1} onInput={(e) => this.handleLine1Change(e)} />
-                         </div>
-                        <div class='form-item'>
-                            <label htmlFor="line2">Line 2</label>
-                            <input id='line2' name='line2' type="text" value={this.editLine2} onInput={(e) => this.handleLine2Change(e)} />
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="city">City</label>
-                            <input id='city' name='city' ref={el => this.cityInput = el} type="text" value={this.editCity} onInput={(e) => this.handleCityChange(e)} required />
-                            <div ref={el => this.cityErrorMessage = el} class='form-error-message'></div>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor='country'>Country</label>
-                            <select id='country' name='country' onInput={(event) => this.handleCountrySelect(event)}>
-                                {this.countries?.sort((a,b) => {
-                                    var rankA = a.attributes.Name;
-                                    var rankB = b.attributes.Name;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(country => (
-                                    <option
-                                        value={country.id}
-                                        selected={this.editCountryId === country.id}
-                                    >
-                                        {country.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor='region'>State/Region</label>
-                            <select id='region' name='region' onInput={(event) => this.handleCountrySubdivisionSelect(event)}>
-                                {this.countrySubdivisions?.sort((a,b) => {
-                                    var rankA = a.attributes.Name;
-                                    var rankB = b.attributes.Name;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(countrySubdivision => (
-                                    <option
-                                        value={countrySubdivision.id}
-                                        selected={this.editCountrySubdivisionId === countrySubdivision.id}
-                                    >
-                                        {countrySubdivision.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="postal-code">Postal Code</label>
-                            <input id='postal-code' name='postal-code' type="text" value={this.editPostalCode} onInput={(e) => this.handlePostalCodeChange(e)} />
-                        </div>
-                    </form>
-                </app-modal>
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
                     Are you sure you want to delete this address?
                 </app-confirmation>    

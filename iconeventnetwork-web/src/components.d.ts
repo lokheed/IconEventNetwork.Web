@@ -53,12 +53,6 @@ export namespace Components {
     }
     interface AppLoginButton {
     }
-    interface AppModal {
-        "dialogTitle": string;
-        "primaryActionText": string;
-        "secondaryActionText": string;
-        "visible": boolean;
-    }
     interface AppNavUserInfo {
     }
     interface AppNavigation {
@@ -176,10 +170,6 @@ export interface AppEventPlannerItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppEventPlannerItemElement;
 }
-export interface AppModalCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLAppModalElement;
-}
 export interface AppProfileAddressItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppProfileAddressItemElement;
@@ -246,12 +236,6 @@ declare global {
     var HTMLAppLoginButtonElement: {
         prototype: HTMLAppLoginButtonElement;
         new (): HTMLAppLoginButtonElement;
-    };
-    interface HTMLAppModalElement extends Components.AppModal, HTMLStencilElement {
-    }
-    var HTMLAppModalElement: {
-        prototype: HTMLAppModalElement;
-        new (): HTMLAppModalElement;
     };
     interface HTMLAppNavUserInfoElement extends Components.AppNavUserInfo, HTMLStencilElement {
     }
@@ -449,7 +433,6 @@ declare global {
         "app-header": HTMLAppHeaderElement;
         "app-leadership-team-item": HTMLAppLeadershipTeamItemElement;
         "app-login-button": HTMLAppLoginButtonElement;
-        "app-modal": HTMLAppModalElement;
         "app-nav-user-info": HTMLAppNavUserInfoElement;
         "app-navigation": HTMLAppNavigationElement;
         "app-profile-address-item": HTMLAppProfileAddressItemElement;
@@ -526,14 +509,6 @@ declare namespace LocalJSX {
         "readMoreColor"?: string;
     }
     interface AppLoginButton {
-    }
-    interface AppModal {
-        "dialogTitle"?: string;
-        "onPrimaryModalClick"?: (event: AppModalCustomEvent<any>) => void;
-        "onSecondaryModalClick"?: (event: AppModalCustomEvent<any>) => void;
-        "primaryActionText"?: string;
-        "secondaryActionText"?: string;
-        "visible"?: boolean;
     }
     interface AppNavUserInfo {
     }
@@ -652,7 +627,6 @@ declare namespace LocalJSX {
         "app-header": AppHeader;
         "app-leadership-team-item": AppLeadershipTeamItem;
         "app-login-button": AppLoginButton;
-        "app-modal": AppModal;
         "app-nav-user-info": AppNavUserInfo;
         "app-navigation": AppNavigation;
         "app-profile-address-item": AppProfileAddressItem;
@@ -699,7 +673,6 @@ declare module "@stencil/core" {
             "app-header": LocalJSX.AppHeader & JSXBase.HTMLAttributes<HTMLAppHeaderElement>;
             "app-leadership-team-item": LocalJSX.AppLeadershipTeamItem & JSXBase.HTMLAttributes<HTMLAppLeadershipTeamItemElement>;
             "app-login-button": LocalJSX.AppLoginButton & JSXBase.HTMLAttributes<HTMLAppLoginButtonElement>;
-            "app-modal": LocalJSX.AppModal & JSXBase.HTMLAttributes<HTMLAppModalElement>;
             "app-nav-user-info": LocalJSX.AppNavUserInfo & JSXBase.HTMLAttributes<HTMLAppNavUserInfoElement>;
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
