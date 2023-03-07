@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -89,6 +89,11 @@ export namespace Components {
         "personAtCompanyId"?: number;
         "personId"?: number;
         "phoneNumberItem": DataResponse<PhoneNumberAttributes>;
+    }
+    interface AppProfilePreferredLanguageItem {
+        "canEdit": boolean;
+        "languageItem": DataResponse<LanguageAttributes>;
+        "personId": number;
     }
     interface AppResponsiveImage {
         /**
@@ -279,6 +284,12 @@ declare global {
         prototype: HTMLAppProfilePhoneNumberItemElement;
         new (): HTMLAppProfilePhoneNumberItemElement;
     };
+    interface HTMLAppProfilePreferredLanguageItemElement extends Components.AppProfilePreferredLanguageItem, HTMLStencilElement {
+    }
+    var HTMLAppProfilePreferredLanguageItemElement: {
+        prototype: HTMLAppProfilePreferredLanguageItemElement;
+        new (): HTMLAppProfilePreferredLanguageItemElement;
+    };
     interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
     }
     var HTMLAppResponsiveImageElement: {
@@ -440,6 +451,7 @@ declare global {
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-profile-name-item": HTMLAppProfileNameItemElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
+        "app-profile-preferred-language-item": HTMLAppProfilePreferredLanguageItemElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
@@ -550,6 +562,11 @@ declare namespace LocalJSX {
         "personId"?: number;
         "phoneNumberItem"?: DataResponse<PhoneNumberAttributes>;
     }
+    interface AppProfilePreferredLanguageItem {
+        "canEdit"?: boolean;
+        "languageItem"?: DataResponse<LanguageAttributes>;
+        "personId"?: number;
+    }
     interface AppResponsiveImage {
         /**
           * The css class to pass down to the rendered image.
@@ -634,6 +651,7 @@ declare namespace LocalJSX {
         "app-profile-left-nav": AppProfileLeftNav;
         "app-profile-name-item": AppProfileNameItem;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
+        "app-profile-preferred-language-item": AppProfilePreferredLanguageItem;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
@@ -680,6 +698,7 @@ declare module "@stencil/core" {
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-profile-name-item": LocalJSX.AppProfileNameItem & JSXBase.HTMLAttributes<HTMLAppProfileNameItemElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
+            "app-profile-preferred-language-item": LocalJSX.AppProfilePreferredLanguageItem & JSXBase.HTMLAttributes<HTMLAppProfilePreferredLanguageItemElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;

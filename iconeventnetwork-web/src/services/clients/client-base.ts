@@ -289,6 +289,20 @@ export interface ImageFormatInfo{
     width: number;
 }
 
+export interface LanguageData{
+    data: DataResponse<LanguageAttributes>
+}
+
+export interface LanguageAttributes{
+    EnglishName?: string;
+    NativeName?: string;
+    SearchableName?: string;
+    A2?: string;
+    A3?: string;
+    Rank?: number;
+}
+
+
 export interface PersonData{
     data: DataResponse<PersonInfo>;
 }
@@ -307,6 +321,7 @@ export interface PersonInfo{
     SocialMediaAccounts?: SocialMediaData[];
     Suffix?: SuffixData;
     Users?: UserData;
+    PreferredLanguage?: LanguageData;
 }
 
 export interface PersonSaveData{
@@ -322,6 +337,7 @@ export interface PersonSaveData{
         prefix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Pronoun?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Suffix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        PreferredLanguage?:{ disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
 

@@ -13,6 +13,7 @@ const { state } = createStore({
     prefixes: [],
     suffixes: [],
     pronouns: [],
+    languages: [],
 });
 
 export default state;
