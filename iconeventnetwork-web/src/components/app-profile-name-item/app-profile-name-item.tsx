@@ -87,28 +87,33 @@ export class AppProfileNameItem {
             this.saveData();
             return;
         }
-        //TODO: only show appropriate errors
-        this.firstNameInput.classList.add('invalid');
-        this.firstNameErrorMessage.innerHTML = 'City is a required field';
-        this.lastNameInput.classList.add('invalid');
-        this.lastNameErrorMessage.innerHTML = 'City is a required field';
-        this.directoryNameInput.classList.add('invalid');
-        this.directoryNameErrorMessage.innerHTML = 'Directory Name is a required field';
+        if (!this.firstNameInput.validity.valid) {
+            this.firstNameInput.classList.add('invalid');
+            this.firstNameErrorMessage.innerHTML = 'First (Given) Name is a required field.';
+        } 
+        if (!this.lastNameInput.validity.valid) {
+            this.lastNameInput.classList.add('invalid');
+            this.lastNameErrorMessage.innerHTML = 'Last (Family) Name is a required field.';
+        } 
+        if (!this.directoryNameInput.validity.valid) {
+            this.directoryNameInput.classList.add('invalid');
+            this.directoryNameErrorMessage.innerHTML = 'Directory Name is a required field.';
+        } 
     }
     
     private handlePrefixSelect(event) {
         this.editPrefixId = event.target.value;
-        this.editPrefixName = event.target[event.target.selectedIndex].text;
+        this.editPrefixName = this.editPrefixId > 0 ? event.target[event.target.selectedIndex].text : '';
     }
     
     private handleSuffixSelect(event) {
         this.editSuffixId = event.target.value;
-        this.editSuffixName = event.target[event.target.selectedIndex].text;
+        this.editSuffixName = this.editSuffixId > 0 ? event.target[event.target.selectedIndex].text : '';
     }
     
     private handlePronounSelect(event) {
         this.editPronounId = event.target.value;
-        this.editPronounName = event.target[event.target.selectedIndex].text;
+        this.editPronounName =this.editPronounId > 0 ? event.target[event.target.selectedIndex].text : '';
     }
 
     private handleFirstNameChange(event) {
@@ -277,15 +282,15 @@ export class AppProfileNameItem {
             personSaveData.data.PreferredName = this.editPreferredName.trim();
         }
         if (this.editPrefixId != this.displayPrefixId) {
-            personSaveData.data.prefix.disconnect = [{id: this.displayPrefixId}];
+            if (this.displayPrefixId > 0) personSaveData.data.prefix.disconnect = [{id: this.displayPrefixId}];
             if (this.editPrefixId > 0) personSaveData.data.prefix.connect = [{id: this.editPrefixId}];
         } 
         if (this.editSuffixId != this.displaySuffixId) {
-            personSaveData.data.Suffix.disconnect = [{id: this.displaySuffixId}];
-            if (this.editSuffixId > 0) personSaveData.data.Suffix.connect = [{id: this.editPrefixId}];
+            if (this.displaySuffixId > 0) personSaveData.data.Suffix.disconnect = [{id: this.displaySuffixId}];
+            if (this.editSuffixId > 0) personSaveData.data.Suffix.connect = [{id: this.editSuffixId}];
         } 
         if (this.editPronounId != this.displayPronounId) {
-            personSaveData.data.Pronoun.disconnect = [{id: this.displayPronounId}];
+            if (this.displayPronounId > 0) personSaveData.data.Pronoun.disconnect = [{id: this.displayPronounId}];
             if (this.editPronounId > 0) personSaveData.data.Pronoun.connect = [{id: this.editPronounId}];
         } 
         this.personClient.updatePerson(this.personItem.id, personSaveData)
