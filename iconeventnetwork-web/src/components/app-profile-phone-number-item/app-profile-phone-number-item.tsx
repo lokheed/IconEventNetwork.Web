@@ -15,7 +15,6 @@ import state from '../../services/store';
   shadow: false
 })
 export class AppProfilePhoneItem {
-    private editDialog: HTMLAppModalElement;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private editForm: HTMLFormElement;
     private phoneNumberInput: HTMLInputElement;
@@ -36,6 +35,7 @@ export class AppProfilePhoneItem {
     }  
     @Prop() phoneNumberItem: DataResponse<PhoneNumberAttributes>;
     @Prop() canEdit: boolean;
+    @State() isEditing: boolean = false;
     @Prop() appliesTo!:  'person' | 'personAtCompany' | 'company';
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
@@ -50,27 +50,7 @@ export class AppProfilePhoneItem {
     @State() editPhoneNumberCountryId: number = 0;
     @State() phoneNumberTypes: DataResponse<PhoneNumberTypeAttributes>[];
     @State() phoneNumberCountries: DataResponse<CountryAttributes>[];
-    @State() phoneNumberClass: string = '';
     @Event() private phoneNumberDeleted: EventEmitter<number>;
-
-    @Listen('primaryModalClick') primaryModalClickHandler() {
-        this.phoneNumberClass = '';
-        let isValid = this.editForm.reportValidity();
-        if (isValid) {
-            this.saveData();
-            return;
-        }
-        this.phoneNumberClass = this.phoneNumberInput.validity.valid ? '' : 'invalid';
-        this.phoneNumberErrorMessage.innerHTML = this.phoneNumberInput.validity.valid ? '' : 'Phone Number must be a valid phone number.';
-    }
-    @Listen('secondaryModalClick') secondaryModalClickHandler() {
-        this.phoneNumberClass = '';
-        this.phoneNumberErrorMessage.innerHTML = '';
-        this.editDialog.visible = false;
-        if (this.phoneNumberItem.id === 0) {
-            this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
-        }
-    }
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;    
@@ -138,14 +118,39 @@ export class AppProfilePhoneItem {
         this.editPhoneNumber = event.target.value;
     }
 
-    private handleEditClick(e: MouseEvent) {
+    private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
-        this.initializeEditDialog();
+        this.phoneNumberInput.classList.remove('invalid');
+        this.phoneNumberErrorMessage.innerHTML = '';
+        this.isEditing = false;
+        if (this.phoneNumberItem.id === 0) {
+            this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
+        }
     }
 
     private handleDeleteClick(e: MouseEvent) {
         e.preventDefault();
         this.deleteConfirmationDialog.visible = true;
+    }
+
+    private handleEditClick(e: MouseEvent) {
+        e.preventDefault();
+        this.initializeEditDialog();
+    }
+
+    private handleSaveClick(e: MouseEvent) {
+        e.preventDefault();
+        this.phoneNumberInput.classList.remove('invalid');
+        this.phoneNumberErrorMessage.innerHTML = '';
+        let isValid = this.editForm.reportValidity();
+        if (isValid) {
+            this.saveData();
+            return;
+        }
+        if (!this.phoneNumberInput.validity.valid) {
+            this.phoneNumberInput.classList.add('invalid');
+            this.phoneNumberErrorMessage.innerHTML = 'Phone Number must be a valid phone number.';
+        }
     }
 
     private getPersonPhoneNumberTypes() {
@@ -275,7 +280,7 @@ export class AppProfilePhoneItem {
         this.editPhoneNumberTypeId = this.displayPhoneNumberTypeId;
         this.editPhoneNumberTypeName = this.displayPhoneNumberTypeName;
         this.editPhoneNumberCountryId = this.displayPhoneNumberCountryId;
-        this.editDialog.visible = true;
+        this.isEditing = true;
     }
 
     private initializeDefaultPhoneNumberType() {
@@ -314,7 +319,7 @@ export class AppProfilePhoneItem {
             } 
             this.phoneNumberClient.updatePhoneNumber(this.phoneNumberItem.id, phoneNumberSaveData)
             .then((response) => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.displayPhoneNumber = response.data.attributes.NationalFormat &&
                                           response.data.attributes.NationalFormat.length > 0 ? 
                     response.data.attributes.NationalFormat :
@@ -333,7 +338,7 @@ export class AppProfilePhoneItem {
             phoneNumberSaveData.data.country.connect = [{id: this.editPhoneNumberCountryId}];
             this.phoneNumberClient.addPhoneNumber(phoneNumberSaveData)
             .then((result) => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.phoneNumberItem.id = result.data.id;
                 this.displayPhoneNumber = result.data.attributes.NationalFormat &&
                                           result.data.attributes.NationalFormat.length > 0 ? 
@@ -421,15 +426,17 @@ export class AppProfilePhoneItem {
         return (
             <div>
                 <div class='profile-item-row'>
-                    <div class='value'>
-                        <div class='label'>
-                            {this.displayPhoneNumberTypeName}
-                        </div>
+                    { !this.isEditing &&
                         <div class='value'>
-                            {this.displayPhoneNumber}
-                        </div>
-                    </div>
-                    {this.canEdit && 
+                            <div class='label'>
+                                {this.displayPhoneNumberTypeName}
+                            </div>
+                            <div class='value'>
+                                {this.displayPhoneNumber}
+                            </div>
+                        </div>                   
+                    }
+                    { !this.isEditing && this.canEdit && 
                         <div class='actions'>
                             <button class='action' onClick={e => this.handleEditClick(e)}>
                                 <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
@@ -439,49 +446,52 @@ export class AppProfilePhoneItem {
                             </button>                                       
                         </div>                    
                     }
+                    { this.isEditing &&
+                        <form ref={el => this.editForm = el} class='edit-form' >
+                            <div class='form-item'>
+                                <label htmlFor="phone-number-type">Type</label>
+                                <select id='phone-number-type' name='phone-number-type' onInput={(event) => this.handlePhoneTypeSelect(event)}>
+                                    {this.phoneNumberTypes?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(phoneNumberType => (
+                                        <option
+                                            value={phoneNumberType.id}
+                                            selected={this.editPhoneNumberTypeId === phoneNumberType.id}
+                                        >
+                                            {phoneNumberType.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="phone-number">Phone Number</label>
+                                <select id='phone-number' name='phone-number' class='phone-country' onInput={(event) => this.handlePhoneCountrySelect(event)}>
+                                    {this.phoneNumberCountries?.sort((a,b) => {
+                                        var rankA = a.attributes.A2;
+                                        var rankB = b.attributes.A2;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(country => (
+                                        <option
+                                            value={country.id}
+                                            selected={this.editPhoneNumberCountryId === country.id}
+                                        >
+                                            {country.attributes.A2}
+                                        </option>
+                                    ))}
+                                </select>
+                                <input type="phone" class='phone-number' required value={this.editPhoneNumber} ref={el => this.phoneNumberInput = el} onInput={(e) => this.handlePhoneNumberChange(e)} />
+                                <div class='form-error-message' ref={el => this.phoneNumberErrorMessage = el}></div>
+                            </div>
+                            <div class="button-container">
+                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
+                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                            </div>                        
+                        </form>
+                    }
                 </div>
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Phone">
-                    <form ref={el => this.editForm = el} class='edit-form' >
-                        <div class='form-item'>
-                            <label htmlFor="phone-number-type">Type</label>
-                            <select id='phone-number-type' name='phone-number-type' onInput={(event) => this.handlePhoneTypeSelect(event)}>
-                                {this.phoneNumberTypes?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(phoneNumberType => (
-                                    <option
-                                        value={phoneNumberType.id}
-                                        selected={this.editPhoneNumberTypeId === phoneNumberType.id}
-                                    >
-                                        {phoneNumberType.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="phone-number">Phone Number</label>
-                            <select id='phone-number' name='phone-number' onInput={(event) => this.handlePhoneCountrySelect(event)}>
-                                {this.phoneNumberCountries?.sort((a,b) => {
-                                    var rankA = a.attributes.A2;
-                                    var rankB = b.attributes.A2;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(country => (
-                                    <option
-                                        value={country.id}
-                                        selected={this.editPhoneNumberCountryId === country.id}
-                                    >
-                                        {country.attributes.A2}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <input ref={el => this.phoneNumberInput = el} type="phone" value={this.editPhoneNumber} onInput={(e) => this.handlePhoneNumberChange(e)} class={this.phoneNumberClass} required />
-                            <div ref={el => this.phoneNumberErrorMessage = el} class='form-error-message'></div>
-                        </div>
-                    </form>
-                </app-modal>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
+                <app-confirmation ref={el => this.deleteConfirmationDialog = el} visible={false} >
                     Are you sure you want to delete this phone number?
                 </app-confirmation>    
                 <hr/>            

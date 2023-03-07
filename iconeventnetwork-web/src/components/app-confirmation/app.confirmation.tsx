@@ -21,7 +21,7 @@ export class Modal {
         e.preventDefault();
         this.secondaryConfirmationClick.emit();
     }
-
+    
     render() {
         return (
             <div class={this.visible ? 'wrapper visible' : 'wrapper'}>

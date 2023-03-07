@@ -13,7 +13,6 @@ import state from '../../services/store';
   shadow: false
 })
 export class AppProfileEmailAddressItem {
-    private editDialog: HTMLAppModalElement;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private emailAddressClient: EmailAddressClient;
     private emailAddressTypeClient: EmailAddressTypeClient;
@@ -29,6 +28,7 @@ export class AppProfileEmailAddressItem {
     }  
     @Prop() emailAddressItem: DataResponse<EmailAddressAttributes>;
     @Prop() canEdit: boolean;
+    @State() isEditing: boolean = false;
     @Prop() appliesTo!: 'person' | 'personAtCompany' | 'company';
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
@@ -40,30 +40,10 @@ export class AppProfileEmailAddressItem {
     @State() displayEmailAddressTypeName: string = '';
     @State() editEmailAddressTypeName: string = '';
     @State() emailAddressTypes: DataResponse<EmailAddressTypeAttributes>[];
-    @State() emailAddressClass: string = '';
     @Event() private emailAddressDeleted: EventEmitter<number>;
     private editForm: HTMLFormElement;
     private emailAddressInput: HTMLInputElement;
     private emailAddressErrorMessage: HTMLDivElement;
-    @Listen('primaryModalClick') primaryModalClickHandler() {
-        this.emailAddressClass = '';
-        let isValid = this.editForm.reportValidity();
-        if (isValid) {
-            this.saveData();
-            return;
-        }
-        this.emailAddressClass = this.emailAddressInput.validity.valid ? '' : 'invalid';
-        this.emailAddressErrorMessage.innerHTML = this.emailAddressInput.validity.valid ? '' : 'Email Address must be a valid email address.';
-    }
-    @Listen('secondaryModalClick') secondaryModalClickHandler() {
-        this.emailAddressClass = '';
-        this.emailAddressErrorMessage.innerHTML = '';
-        this.editDialog.visible = false;
-        if (this.emailAddressItem.id === 0) {
-            this.emailAddressDeleted.emit(this.emailAddressItem.id);
-        }
-    }
-
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;    
         switch (this.appliesTo) {
@@ -115,17 +95,43 @@ export class AppProfileEmailAddressItem {
     }
     @Listen('emailAddressAdded') emailAddressAddedHandler(event: CustomEvent<number>) {
         if (this.emailAddressItem.id == event.detail) {
-            this.initializeEditDialog();
+            this.initializeEditForm();
         }
     }
-    private handleEditClick(e: MouseEvent) {
+
+    private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
-        this.initializeEditDialog();
+        this.emailAddressInput.classList.remove('invalid');
+        this.emailAddressErrorMessage.innerHTML = '';
+        this.isEditing = false;
+        if (this.emailAddressItem.id === 0) {
+            this.emailAddressDeleted.emit(this.emailAddressItem.id);
+        }
     }
 
     private handleDeleteClick(e: MouseEvent) {
         e.preventDefault();
         this.deleteConfirmationDialog.visible = true;
+    }
+
+    private handleEditClick(e: MouseEvent) {
+        e.preventDefault();
+        this.initializeEditForm();
+    }
+
+    private handleSaveClick(e: MouseEvent) {
+        e.preventDefault();
+        this.emailAddressInput.classList.remove('invalid');
+        this.emailAddressErrorMessage.innerHTML = '';
+        let isValid = this.editForm.reportValidity();
+        if (isValid) {
+            this.saveData();
+            return;
+        }
+        if (!this.emailAddressInput.validity.valid) {
+            this.emailAddressInput.classList.add('invalid');
+            this.emailAddressErrorMessage.innerHTML = 'Email Address must be a valid email address.';
+        }    
     }
     
     private handleEmailTypeSelect(event) {
@@ -137,11 +143,11 @@ export class AppProfileEmailAddressItem {
         this.editEmailAddress = event.target.value;
     }
 
-    private initializeEditDialog() {
+    private initializeEditForm() {
         this.editEmailAddress = this.displayEmailAddress;        
         this.editEmailAddressTypeId = this.displayEmailAddressTypeId;
         this.editEmailAddressTypeName = this.displayEmailAddressTypeName;
-        this.editDialog.visible = true;
+        this.isEditing = true;
     }
 
     private initializeDefaultEmailAddressType() {
@@ -260,7 +266,7 @@ export class AppProfileEmailAddressItem {
             } 
             this.emailAddressClient.updateEmailAddress(this.emailAddressItem.id, emailAddressSaveData)
             .then(() => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.displayEmailAddress = this.editEmailAddress;
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
@@ -274,7 +280,7 @@ export class AppProfileEmailAddressItem {
             emailAddressSaveData.data.email_address_type.connect = [{id: this.editEmailAddressTypeId}];
             this.emailAddressClient.addEmailAddress(emailAddressSaveData)
             .then((result) => {
-                this.editDialog.visible = false;
+                this.isEditing = false;
                 this.emailAddressItem.id = result.data.id;
                 this.displayEmailAddress = this.editEmailAddress;
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
@@ -345,7 +351,7 @@ export class AppProfileEmailAddressItem {
     
     componentDidLoad() {
         if (this.emailAddressItem.id === 0) {
-            this.initializeEditDialog();
+            this.initializeEditForm();
         }
     }
 
@@ -353,15 +359,17 @@ export class AppProfileEmailAddressItem {
         return (
             <div>
                 <div class='profile-item-row'>
-                    <div class='value'>
-                        <div class='label'>
-                            {this.displayEmailAddressTypeName}
-                        </div>
+                    { !this.isEditing && 
                         <div class='value'>
-                            {this.displayEmailAddress}
-                        </div>
-                    </div>
-                    { this.canEdit && 
+                            <div class='label'>
+                                {this.displayEmailAddressTypeName}
+                            </div>
+                            <div class='value'>
+                                {this.displayEmailAddress}
+                            </div>
+                        </div>                   
+                    }
+                    { !this.isEditing && this.canEdit && 
                         <div class='actions'>
                             <button class='action' onClick={e => this.handleEditClick(e)}>
                                 <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
@@ -371,33 +379,37 @@ export class AppProfileEmailAddressItem {
                             </button>                                       
                         </div>
                     }       
+                    { this.isEditing &&
+                        <form ref={el => this.editForm = el} class='edit-form' >
+                            <div class='form-item'>
+                                <label htmlFor='email-address-type'>Type</label>
+                                <select id='email-address-type' name='email-address-type' onInput={(event) => this.handleEmailTypeSelect(event)}>
+                                    {this.emailAddressTypes?.sort((a,b) => {
+                                        var rankA = a.attributes.Rank;
+                                        var rankB = b.attributes.Rank;
+                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                    }).map(emailAddressType => (
+                                        <option
+                                            value={emailAddressType.id}
+                                            selected={this.editEmailAddressTypeId === emailAddressType.id}
+                                        >
+                                            {emailAddressType.attributes.Name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="email-address">Email Address</label>
+                                <input id='email-address' name='email-address' required ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} />
+                                <div ref={el => this.emailAddressErrorMessage = el} class='form-error-message'></div>
+                            </div>
+                            <div class="button-container">
+                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
+                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                            </div>                        
+                        </form>
+                    }                
                 </div>
-                <app-modal ref={el => this.editDialog = el} dialogTitle="Email">
-                    <form ref={el => this.editForm = el} class='edit-form' >
-                        <div class='form-item'>
-                            <label htmlFor='email-address-type'>Type</label>
-                            <select id='email-address-type' name='email-address-type' onInput={(event) => this.handleEmailTypeSelect(event)}>
-                                {this.emailAddressTypes?.sort((a,b) => {
-                                    var rankA = a.attributes.Rank;
-                                    var rankB = b.attributes.Rank;
-                                    return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                }).map(emailAddressType => (
-                                    <option
-                                        value={emailAddressType.id}
-                                        selected={this.editEmailAddressTypeId === emailAddressType.id}
-                                    >
-                                        {emailAddressType.attributes.Name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div class='form-item'>
-                            <label htmlFor="email-address">Email Address</label>
-                            <input id='email-address' name='email-address' ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} class={this.emailAddressClass} required />
-                            <div ref={el => this.emailAddressErrorMessage = el} class='form-error-message'></div>
-                        </div>
-                    </form>
-                </app-modal>
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
                     Are you sure you want to delete this email address?
                 </app-confirmation>    

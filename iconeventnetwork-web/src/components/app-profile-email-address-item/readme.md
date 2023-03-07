@@ -34,13 +34,11 @@
 
 ### Depends on
 
-- [app-modal](../app-modal)
 - [app-confirmation](../app-confirmation)
 
 ### Graph
 ```mermaid
 graph TD;
-  app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
   page-profile-company --> app-profile-email-address-item
   page-profile-person --> app-profile-email-address-item

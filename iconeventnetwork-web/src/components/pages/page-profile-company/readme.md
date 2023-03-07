@@ -34,11 +34,8 @@ graph TD;
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
-  app-profile-email-address-item --> app-modal
   app-profile-email-address-item --> app-confirmation
-  app-profile-phone-number-item --> app-modal
   app-profile-phone-number-item --> app-confirmation
-  app-profile-address-item --> app-modal
   app-profile-address-item --> app-confirmation
   app-root --> page-profile-company
   style page-profile-company fill:#f9f,stroke:#333,stroke-width:4px
