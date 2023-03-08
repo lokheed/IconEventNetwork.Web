@@ -91,8 +91,8 @@ export class AppProfilePreferredLanguageItem {
             }
         };
         if (this.editLanguageId != this.displayLanguageId) {
-            if (this.displayLanguageId > 0) personSaveData.data.PreferredLanguage.disconnect = [{id: this.displayLanguageId}];
-            if (this.editLanguageId > 0) personSaveData.data.PreferredLanguage.connect = [{id: this.editLanguageId}];
+            personSaveData.data.PreferredLanguage.disconnect = this.displayLanguageId == 0 ? [] : [{id: this.displayLanguageId}];
+            personSaveData.data.PreferredLanguage.connect = this.editLanguageId == 0 ? [] : [{id: this.editLanguageId}];
         } 
         this.personClient.updatePerson(this.personId, personSaveData)
         .then(() => {
