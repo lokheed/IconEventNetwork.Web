@@ -71,6 +71,7 @@ graph TD;
   page-about-us --> app-testimonial-carousel
   page-profile-person --> app-profile-left-nav
   page-profile-person --> app-profile-name-item
+  page-profile-person --> app-profile-preferred-language-item
   page-profile-person --> app-profile-email-address-item
   page-profile-person --> app-profile-phone-number-item
   page-profile-person --> app-profile-address-item

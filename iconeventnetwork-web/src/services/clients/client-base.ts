@@ -337,7 +337,7 @@ export interface PersonSaveData{
         prefix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Pronoun?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Suffix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
-        PreferredLanguage?:{ disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        PreferredLanguage?: { disconnect?: [{id?: number}?], connect?: [{id?: number}?] };
     }
 }
 
