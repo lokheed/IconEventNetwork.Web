@@ -73,6 +73,11 @@ export namespace Components {
         "personAtCompanyId"?: number;
         "personId"?: number;
     }
+    interface AppProfileLanguagesSpoken {
+        "canEdit": boolean;
+        "languagesSpoken": DataResponse<LanguageAttributes>[];
+        "personId": number;
+    }
     interface AppProfileLeftNav {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
         "me": GetRequestingPersonResponse;
@@ -266,6 +271,12 @@ declare global {
         prototype: HTMLAppProfileEmailAddressItemElement;
         new (): HTMLAppProfileEmailAddressItemElement;
     };
+    interface HTMLAppProfileLanguagesSpokenElement extends Components.AppProfileLanguagesSpoken, HTMLStencilElement {
+    }
+    var HTMLAppProfileLanguagesSpokenElement: {
+        prototype: HTMLAppProfileLanguagesSpokenElement;
+        new (): HTMLAppProfileLanguagesSpokenElement;
+    };
     interface HTMLAppProfileLeftNavElement extends Components.AppProfileLeftNav, HTMLStencilElement {
     }
     var HTMLAppProfileLeftNavElement: {
@@ -448,6 +459,7 @@ declare global {
         "app-navigation": HTMLAppNavigationElement;
         "app-profile-address-item": HTMLAppProfileAddressItemElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
+        "app-profile-languages-spoken": HTMLAppProfileLanguagesSpokenElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-profile-name-item": HTMLAppProfileNameItemElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
@@ -542,6 +554,11 @@ declare namespace LocalJSX {
         "emailAddressItem"?: DataResponse<EmailAddressAttributes>;
         "onEmailAddressDeleted"?: (event: AppProfileEmailAddressItemCustomEvent<number>) => void;
         "personAtCompanyId"?: number;
+        "personId"?: number;
+    }
+    interface AppProfileLanguagesSpoken {
+        "canEdit"?: boolean;
+        "languagesSpoken"?: DataResponse<LanguageAttributes>[];
         "personId"?: number;
     }
     interface AppProfileLeftNav {
@@ -648,6 +665,7 @@ declare namespace LocalJSX {
         "app-navigation": AppNavigation;
         "app-profile-address-item": AppProfileAddressItem;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
+        "app-profile-languages-spoken": AppProfileLanguagesSpoken;
         "app-profile-left-nav": AppProfileLeftNav;
         "app-profile-name-item": AppProfileNameItem;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
@@ -695,6 +713,7 @@ declare module "@stencil/core" {
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
+            "app-profile-languages-spoken": LocalJSX.AppProfileLanguagesSpoken & JSXBase.HTMLAttributes<HTMLAppProfileLanguagesSpokenElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-profile-name-item": LocalJSX.AppProfileNameItem & JSXBase.HTMLAttributes<HTMLAppProfileNameItemElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
