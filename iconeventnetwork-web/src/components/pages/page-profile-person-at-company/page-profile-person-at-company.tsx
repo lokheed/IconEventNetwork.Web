@@ -335,23 +335,9 @@ export class PageProfilePersonAtCompany {
                                     Bio
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value textarea'>
-                                            <div innerHTML={this.bioDisplay}>
-                                            </div>
-                                            <div onClick={e => this.readMoreClick(e)} class='action-link'>
-                                                {this.bioReadMoreText}
-                                            </div>
-                                        </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.personAtCompany && 
+                                        <app-profile-biography canEdit={this.security.canManageProfileFields} personAtCompany={this.personAtCompany} />
+                                    }
                                 </div>
                             </div>
                         </div>
