@@ -27,15 +27,23 @@ export class AppProfileLeftNav {
   componentWillLoad() {
     this.personAtCompanyClient = new PersonAtCompanyClient();
     this.getPacs();
+    switch (this.appliesTo) {
+      case 'company':
+        this.companiesExpanded = true;
+        break;
+      case 'personAtCompany':
+        this.companyProfilesExpanded = true;
+        break;
+    }
   }
 
   componentDidLoad() {
     switch (this.appliesTo) {
       case 'company':
-        this.toggleCompaniesSection();
+        this.setCompaniesStyleHeight();
         break;
       case 'personAtCompany':
-        this.toggleWorkProfilesSection();
+        this.setWorkProfilesStyleHeight();
     }
   }
 
@@ -87,23 +95,31 @@ export class AppProfileLeftNav {
     e.preventDefault();
     this.toggleCompaniesSection();
   }
-  
-  private toggleWorkProfilesSection() {
-    this.companyProfilesExpanded = !this.companyProfilesExpanded;
+
+  private setCompaniesStyleHeight() {
+    if (this.companiesExpanded) {
+      this.companies.style.height = this.companies.scrollHeight + "px";
+      return;
+    }
+    this.companies.style.height = "0px";
+  }
+
+  private setWorkProfilesStyleHeight() {
     if (this.companyProfilesExpanded) {
       this.companyProfiles.style.height = this.companyProfiles.scrollHeight + "px";
       return;
     }
     this.companyProfiles.style.height = "0px";
   }
+  
+  private toggleWorkProfilesSection() {
+    this.companyProfilesExpanded = !this.companyProfilesExpanded;
+    this.setWorkProfilesStyleHeight();
+  }
 
   private toggleCompaniesSection() {
     this.companiesExpanded = !this.companiesExpanded;
-    if (this.companiesExpanded) {
-      this.companies.style.height = this.companies.scrollHeight + "px";
-      return;
-    }
-    this.companies.style.height = "0px";
+    this.setCompaniesStyleHeight();
   }
 
   render() {
