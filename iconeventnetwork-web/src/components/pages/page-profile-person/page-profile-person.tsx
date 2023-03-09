@@ -1,5 +1,5 @@
 import { Component, Listen, State, h } from '@stencil/core';
-import { DataResponse, AddressAttributes, EmailAddressAttributes, LanguageAttributes, PersonInfo, PhoneNumberAttributes } from '../../../services/clients/client-base';
+import { DataResponse, AddressAttributes, EmailAddressAttributes, LanguageAttributes, LanguageSingularData, PersonInfo, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
@@ -22,7 +22,8 @@ export class PageProfilePerson {
     }  
     @State() me: GetRequestingPersonResponse; 
     @State() person: DataResponse<PersonInfo>;
-    @State() preferredLanguage: DataResponse<LanguageAttributes>;
+    @State() preferredLanguage: LanguageSingularData;
+    @State() languagesSpoken: DataResponse<LanguageAttributes>[] = []; 
     @State() addresses: DataResponse<AddressAttributes>[] = [];   
     @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
         this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
@@ -82,16 +83,20 @@ export class PageProfilePerson {
                 PreferredLanguage: {
                     fields: ['EnglishName'],
                 },
+                LanguagesSpoken: {
+                    fields: ['EnglishName', 'Rank'],
+                }
             },
-          })
-          .then((response) => {
+        })
+        .then((response) => {
             this.person = response.data;
             this.addresses = this.person.attributes.Addresses.data;
             this.emailAddresses = this.person.attributes.EmailAddresses.data;
             this.phoneNumbers = this.person.attributes.PhoneNumbers.data;
-            this.preferredLanguage = this.person.attributes.PreferredLanguage?.data??{ id: 0, attributes: { EnglishName: '(none specified)'}};
-         })
-          .catch(reason => console.error(reason));  
+            this.preferredLanguage = this.person.attributes.PreferredLanguage??{ data: { id: 0, attributes: { EnglishName: '(none specified)'}}};
+            this.languagesSpoken = this.person.attributes.LanguagesSpoken.data;
+        })
+        .catch(reason => console.error(reason));  
     }
 
     private handleAddNewAddress(e: MouseEvent) {
@@ -284,7 +289,17 @@ export class PageProfilePerson {
                                 </div>                            
                                 <div class='content'>
                                     {this.person && this.preferredLanguage &&
-                                        <app-profile-preferred-language-item canEdit languageItem={this.preferredLanguage} personId={this.person.id} />
+                                        <app-profile-preferred-language-item canEdit languageItem={this.preferredLanguage.data} personId={this.person.id} />
+                                    }
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Languages Spoken
+                                </div>                            
+                                <div class='content'>
+                                    {this.person && this.languagesSpoken &&
+                                        <app-profile-languages-spoken canEdit languagesSpoken={this.languagesSpoken} personId={this.person.id} />
                                     }
                                 </div>
                             </div>

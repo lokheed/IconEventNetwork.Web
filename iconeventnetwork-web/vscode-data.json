@@ -193,6 +193,23 @@
       ]
     },
     {
+      "name": "app-profile-languages-spoken",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "person-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-left-nav",
       "description": {
         "kind": "markdown",

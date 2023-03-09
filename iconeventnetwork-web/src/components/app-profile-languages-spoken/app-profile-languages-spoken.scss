@@ -1,0 +1,30 @@
+.displayed-language {
+    display: block;
+}
+.language-list {
+    list-style: none;
+    li {
+        display: inline-block;
+        padding-right: 1em;
+        .edit-language-container {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid var(--color-blue-main);
+            border-radius: .5em;
+            background-color: var(--color-white);
+            padding: .5em;
+            .edit-language-name {
+                padding-right: 1em;
+            }
+            .edit-language-action {
+                button {
+                    font-weight: 300;
+                    font-size: .75em;
+                    padding: .3em 0 0 0;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+        }    
+    }
+}
