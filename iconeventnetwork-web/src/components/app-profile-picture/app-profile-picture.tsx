@@ -1,5 +1,7 @@
 import { Component, Listen, Prop, State, h } from "@stencil/core";
-import { DataResponse, PersonInfo } from '../../services/clients/client-base';
+import { DataResponse, ImageInfo, PersonInfo, PersonSaveData } from '../../services/clients/client-base';
+import { PersonClient } from '../../services/clients/person-client';
+//import { UploadClient } from "../../services/clients/upload-client";
 import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
 
 @Component({
@@ -8,16 +10,35 @@ import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
   shadow: false
 })
 export class AppProfilePicture {
+    private readonly personClient: PersonClient;
+    //private readonly uploadClient: UploadClient;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private deleteButton: HTMLButtonElement;
+    constructor(){
+      this.personClient = new PersonClient();
+      //this.uploadClient = new UploadClient();
+    }  
     @Prop() personItem: DataResponse<PersonInfo>;
     @State() isEditing: boolean = false;
+    @State() displayImage: ImageInfo;
+    @State() editImage: ImageInfo;
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;  
-        //TODO: Remove the image
-        //TODO: Don't forget to ensure to add the 'disabled' class to this.deleteButton  
-        alert('delete not yet wired up');
-        return;     
+        //this.uploadClient.destroy(this.displayImage.data.id);    //TODO: resolve 403 error
+        let personSaveData: PersonSaveData = {
+            data: {
+                ProfileImage: null,
+            }
+        };
+        this.personClient.updatePerson(this.personItem.id, personSaveData)
+        .then(() => {
+            this.isEditing = false;
+            this.displayImage.data = null;
+            this.deleteButton.classList.add('disabled');
+        })
+        .catch(reason => {
+            console.log(reason.error.message);
+        });
     }
     @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
@@ -30,11 +51,13 @@ export class AppProfilePicture {
 
     private handleDeleteClick(e: MouseEvent) {
         e.preventDefault();
+        if (!this.displayImage.data) return;
         this.deleteConfirmationDialog.visible = true;
     }
 
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
+        this.editImage = this.displayImage;
         this.isEditing = true;
     }
 
@@ -50,10 +73,14 @@ export class AppProfilePicture {
     }
         
     componentWillLoad() {
-        if (!this.personItem?.attributes?.ProfileImage) {
+        this.displayImage = this.personItem?.attributes?.ProfileImage;
+    } 
+
+    componentDidLoad() {
+        if (!this.displayImage.data) {
             this.deleteButton.classList.add('disabled');
         }
-    } 
+    }
 
     render() {
         return (
@@ -61,7 +88,7 @@ export class AppProfilePicture {
                 <div class='profile-item-row'>
                     { !this.isEditing &&
                         <div class='value'>
-                            <ProfileImageDisc profileImage={this.personItem?.attributes?.ProfileImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
+                            <ProfileImageDisc profileImage={this.displayImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
                         </div>                   
                     }
                     { !this.isEditing && 
@@ -77,7 +104,7 @@ export class AppProfilePicture {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <ProfileImageDisc profileImage={this.personItem?.attributes?.ProfileImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
+                                <ProfileImageDisc profileImage={this.editImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
                                 <div class='instructions'>
                                     <div class='direction'>
                                         The profile picture must be a recent headshot of you.

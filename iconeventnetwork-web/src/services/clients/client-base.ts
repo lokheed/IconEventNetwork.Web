@@ -349,6 +349,7 @@ export interface PersonSaveData{
         Suffix?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PreferredLanguage?: { disconnect?: [{id?: number}?], connect?: [{id?: number}?] };
         LanguagesSpoken?: { disconnect: {id?: number}[], connect: {id?: number}[] };
+        ProfileImage?: number;
     }
 }
 
