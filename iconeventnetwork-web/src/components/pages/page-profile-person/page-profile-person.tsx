@@ -4,7 +4,6 @@ import { GetRequestingPersonResponse, PersonClient } from '../../../services/cli
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 import { WelcomePersonName } from '../../functionalComponents/WelcomePersonName';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
-import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 
 @Component({
   tag: 'page-profile-person',
@@ -237,20 +236,10 @@ export class PageProfilePerson {
                                 <div class='label centered'>
                                     Profile Picture
                                 </div>                            
-                                <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <ProfileImageDisc profileImage={this.person?.attributes?.ProfileImage} firstName={this.person?.attributes?.FirstName} lastName={this.person?.attributes?.LastName} />
-                                        </div>
-                                        <div class='actions centered'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                            </div>                                       
-                                        </div>
-                                    </div>
+                                <div class='content'>                                                       
+                                    {this.person &&
+                                        <app-profile-picture personItem={this.person} />
+                                    }    
                                 </div>
                             </div>
                             <div class='profile-item'>

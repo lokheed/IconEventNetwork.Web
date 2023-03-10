@@ -1,0 +1,39 @@
+.form-item {
+    display: flex;
+    gap: 1em;
+    flex-direction: row;   
+    .profile-image{
+        flex: 0 0 5em;
+        width: 5em;
+        height: 5em;
+        line-height: 5em;
+        margin: 0;
+    }
+    .instructions {
+        font-size: .6em;
+        .direction {
+            font-style: italic;
+            margin-bottom: 1em;
+        }
+    }
+    .action {
+        flex: 0 0 10em;
+        .file-select::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        .file-select::before {
+            content: 'Choose new image';
+            display: inline-block;
+            padding: .5em 0;
+            outline: none;
+            white-space: nowrap;
+            font-size: 1.2em;
+            font-weight: 500;
+            color: var(--color-blue-main);
+            text-decoration: underline;
+            width: 300px;
+            cursor: pointer;
+        }
+    }
+
+}

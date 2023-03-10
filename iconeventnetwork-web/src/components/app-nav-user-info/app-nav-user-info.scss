@@ -12,23 +12,8 @@
   font-size: inherit;
   cursor: pointer;
   .profile-image{
-    background-color: var(--color-purple);
-    color: white;
-    line-height: 2em;
-    text-align: center;
     height: 2em;
     width: 2em;
-    border-radius: 50%;
-    margin: 0.5em auto;
-    position: relative;
-    img{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-    }
   }
 }
 
@@ -55,23 +40,8 @@
     flex-direction: column;
     gap: 1em;
     .profile-image{
-      background-color: var(--color-purple);
-      color: white;
-      line-height: 5em;
-      text-align: center;
       height: 5em;
       width: 5em;
-      border-radius: 50%;
-      margin: 0.5em auto;
-      position: relative;
-      img{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        border-radius: 50%;
-      }
     }
     .basic-info{
       display: flex;
