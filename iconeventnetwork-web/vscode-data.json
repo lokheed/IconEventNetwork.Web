@@ -304,6 +304,14 @@
       ]
     },
     {
+      "name": "app-profile-picture",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
       "name": "app-profile-preferred-language-item",
       "description": {
         "kind": "markdown",

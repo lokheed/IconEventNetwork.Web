@@ -99,6 +99,9 @@ export namespace Components {
         "personId"?: number;
         "phoneNumberItem": DataResponse<PhoneNumberAttributes>;
     }
+    interface AppProfilePicture {
+        "personItem": DataResponse<PersonInfo>;
+    }
     interface AppProfilePreferredLanguageItem {
         "canEdit": boolean;
         "languageItem": DataResponse<LanguageAttributes>;
@@ -305,6 +308,12 @@ declare global {
         prototype: HTMLAppProfilePhoneNumberItemElement;
         new (): HTMLAppProfilePhoneNumberItemElement;
     };
+    interface HTMLAppProfilePictureElement extends Components.AppProfilePicture, HTMLStencilElement {
+    }
+    var HTMLAppProfilePictureElement: {
+        prototype: HTMLAppProfilePictureElement;
+        new (): HTMLAppProfilePictureElement;
+    };
     interface HTMLAppProfilePreferredLanguageItemElement extends Components.AppProfilePreferredLanguageItem, HTMLStencilElement {
     }
     var HTMLAppProfilePreferredLanguageItemElement: {
@@ -474,6 +483,7 @@ declare global {
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
         "app-profile-name-item": HTMLAppProfileNameItemElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
+        "app-profile-picture": HTMLAppProfilePictureElement;
         "app-profile-preferred-language-item": HTMLAppProfilePreferredLanguageItemElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
@@ -594,6 +604,9 @@ declare namespace LocalJSX {
         "personId"?: number;
         "phoneNumberItem"?: DataResponse<PhoneNumberAttributes>;
     }
+    interface AppProfilePicture {
+        "personItem"?: DataResponse<PersonInfo>;
+    }
     interface AppProfilePreferredLanguageItem {
         "canEdit"?: boolean;
         "languageItem"?: DataResponse<LanguageAttributes>;
@@ -685,6 +698,7 @@ declare namespace LocalJSX {
         "app-profile-left-nav": AppProfileLeftNav;
         "app-profile-name-item": AppProfileNameItem;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
+        "app-profile-picture": AppProfilePicture;
         "app-profile-preferred-language-item": AppProfilePreferredLanguageItem;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
@@ -734,6 +748,7 @@ declare module "@stencil/core" {
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
             "app-profile-name-item": LocalJSX.AppProfileNameItem & JSXBase.HTMLAttributes<HTMLAppProfileNameItemElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
+            "app-profile-picture": LocalJSX.AppProfilePicture & JSXBase.HTMLAttributes<HTMLAppProfilePictureElement>;
             "app-profile-preferred-language-item": LocalJSX.AppProfilePreferredLanguageItem & JSXBase.HTMLAttributes<HTMLAppProfilePreferredLanguageItemElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
