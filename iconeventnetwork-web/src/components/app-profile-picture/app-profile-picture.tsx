@@ -1,7 +1,7 @@
 import { Component, Listen, Prop, State, h } from "@stencil/core";
-import { DataResponse, ImageInfo, PersonInfo, PersonSaveData } from '../../services/clients/client-base';
+import { DataResponse, ImageFormatInfo, ImageInfo, PersonInfo, PersonSaveData } from '../../services/clients/client-base';
 import { PersonClient } from '../../services/clients/person-client';
-//import { UploadClient } from "../../services/clients/upload-client";
+import { UploadClient } from "../../services/clients/upload-client";
 import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
 
 @Component({
@@ -11,34 +11,39 @@ import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
 })
 export class AppProfilePicture {
     private readonly personClient: PersonClient;
-    //private readonly uploadClient: UploadClient;
+    private readonly uploadClient: UploadClient;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private deleteButton: HTMLButtonElement;
+    private imageInput: HTMLInputElement;
+    private errorDiv: HTMLDivElement;
+    private maxImageSize: number = 5 * 1024 * 1024; // 5 MB
+    private fileReader: FileReader;
     constructor(){
       this.personClient = new PersonClient();
-      //this.uploadClient = new UploadClient();
+      this.uploadClient = new UploadClient();
+      this.fileReader = new FileReader();
+      this.fileReader.onload = (e) => {
+          this.editImageUrl = e.target.result.toString();
+      }
     }  
     @Prop() personItem: DataResponse<PersonInfo>;
     @State() isEditing: boolean = false;
     @State() displayImage: ImageInfo;
-    @State() editImage: ImageInfo;
+    @State() editImageUrl: string;
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;  
-        //this.uploadClient.destroy(this.displayImage.data.id);    //TODO: resolve 403 error
+        this.deleteConfirmationDialog.visible = false;         
+        this.uploadClient.destroy(this.displayImage.data.id);
         let personSaveData: PersonSaveData = {
             data: {
                 ProfileImage: null,
             }
         };
-        this.personClient.updatePerson(this.personItem.id, personSaveData)
-        .then(() => {
-            this.isEditing = false;
-            this.displayImage.data = null;
-            this.deleteButton.classList.add('disabled');
-        })
-        .catch(reason => {
-            console.log(reason.error.message);
-        });
+        this.personClient.updatePerson(this.personItem.id, personSaveData);
+        this.isEditing = false;
+        let updatedImage = JSON.parse(JSON.stringify(this.displayImage));
+        updatedImage.data = null;
+        this.displayImage = updatedImage;
+        this.deleteButton.classList.add('disabled');
     }
     @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
@@ -57,14 +62,29 @@ export class AppProfilePicture {
 
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
-        this.editImage = this.displayImage;
+        let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
+        let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
+        let entry = sortedEntries.find(e => e[1].width >= 125);
+        this.editImageUrl = entry[1].url;
         this.isEditing = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.saveData();
-    }     
+    } 
+
+    private handleImageSelect() {
+        this.errorDiv.classList.add('hidden');
+        if (this.imageInput.files.length === 0) return;
+        const newImage = this.imageInput.files[0];
+        if (newImage.size > this.maxImageSize) {
+            this.errorDiv.classList.remove('hidden');
+            return;
+        }
+        this.fileReader.readAsDataURL(newImage);
+
+    } 
 
     private saveData() {
         //TODO: save logic here
@@ -104,7 +124,9 @@ export class AppProfilePicture {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <ProfileImageDisc profileImage={this.editImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
+                                <div class='profile-image'>
+                                    <img src={this.editImageUrl} />
+                                </div>
                                 <div class='instructions'>
                                     <div class='direction'>
                                         The profile picture must be a recent headshot of you.
@@ -116,7 +138,10 @@ export class AppProfilePicture {
                                         Max file size: 5 MB
                                     </div>
                                     <div class='action'>
-                                        <input type='file' class='file-select' accept="image/jpeg, image/png" />
+                                        <input type='file' class='file-select' accept="image/jpeg, image/png" ref={el => this.imageInput = el} onChange={() => this.handleImageSelect()} />
+                                    </div>
+                                    <div class='error hidden' ref={el => this.errorDiv = el}>
+                                        ERROR: Image must be less than 5 MB.
                                     </div>
                                 </div>                            
                             </div>
