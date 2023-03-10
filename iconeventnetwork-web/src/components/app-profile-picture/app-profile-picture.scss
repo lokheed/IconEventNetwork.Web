@@ -8,6 +8,10 @@
         height: 5em;
         line-height: 5em;
         margin: 0;
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
     .instructions {
         font-size: .6em;
@@ -35,5 +39,8 @@
             cursor: pointer;
         }
     }
-
+    .error {
+        color: var(--color-red-main);
+        font-weight: 700;
+    }
 }
