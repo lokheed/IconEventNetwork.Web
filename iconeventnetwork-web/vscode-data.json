@@ -366,6 +366,19 @@
       "attributes": []
     },
     {
+      "name": "icn-rich-text-editor",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "value",
+          "description": "The value of the html content"
+        }
+      ]
+    },
+    {
       "name": "page-about-us",
       "description": {
         "kind": "markdown",

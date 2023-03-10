@@ -14,6 +14,8 @@ export class AppProfileBiography {
     @State() editBio: string;  
     @State() bioCollapsableDisplay: string = '';
     @State() bioReadMoreText: string = '';
+    
+    private bioEditor!: HTMLIcnRichTextEditorElement;
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
@@ -46,6 +48,7 @@ export class AppProfileBiography {
     }   
 
     private saveData() {
+        this.bioEditor.getValue().then(value => console.log(value));
         // save logic will go here
     }
         
@@ -80,7 +83,10 @@ export class AppProfileBiography {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <textarea></textarea>
+                                <icn-rich-text-editor
+                                    ref={el => this.bioEditor = el}
+                                    value={this.editBio}
+                                />
                             </div>
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>

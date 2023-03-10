@@ -129,6 +129,16 @@ export namespace Components {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnRichTextEditor {
+        /**
+          * Gets the current html value.
+         */
+        "getValue": () => Promise<string>;
+        /**
+          * The value of the html content
+         */
+        "value": string;
+    }
     interface PageAboutUs {
     }
     interface PageAccessDenied {
@@ -338,6 +348,12 @@ declare global {
         prototype: HTMLAppTestimonialCarouselElement;
         new (): HTMLAppTestimonialCarouselElement;
     };
+    interface HTMLIcnRichTextEditorElement extends Components.IcnRichTextEditor, HTMLStencilElement {
+    }
+    var HTMLIcnRichTextEditorElement: {
+        prototype: HTMLIcnRichTextEditorElement;
+        new (): HTMLIcnRichTextEditorElement;
+    };
     interface HTMLPageAboutUsElement extends Components.PageAboutUs, HTMLStencilElement {
     }
     var HTMLPageAboutUsElement: {
@@ -488,6 +504,7 @@ declare global {
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
+        "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-access-denied": HTMLPageAccessDeniedElement;
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
@@ -634,6 +651,12 @@ declare namespace LocalJSX {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnRichTextEditor {
+        /**
+          * The value of the html content
+         */
+        "value"?: string;
+    }
     interface PageAboutUs {
     }
     interface PageAccessDenied {
@@ -703,6 +726,7 @@ declare namespace LocalJSX {
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
+        "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
         "page-access-denied": PageAccessDenied;
         "page-code-of-conduct": PageCodeOfConduct;
@@ -753,6 +777,7 @@ declare module "@stencil/core" {
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
+            "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;

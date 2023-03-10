@@ -38,6 +38,7 @@ graph TD;
   page-profile-person-at-company --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-address-item
   page-profile-person-at-company --> app-responsive-image
+  app-profile-biography --> icn-rich-text-editor
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-confirmation
   app-profile-address-item --> app-confirmation
