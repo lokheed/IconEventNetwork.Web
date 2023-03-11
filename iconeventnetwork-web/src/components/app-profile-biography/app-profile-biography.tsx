@@ -53,30 +53,33 @@ export class AppProfileBiography {
     }   
 
     private saveData() {
-        let updatedBio = this.displayBio??'';
-        this.bioEditor.getValue().then(value => updatedBio = value??'');
-        console.log(updatedBio);
-        
-        let personAtCompanySaveData: PersonAtCompanySaveData = {
-            data: {
-                Bio: updatedBio,
-            }
-        };
-        this.personAtCompanyClient.updatePersonAtCompany(this.personAtCompany.data.id, personAtCompanySaveData)
-        .then(() => {
-            this.isEditing = false;
-            this.displayBio = updatedBio;
-        })
-        .catch(reason => {
-            console.log(reason.error.message);
-        });
+        this.bioEditor.getValue().then(value => {
+            let personAtCompanySaveData: PersonAtCompanySaveData = {
+                data: {
+                    Bio: value??'',
+                }
+            };
+            this.personAtCompanyClient.updatePersonAtCompany(this.personAtCompany.data.id, personAtCompanySaveData)
+            .then(() => {
+                this.isEditing = false;
+                this.displayBio = value??'';
+                this.setCollapsableDisplay();
+            })
+            .catch(reason => {
+                console.log(reason.error.message);
+            });        
+        });        
+    }
+
+    private setCollapsableDisplay() {
+        this.bioCollapsableDisplay = this.displayBio.length > 250 ? this.displayBio.substring(0, 250) + '...' : this.displayBio;
+        this.bioReadMoreText = this.displayBio.length > 250 ? 'Read more' : '';
     }
         
     componentWillLoad() { 
         this.displayBio = this.personAtCompany?.data?.attributes?.Bio??'';
-        this.bioCollapsableDisplay = this.displayBio.length > 250 ? this.displayBio.substring(0, 250) + '...' : this.displayBio;
-        this.bioReadMoreText = this.displayBio.length > 250 ? 'Read more' : '';
-} 
+        this.setCollapsableDisplay();
+    } 
 
     render() {
         return (
