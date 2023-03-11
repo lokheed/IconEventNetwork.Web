@@ -91,6 +91,7 @@ graph TD;
   page-profile-person-at-company --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-address-item
   page-profile-person-at-company --> app-responsive-image
+  app-profile-biography --> icn-rich-text-editor
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
   page-profile-company --> app-profile-email-address-item
