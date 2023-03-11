@@ -1,5 +1,6 @@
 import { Component, Prop, State, h } from "@stencil/core";
-import { PersonAtCompanyData } from '../../services/clients/client-base';
+import { PersonAtCompanyData, PersonAtCompanySaveData } from '../../services/clients/client-base';
+import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 
 @Component({
   tag: "app-profile-biography",
@@ -7,6 +8,10 @@ import { PersonAtCompanyData } from '../../services/clients/client-base';
   shadow: false
 })
 export class AppProfileBiography {
+    private personAtCompanyClient: PersonAtCompanyClient;
+    constructor() {
+        this.personAtCompanyClient = new PersonAtCompanyClient();
+    }  
     @Prop() personAtCompany: PersonAtCompanyData;
     @Prop() canEdit: boolean;
     @State() isEditing: boolean = false;
@@ -48,8 +53,23 @@ export class AppProfileBiography {
     }   
 
     private saveData() {
-        this.bioEditor.getValue().then(value => console.log(value));
-        // save logic will go here
+        let updatedBio = this.displayBio??'';
+        this.bioEditor.getValue().then(value => updatedBio = value??'');
+        console.log(updatedBio);
+        
+        let personAtCompanySaveData: PersonAtCompanySaveData = {
+            data: {
+                Bio: updatedBio,
+            }
+        };
+        this.personAtCompanyClient.updatePersonAtCompany(this.personAtCompany.data.id, personAtCompanySaveData)
+        .then(() => {
+            this.isEditing = false;
+            this.displayBio = updatedBio;
+        })
+        .catch(reason => {
+            console.log(reason.error.message);
+        });
     }
         
     componentWillLoad() { 

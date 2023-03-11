@@ -375,6 +375,7 @@ export interface PersonAtCompanyInfo{
 
 export interface PersonAtCompanySaveData{
     data: {
+        Bio?: string;
         Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
