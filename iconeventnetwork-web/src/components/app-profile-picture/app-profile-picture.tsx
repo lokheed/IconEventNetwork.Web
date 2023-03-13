@@ -3,6 +3,7 @@ import { DataResponse, ImageFormatInfo, ImageInfo, PersonInfo, PersonSaveData } 
 import { PersonClient } from '../../services/clients/person-client';
 import { UploadClient } from "../../services/clients/upload-client";
 import { ProfileImageDisc } from '../functionalComponents/ProfileImageDisc';
+import { localStorageKeyService } from '../../services/local-storage-key-service';
 
 @Component({
   tag: "app-profile-picture",
@@ -38,12 +39,16 @@ export class AppProfilePicture {
                 ProfileImage: null,
             }
         };
-        this.personClient.updatePerson(this.personItem.id, personSaveData);
-        this.isEditing = false;
-        let updatedImage = JSON.parse(JSON.stringify(this.displayImage));
-        updatedImage.data = null;
-        this.displayImage = updatedImage;
-        this.deleteButton.classList.add('disabled');
+        this.personClient.updatePerson(this.personItem.id, personSaveData)
+        .then(() => {
+            sessionStorage.removeItem(localStorageKeyService.Me);
+            this.isEditing = false;
+            let updatedImage = JSON.parse(JSON.stringify(this.displayImage));
+            updatedImage.data = null;
+            this.displayImage = updatedImage;
+            this.deleteButton.classList.add('disabled');
+            window.location.replace('/profile-person'); // needed to refresh profile image in navigation
+        });
     }
     @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
@@ -118,6 +123,8 @@ export class AppProfilePicture {
             };
             this.personClient.updatePerson(this.personItem.id, personSaveData)
             .then(() => {
+                sessionStorage.removeItem(localStorageKeyService.Me);
+                window.location.replace('/profile-person'); // needed to refresh profile image in navigation
             });
         });
         this.isEditing = false;
