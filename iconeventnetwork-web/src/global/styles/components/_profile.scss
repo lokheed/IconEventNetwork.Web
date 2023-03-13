@@ -216,11 +216,18 @@
         margin-bottom: 4em;
         width: 80%;
         .company-box {
+            display: flex;
+            flex-direction: column;
             padding: 2em 0;
             min-width: 325px;
             max-width: 500px;
             text-align: center;
             .company-row {
+                display: flex;
+                flex-direction: column;
+                flex: auto;
+                height: 100%;
+                justify-content: end;
                 padding: 0 2em;
                 .logo-image {
                     img {
@@ -244,7 +251,10 @@
                     font-size: 1.5em;
                     font-weight: 700;
                     margin-top: 1em;
-                }        
+                }
+            }
+            .profile-actions-row {
+                padding: 0 2em;
                 button {
                     margin: 1em auto;
                 }
