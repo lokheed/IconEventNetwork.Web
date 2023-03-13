@@ -62,15 +62,22 @@ export class AppProfilePicture {
 
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
-        let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
-        let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
-        let entry = sortedEntries.find(e => e[1].width >= 125);
-        this.editImageUrl = entry[1].url;
+        if (this.displayImage?.data?.attributes?.formats) {
+            let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
+            let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
+            let entry = sortedEntries.find(e => e[1].width >= 125);
+            this.editImageUrl = entry[1].url;
+        }
         this.isEditing = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
+        if (this.imageInput.files.length === 0) {
+            this.errorDiv.innerHTML = 'ERROR: You must select a profile image.';
+            this.errorDiv.classList.remove('hidden');
+            return;
+        } 
         this.saveData();
     } 
 
@@ -79,6 +86,7 @@ export class AppProfilePicture {
         if (this.imageInput.files.length === 0) return;
         const newImage = this.imageInput.files[0];
         if (newImage.size > this.maxImageSize) {
+            this.errorDiv.innerHTML = 'ERROR: Image must be less than 5 MB.';
             this.errorDiv.classList.remove('hidden');
             return;
         }
@@ -87,8 +95,31 @@ export class AppProfilePicture {
     } 
 
     private saveData() {
-        //TODO: save logic here
-        //TODO: don't forget to remove the 'delete' class from this.deleteButton if necessary
+        this.uploadClient.upload(this.imageInput.files[0])
+        .then((response) => {
+            const newImage: ImageInfo = {
+                data: {
+                    id: response[0].id,
+                    attributes: {
+                        formats: response[0].formats,
+                        alternativeText: '',
+                        url: ''
+                    }
+                }
+            }
+            this.deleteButton.classList.remove('disabled');
+            const formerImageId = this.displayImage.data?.id??0; 
+            if (formerImageId > 0) this.uploadClient.destroy(formerImageId);
+            this.displayImage = newImage;            
+            let personSaveData: PersonSaveData = {
+                data: {
+                    ProfileImage: this.displayImage.data.id,
+                }
+            };
+            this.personClient.updatePerson(this.personItem.id, personSaveData)
+            .then(() => {
+            });
+        });
         this.isEditing = false;
     }
         

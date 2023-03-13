@@ -268,6 +268,26 @@ export interface ImageAttributes{
     formats? : ImageFormatsInfo
 }
 
+export interface ImageResponseData{
+    id: number;
+    name: string;
+    alternativeText?: string;
+    caption?: string;
+    width: number;
+    height: number;
+    formats: ImageFormatsInfo;
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string;
+    provider: string;
+    provider_metadata?; string;
+    createdAt?: Date,
+    updatedAt?: Date;
+}
+
 export interface ImageFormatsInfo{
     xlarge?: ImageFormatInfo;
     large?: ImageFormatInfo;
