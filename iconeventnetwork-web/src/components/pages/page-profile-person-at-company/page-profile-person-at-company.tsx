@@ -277,7 +277,7 @@ export class PageProfilePersonAtCompany {
                     </div>
                     <div ref={el => this.basicInformationTabContent = el}>
                         <p>
-                            The information below will appear as your profile within the company page.
+                            This information is your profile for this company.
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -348,7 +348,7 @@ export class PageProfilePersonAtCompany {
                     </div>
                     <div ref={el => this.contactInformationTabContent = el} class='hidden'>
                         <p>
-                            The information below will appear as your contact information within the company page.
+                            Your work contact information may appear in the directory.
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -403,7 +403,7 @@ export class PageProfilePersonAtCompany {
                                         <div class='profile-item-row'>
                                             <div class='value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
-                                                    + <span class='action-link'>Add email address</span>
+                                                    + <span class='action-link'>Add address</span>
                                                 </div>
                                             </div>                                   
                                             <div class='actions'></div>
