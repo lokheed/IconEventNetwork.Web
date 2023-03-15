@@ -145,8 +145,8 @@ export class AppProfileLeftNav {
                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
               }).map(pac => (
                 <a
-                  href={`/profile-pac/${pac.attributes.Company.data.id}`}
-                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'company selected' : 'company'}>
+                  href={`/profile-pac/${pac.id}`}
+                  class={pac.id.toString() == this.selectedItemId ? 'company selected' : 'company'}>
                     {pac.attributes.Company.data.attributes.Name}
                 </a>
               ))}
