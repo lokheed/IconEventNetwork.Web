@@ -146,7 +146,7 @@ export class AppProfileLeftNav {
               }).map(pac => (
                 <a
                   href={`/profile-pac/${pac.attributes.Company.data.id}`}
-                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'selected' : ''}>
+                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'company selected' : 'company'}>
                     {pac.attributes.Company.data.attributes.Name}
                 </a>
               ))}
@@ -167,7 +167,7 @@ export class AppProfileLeftNav {
               }).map(pac => (
                 <a
                   href={`/profile-company/${pac.attributes.Company.data.id}`}
-                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'selected' : ''}>
+                  class={pac.attributes.Company.data.id.toString() == this.selectedItemId ? 'company selected' : 'company'}>
                     {pac.attributes.Company.data.attributes.Name}
                 </a>
               ))}
