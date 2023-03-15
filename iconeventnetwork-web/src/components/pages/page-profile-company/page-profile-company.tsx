@@ -500,8 +500,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.basicInformationTabContent = el}>
                         <p>
-                            The information below will appear as the company profile within the directory 
-                            and can only be edited by those with admin privileges.
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -601,8 +600,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.contactInformationTabContent = el} class='hidden'>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua.
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -670,8 +668,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.featuresTabContent = el} class='hidden'>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua.<br/><b>NOTE: Features are not yet implemented or data bound.</b>
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
@@ -804,7 +801,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.mediaGalleryTabContent = el} class='hidden'>
                         <p>
-                            The media assets below will appear alongside the company profile within the directory.<br/><b>NOTE: Media Gallery is not yet implemented or data bound.</b>
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <div class='media-grid'>
                             <div class='media-box box-container'>
@@ -908,8 +905,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.teamMembersTabContent = el} class='hidden'>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua.
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <revo-grid
                             class='revo-grid box-container'
@@ -937,8 +933,7 @@ export class PageProfileCompany {
 
                     <div ref={el => this.companyFamilyTabContent = el} class='hidden'>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua.
+                            This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <h3>Parent Company</h3>
                         <div class='company-list'>

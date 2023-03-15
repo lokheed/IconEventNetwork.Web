@@ -230,7 +230,7 @@ export class PageProfilePerson {
                         <div ref={el => this.contactInformationTab = el} onClick={e => this.tabClick(e, 'contact-information')} class='tab'>My Contact Information</div>
                     </div>
                     <div ref={el => this.basicInformationTabContent = el}>
-                        <p>The information below is associated with your account and will not appear in the directory.</p>
+                        <p>This information is specific to you and not related to a company.</p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
                                 <div class='label centered'>
@@ -295,7 +295,7 @@ export class PageProfilePerson {
                         </div>
                     </div>
                     <div ref={el => this.contactInformationTabContent = el} class='hidden'>
-                        <p>The information below is associated with your account and will not appear in the directory.</p>
+                        <p>Your personal contact information does not appear in the directory.</p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
                                 <div class='label'>

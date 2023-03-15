@@ -100,7 +100,7 @@ export class PageProfilePersonAtCompanies {
                             this.activePacs.sort(this.comparePacs).map(pac => 
                                 <CompanyBox company={pac.attributes.Company} pacId={pac.id} />
                             ) : 
-                            <h3>You do not have any current companies</h3>
+                            <h3>You do not have any current companies.</h3>
                     }
                     </div>
                     {
@@ -123,7 +123,7 @@ export class PageProfilePersonAtCompanies {
                                         )}
                                     </div>                                    
                                     <div class='collapse-container'>
-                                        <span class='action-link' onClick={e => this.toggleInactiveCompaniesClick(e)}>Collapse</span>
+                                        <span class='action-link' onClick={e => this.toggleInactiveCompaniesClick(e)}>Hide my former companies</span>
                                     </div>                                 
                                 </div> 
                                 :
