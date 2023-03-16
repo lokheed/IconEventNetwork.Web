@@ -315,19 +315,9 @@ export class PageProfilePersonAtCompany {
                                     Job Title
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            {this.personAtCompany?.data?.attributes?.JobTitle??''}
-                                        </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.personAtCompany &&
+                                        <app-profile-job-title canEdit={this.security.canManageProfileFields} personAtCompany={this.personAtCompany} />
+                                    }
                                 </div>
                             </div>
                             <div class='profile-item last'>
