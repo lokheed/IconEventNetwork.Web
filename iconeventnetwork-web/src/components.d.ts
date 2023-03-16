@@ -137,6 +137,11 @@ export namespace Components {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnMessage {
+        "dismissable"?: boolean;
+        "reset": () => Promise<void>;
+        "type": 'warning' | 'success' | 'error' | 'info';
+    }
     interface IcnRichTextEditor {
         /**
           * Gets the current html value.
@@ -368,6 +373,12 @@ declare global {
         prototype: HTMLAppTestimonialCarouselElement;
         new (): HTMLAppTestimonialCarouselElement;
     };
+    interface HTMLIcnMessageElement extends Components.IcnMessage, HTMLStencilElement {
+    }
+    var HTMLIcnMessageElement: {
+        prototype: HTMLIcnMessageElement;
+        new (): HTMLIcnMessageElement;
+    };
     interface HTMLIcnRichTextEditorElement extends Components.IcnRichTextEditor, HTMLStencilElement {
     }
     var HTMLIcnRichTextEditorElement: {
@@ -526,6 +537,7 @@ declare global {
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
+        "icn-message": HTMLIcnMessageElement;
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-access-denied": HTMLPageAccessDeniedElement;
@@ -681,6 +693,10 @@ declare namespace LocalJSX {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnMessage {
+        "dismissable"?: boolean;
+        "type": 'warning' | 'success' | 'error' | 'info';
+    }
     interface IcnRichTextEditor {
         /**
           * The value of the html content
@@ -758,6 +774,7 @@ declare namespace LocalJSX {
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
+        "icn-message": IcnMessage;
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
         "page-access-denied": PageAccessDenied;
@@ -811,6 +828,7 @@ declare module "@stencil/core" {
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
+            "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;
