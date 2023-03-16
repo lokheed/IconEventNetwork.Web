@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+import { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { AddressAttributes, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+export { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -68,6 +68,10 @@ export namespace Components {
     interface AppProfileBiography {
         "canEdit": boolean;
         "personAtCompany": PersonAtCompanyData;
+    }
+    interface AppProfileCompanyDescription {
+        "canEdit": boolean;
+        "company": CompanyData;
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -288,6 +292,12 @@ declare global {
         prototype: HTMLAppProfileBiographyElement;
         new (): HTMLAppProfileBiographyElement;
     };
+    interface HTMLAppProfileCompanyDescriptionElement extends Components.AppProfileCompanyDescription, HTMLStencilElement {
+    }
+    var HTMLAppProfileCompanyDescriptionElement: {
+        prototype: HTMLAppProfileCompanyDescriptionElement;
+        new (): HTMLAppProfileCompanyDescriptionElement;
+    };
     interface HTMLAppProfileEmailAddressItemElement extends Components.AppProfileEmailAddressItem, HTMLStencilElement {
     }
     var HTMLAppProfileEmailAddressItemElement: {
@@ -494,6 +504,7 @@ declare global {
         "app-navigation": HTMLAppNavigationElement;
         "app-profile-address-item": HTMLAppProfileAddressItemElement;
         "app-profile-biography": HTMLAppProfileBiographyElement;
+        "app-profile-company-description": HTMLAppProfileCompanyDescriptionElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-languages-spoken": HTMLAppProfileLanguagesSpokenElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
@@ -588,6 +599,10 @@ declare namespace LocalJSX {
     interface AppProfileBiography {
         "canEdit"?: boolean;
         "personAtCompany"?: PersonAtCompanyData;
+    }
+    interface AppProfileCompanyDescription {
+        "canEdit"?: boolean;
+        "company"?: CompanyData;
     }
     interface AppProfileEmailAddressItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
@@ -716,6 +731,7 @@ declare namespace LocalJSX {
         "app-navigation": AppNavigation;
         "app-profile-address-item": AppProfileAddressItem;
         "app-profile-biography": AppProfileBiography;
+        "app-profile-company-description": AppProfileCompanyDescription;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-languages-spoken": AppProfileLanguagesSpoken;
         "app-profile-left-nav": AppProfileLeftNav;
@@ -767,6 +783,7 @@ declare module "@stencil/core" {
             "app-navigation": LocalJSX.AppNavigation & JSXBase.HTMLAttributes<HTMLAppNavigationElement>;
             "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
             "app-profile-biography": LocalJSX.AppProfileBiography & JSXBase.HTMLAttributes<HTMLAppProfileBiographyElement>;
+            "app-profile-company-description": LocalJSX.AppProfileCompanyDescription & JSXBase.HTMLAttributes<HTMLAppProfileCompanyDescriptionElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-languages-spoken": LocalJSX.AppProfileLanguagesSpoken & JSXBase.HTMLAttributes<HTMLAppProfileLanguagesSpokenElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
