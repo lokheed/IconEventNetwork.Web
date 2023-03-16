@@ -26,6 +26,7 @@ export class PageLoginRedirect {
         // Now saving the jwt to use it for future authenticated requests to Strapi
         localStorage.setItem(localStorageKeyService.Jwt, res.jwt);
         localStorage.setItem(localStorageKeyService.Username, res.user.username);
+        localStorage.setItem(localStorageKeyService.LoginEmail, res.user.email);
         this.currentText = 'You have been successfully logged in. You will be redirected shortly...';
         window.location.replace('/home')
       })

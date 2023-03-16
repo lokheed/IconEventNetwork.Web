@@ -86,6 +86,7 @@ graph TD;
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-profile-name-item
+  page-profile-person-at-company --> app-profile-job-title
   page-profile-person-at-company --> app-profile-biography
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item

@@ -16,6 +16,8 @@ export class PageProfilePerson {
     private basicInformationTabContent: HTMLDivElement;
     private contactInformationTab: HTMLDivElement;
     private contactInformationTabContent: HTMLDivElement;
+    private username: string;
+    private loginEmail: string;
     constructor(){
       this.personClient = new PersonClient();
     }  
@@ -214,10 +216,11 @@ export class PageProfilePerson {
 
     componentWillLoad() {
         this.getMe();
+        this.username = localStorage.getItem(localStorageKeyService.Username)??'';
+        this.loginEmail = localStorage.getItem(localStorageKeyService.LoginEmail)??'';
     }    
     
     render() {
-        const username: string = localStorage.getItem(localStorageKeyService.Username);
         return (
             <div class='profile-page'>
                 <aside>
@@ -259,7 +262,27 @@ export class PageProfilePerson {
                                 <div class='content'>
                                     <div class='profile-item-row'>
                                         <div class='value'>
-                                            {username}
+                                            {this.username}
+                                        </div>
+                                        <div class='actions'>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                            </div>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                            </div>                                      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Login Email Address
+                                </div>                            
+                                <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            {this.loginEmail}
                                         </div>
                                         <div class='actions'>
                                             <div class='action disabled'>
@@ -302,6 +325,25 @@ export class PageProfilePerson {
                                     Email
                                 </div>
                                 <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            <div class='label'>
+                                                Login
+                                            </div>
+                                            <div class='value'>
+                                                {this.loginEmail}
+                                            </div>
+                                        </div> 
+                                        <div class='actions'>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                            </div>
+                                            <div class='action disabled'>
+                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
+                                            </div>                                      
+                                        </div>
+                                    </div>
+                                    <hr/>
                                     {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
                                         <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
