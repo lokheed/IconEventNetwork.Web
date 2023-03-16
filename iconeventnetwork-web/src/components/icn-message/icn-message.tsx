@@ -8,7 +8,7 @@ import { Component, h, Method, Prop } from '@stencil/core';
 export class IcnMessage {
     private messageDiv: HTMLDivElement;
     @Prop() type!: 'warning' | 'success' | 'error' | 'info';
-    @Prop() dismissable?: boolean = false;
+    @Prop() dismissible?: boolean = false;
     @Method()
     async reset() {
         this.messageDiv.classList.remove('hidden');
@@ -51,7 +51,7 @@ export class IcnMessage {
                 <span>
                     <slot></slot>
                 </span>
-                {this.dismissable && 
+                {this.dismissible && 
                     <button onClick={e => this.handleDismissClick(e)}><i class="fa-solid fa-xmark"></i></button>
                 }
             </div>
