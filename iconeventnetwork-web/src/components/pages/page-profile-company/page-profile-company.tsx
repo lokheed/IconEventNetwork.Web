@@ -572,23 +572,9 @@ export class PageProfileCompany {
                                     Description
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value textarea'>
-                                            <div innerHTML={this.descriptionDisplay}>
-                                                </div>
-                                                <div onClick={e => this.readMoreClick(e)} class='action-link'>
-                                                    {this.descriptionReadMoreText}
-                                                </div>
-                                            </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.company && 
+                                        <app-profile-company-description canEdit={this.security.canManageCompanyDetails} company={this.company} />
+                                    }
                                 </div>
                             </div>
                         </div>
