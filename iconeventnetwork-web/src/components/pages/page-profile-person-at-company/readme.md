@@ -22,6 +22,7 @@
 
 - [app-profile-left-nav](../../app-profile-left-nav)
 - [app-profile-name-item](../../app-profile-name-item)
+- [app-profile-job-title](../../app-profile-job-title)
 - [app-profile-biography](../../app-profile-biography)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
@@ -33,6 +34,7 @@
 graph TD;
   page-profile-person-at-company --> app-profile-left-nav
   page-profile-person-at-company --> app-profile-name-item
+  page-profile-person-at-company --> app-profile-job-title
   page-profile-person-at-company --> app-profile-biography
   page-profile-person-at-company --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-phone-number-item

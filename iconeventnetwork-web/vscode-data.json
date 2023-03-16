@@ -219,6 +219,19 @@
       ]
     },
     {
+      "name": "app-profile-job-title",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-languages-spoken",
       "description": {
         "kind": "markdown",
