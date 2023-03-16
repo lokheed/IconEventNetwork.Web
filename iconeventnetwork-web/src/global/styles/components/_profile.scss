@@ -515,8 +515,7 @@
     }
 }
 .profile-image{
-    background-color: var(--color-purple);
-    color: white;
+    background-color: none;
     line-height: 2em;
     text-align: center;
     height: 2em;
@@ -533,6 +532,10 @@
       border-radius: 50%;
     }
 }
+.profile-image.no-image{
+    background-color: var(--color-purple);
+    color: white;
+ }
 
 @media (max-width: 768px) {
     .profile-page {
