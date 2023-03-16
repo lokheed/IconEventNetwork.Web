@@ -7,7 +7,7 @@ import { CompanyClient } from "../../services/clients/company-client";
   styleUrl: "app-profile-company-description.scss",
   shadow: false
 })
-export class AppProfileBiography {
+export class AppProfileCompanyDescription {
     private companyClient: CompanyClient;
     constructor() {
         this.companyClient = new CompanyClient();

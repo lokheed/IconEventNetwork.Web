@@ -94,9 +94,11 @@ graph TD;
   app-profile-biography --> icn-rich-text-editor
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
+  page-profile-company --> app-profile-company-description
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
+  app-profile-company-description --> icn-rich-text-editor
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```
