@@ -8,7 +8,7 @@ interface ProfileImageDiscProps {
 }
 
 export const ProfileImageDisc: FunctionalComponent<ProfileImageDiscProps> = (props => (
-    <div class='profile-image'>
+    <div class={props.profileImage?.data?.attributes?.formats ? 'profile-image' : 'profile-image no-image'}>
         { props.firstName && props.firstName.length > 0 ? props.firstName.substring(0,1) : '?' }
         { props.lastName && props.lastName.length > 0 ? props.lastName.substring(0,1) : '?' }
         { props.profileImage?.data ? <app-responsive-image image={props.profileImage} class='profile-image-disc' expectedWidth={75} /> : '' }
