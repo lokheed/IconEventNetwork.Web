@@ -1,0 +1,42 @@
+.message {
+    display: block;
+    border-radius: .25em;
+    margin-top: .25em;
+    padding: .5em;
+    font-weight: 500;
+    position: relative;
+    button {
+        color: var(--black);
+        font-size: 1em;
+        display: inline-block;
+        border: none;
+        background: none;
+        padding: 0;
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+    }
+  }
+  .message.error {
+    border: 1px solid var(--message-error-foreground);
+    color: var(--message-error-foreground);
+    background-color: var(--message-error-background);
+  }
+  .message.info {
+    border: 1px solid var(--message-info-foreground);
+    color: var(--message-info-foreground);
+    background-color: var(--message-info-background);
+  }
+  .message.success {
+    border: 1px solid var(--message-success-foreground);
+    color: var(--message-success-foreground);
+    background-color: var(--message-success-background);
+  }
+  .message.warning {
+    border: 1px solid var(--message-warning-foreground);
+    color: var(--message-warning-foreground);
+    background-color: var(--message-warning-background);
+  }
+  .message.hidden {
+    display: none;
+  }

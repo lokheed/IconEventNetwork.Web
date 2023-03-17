@@ -392,6 +392,37 @@
       "attributes": []
     },
     {
+      "name": "icn-message",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "dismissible",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "description": "",
+          "values": [
+            {
+              "name": "error"
+            },
+            {
+              "name": "info"
+            },
+            {
+              "name": "success"
+            },
+            {
+              "name": "warning"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "icn-rich-text-editor",
       "description": {
         "kind": "markdown",

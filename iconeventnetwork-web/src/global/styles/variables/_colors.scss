@@ -30,7 +30,17 @@
     --color-button-background-secondary: #FFFFFF;
     --color-button-hover-secondary: #E2E7EA;
     --color-button-text-secondary: #000000;
-    --color-navigation-l2-background: #cbe0f5
+    --color-navigation-l2-background: #cbe0f5;
+
+    --black: #000000;
+    --message-error-foreground: #8d313d;
+    --message-error-background: #f2dede;
+    --message-info-foreground: #23485a;
+    --message-info-background: #d9ecf8;
+    --message-success-foreground: #2d6524;
+    --message-success-background: #dff0d5;
+    --message-warning-foreground: #745f1d;
+    --message-warning-background: #f7eabc;
 }
 .blue {
 	color: var(--color-blue-main);
