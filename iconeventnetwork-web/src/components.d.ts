@@ -137,6 +137,10 @@ export namespace Components {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnCopy {
+        "textToCopy": string;
+        "titleText"?: string;
+    }
     interface IcnMessage {
         "dismissible"?: boolean;
         "reset": () => Promise<void>;
@@ -373,6 +377,12 @@ declare global {
         prototype: HTMLAppTestimonialCarouselElement;
         new (): HTMLAppTestimonialCarouselElement;
     };
+    interface HTMLIcnCopyElement extends Components.IcnCopy, HTMLStencilElement {
+    }
+    var HTMLIcnCopyElement: {
+        prototype: HTMLIcnCopyElement;
+        new (): HTMLIcnCopyElement;
+    };
     interface HTMLIcnMessageElement extends Components.IcnMessage, HTMLStencilElement {
     }
     var HTMLIcnMessageElement: {
@@ -537,6 +547,7 @@ declare global {
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
+        "icn-copy": HTMLIcnCopyElement;
         "icn-message": HTMLIcnMessageElement;
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
@@ -693,6 +704,10 @@ declare namespace LocalJSX {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnCopy {
+        "textToCopy"?: string;
+        "titleText"?: string;
+    }
     interface IcnMessage {
         "dismissible"?: boolean;
         "type": 'warning' | 'success' | 'error' | 'info';
@@ -774,6 +789,7 @@ declare namespace LocalJSX {
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
+        "icn-copy": IcnCopy;
         "icn-message": IcnMessage;
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
@@ -828,6 +844,7 @@ declare module "@stencil/core" {
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
+            "icn-copy": LocalJSX.IcnCopy & JSXBase.HTMLAttributes<HTMLIcnCopyElement>;
             "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;

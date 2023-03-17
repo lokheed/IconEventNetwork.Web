@@ -19,8 +19,6 @@ export class IcnMessage {
         this.messageDiv.classList.add('hidden');
     }
 
-    componentWillLoad() {    }
-
     componentDidLoad() {
         this.messageDiv.classList.add(this.type);
     }
