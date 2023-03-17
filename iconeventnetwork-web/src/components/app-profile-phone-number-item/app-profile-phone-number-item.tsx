@@ -433,6 +433,11 @@ export class AppProfilePhoneItem {
                             </div>
                             <div class='value'>
                                 {this.displayPhoneNumber}
+                                {!this.phoneNumberItem.attributes.IsValidated &&
+                                    <icn-message type="warning">
+                                        The phone number is not valid for the selected country. Invalid phone numbers do not appear in the directory.
+                                    </icn-message>
+                                }
                             </div>
                         </div>                   
                     }

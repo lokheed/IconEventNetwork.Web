@@ -26,6 +26,19 @@ Type: `Promise<void>`
 
 
 
+## Dependencies
+
+### Used by
+
+ - [app-profile-phone-number-item](../app-profile-phone-number-item)
+
+### Graph
+```mermaid
+graph TD;
+  app-profile-phone-number-item --> icn-message
+  style icn-message fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
