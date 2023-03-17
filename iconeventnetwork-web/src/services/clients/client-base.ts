@@ -495,6 +495,14 @@ export interface SocialMediaTypeAttributes{
     Rank: number;
 }
 
+export interface SocialMediaSaveData{
+    data: {
+        Name?: string;
+        URL?: string;
+        social_media_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+    }
+}
+
 export interface SuffixData{
     data: SuffixInfo;
 }
