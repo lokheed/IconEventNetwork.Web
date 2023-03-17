@@ -138,7 +138,7 @@ export namespace Components {
     interface AppTestimonialCarousel {
     }
     interface IcnMessage {
-        "dismissable"?: boolean;
+        "dismissible"?: boolean;
         "reset": () => Promise<void>;
         "type": 'warning' | 'success' | 'error' | 'info';
     }
@@ -694,7 +694,7 @@ declare namespace LocalJSX {
     interface AppTestimonialCarousel {
     }
     interface IcnMessage {
-        "dismissable"?: boolean;
+        "dismissible"?: boolean;
         "type": 'warning' | 'success' | 'error' | 'info';
     }
     interface IcnRichTextEditor {

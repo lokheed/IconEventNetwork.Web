@@ -57,6 +57,8 @@ export class PageProfileCompany {
     @State() descriptionReadMoreText: string = '';
     @State() includeInactiveTeamMembers: boolean = false;
     @State() teamGridColumns: any[];
+    @State() accountManagerName: string = 'Not assigned';
+    @State() accountManagerEmail: string;
     @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
         this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
 
@@ -101,9 +103,6 @@ export class PageProfileCompany {
         this.companyClient.getCompany(this.companyId, {
             fields: ['Description', 'Name', 'ParentCompanyId', 'Tagline', 'Website', 'updatedAt'],
             populate: {
-                AccountManager: {
-                    fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],                 
-                },
                 Addresses: {
                     populate: ['country', 'country_subdivision', 'address_type'],
                 },
@@ -128,11 +127,20 @@ export class PageProfileCompany {
                 PhoneNumbers: {
                    populate: ['phone_number_type', 'country'],
                 },
-                PrimaryContact: {
-                    fields: ['FirstName', 'MiddleName', 'LastName', 'DirectoryName'],                 
-                },
                 SocialMediaAccounts: {
                     populate: ['social_media_type'],
+                },
+                AccountManager: {
+                    fields: ['JobTitle'],
+                    populate: {
+                        Person: {
+                            fields: ['DirectoryName'],
+                        },
+                        EmailAddresses: {
+                            fields: ['EmailAddress'],
+                            populate: ['email_address_type'],
+                        },
+                    },
                 },
            },
         })
@@ -149,6 +157,13 @@ export class PageProfileCompany {
             this.addresses = this.company.data.attributes.Addresses.data;
             this.emailAddresses = this.company.data.attributes.EmailAddresses.data;
             this.phoneNumbers = this.company.data.attributes.PhoneNumbers.data;
+            this.accountManagerName = this.company?.data?.attributes?.AccountManager?.data?.attributes?.Person?.data?.attributes?.DirectoryName??'Not assigned';
+            let workEmail = this.company?.data?.attributes?.AccountManager?.data?.attributes?.EmailAddresses.data.find(email => {
+                return email.attributes.email_address_type.data.attributes.Name === 'Work';
+            });
+            if (workEmail) {
+                this.accountManagerEmail = workEmail.attributes.EmailAddress;
+            } 
         })
         .catch(reason => console.error(reason));  
     }
@@ -355,6 +370,11 @@ export class PageProfileCompany {
                 },
             }
         }];   
+    }
+
+    private handleCopyAccountManagerEmailClick(e: MouseEvent) {
+        e.preventDefault();
+        navigator.clipboard.writeText(this.accountManagerEmail);
     }
 
     private initializeTeamGridColumns() {
@@ -589,6 +609,23 @@ export class PageProfileCompany {
                             This information builds the company profile in the directory and is editable by company admins.
                         </p>
                         <div class='profile-box box-container'>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Icon Network Account Manager
+                                </div>
+                                <div class='content'>
+                                    <div class='profile-item-row'>
+                                        <div class='value'>
+                                            {this.accountManagerName}
+                                            {this.accountManagerEmail &&
+                                                <span>
+                                                    <a href={`mailto:${this.accountManagerEmail}`} class='email-link'>{this.accountManagerEmail}</a>
+                                                    <button class='copy' title='Copy Email Address' onClick={e => this.handleCopyAccountManagerEmailClick(e)}><i class="fa-solid fa-copy"></i></button>
+                                                </span>                                            }   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class='profile-item'>
                                 <div class='label'>
                                     Email

@@ -203,7 +203,8 @@ export interface CompanyInfo{
     ParentCompanyId: number;
     IsActive?: boolean;
     CompanyStatus?: CompanyStatusData;
-    PrimaryContact?: DataResponse<PersonInfo>;
+    AccountManager?: PersonAtCompanyData;
+    PrimaryContact?: PersonAtCompanyData;
     LogoImage?: ImageInfo;
     Addresses?: AddressData;
     EmailAddresses?: EmailAddressData;
