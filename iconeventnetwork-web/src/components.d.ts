@@ -73,6 +73,10 @@ export namespace Components {
         "canEdit": boolean;
         "company": CompanyData;
     }
+    interface AppProfileCompanyTagline {
+        "canEdit": boolean;
+        "company": CompanyData;
+    }
     interface AppProfileEmailAddressItem {
         "appliesTo": 'person' | 'personAtCompany' | 'company';
         "canEdit": boolean;
@@ -311,6 +315,12 @@ declare global {
         prototype: HTMLAppProfileCompanyDescriptionElement;
         new (): HTMLAppProfileCompanyDescriptionElement;
     };
+    interface HTMLAppProfileCompanyTaglineElement extends Components.AppProfileCompanyTagline, HTMLStencilElement {
+    }
+    var HTMLAppProfileCompanyTaglineElement: {
+        prototype: HTMLAppProfileCompanyTaglineElement;
+        new (): HTMLAppProfileCompanyTaglineElement;
+    };
     interface HTMLAppProfileEmailAddressItemElement extends Components.AppProfileEmailAddressItem, HTMLStencilElement {
     }
     var HTMLAppProfileEmailAddressItemElement: {
@@ -536,6 +546,7 @@ declare global {
         "app-profile-address-item": HTMLAppProfileAddressItemElement;
         "app-profile-biography": HTMLAppProfileBiographyElement;
         "app-profile-company-description": HTMLAppProfileCompanyDescriptionElement;
+        "app-profile-company-tagline": HTMLAppProfileCompanyTaglineElement;
         "app-profile-email-address-item": HTMLAppProfileEmailAddressItemElement;
         "app-profile-job-title": HTMLAppProfileJobTitleElement;
         "app-profile-languages-spoken": HTMLAppProfileLanguagesSpokenElement;
@@ -635,6 +646,10 @@ declare namespace LocalJSX {
         "personAtCompany"?: PersonAtCompanyData;
     }
     interface AppProfileCompanyDescription {
+        "canEdit"?: boolean;
+        "company"?: CompanyData;
+    }
+    interface AppProfileCompanyTagline {
         "canEdit"?: boolean;
         "company"?: CompanyData;
     }
@@ -778,6 +793,7 @@ declare namespace LocalJSX {
         "app-profile-address-item": AppProfileAddressItem;
         "app-profile-biography": AppProfileBiography;
         "app-profile-company-description": AppProfileCompanyDescription;
+        "app-profile-company-tagline": AppProfileCompanyTagline;
         "app-profile-email-address-item": AppProfileEmailAddressItem;
         "app-profile-job-title": AppProfileJobTitle;
         "app-profile-languages-spoken": AppProfileLanguagesSpoken;
@@ -833,6 +849,7 @@ declare module "@stencil/core" {
             "app-profile-address-item": LocalJSX.AppProfileAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileAddressItemElement>;
             "app-profile-biography": LocalJSX.AppProfileBiography & JSXBase.HTMLAttributes<HTMLAppProfileBiographyElement>;
             "app-profile-company-description": LocalJSX.AppProfileCompanyDescription & JSXBase.HTMLAttributes<HTMLAppProfileCompanyDescriptionElement>;
+            "app-profile-company-tagline": LocalJSX.AppProfileCompanyTagline & JSXBase.HTMLAttributes<HTMLAppProfileCompanyTaglineElement>;
             "app-profile-email-address-item": LocalJSX.AppProfileEmailAddressItem & JSXBase.HTMLAttributes<HTMLAppProfileEmailAddressItemElement>;
             "app-profile-job-title": LocalJSX.AppProfileJobTitle & JSXBase.HTMLAttributes<HTMLAppProfileJobTitleElement>;
             "app-profile-languages-spoken": LocalJSX.AppProfileLanguagesSpoken & JSXBase.HTMLAttributes<HTMLAppProfileLanguagesSpokenElement>;

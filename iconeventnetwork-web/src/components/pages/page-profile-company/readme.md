@@ -22,6 +22,7 @@
 
 - [app-profile-left-nav](../../app-profile-left-nav)
 - [app-responsive-image](../../app-responsive-image)
+- [app-profile-company-tagline](../../app-profile-company-tagline)
 - [app-profile-company-description](../../app-profile-company-description)
 - [icn-copy](../../icn-copy)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
@@ -33,6 +34,7 @@
 graph TD;
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
+  page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
   page-profile-company --> icn-copy
   page-profile-company --> app-profile-email-address-item

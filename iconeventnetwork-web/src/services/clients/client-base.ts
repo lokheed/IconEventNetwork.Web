@@ -214,10 +214,12 @@ export interface CompanyInfo{
 
 export interface CompanySaveData{
     data: {
+        Name?: string;
         Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Description?: string;
+        Tagline?: string;
     }
 }
 
