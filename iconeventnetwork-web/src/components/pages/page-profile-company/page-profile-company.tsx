@@ -551,7 +551,7 @@ export class PageProfileCompany {
                                         <div class='value'>
                                             {this.company?.data?.attributes?.Name??''}
                                         </div>
-                                        { this.security.canManageCompanyDetails && 
+                                        { this.security?.canManageCompanyDetails && 
                                             <div class='actions'>
                                                 <button class='action disabled'>
                                                     <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
