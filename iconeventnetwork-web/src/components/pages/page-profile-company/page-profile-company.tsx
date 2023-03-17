@@ -372,11 +372,6 @@ export class PageProfileCompany {
         }];   
     }
 
-    private handleCopyAccountManagerEmailClick(e: MouseEvent) {
-        e.preventDefault();
-        navigator.clipboard.writeText(this.accountManagerEmail);
-    }
-
     private initializeTeamGridColumns() {
         this.teamGridColumns = 
         [
@@ -620,8 +615,9 @@ export class PageProfileCompany {
                                             {this.accountManagerEmail &&
                                                 <span>
                                                     <a href={`mailto:${this.accountManagerEmail}`} class='email-link'>{this.accountManagerEmail}</a>
-                                                    <button class='copy' title='Copy Email Address' onClick={e => this.handleCopyAccountManagerEmailClick(e)}><i class="fa-solid fa-copy"></i></button>
-                                                </span>                                            }   
+                                                    <icn-copy textToCopy={this.accountManagerEmail} titleText='Copy Email Address' />
+                                                </span>                                            
+                                            }   
                                         </div>
                                     </div>
                                 </div>

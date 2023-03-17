@@ -392,6 +392,23 @@
       "attributes": []
     },
     {
+      "name": "icn-copy",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "text-to-copy",
+          "description": ""
+        },
+        {
+          "name": "title-text",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "icn-message",
       "description": {
         "kind": "markdown",

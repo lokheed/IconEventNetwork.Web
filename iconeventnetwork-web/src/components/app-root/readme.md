@@ -96,6 +96,7 @@ graph TD;
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
   page-profile-company --> app-profile-company-description
+  page-profile-company --> icn-copy
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
