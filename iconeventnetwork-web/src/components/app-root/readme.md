@@ -80,6 +80,7 @@ graph TD;
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   app-profile-email-address-item --> app-confirmation
+  app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> app-confirmation
   app-profile-address-item --> app-confirmation
   page-profile-person-at-companies --> app-profile-left-nav
