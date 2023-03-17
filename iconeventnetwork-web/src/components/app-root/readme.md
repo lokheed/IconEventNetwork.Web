@@ -95,6 +95,7 @@ graph TD;
   app-profile-biography --> icn-rich-text-editor
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
+  page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
   page-profile-company --> icn-copy
   page-profile-company --> app-profile-email-address-item

@@ -551,14 +551,16 @@ export class PageProfileCompany {
                                         <div class='value'>
                                             {this.company?.data?.attributes?.Name??''}
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can disabled"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        { this.security.canManageCompanyDetails && 
+                                            <div class='actions'>
+                                                <button class='action disabled'>
+                                                    <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
+                                                </button>
+                                                <button class='action disabled'>
+                                                    <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
+                                                </button>                                       
+                                            </div>                    
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -567,19 +569,9 @@ export class PageProfileCompany {
                                     Tagline
                                 </div>                            
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                        {this.company?.data?.attributes?.Tagline??''}
-                                        </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
-                                    </div>
+                                    {this.company &&
+                                        <app-profile-company-tagline canEdit={this.security.canManageCompanyDetails} company={this.company} />
+                                    }
                                 </div>
                             </div>
                             <div class='profile-item last'>
