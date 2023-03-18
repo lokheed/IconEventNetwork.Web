@@ -22,6 +22,7 @@
 
 - [app-profile-left-nav](../../app-profile-left-nav)
 - [app-responsive-image](../../app-responsive-image)
+- [icn-profile-actions](../../icn-profile-actions)
 - [app-profile-company-tagline](../../app-profile-company-tagline)
 - [app-profile-company-description](../../app-profile-company-description)
 - [icn-copy](../../icn-copy)
@@ -34,16 +35,22 @@
 graph TD;
   page-profile-company --> app-profile-left-nav
   page-profile-company --> app-responsive-image
+  page-profile-company --> icn-profile-actions
   page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
   page-profile-company --> icn-copy
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
+  app-profile-company-tagline --> icn-profile-actions
+  app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
+  app-profile-email-address-item --> icn-profile-actions
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
+  app-profile-phone-number-item --> icn-profile-actions
   app-profile-phone-number-item --> app-confirmation
+  app-profile-address-item --> icn-profile-actions
   app-profile-address-item --> app-confirmation
   app-root --> page-profile-company
   style page-profile-company fill:#f9f,stroke:#333,stroke-width:4px

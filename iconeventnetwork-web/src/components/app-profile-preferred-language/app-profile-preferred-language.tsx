@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from "@stencil/core";
+import { Component, Listen, Prop, State, h } from "@stencil/core";
 import { DataResponse, LanguageAttributes, PersonSaveData } from '../../services/clients/client-base';
 import { LanguageClient } from "../../services/clients/language-client";
 import { PersonClient } from "../../services/clients/person-client";
@@ -6,11 +6,11 @@ import state from '../../services/store';
 
 
 @Component({
-  tag: "app-profile-preferred-language-item",
-  styleUrl: "app-profile-preferred-language-item.scss",
+  tag: "app-profile-preferred-language",
+  styleUrl: "app-profile-preferred-language.scss",
   shadow: false
 })
-export class AppProfilePreferredLanguageItem {
+export class AppProfilePreferredLanguage {
     private personClient: PersonClient;
     private languageClient: LanguageClient;
     constructor() {
@@ -26,7 +26,9 @@ export class AppProfilePreferredLanguageItem {
     @State() displayLanguageName: string = '';
     @State() editLanguageName: string = '';
     @State() languages: DataResponse<LanguageAttributes>[];
-
+    @Listen('editClick') editClickHandler() { 
+        this.initializeEditForm();
+    }
     private handleLanguageSelect(event) {
         this.editLanguageId = event.target.value;
         this.editLanguageName = event.target[event.target.selectedIndex].text;
@@ -35,11 +37,6 @@ export class AppProfilePreferredLanguageItem {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditDialog();
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -72,7 +69,7 @@ export class AppProfilePreferredLanguageItem {
         .catch(reason => console.error(reason));  
     }
 
-    private initializeEditDialog() {     
+    private initializeEditForm() {     
         if (this.displayLanguageId === 0) {
             const defaultLanguage = this.languages.filter(language => language.attributes.A2 == 'en' )[0];
             this.editLanguageId = defaultLanguage.id;
@@ -120,15 +117,8 @@ export class AppProfilePreferredLanguageItem {
                             {this.displayLanguageName}
                         </div>                   
                     }
-                    { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action disabled'>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                    { !this.isEditing && this.canEdit &&
+                        <icn-profile-actions deleteDisabled />                                    
                     }
                     { this.isEditing &&
                         <form class='edit-form' >

@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from "@stencil/core";
+import { Component, Listen, Prop, State, h } from "@stencil/core";
 import { DataResponse, LanguageAttributes, PersonSaveData } from '../../services/clients/client-base';
 import { LanguageClient } from "../../services/clients/language-client";
 import { PersonClient } from "../../services/clients/person-client";
@@ -27,6 +27,9 @@ export class AppProfileLanguagesSpoken {
     @State() unusedLanguages: DataResponse<LanguageAttributes>[]=[];
     @State() disconnectLanguages: DataResponse<LanguageAttributes>[]=[];
     @State() connectLanguages: DataResponse<LanguageAttributes>[]=[];
+    @Listen('editClick') editClickHandler() { 
+        this.initializeEditForm();
+    }
     private languageSelect: HTMLSelectElement;
 
     private handleLanguageSelect(event) {
@@ -45,8 +48,7 @@ export class AppProfileLanguagesSpoken {
         this.isEditing = false;
     }
 
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
+    private initializeEditForm() {
         this.editLanguages = [...this.displayLanguages];
         const filterLanguages = [...this.editLanguages];
         let filteredLanguages = this.allLanguages.filter(l => filterLanguages.every(s => l.id !== s.id)) ;
@@ -162,15 +164,8 @@ export class AppProfileLanguagesSpoken {
                     { !this.isEditing && this.displayLanguages.length === 0 &&
                         <div>(None Selected)</div>
                     }
-                    { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action disabled'>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                    { !this.isEditing && this.canEdit &&
+                        <icn-profile-actions deleteDisabled />                                  
                     }
                     { this.isEditing &&
                         <form class='edit-form' >

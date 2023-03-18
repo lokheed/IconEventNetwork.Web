@@ -103,9 +103,16 @@ export class AppProfilePhoneItem {
     }
     @Listen('phoneNumberAdded') phoneNumberAddedHandler(event: CustomEvent<number>) {
         if (this.phoneNumberItem.id == event.detail) {
-            this.handleEditClick(new MouseEvent('click'));
+            this.initializeEditForm();
         }
-    }    
+    }
+    @Listen('deleteClick') deleteClickHandler() { 
+        this.deleteConfirmationDialog.visible = true;
+    }
+    @Listen('editClick') editClickHandler() {   
+        this.initializeEditForm();
+    }
+    
     private handlePhoneTypeSelect(event) {
         this.editPhoneNumberTypeId = event.target.value;
         this.editPhoneNumberTypeName = event.target[event.target.selectedIndex].text;
@@ -126,16 +133,6 @@ export class AppProfilePhoneItem {
         if (this.phoneNumberItem.id === 0) {
             this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditDialog();
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -275,7 +272,7 @@ export class AppProfilePhoneItem {
         .catch(reason => console.error(reason));  
     }
 
-    private initializeEditDialog() {
+    private initializeEditForm() {
         this.editPhoneNumber = this.displayPhoneNumber;        
         this.editPhoneNumberTypeId = this.displayPhoneNumberTypeId;
         this.editPhoneNumberTypeName = this.displayPhoneNumberTypeName;
@@ -418,7 +415,7 @@ export class AppProfilePhoneItem {
     
     componentDidLoad() {
         if (this.phoneNumberItem.id === 0) {
-            this.initializeEditDialog();
+            this.initializeEditForm();
         }
     }
 
@@ -442,14 +439,7 @@ export class AppProfilePhoneItem {
                         </div>                   
                     }
                     { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action' onClick={e => this.handleDeleteClick(e)}>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                        <icn-profile-actions />                                                   
                     }
                     { this.isEditing &&
                         <form ref={el => this.editForm = el} class='edit-form' >

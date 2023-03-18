@@ -35,12 +35,14 @@
 ### Depends on
 
 - [icn-message](../icn-message)
+- [icn-profile-actions](../icn-profile-actions)
 - [app-confirmation](../app-confirmation)
 
 ### Graph
 ```mermaid
 graph TD;
   app-profile-phone-number-item --> icn-message
+  app-profile-phone-number-item --> icn-profile-actions
   app-profile-phone-number-item --> app-confirmation
   page-profile-company --> app-profile-phone-number-item
   page-profile-person --> app-profile-phone-number-item

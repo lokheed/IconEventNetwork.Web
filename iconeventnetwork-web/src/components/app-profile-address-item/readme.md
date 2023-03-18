@@ -34,11 +34,13 @@
 
 ### Depends on
 
+- [icn-profile-actions](../icn-profile-actions)
 - [app-confirmation](../app-confirmation)
 
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-address-item --> icn-profile-actions
   app-profile-address-item --> app-confirmation
   page-profile-company --> app-profile-address-item
   page-profile-person --> app-profile-address-item

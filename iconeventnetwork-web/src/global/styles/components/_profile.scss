@@ -86,44 +86,6 @@
                 .profile-item-row {
                     width: 100%;
                     display: flex;
-                    .action-link {
-                        font-size: 1em;
-                        font-weight: 600;                        
-                    }
-                    .actions {
-                        .action {
-                            margin-top: .75em;
-                            min-width: 90px;
-                            i {
-                                padding-right: 5px;
-                            }
-                            .action-link {
-                                font-size: 1em;
-                                font-weight: 600;
-                            }
-                            .action-link.primary {
-                                font-size: 1.2em;
-                                color: var(--color-blue-main);
-                            }
-                            .action-link.secondary {
-                                color: var(--color-black);
-                            }
-                        }
-                        .action.disabled {
-                            cursor: default;
-                            i {
-                                color: var(--color-medium-gray);
-                            }
-                            .action-link {
-                                color: var(--color-medium-gray) !important;
-                                text-decoration: none !important;
-                                cursor: default !important;
-                            }                      
-                        }
-                    }
-                    .actions.centered {
-                        align-items: center;
-                    }
                     .value {
                         flex: 1 0 80%;
                         font-size: 1.5em;

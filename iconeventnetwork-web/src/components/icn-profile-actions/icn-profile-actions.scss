@@ -1,0 +1,40 @@
+.profile-actions {
+    display: flex;   
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    button.profile-action {
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        align-self: auto;
+        margin-top: .75em;
+        min-width: 90px;
+        font-size: 1em;
+        font-weight: 600;
+        border: none;
+        background: none;
+        padding: 0;
+        .action-text {
+            text-decoration: underline;
+        }
+    }
+    button.profile-action.primary {
+        font-size: 1.2em;
+        color: var(--color-blue-main);
+    }
+    button.profile-action.secondary {
+        color: var(--color-black);
+    }
+    button.profile-action:disabled,
+    button.profile-action[disabled] {
+        cursor: default;
+        .action-text,
+        i {
+            color: var(--color-medium-gray);
+            text-decoration: none;
+        }                      
+    }
+}

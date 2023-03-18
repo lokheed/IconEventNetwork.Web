@@ -3,7 +3,6 @@ import { PersonAtCompanyClient, SecurityCheckResponse } from '../../../services/
 import { AddressAttributes, DataResponse, EmailAddressAttributes, PersonAtCompanyData, PhoneNumberAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
-import { ProfileImageDisc } from '../../functionalComponents/ProfileImageDisc';
 import { LastUpdated } from '../../functionalComponents/LastUpdated';
 
 @Component({
@@ -284,20 +283,10 @@ export class PageProfilePersonAtCompany {
                                 <div class='label centered'>
                                     Profile Picture
                                 </div>                            
-                                <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <ProfileImageDisc profileImage={this.personAtCompany?.data?.attributes?.Person?.data?.attributes?.ProfileImage} firstName={this.personAtCompany?.data?.attributes?.Person?.data?.attributes?.FirstName} lastName={this.personAtCompany?.data?.attributes?.Person?.data?.attributes?.LastName} />
-                                        </div>
-                                        <div class='actions centered'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                            </div>                                       
-                                        </div>
-                                    </div>
+                                <div class='content'>                                                       
+                                    {this.personAtCompany?.data?.attributes?.Person?.data &&
+                                        <app-profile-picture canEdit={this.security.canManageProfileFields} personItem={this.personAtCompany.data.attributes.Person.data} />
+                                    }    
                                 </div>
                             </div>
                             <div class='profile-item'>
@@ -306,7 +295,7 @@ export class PageProfilePersonAtCompany {
                                 </div>
                                 <div class='content'>
                                     {this.personAtCompany?.data?.attributes?.Person?.data &&
-                                        <app-profile-name-item canEdit={this.security.canManageProfileFields} personItem={this.personAtCompany.data.attributes.Person.data} />
+                                        <app-profile-name canEdit={this.security.canManageProfileFields} personItem={this.personAtCompany.data.attributes.Person.data} />
                                     }
                                 </div>
                             </div>

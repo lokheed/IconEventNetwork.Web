@@ -14,7 +14,7 @@ export class AppProfilePicture {
     private readonly personClient: PersonClient;
     private readonly uploadClient: UploadClient;
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
-    private deleteButton: HTMLButtonElement;
+    private profileActions: HTMLIcnProfileActionsElement;
     private imageInput: HTMLInputElement;
     private errorDiv: HTMLDivElement;
     private maxImageSize: number = 5 * 1024 * 1024; // 5 MB
@@ -28,9 +28,23 @@ export class AppProfilePicture {
       }
     }  
     @Prop() personItem: DataResponse<PersonInfo>;
+    @Prop() canEdit: boolean;
     @State() isEditing: boolean = false;
     @State() displayImage: ImageInfo;
     @State() editImageUrl: string;
+    @Listen('deleteClick') deleteClickHandler() {        
+        if (!this.displayImage.data) return;
+        this.deleteConfirmationDialog.visible = true;
+    }
+    @Listen('editClick') editClickHandler() {                
+        if (this.displayImage?.data?.attributes?.formats) {
+            let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
+            let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
+            let entry = sortedEntries.find(e => e[1].width >= 125);
+            this.editImageUrl = entry[1].url;
+        }
+        this.isEditing = true;
+    }
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;         
         this.uploadClient.destroy(this.displayImage.data.id);
@@ -46,7 +60,7 @@ export class AppProfilePicture {
             let updatedImage = JSON.parse(JSON.stringify(this.displayImage));
             updatedImage.data = null;
             this.displayImage = updatedImage;
-            this.deleteButton.classList.add('disabled');
+            this.profileActions.deleteDisabled = true;
             window.location.replace('/profile-person'); // needed to refresh profile image in navigation
         });
     }
@@ -57,23 +71,6 @@ export class AppProfilePicture {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        if (!this.displayImage.data) return;
-        this.deleteConfirmationDialog.visible = true;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        if (this.displayImage?.data?.attributes?.formats) {
-            let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
-            let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
-            let entry = sortedEntries.find(e => e[1].width >= 125);
-            this.editImageUrl = entry[1].url;
-        }
-        this.isEditing = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -112,7 +109,7 @@ export class AppProfilePicture {
                     }
                 }
             }
-            this.deleteButton.classList.remove('disabled');
+            this.profileActions.deleteDisabled = false;
             const formerImageId = this.displayImage.data?.id??0; 
             if (formerImageId > 0) this.uploadClient.destroy(formerImageId);
             this.displayImage = newImage;            
@@ -136,7 +133,7 @@ export class AppProfilePicture {
 
     componentDidLoad() {
         if (!this.displayImage.data) {
-            this.deleteButton.classList.add('disabled');
+            this.profileActions.deleteDisabled = true;
         }
     }
 
@@ -149,15 +146,8 @@ export class AppProfilePicture {
                             <ProfileImageDisc profileImage={this.displayImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
                         </div>                   
                     }
-                    { !this.isEditing && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action' ref={el => this.deleteButton = el} onClick={e => this.handleDeleteClick(e)}>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                    { this.canEdit && !this.isEditing && 
+                        <icn-profile-actions ref={el => this.profileActions = el} />                 
                     }
                     { this.isEditing &&
                         <form class='edit-form' >

@@ -241,7 +241,7 @@ export class PageProfilePerson {
                                 </div>                            
                                 <div class='content'>                                                       
                                     {this.person &&
-                                        <app-profile-picture personItem={this.person} />
+                                        <app-profile-picture canEdit personItem={this.person} />
                                     }    
                                 </div>
                             </div>
@@ -251,7 +251,7 @@ export class PageProfilePerson {
                                 </div>
                                 <div class='content'>
                                     {this.person &&
-                                        <app-profile-name-item canEdit personItem={this.person} />
+                                        <app-profile-name canEdit personItem={this.person} />
                                     }                                   
                                 </div>
                             </div>
@@ -264,14 +264,7 @@ export class PageProfilePerson {
                                         <div class='value'>
                                             {this.username}
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />                                       
                                     </div>
                                 </div>
                             </div>
@@ -285,12 +278,7 @@ export class PageProfilePerson {
                                             {this.loginEmail}
                                         </div>
                                         <div class='actions'>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
+                                            <icn-profile-actions deleteDisabled editDisabled />                                                                      
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +289,7 @@ export class PageProfilePerson {
                                 </div>                            
                                 <div class='content'>
                                     {this.person && this.preferredLanguage &&
-                                        <app-profile-preferred-language-item canEdit languageItem={this.preferredLanguage.data} personId={this.person.id} />
+                                        <app-profile-preferred-language canEdit languageItem={this.preferredLanguage.data} personId={this.person.id} />
                                     }
                                 </div>
                             </div>
@@ -333,15 +321,8 @@ export class PageProfilePerson {
                                             <div class='value'>
                                                 {this.loginEmail}
                                             </div>
-                                        </div> 
-                                        <div class='actions'>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
                                         </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />                                         
                                     </div>
                                     <hr/>
                                     {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
