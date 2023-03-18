@@ -20,12 +20,17 @@
  - [page-profile-person](../pages/page-profile-person)
  - [page-profile-person-at-company](../pages/page-profile-person-at-company)
 
+### Depends on
+
+- [icn-profile-actions](../icn-profile-actions)
+
 ### Graph
 ```mermaid
 graph TD;
-  page-profile-person --> app-profile-name-item
-  page-profile-person-at-company --> app-profile-name-item
-  style app-profile-name-item fill:#f9f,stroke:#333,stroke-width:4px
+  app-profile-name --> icn-profile-actions
+  page-profile-person --> app-profile-name
+  page-profile-person-at-company --> app-profile-name
+  style app-profile-name fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

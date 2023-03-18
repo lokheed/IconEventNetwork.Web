@@ -99,7 +99,7 @@ export namespace Components {
         "me": GetRequestingPersonResponse;
         "selectedItemId": string;
     }
-    interface AppProfileNameItem {
+    interface AppProfileName {
         "canEdit": boolean;
         "personItem": DataResponse<PersonInfo>;
     }
@@ -112,9 +112,10 @@ export namespace Components {
         "phoneNumberItem": DataResponse<PhoneNumberAttributes>;
     }
     interface AppProfilePicture {
+        "canEdit": boolean;
         "personItem": DataResponse<PersonInfo>;
     }
-    interface AppProfilePreferredLanguageItem {
+    interface AppProfilePreferredLanguage {
         "canEdit": boolean;
         "languageItem": DataResponse<LanguageAttributes>;
         "personId": number;
@@ -149,6 +150,12 @@ export namespace Components {
         "dismissible"?: boolean;
         "reset": () => Promise<void>;
         "type": 'warning' | 'success' | 'error' | 'info';
+    }
+    interface IcnProfileActions {
+        "deleteDisabled"?: boolean;
+        "deleteText"?: string;
+        "editDisabled"?: boolean;
+        "editText"?: string;
     }
     interface IcnRichTextEditor {
         /**
@@ -229,6 +236,10 @@ export interface AppProfileEmailAddressItemCustomEvent<T> extends CustomEvent<T>
 export interface AppProfilePhoneNumberItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppProfilePhoneNumberItemElement;
+}
+export interface IcnProfileActionsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIcnProfileActionsElement;
 }
 declare global {
     interface HTMLAppConfirmationElement extends Components.AppConfirmation, HTMLStencilElement {
@@ -345,11 +356,11 @@ declare global {
         prototype: HTMLAppProfileLeftNavElement;
         new (): HTMLAppProfileLeftNavElement;
     };
-    interface HTMLAppProfileNameItemElement extends Components.AppProfileNameItem, HTMLStencilElement {
+    interface HTMLAppProfileNameElement extends Components.AppProfileName, HTMLStencilElement {
     }
-    var HTMLAppProfileNameItemElement: {
-        prototype: HTMLAppProfileNameItemElement;
-        new (): HTMLAppProfileNameItemElement;
+    var HTMLAppProfileNameElement: {
+        prototype: HTMLAppProfileNameElement;
+        new (): HTMLAppProfileNameElement;
     };
     interface HTMLAppProfilePhoneNumberItemElement extends Components.AppProfilePhoneNumberItem, HTMLStencilElement {
     }
@@ -363,11 +374,11 @@ declare global {
         prototype: HTMLAppProfilePictureElement;
         new (): HTMLAppProfilePictureElement;
     };
-    interface HTMLAppProfilePreferredLanguageItemElement extends Components.AppProfilePreferredLanguageItem, HTMLStencilElement {
+    interface HTMLAppProfilePreferredLanguageElement extends Components.AppProfilePreferredLanguage, HTMLStencilElement {
     }
-    var HTMLAppProfilePreferredLanguageItemElement: {
-        prototype: HTMLAppProfilePreferredLanguageItemElement;
-        new (): HTMLAppProfilePreferredLanguageItemElement;
+    var HTMLAppProfilePreferredLanguageElement: {
+        prototype: HTMLAppProfilePreferredLanguageElement;
+        new (): HTMLAppProfilePreferredLanguageElement;
     };
     interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
     }
@@ -398,6 +409,12 @@ declare global {
     var HTMLIcnMessageElement: {
         prototype: HTMLIcnMessageElement;
         new (): HTMLIcnMessageElement;
+    };
+    interface HTMLIcnProfileActionsElement extends Components.IcnProfileActions, HTMLStencilElement {
+    }
+    var HTMLIcnProfileActionsElement: {
+        prototype: HTMLIcnProfileActionsElement;
+        new (): HTMLIcnProfileActionsElement;
     };
     interface HTMLIcnRichTextEditorElement extends Components.IcnRichTextEditor, HTMLStencilElement {
     }
@@ -551,15 +568,16 @@ declare global {
         "app-profile-job-title": HTMLAppProfileJobTitleElement;
         "app-profile-languages-spoken": HTMLAppProfileLanguagesSpokenElement;
         "app-profile-left-nav": HTMLAppProfileLeftNavElement;
-        "app-profile-name-item": HTMLAppProfileNameItemElement;
+        "app-profile-name": HTMLAppProfileNameElement;
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
         "app-profile-picture": HTMLAppProfilePictureElement;
-        "app-profile-preferred-language-item": HTMLAppProfilePreferredLanguageItemElement;
+        "app-profile-preferred-language": HTMLAppProfilePreferredLanguageElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
         "icn-copy": HTMLIcnCopyElement;
         "icn-message": HTMLIcnMessageElement;
+        "icn-profile-actions": HTMLIcnProfileActionsElement;
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-access-denied": HTMLPageAccessDeniedElement;
@@ -676,7 +694,7 @@ declare namespace LocalJSX {
         "me": GetRequestingPersonResponse;
         "selectedItemId"?: string;
     }
-    interface AppProfileNameItem {
+    interface AppProfileName {
         "canEdit"?: boolean;
         "personItem"?: DataResponse<PersonInfo>;
     }
@@ -690,9 +708,10 @@ declare namespace LocalJSX {
         "phoneNumberItem"?: DataResponse<PhoneNumberAttributes>;
     }
     interface AppProfilePicture {
+        "canEdit"?: boolean;
         "personItem"?: DataResponse<PersonInfo>;
     }
-    interface AppProfilePreferredLanguageItem {
+    interface AppProfilePreferredLanguage {
         "canEdit"?: boolean;
         "languageItem"?: DataResponse<LanguageAttributes>;
         "personId"?: number;
@@ -726,6 +745,14 @@ declare namespace LocalJSX {
     interface IcnMessage {
         "dismissible"?: boolean;
         "type": 'warning' | 'success' | 'error' | 'info';
+    }
+    interface IcnProfileActions {
+        "deleteDisabled"?: boolean;
+        "deleteText"?: string;
+        "editDisabled"?: boolean;
+        "editText"?: string;
+        "onDeleteClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
+        "onEditClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
     }
     interface IcnRichTextEditor {
         /**
@@ -798,15 +825,16 @@ declare namespace LocalJSX {
         "app-profile-job-title": AppProfileJobTitle;
         "app-profile-languages-spoken": AppProfileLanguagesSpoken;
         "app-profile-left-nav": AppProfileLeftNav;
-        "app-profile-name-item": AppProfileNameItem;
+        "app-profile-name": AppProfileName;
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
         "app-profile-picture": AppProfilePicture;
-        "app-profile-preferred-language-item": AppProfilePreferredLanguageItem;
+        "app-profile-preferred-language": AppProfilePreferredLanguage;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
         "icn-copy": IcnCopy;
         "icn-message": IcnMessage;
+        "icn-profile-actions": IcnProfileActions;
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
         "page-access-denied": PageAccessDenied;
@@ -854,15 +882,16 @@ declare module "@stencil/core" {
             "app-profile-job-title": LocalJSX.AppProfileJobTitle & JSXBase.HTMLAttributes<HTMLAppProfileJobTitleElement>;
             "app-profile-languages-spoken": LocalJSX.AppProfileLanguagesSpoken & JSXBase.HTMLAttributes<HTMLAppProfileLanguagesSpokenElement>;
             "app-profile-left-nav": LocalJSX.AppProfileLeftNav & JSXBase.HTMLAttributes<HTMLAppProfileLeftNavElement>;
-            "app-profile-name-item": LocalJSX.AppProfileNameItem & JSXBase.HTMLAttributes<HTMLAppProfileNameItemElement>;
+            "app-profile-name": LocalJSX.AppProfileName & JSXBase.HTMLAttributes<HTMLAppProfileNameElement>;
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
             "app-profile-picture": LocalJSX.AppProfilePicture & JSXBase.HTMLAttributes<HTMLAppProfilePictureElement>;
-            "app-profile-preferred-language-item": LocalJSX.AppProfilePreferredLanguageItem & JSXBase.HTMLAttributes<HTMLAppProfilePreferredLanguageItemElement>;
+            "app-profile-preferred-language": LocalJSX.AppProfilePreferredLanguage & JSXBase.HTMLAttributes<HTMLAppProfilePreferredLanguageElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
             "icn-copy": LocalJSX.IcnCopy & JSXBase.HTMLAttributes<HTMLIcnCopyElement>;
             "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
+            "icn-profile-actions": LocalJSX.IcnProfileActions & JSXBase.HTMLAttributes<HTMLIcnProfileActionsElement>;
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;

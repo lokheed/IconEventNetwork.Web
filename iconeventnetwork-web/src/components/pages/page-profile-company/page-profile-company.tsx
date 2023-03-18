@@ -532,12 +532,7 @@ export class PageProfileCompany {
                                             }                                           
                                         </div>
                                         <div class='actions centered'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                            </div>                                       
+                                            <icn-profile-actions deleteDisabled editDisabled />                                 
                                         </div>
                                     </div>
                                 </div>
@@ -552,14 +547,7 @@ export class PageProfileCompany {
                                             {this.company?.data?.attributes?.Name??''}
                                         </div>
                                         { this.security?.canManageCompanyDetails && 
-                                            <div class='actions'>
-                                                <button class='action disabled'>
-                                                    <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                                </button>
-                                                <button class='action disabled'>
-                                                    <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                                                </button>                                       
-                                            </div>                    
+                                            <icn-profile-actions deleteDisabled editDisabled />          
                                         }
                                     </div>
                                 </div>
@@ -691,14 +679,7 @@ export class PageProfileCompany {
                                         <div class='value'>
                                             $2000 - $20000
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />
                                     </div>
                                 </div>
                             </div>
@@ -711,14 +692,7 @@ export class PageProfileCompany {
                                         <div class='value'>
                                             No
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action disabled'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />
                                     </div>
                                 </div>
                             </div>
@@ -738,14 +712,7 @@ export class PageProfileCompany {
                                             <div>50</div>
                                             <div>Club Level Suite <span class='smaller'>(king bed, living room, kitchen)</span></div>
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />
                                     </div>
                                 </div>
                             </div>
@@ -765,14 +732,7 @@ export class PageProfileCompany {
                                             <div><i class="fa-solid fa-check green"></i></div>
                                             <div>Restrooms Facilities</div>
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />
                                     </div>
                                 </div>
                             </div>
@@ -796,14 +756,7 @@ export class PageProfileCompany {
                                             <div><i class="fa-solid fa-xmark red"></i></div>
                                             <div class='disabled'>Valet</div>
                                         </div>
-                                        <div class='actions'>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                                            </div>
-                                            <div class='action'>
-                                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                                            </div>                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />
                                     </div>
                                 </div>
                             </div>

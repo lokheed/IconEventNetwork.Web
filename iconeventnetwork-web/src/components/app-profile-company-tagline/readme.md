@@ -19,9 +19,14 @@
 
  - [page-profile-company](../pages/page-profile-company)
 
+### Depends on
+
+- [icn-profile-actions](../icn-profile-actions)
+
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-company-tagline --> icn-profile-actions
   page-profile-company --> app-profile-company-tagline
   style app-profile-company-tagline fill:#f9f,stroke:#333,stroke-width:4px
 ```

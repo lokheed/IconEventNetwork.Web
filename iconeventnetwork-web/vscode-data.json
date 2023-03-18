@@ -290,7 +290,7 @@
       ]
     },
     {
-      "name": "app-profile-name-item",
+      "name": "app-profile-name",
       "description": {
         "kind": "markdown",
         "value": ""
@@ -348,10 +348,15 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        }
+      ]
     },
     {
-      "name": "app-profile-preferred-language-item",
+      "name": "app-profile-preferred-language",
       "description": {
         "kind": "markdown",
         "value": ""
@@ -449,6 +454,31 @@
               "name": "warning"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "icn-profile-actions",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "delete-disabled",
+          "description": ""
+        },
+        {
+          "name": "delete-text",
+          "description": ""
+        },
+        {
+          "name": "edit-disabled",
+          "description": ""
+        },
+        {
+          "name": "edit-text",
+          "description": ""
         }
       ]
     },

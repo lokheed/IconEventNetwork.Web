@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from "@stencil/core";
+import { Component, Listen, Prop, State, h } from "@stencil/core";
 import { CompanyData, CompanySaveData } from '../../services/clients/client-base';
 import { CompanyClient } from "../../services/clients/company-client";
 
@@ -19,18 +19,16 @@ export class AppProfileCompanyDescription {
     @State() editDescription: string;  
     @State() descriptionCollapsableDisplay: string = '';
     @State() descriptionReadMoreText: string = '';
+    @Listen('editClick') editClickHandler() { 
+        this.editDescription = this.displayDescription;
+        this.isEditing = true;
+    }
     
     private descriptionEditor!: HTMLIcnRichTextEditorElement;
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.editDescription = this.displayDescription;
-        this.isEditing = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -94,14 +92,7 @@ export class AppProfileCompanyDescription {
                         </div>                   
                     }
                     { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action disabled'>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                        <icn-profile-actions deleteDisabled />           
                     }
                     { this.isEditing &&
                         <form class='edit-form' >

@@ -122,8 +122,14 @@ export class AppProfileAddressItem {
     }
     @Listen('addressAdded') addressAddedHandler(event: CustomEvent<number>) {
         if (this.addressItem.id == event.detail) {
-            this.initializeEditDialog();
+            this.initializeEditForm();
         }
+    }
+    @Listen('deleteClick') deleteClickHandler() { 
+        this.deleteConfirmationDialog.visible = true;
+    }
+    @Listen('editClick') editClickHandler() {   
+        this.initializeEditForm();
     }
 
     private handleCancelClick(e: MouseEvent) {
@@ -134,16 +140,6 @@ export class AppProfileAddressItem {
         if (this.addressItem.id === 0) {
             this.addressDeleted.emit(this.addressItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditDialog();
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -195,7 +191,7 @@ export class AppProfileAddressItem {
         this.editPostalCode = event.target.value;
     }
 
-    private initializeEditDialog() {
+    private initializeEditForm() {
         this.editLine1 = this.displayLine1;   
         this.editLine2 = this.displayLine2;    
         this.editCity = this.displayCity; 
@@ -560,7 +556,7 @@ export class AppProfileAddressItem {
     
     componentDidLoad() {
         if (this.addressItem.id === 0) {
-            this.initializeEditDialog();
+            this.initializeEditForm();
         }
     }
 
@@ -586,15 +582,8 @@ export class AppProfileAddressItem {
                             </div>
                         </div>               
                     }
-                    { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action' onClick={e => this.handleDeleteClick(e)}>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>
+                    { !this.isEditing && this.canEdit &&
+                        <icn-profile-actions />                         
                     }       
                     { this.isEditing &&
                         <form ref={el => this.editForm = el} class='edit-form' >

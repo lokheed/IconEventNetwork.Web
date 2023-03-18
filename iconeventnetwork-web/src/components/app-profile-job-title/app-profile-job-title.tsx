@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from "@stencil/core";
+import { Component, Listen, Prop, State, h } from "@stencil/core";
 import { PersonAtCompanyData, PersonAtCompanySaveData } from '../../services/clients/client-base';
 import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 
@@ -17,15 +17,13 @@ export class AppProfileJobTitle {
     @State() isEditing: boolean = false;
     @State() displayJobTitle: string;
     @State() editJobTitle: string; 
+    @Listen('editClick') editClickHandler() {  
+        this.editJobTitle = this.displayJobTitle;
+        this.isEditing = true;
+    }
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.editJobTitle = this.displayJobTitle;
-        this.isEditing = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -67,14 +65,7 @@ export class AppProfileJobTitle {
                         </div>                   
                     }
                     { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action disabled'>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>                    
+                        <icn-profile-actions deleteDisabled />         
                     }
                     { this.isEditing &&
                         <form class='edit-form' >

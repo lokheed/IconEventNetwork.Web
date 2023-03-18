@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from "@stencil/core";
+import { Component, Listen, Prop, State, h } from "@stencil/core";
 import { DataResponse, PersonInfo, PersonSaveData, PrefixAttributes, PronounAttributes, SuffixAttributes } from '../../services/clients/client-base';
 import { PrefixClient } from "../../services/clients/prefix-client";
 import { SuffixClient } from "../../services/clients/suffix-client";
@@ -7,11 +7,11 @@ import { PersonClient } from "../../services/clients/person-client";
 import state from '../../services/store';
 
 @Component({
-  tag: "app-profile-name-item",
-  styleUrl: "app-profile-name-item.scss",
+  tag: "app-profile-name",
+  styleUrl: "app-profile-name.scss",
   shadow: false
 })
-export class AppProfileNameItem {
+export class AppProfileName {
     private prefixClient: PrefixClient;
     private suffixClient: SuffixClient;
     private pronounClient: PronounClient;
@@ -50,6 +50,9 @@ export class AppProfileNameItem {
     @State() prefixes: DataResponse<PrefixAttributes>[];
     @State() suffixes: DataResponse<SuffixAttributes>[];
     @State() pronouns: DataResponse<PronounAttributes>[];
+    @Listen('editClick') editClickHandler() { 
+        this.initializeEditForm();
+    }
     private editForm: HTMLFormElement;
     private firstNameInput: HTMLInputElement;
     private firstNameErrorMessage: HTMLDivElement;
@@ -67,11 +70,6 @@ export class AppProfileNameItem {
         this.directoryNameInput.classList.remove('invalid');
         this.directoryNameErrorMessage.innerHTML = '';
         this.isEditing = false;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditForm();
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -345,14 +343,7 @@ export class AppProfileNameItem {
                         </div>
                     }
                     {!this.isEditing && this.canEdit &&
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action disabled'>
-                                <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-link'>Delete</span>
-                            </button>                                      
-                        </div>    
+                        <icn-profile-actions deleteDisabled />
                     }                    
                     {this.isEditing &&
                         <form ref={el => this.editForm = el} class='edit-form' >

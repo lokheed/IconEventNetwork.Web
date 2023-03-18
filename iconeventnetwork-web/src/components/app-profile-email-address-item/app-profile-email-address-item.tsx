@@ -98,6 +98,12 @@ export class AppProfileEmailAddressItem {
             this.initializeEditForm();
         }
     }
+    @Listen('deleteClick') deleteClickHandler() { 
+        this.deleteConfirmationDialog.visible = true;
+    }
+    @Listen('editClick') editClickHandler() {   
+        this.initializeEditForm();
+    }
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
@@ -107,16 +113,6 @@ export class AppProfileEmailAddressItem {
         if (this.emailAddressItem.id === 0) {
             this.emailAddressDeleted.emit(this.emailAddressItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
-    }
-
-    private handleEditClick(e: MouseEvent) {
-        e.preventDefault();
-        this.initializeEditForm();
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -369,15 +365,8 @@ export class AppProfileEmailAddressItem {
                             </div>
                         </div>                   
                     }
-                    { !this.isEditing && this.canEdit && 
-                        <div class='actions'>
-                            <button class='action' onClick={e => this.handleEditClick(e)}>
-                                <i class="fa-solid fa-pen blue"></i>&nbsp;<span class='action-link primary'>Edit</span>
-                            </button>
-                            <button class='action' onClick={e => this.handleDeleteClick(e)}>
-                                <i class="fa-solid fa-trash-can brick-red"></i>&nbsp;<span class='action-link secondary'>Delete</span>
-                            </button>                                       
-                        </div>
+                    { !this.isEditing && this.canEdit &&
+                        <icn-profile-actions />                         
                     }       
                     { this.isEditing &&
                         <form ref={el => this.editForm = el} class='edit-form' >

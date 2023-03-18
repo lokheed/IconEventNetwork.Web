@@ -24,7 +24,6 @@
  - [app-profile-picture](../app-profile-picture)
  - [page-profile-company](../pages/page-profile-company)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
- - [page-profile-person-at-company](../pages/page-profile-person-at-company)
 
 ### Graph
 ```mermaid
@@ -34,7 +33,6 @@ graph TD;
   app-profile-picture --> app-responsive-image
   page-profile-company --> app-responsive-image
   page-profile-person-at-companies --> app-responsive-image
-  page-profile-person-at-company --> app-responsive-image
   style app-responsive-image fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

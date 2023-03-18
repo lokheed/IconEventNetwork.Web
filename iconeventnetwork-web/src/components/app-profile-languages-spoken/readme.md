@@ -20,9 +20,14 @@
 
  - [page-profile-person](../pages/page-profile-person)
 
+### Depends on
+
+- [icn-profile-actions](../icn-profile-actions)
+
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-languages-spoken --> icn-profile-actions
   page-profile-person --> app-profile-languages-spoken
   style app-profile-languages-spoken fill:#f9f,stroke:#333,stroke-width:4px
 ```
