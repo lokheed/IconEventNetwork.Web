@@ -422,20 +422,22 @@ export class AppProfilePhoneItem {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value'>
-                            <div class='label'>
-                                {this.displayPhoneNumberTypeName}
-                            </div>
-                            <div class='value'>
-                                {this.displayPhoneNumber}
-                                {!this.phoneNumberItem.attributes.IsValidated &&
-                                    <icn-message type="warning">
-                                        The phone number is not valid for the selected country. Invalid phone numbers do not appear in the directory.
-                                    </icn-message>
-                                }
-                            </div>
+                        <div class='content-value'>
+                            <div class='sub-content'>
+                                <div class='sub-content-label'>
+                                    {this.displayPhoneNumberTypeName}
+                                </div>
+                                <div class='sub-content-value'>
+                                    {this.displayPhoneNumber}
+                                </div>
+                            </div>                           
+                            {!this.phoneNumberItem.attributes.IsValidated &&
+                                <icn-message type="warning">
+                                    The phone number is not valid for the selected country. Invalid phone numbers do not appear in the directory.
+                                </icn-message>
+                            }
                         </div>                   
                     }
                     { !this.isEditing && this.canEdit && 
@@ -489,7 +491,6 @@ export class AppProfilePhoneItem {
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} visible={false} >
                     Are you sure you want to delete this phone number?
                 </app-confirmation>    
-                <hr/>            
             </div>
         );
     }

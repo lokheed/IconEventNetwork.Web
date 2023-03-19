@@ -1,4 +1,4 @@
-import { Component, Listen, Prop, State, h } from "@stencil/core";
+import { Component, Host, Listen, Prop, State, h } from "@stencil/core";
 import { DataResponse, ImageFormatInfo, ImageInfo, PersonInfo, PersonSaveData } from '../../services/clients/client-base';
 import { PersonClient } from '../../services/clients/person-client';
 import { UploadClient } from "../../services/clients/upload-client";
@@ -139,10 +139,10 @@ export class AppProfilePicture {
 
     render() {
         return (
-            <div>
-                <div class='profile-item-row'>
+            <Host>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value'>
+                        <div class='content-value'>
                             <ProfileImageDisc profileImage={this.displayImage} firstName={this.personItem?.attributes?.FirstName} lastName={this.personItem?.attributes?.LastName} />
                         </div>                   
                     }
@@ -183,7 +183,7 @@ export class AppProfilePicture {
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
                     Are you sure you want to delete this profile picture?
                 </app-confirmation>    
-            </div>
+            </Host>
         );
     }
 }

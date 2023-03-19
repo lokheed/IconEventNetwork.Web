@@ -58,9 +58,9 @@ export class AppProfileCompanyTagline {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value'>
+                        <div class='content-value'>
                             {this.displayTagline}
                         </div>                   
                     }

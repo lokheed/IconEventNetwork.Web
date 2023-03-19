@@ -519,21 +519,19 @@ export class PageProfileCompany {
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
-                                <div class='label centered'>
+                                <div class='label'>
                                     Logo
                                 </div>                            
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             { 
                                                 this.company?.data?.attributes?.LogoImage ? 
                                                     <app-responsive-image image={this.company.data.attributes.LogoImage} class='logo-image' expectedWidth={75} /> : 
                                                     <div class='profile-logo'><i class="fa-regular fa-image"></i></div> 
                                             }                                           
                                         </div>
-                                        <div class='actions centered'>
-                                            <icn-profile-actions deleteDisabled editDisabled />                                 
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />                                 
                                     </div>
                                 </div>
                             </div>
@@ -542,8 +540,8 @@ export class PageProfileCompany {
                                     Name
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             {this.company?.data?.attributes?.Name??''}
                                         </div>
                                         { this.security?.canManageCompanyDetails && 
@@ -562,7 +560,7 @@ export class PageProfileCompany {
                                     }
                                 </div>
                             </div>
-                            <div class='profile-item last'>
+                            <div class='profile-item'>
                                 <div class='label'>
                                     Description
                                 </div>
@@ -589,14 +587,14 @@ export class PageProfileCompany {
                                     Icon Network Account Manager
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             {this.accountManagerName}
                                             {this.accountManagerEmail &&
-                                                <span>
+                                                <div>
                                                     <a href={`mailto:${this.accountManagerEmail}`} class='email-link'>{this.accountManagerEmail}</a>
                                                     <icn-copy textToCopy={this.accountManagerEmail} titleText='Copy Email Address' />
-                                                </span>                                            
+                                                </div>                                            
                                             }   
                                         </div>
                                     </div>
@@ -611,8 +609,8 @@ export class PageProfileCompany {
                                         <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
                                     )}
                                     {this.security?.canManageCompanyDetails && 
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
                                                     + <span class='action-link'>Add email address</span>
                                                 </div>
@@ -631,8 +629,8 @@ export class PageProfileCompany {
                                          <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
                                     )}
                                     {this.security?.canManageCompanyDetails &&     
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
                                                     + <span class='action-link'>Add phone number</span>
                                                 </div>
@@ -642,7 +640,7 @@ export class PageProfileCompany {
                                     }                                
                                 </div>
                             </div>
-                            <div class='profile-item last'>
+                            <div class='profile-item'>
                                 <div class='label'>
                                     Address
                                 </div>
@@ -651,8 +649,8 @@ export class PageProfileCompany {
                                         <app-profile-address-item addressItem={addressItem} canEdit={this.security.canManageCompanyDetails} appliesTo='company' companyId={this.company?.data?.id??0} />
                                     )}      
                                     {this.security?.canManageCompanyDetails &&                               
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
                                                     + <span class='action-link'>Add address</span>
                                                 </div>
@@ -675,8 +673,8 @@ export class PageProfileCompany {
                                     Price Range
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             $2000 - $20000
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />
@@ -688,8 +686,8 @@ export class PageProfileCompany {
                                     Boutique Hotel
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             No
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />
@@ -701,8 +699,8 @@ export class PageProfileCompany {
                                     Guest Accommodations
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value small-wide-two-column-list'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div>400</div>
                                             <div>Standard Guest Room <span class='smaller'>(2 queen beds)</span></div>
                                             <div>300</div>
@@ -721,8 +719,8 @@ export class PageProfileCompany {
                                     Outdoor Venue
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value small-wide-two-column-list'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div>Yes</div>
                                             <div></div>
                                             <div><i class="fa-solid fa-check green"></i></div>
@@ -741,8 +739,8 @@ export class PageProfileCompany {
                                     Amenities
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value small-wide-two-column-list'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div><i class="fa-solid fa-check green"></i></div>
                                             <div>Kosher kitchen</div>
                                             <div><i class="fa-solid fa-check green"></i></div>

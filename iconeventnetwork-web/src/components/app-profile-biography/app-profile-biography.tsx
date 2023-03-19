@@ -1,4 +1,4 @@
-import { Component, Listen, Prop, State, h } from "@stencil/core";
+import { Component, Host, Listen, Prop, State, h } from "@stencil/core";
 import { PersonAtCompanyData, PersonAtCompanySaveData } from '../../services/clients/client-base';
 import { PersonAtCompanyClient } from "../../services/clients/person-at-company-client";
 
@@ -81,13 +81,15 @@ export class AppProfileBiography {
 
     render() {
         return (
-            <div>
-                <div class='profile-item-row'>
+            <Host>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value textarea'>
-                            <div innerHTML={this.bioCollapsableDisplay}></div>
-                            <div onClick={e => this.handleReadMoreClick(e)} class='action-link'>
-                                {this.bioReadMoreText}
+                        <div class='content-value'>
+                            <div class='textarea-content'>
+                                <div innerHTML={this.bioCollapsableDisplay}></div>
+                                <div onClick={e => this.handleReadMoreClick(e)} class='action-link'>
+                                    {this.bioReadMoreText}
+                                </div>
                             </div>
                         </div>                   
                     }
@@ -109,7 +111,7 @@ export class AppProfileBiography {
                         </form>
                     }
                 </div>
-            </div>
+            </Host>
         );
     }
 }

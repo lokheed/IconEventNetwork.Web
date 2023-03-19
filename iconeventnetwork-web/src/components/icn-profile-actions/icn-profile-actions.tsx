@@ -25,7 +25,7 @@ export class IcnProfileActions {
 
     render() {
         return (        
-            <div class='profile-actions'>
+            <div class='content-actions'>
                 <button disabled={this.editDisabled} class='profile-action primary' onClick={e => this.handleEditClick(e)}>
                     <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-text'>{this.editText}</span>
                 </button>

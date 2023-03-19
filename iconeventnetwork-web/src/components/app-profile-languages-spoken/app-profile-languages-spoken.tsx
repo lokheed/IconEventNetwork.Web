@@ -147,9 +147,9 @@ export class AppProfileLanguagesSpoken {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value list'>
+                        <div class='content-value list'>
                             {this.displayLanguages?.sort((a,b) => {
                                         var rankA = a.attributes.EnglishName;
                                         var rankB = b.attributes.EnglishName;

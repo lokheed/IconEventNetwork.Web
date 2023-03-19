@@ -563,22 +563,24 @@ export class AppProfileAddressItem {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value'>
-                            <div class='label'>
-                                {this.displayAddressTypeName}
-                            </div>
-                            <div class='value'>
-                                {this.displayLine1 ?? ''}
-                                {this.displayLine1 ? <br/> : '' }
-                                {this.displayLine2 ?? ''}
-                                {this.displayLine2 ? <br/> : '' }
-                                {this.displayCity ? this.displayCity + ', ' : ''}
-                                {this.displayCountrySubdivisionCode ? this.displayCountrySubdivisionCode.substring(3, 5).toUpperCase() + ' ' : ''}
-                                {this.displayPostalCode ?? ''}
-                                {this.displayCountryA2 && this.displayCountryA2 != 'US' ? <br/> : '' }
-                                {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }
+                        <div class='content-value'>
+                            <div class='sub-content'>
+                                <div class='sub-content-label'>
+                                    {this.displayAddressTypeName}
+                                </div>
+                                <div class='sub-content-value'>
+                                    {this.displayLine1 ?? ''}
+                                    {this.displayLine1 ? <br/> : '' }
+                                    {this.displayLine2 ?? ''}
+                                    {this.displayLine2 ? <br/> : '' }
+                                    {this.displayCity ? this.displayCity + ', ' : ''}
+                                    {this.displayCountrySubdivisionCode ? this.displayCountrySubdivisionCode.substring(3, 5).toUpperCase() + ' ' : ''}
+                                    {this.displayPostalCode ?? ''}
+                                    {this.displayCountryA2 && this.displayCountryA2 != 'US' ? <br/> : '' }
+                                    {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }
+                                </div>
                             </div>
                         </div>               
                     }
@@ -665,7 +667,6 @@ export class AppProfileAddressItem {
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
                     Are you sure you want to delete this address?
                 </app-confirmation>    
-                <hr/>
             </div>
         );
     }

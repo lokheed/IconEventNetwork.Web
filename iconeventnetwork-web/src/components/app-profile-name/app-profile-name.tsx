@@ -331,9 +331,9 @@ export class AppProfileName {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     {!this.isEditing && 
-                        <div class='value'>
+                        <div class='content-value'>
                             { this.displayPrefixName ? this.displayPrefixName + ' ' : '' } 
                             { this.displayFirstName ? this.displayFirstName + ' ' : '' }                                
                             { this.displayMiddleName ? this.displayMiddleName + ' ' : '' }                                

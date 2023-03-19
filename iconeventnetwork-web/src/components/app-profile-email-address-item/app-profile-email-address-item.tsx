@@ -354,14 +354,16 @@ export class AppProfileEmailAddressItem {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing && 
-                        <div class='value'>
-                            <div class='label'>
-                                {this.displayEmailAddressTypeName}
-                            </div>
-                            <div class='value'>
-                                {this.displayEmailAddress}
+                        <div class='content-value'>
+                            <div class='sub-content'>
+                                <div class='sub-content-label'>
+                                    {this.displayEmailAddressTypeName}
+                                </div>
+                                <div class='sub-content-value'>
+                                    {this.displayEmailAddress}
+                                </div>
                             </div>
                         </div>                   
                     }
@@ -402,7 +404,6 @@ export class AppProfileEmailAddressItem {
                 <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
                     Are you sure you want to delete this email address?
                 </app-confirmation>    
-                <hr/>
             </div>
         );
     }
