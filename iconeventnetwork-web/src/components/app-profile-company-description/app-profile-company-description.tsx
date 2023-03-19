@@ -82,12 +82,14 @@ export class AppProfileCompanyDescription {
     render() {
         return (
             <div>
-                <div class='profile-item-row'>
+                <div class='content-row'>
                     { !this.isEditing &&
-                        <div class='value textarea'>
-                            <div innerHTML={this.descriptionCollapsableDisplay}></div>
-                            <div onClick={e => this.handleReadMoreClick(e)} class='action-link'>
-                                {this.descriptionReadMoreText}
+                        <div class='content-value'>
+                            <div class='textarea-content'>
+                                <div innerHTML={this.descriptionCollapsableDisplay}></div>
+                                <div onClick={e => this.handleReadMoreClick(e)} class='action-link'>
+                                    {this.descriptionReadMoreText}
+                                </div>
                             </div>
                         </div>                   
                     }

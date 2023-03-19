@@ -236,7 +236,7 @@ export class PageProfilePerson {
                         <p>This information is specific to you and not related to a company.</p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
-                                <div class='label centered'>
+                                <div class='label'>
                                     Profile Picture
                                 </div>                            
                                 <div class='content'>                                                       
@@ -260,8 +260,8 @@ export class PageProfilePerson {
                                     Username
                                 </div>                            
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             {this.username}
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />                                       
@@ -273,13 +273,11 @@ export class PageProfilePerson {
                                     Login Email Address
                                 </div>                            
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             {this.loginEmail}
                                         </div>
-                                        <div class='actions'>
-                                            <icn-profile-actions deleteDisabled editDisabled />                                                                      
-                                        </div>
+                                        <icn-profile-actions deleteDisabled editDisabled />                                                                      
                                     </div>
                                 </div>
                             </div>
@@ -313,23 +311,24 @@ export class PageProfilePerson {
                                     Email
                                 </div>
                                 <div class='content'>
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
-                                            <div class='label'>
-                                                Login
-                                            </div>
-                                            <div class='value'>
-                                                {this.loginEmail}
+                                    <div class='content-row'>
+                                        <div class='content-value'>
+                                            <div class='sub-content'>
+                                                <div class='sub-content-label'>
+                                                    Login
+                                                </div>
+                                                <div class='sub-content-value'>
+                                                    {this.loginEmail}
+                                                </div>
                                             </div>
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />                                         
                                     </div>
-                                    <hr/>
                                     {this.emailAddresses && this.emailAddresses?.map(emailAddressItem => 
                                         <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
                                                 + <span class='action-link'>Add email address</span>
                                             </div>
@@ -346,8 +345,8 @@ export class PageProfilePerson {
                                     {this.phoneNumbers && this.phoneNumbers.map(phoneNumberItem => 
                                         <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
                                                 + <span class='action-link'>Add phone number</span>
                                             </div>
@@ -356,7 +355,7 @@ export class PageProfilePerson {
                                     </div>                                
                                 </div>
                             </div>
-                            <div class='profile-item last'>
+                            <div class='profile-item'>
                                 <div class='label'>
                                     Address
                                 </div>
@@ -364,8 +363,8 @@ export class PageProfilePerson {
                                     {this.addresses && this.addresses.map(addressItem => 
                                         <app-profile-address-item addressItem={addressItem} canEdit appliesTo='person' personId={this.person?.id??0} />
                                     )}                                
-                                    <div class='profile-item-row'>
-                                        <div class='value'>
+                                    <div class='content-row'>
+                                        <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
                                                 + <span class='action-link'>Add address</span>
                                             </div>

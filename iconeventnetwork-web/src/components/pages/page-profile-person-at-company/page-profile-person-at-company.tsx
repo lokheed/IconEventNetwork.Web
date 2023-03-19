@@ -280,7 +280,7 @@ export class PageProfilePersonAtCompany {
                         </p>
                         <div class='profile-box box-container'>
                             <div class='profile-item'>
-                                <div class='label centered'>
+                                <div class='label'>
                                     Profile Picture
                                 </div>                            
                                 <div class='content'>                                                       
@@ -309,7 +309,7 @@ export class PageProfilePersonAtCompany {
                                     }
                                 </div>
                             </div>
-                            <div class='profile-item last'>
+                            <div class='profile-item'>
                                 <div class='label'>
                                     Bio
                                 </div>
@@ -339,8 +339,8 @@ export class PageProfilePersonAtCompany {
                                         <app-profile-email-address-item emailAddressItem={emailAddressItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
                                     )}    
                                     {this.security?.canManageProfileFields &&
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
                                                     + <span class='action-link'>Add email address</span>
                                                 </div>
@@ -359,8 +359,8 @@ export class PageProfilePersonAtCompany {
                                         <app-profile-phone-number-item phoneNumberItem={phoneNumberItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
                                     )}    
                                     {this.security?.canManageProfileFields &&                                
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
                                                     + <span class='action-link'>Add phone number</span>
                                                 </div>
@@ -379,8 +379,8 @@ export class PageProfilePersonAtCompany {
                                         <app-profile-address-item addressItem={addressItem} canEdit={this.security.canManageProfileFields} appliesTo='personAtCompany' personAtCompanyId={this.personAtCompany?.data?.id??0} />
                                     )}    
                                     {this.security?.canManageProfileFields &&                                         
-                                        <div class='profile-item-row'>
-                                            <div class='value'>
+                                        <div class='content-row'>
+                                            <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
                                                     + <span class='action-link'>Add address</span>
                                                 </div>
