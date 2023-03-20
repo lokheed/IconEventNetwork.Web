@@ -1,6 +1,6 @@
 import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { defineCustomElements } from "@revolist/revogrid/loader";
-import { AddressAttributes, CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes, PhoneNumberAttributes } from '../../../services/clients/client-base';
+import { AddressAttributes, CompanyData, CompanyInfo, DataResponse, EmailAddressAttributes, PhoneNumberAttributes, SocialMediaAttributes } from '../../../services/clients/client-base';
 import { GetRequestingPersonResponse, PersonClient } from '../../../services/clients/person-client';
 import { CompanyClient, SecurityCheckResponse } from '../../../services/clients/company-client';
 import { PersonAtCompanyClient } from '../../../services/clients/person-at-company-client';
@@ -49,7 +49,8 @@ export class PageProfileCompany {
     @State() me: GetRequestingPersonResponse; 
     @State() company: CompanyData;
     @State() addresses: DataResponse<AddressAttributes>[] = [];  
-    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];  
+    @State() emailAddresses: DataResponse<EmailAddressAttributes>[] = [];
+    @State() socialMediaAccounts: DataResponse<SocialMediaAttributes>[] = [];    
     @State() phoneNumbers: DataResponse<PhoneNumberAttributes>[] = [];  
     @State() parentCompany: CompanyData;
     @State() siblingCompanies: DataResponse<CompanyInfo>[];
@@ -157,6 +158,7 @@ export class PageProfileCompany {
             this.addresses = this.company.data.attributes.Addresses.data;
             this.emailAddresses = this.company.data.attributes.EmailAddresses.data;
             this.phoneNumbers = this.company.data.attributes.PhoneNumbers.data;
+            this.socialMediaAccounts = this.company.data.attributes.SocialMediaAccounts.data;
             this.accountManagerName = this.company?.data?.attributes?.AccountManager?.data?.attributes?.Person?.data?.attributes?.DirectoryName??'Not assigned';
             let workEmail = this.company?.data?.attributes?.AccountManager?.data?.attributes?.EmailAddresses.data.find(email => {
                 return email.attributes.email_address_type.data.attributes.Name === 'Work';
@@ -365,6 +367,27 @@ export class PageProfileCompany {
                         attributes: {
                             Name: '',
                             Rank: 0,
+                        }
+                    }
+                },
+            }
+        }];   
+    }
+
+    private handleAddNewSocialMediaAccount(e: MouseEvent) {
+        e.preventDefault();
+        this.socialMediaAccounts = [...this.socialMediaAccounts, { 
+            id: 0,
+            attributes: {
+                Name: '',
+                URL: '',
+                social_media_type: {
+                    data: {
+                        id: 0,
+                        attributes: {
+                            Name: '',
+                            Rank: 0,
+                            BaseURL: '',
                         }
                     }
                 },
@@ -653,6 +676,26 @@ export class PageProfileCompany {
                                             <div class='content-value'>
                                                 <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
                                                     <i class="fa-solid fa-plus"></i> <span class='action-link'>Add address</span>
+                                                </div>
+                                            </div>                                   
+                                            <div class='actions'></div>
+                                        </div>
+                                    }                                
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
+                                    Social Media
+                                </div>
+                                <div class='content'>
+                                    {this.socialMediaAccounts && this.socialMediaAccounts.map(socialMediaItem => 
+                                        <app-profile-social-media-item socialMediaItem={socialMediaItem} canEdit={this.security.canManageCompanyDetails} companyId={this.company?.data?.id??0} />
+                                    )}      
+                                    {this.security?.canManageCompanyDetails &&                               
+                                        <div class='content-row'>
+                                            <div class='content-value'>
+                                                <div class='add-another' onClick={e => this.handleAddNewSocialMediaAccount(e)}>
+                                                    <i class="fa-solid fa-plus"></i> <span class='action-link'>Add social media account</span>
                                                 </div>
                                             </div>                                   
                                             <div class='actions'></div>

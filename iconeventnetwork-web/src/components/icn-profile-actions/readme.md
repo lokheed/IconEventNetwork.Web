@@ -37,6 +37,7 @@
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-picture](../app-profile-picture)
  - [app-profile-preferred-language](../app-profile-preferred-language)
+ - [app-profile-social-media-item](../app-profile-social-media-item)
  - [page-profile-company](../pages/page-profile-company)
  - [page-profile-person](../pages/page-profile-person)
 
@@ -54,6 +55,7 @@ graph TD;
   app-profile-phone-number-item --> icn-profile-actions
   app-profile-picture --> icn-profile-actions
   app-profile-preferred-language --> icn-profile-actions
+  app-profile-social-media-item --> icn-profile-actions
   page-profile-company --> icn-profile-actions
   page-profile-person --> icn-profile-actions
   style icn-profile-actions fill:#f9f,stroke:#333,stroke-width:4px

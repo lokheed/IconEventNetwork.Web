@@ -373,6 +373,23 @@
       ]
     },
     {
+      "name": "app-profile-social-media-item",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "company-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-responsive-image",
       "description": {
         "kind": "markdown",
@@ -435,6 +452,10 @@
       "attributes": [
         {
           "name": "dismissible",
+          "description": ""
+        },
+        {
+          "name": "hidden",
           "description": ""
         },
         {

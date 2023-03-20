@@ -30,6 +30,7 @@
  - [app-profile-email-address-item](../app-profile-email-address-item)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-picture](../app-profile-picture)
+ - [app-profile-social-media-item](../app-profile-social-media-item)
 
 ### Graph
 ```mermaid
@@ -38,6 +39,7 @@ graph TD;
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-confirmation
   app-profile-picture --> app-confirmation
+  app-profile-social-media-item --> app-confirmation
   style app-confirmation fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

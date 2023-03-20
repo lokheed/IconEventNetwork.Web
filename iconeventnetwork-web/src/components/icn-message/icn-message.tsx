@@ -9,8 +9,17 @@ export class IcnMessage {
     private messageDiv: HTMLDivElement;
     @Prop() type!: 'warning' | 'success' | 'error' | 'info';
     @Prop() dismissible?: boolean = false;
+    @Prop() hidden?: boolean = false;
+    @Method()
+    async hide() {
+        this.messageDiv.classList.add('hidden');
+    }
     @Method()
     async reset() {
+        this.messageDiv.classList.remove('hidden');
+    }
+    @Method()
+    async show() {
         this.messageDiv.classList.remove('hidden');
     }
 
@@ -21,6 +30,7 @@ export class IcnMessage {
 
     componentDidLoad() {
         this.messageDiv.classList.add(this.type);
+        if (this.hidden) this.messageDiv.classList.add('hidden');
     }
 
     render() {
