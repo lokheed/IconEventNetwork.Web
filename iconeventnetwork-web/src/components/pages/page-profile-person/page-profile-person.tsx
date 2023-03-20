@@ -330,7 +330,7 @@ export class PageProfilePerson {
                                     <div class='content-row'>
                                         <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewEmailAddress(e)}>
-                                                <span class='action-link'>Add email address</span>
+                                                <i class="fa-solid fa-plus"></i> <span class='action-link'>Add email address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
@@ -348,7 +348,7 @@ export class PageProfilePerson {
                                     <div class='content-row'>
                                         <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewPhoneNumber(e)}>
-                                                <span class='action-link'>Add phone number</span>
+                                                <i class="fa-solid fa-plus"></i> <span class='action-link'>Add phone number</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
@@ -366,7 +366,7 @@ export class PageProfilePerson {
                                     <div class='content-row'>
                                         <div class='content-value'>
                                             <div class='add-another' onClick={e => this.handleAddNewAddress(e)}>
-                                                <span class='action-link'>Add address</span>
+                                                <i class="fa-solid fa-plus"></i> <span class='action-link'>Add address</span>
                                             </div>
                                         </div>                                   
                                         <div class='actions'></div>
