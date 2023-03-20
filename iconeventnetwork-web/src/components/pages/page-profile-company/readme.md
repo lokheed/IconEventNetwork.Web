@@ -29,6 +29,7 @@
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
 - [app-profile-address-item](../../app-profile-address-item)
+- [app-profile-social-media-item](../../app-profile-social-media-item)
 
 ### Graph
 ```mermaid
@@ -42,6 +43,7 @@ graph TD;
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
+  page-profile-company --> app-profile-social-media-item
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
@@ -52,6 +54,9 @@ graph TD;
   app-profile-phone-number-item --> app-confirmation
   app-profile-address-item --> icn-profile-actions
   app-profile-address-item --> app-confirmation
+  app-profile-social-media-item --> icn-profile-actions
+  app-profile-social-media-item --> icn-message
+  app-profile-social-media-item --> app-confirmation
   app-root --> page-profile-company
   style page-profile-company fill:#f9f,stroke:#333,stroke-width:4px
 ```

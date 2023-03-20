@@ -209,7 +209,7 @@ export interface CompanyInfo{
     Addresses?: AddressData;
     EmailAddresses?: EmailAddressData;
     PhoneNumbers?: PhoneNumberData;
-    SocialMediaAccounts?: SocialMediaData[];
+    SocialMediaAccounts?: SocialMediaData;
 }
 
 export interface CompanySaveData{
@@ -218,6 +218,7 @@ export interface CompanySaveData{
         Addresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         EmailAddresses?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         PhoneNumbers?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
+        SocialMediaAccounts?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Description?: string;
         Tagline?: string;
     }
@@ -467,7 +468,7 @@ export interface PronounAttributes{
 }
 
 export interface SocialMediaData{
-    data: SocialMediaInfo;
+    data: DataResponse<SocialMediaAttributes>[];
 }
 
 export interface SocialMediaInfo{
@@ -493,6 +494,7 @@ export interface SocialMediaTypeInfo{
 export interface SocialMediaTypeAttributes{
     Name: string;
     Rank: number;
+    BaseURL: string;
 }
 
 export interface SocialMediaSaveData{

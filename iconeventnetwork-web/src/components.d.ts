@@ -5,11 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+import { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes, SocialMediaAttributes } from "./services/clients/client-base";
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
-export { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes } from "./services/clients/client-base";
+export { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes, SocialMediaAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
@@ -120,6 +120,11 @@ export namespace Components {
         "languageItem": DataResponse<LanguageAttributes>;
         "personId": number;
     }
+    interface AppProfileSocialMediaItem {
+        "canEdit": boolean;
+        "companyId": number;
+        "socialMediaItem": DataResponse<SocialMediaAttributes>;
+    }
     interface AppResponsiveImage {
         /**
           * The css class to pass down to the rendered image.
@@ -148,7 +153,10 @@ export namespace Components {
     }
     interface IcnMessage {
         "dismissible"?: boolean;
+        "hidden"?: boolean;
+        "hide": () => Promise<void>;
         "reset": () => Promise<void>;
+        "show": () => Promise<void>;
         "type": 'warning' | 'success' | 'error' | 'info';
     }
     interface IcnProfileActions {
@@ -236,6 +244,10 @@ export interface AppProfileEmailAddressItemCustomEvent<T> extends CustomEvent<T>
 export interface AppProfilePhoneNumberItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppProfilePhoneNumberItemElement;
+}
+export interface AppProfileSocialMediaItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppProfileSocialMediaItemElement;
 }
 export interface IcnProfileActionsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -379,6 +391,12 @@ declare global {
     var HTMLAppProfilePreferredLanguageElement: {
         prototype: HTMLAppProfilePreferredLanguageElement;
         new (): HTMLAppProfilePreferredLanguageElement;
+    };
+    interface HTMLAppProfileSocialMediaItemElement extends Components.AppProfileSocialMediaItem, HTMLStencilElement {
+    }
+    var HTMLAppProfileSocialMediaItemElement: {
+        prototype: HTMLAppProfileSocialMediaItemElement;
+        new (): HTMLAppProfileSocialMediaItemElement;
     };
     interface HTMLAppResponsiveImageElement extends Components.AppResponsiveImage, HTMLStencilElement {
     }
@@ -572,6 +590,7 @@ declare global {
         "app-profile-phone-number-item": HTMLAppProfilePhoneNumberItemElement;
         "app-profile-picture": HTMLAppProfilePictureElement;
         "app-profile-preferred-language": HTMLAppProfilePreferredLanguageElement;
+        "app-profile-social-media-item": HTMLAppProfileSocialMediaItemElement;
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
@@ -716,6 +735,12 @@ declare namespace LocalJSX {
         "languageItem"?: DataResponse<LanguageAttributes>;
         "personId"?: number;
     }
+    interface AppProfileSocialMediaItem {
+        "canEdit"?: boolean;
+        "companyId"?: number;
+        "onSocialMediaDeleted"?: (event: AppProfileSocialMediaItemCustomEvent<number>) => void;
+        "socialMediaItem"?: DataResponse<SocialMediaAttributes>;
+    }
     interface AppResponsiveImage {
         /**
           * The css class to pass down to the rendered image.
@@ -744,6 +769,7 @@ declare namespace LocalJSX {
     }
     interface IcnMessage {
         "dismissible"?: boolean;
+        "hidden"?: boolean;
         "type": 'warning' | 'success' | 'error' | 'info';
     }
     interface IcnProfileActions {
@@ -828,6 +854,7 @@ declare namespace LocalJSX {
         "app-profile-phone-number-item": AppProfilePhoneNumberItem;
         "app-profile-picture": AppProfilePicture;
         "app-profile-preferred-language": AppProfilePreferredLanguage;
+        "app-profile-social-media-item": AppProfileSocialMediaItem;
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
@@ -885,6 +912,7 @@ declare module "@stencil/core" {
             "app-profile-phone-number-item": LocalJSX.AppProfilePhoneNumberItem & JSXBase.HTMLAttributes<HTMLAppProfilePhoneNumberItemElement>;
             "app-profile-picture": LocalJSX.AppProfilePicture & JSXBase.HTMLAttributes<HTMLAppProfilePictureElement>;
             "app-profile-preferred-language": LocalJSX.AppProfilePreferredLanguage & JSXBase.HTMLAttributes<HTMLAppProfilePreferredLanguageElement>;
+            "app-profile-social-media-item": LocalJSX.AppProfileSocialMediaItem & JSXBase.HTMLAttributes<HTMLAppProfileSocialMediaItemElement>;
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;

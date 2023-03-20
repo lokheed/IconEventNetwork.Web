@@ -14,6 +14,7 @@ const { state } = createStore({
     suffixes: [],
     pronouns: [],
     languages: [],
+    socialMediaTypes: [],
 });
 
 export default state;
