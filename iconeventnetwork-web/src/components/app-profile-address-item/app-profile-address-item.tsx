@@ -72,7 +72,10 @@ export class AppProfileAddressItem {
     private cityErrorMessage: HTMLDivElement;
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;    
+        this.deleteConfirmationDialog.visible = false;
+        this.cityInput.classList.remove('invalid');
+        this.cityErrorMessage.innerHTML = '';
+        this.isEditing = false;    
         switch (this.appliesTo) {
             case 'person':
                 let personSaveData: PersonSaveData = {
@@ -125,9 +128,6 @@ export class AppProfileAddressItem {
             this.initializeEditForm();
         }
     }
-    @Listen('deleteClick') deleteClickHandler() { 
-        this.deleteConfirmationDialog.visible = true;
-    }
     @Listen('editClick') editClickHandler() {   
         this.initializeEditForm();
     }
@@ -140,6 +140,11 @@ export class AppProfileAddressItem {
         if (this.addressItem.id === 0) {
             this.addressDeleted.emit(this.addressItem.id);
         }
+    }
+
+    private handleDeleteClick(e: MouseEvent) {
+        e.preventDefault();
+        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -660,7 +665,14 @@ export class AppProfileAddressItem {
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
                                 <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                            </div>
+                            { this.addressItem.id > 0 &&
+                                <div class='delete-container'>
+                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
+                                        Delete this address
+                                    </button>
+                                </div>  
+                            }                                 
                         </form>
                     }
                 </div>

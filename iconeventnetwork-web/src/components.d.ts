@@ -751,7 +751,6 @@ declare namespace LocalJSX {
         "deleteText"?: string;
         "editDisabled"?: boolean;
         "editText"?: string;
-        "onDeleteClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
         "onEditClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
     }
     interface IcnRichTextEditor {

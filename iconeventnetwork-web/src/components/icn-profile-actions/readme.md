@@ -12,15 +12,14 @@
 | `deleteDisabled` | `delete-disabled` |             | `boolean` | `false`    |
 | `deleteText`     | `delete-text`     |             | `string`  | `'Delete'` |
 | `editDisabled`   | `edit-disabled`   |             | `boolean` | `false`    |
-| `editText`       | `edit-text`       |             | `string`  | `'Edit'`   |
+| `editText`       | `edit-text`       |             | `string`  | `''`       |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `deleteClick` |             | `CustomEvent<any>` |
-| `editClick`   |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `editClick` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
