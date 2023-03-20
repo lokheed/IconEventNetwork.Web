@@ -45,7 +45,10 @@ export class AppProfileEmailAddressItem {
     private emailAddressInput: HTMLInputElement;
     private emailAddressErrorMessage: HTMLDivElement;
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;    
+        this.deleteConfirmationDialog.visible = false; 
+        this.emailAddressInput.classList.remove('invalid');
+        this.emailAddressErrorMessage.innerHTML = '';
+        this.isEditing = false;   
         switch (this.appliesTo) {
             case 'person':
                 let personSaveData: PersonSaveData = {
@@ -98,9 +101,6 @@ export class AppProfileEmailAddressItem {
             this.initializeEditForm();
         }
     }
-    @Listen('deleteClick') deleteClickHandler() { 
-        this.deleteConfirmationDialog.visible = true;
-    }
     @Listen('editClick') editClickHandler() {   
         this.initializeEditForm();
     }
@@ -113,6 +113,11 @@ export class AppProfileEmailAddressItem {
         if (this.emailAddressItem.id === 0) {
             this.emailAddressDeleted.emit(this.emailAddressItem.id);
         }
+    }
+
+    private handleDeleteClick(e: MouseEvent) {
+        e.preventDefault();
+        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -397,7 +402,14 @@ export class AppProfileEmailAddressItem {
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
                                 <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                            </div>
+                            { this.emailAddressItem.id > 0 &&
+                                <div class='delete-container'>
+                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
+                                        Delete this email address
+                                    </button>
+                                </div> 
+                            }                       
                         </form>
                     }                
                 </div>

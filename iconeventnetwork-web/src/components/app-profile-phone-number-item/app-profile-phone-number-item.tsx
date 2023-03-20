@@ -53,7 +53,10 @@ export class AppProfilePhoneItem {
     @Event() private phoneNumberDeleted: EventEmitter<number>;
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;    
+        this.deleteConfirmationDialog.visible = false;
+        this.phoneNumberInput.classList.remove('invalid');
+        this.phoneNumberErrorMessage.innerHTML = '';
+        this.isEditing = false;    
         switch (this.appliesTo) {
             case 'person':
                 let personSaveData: PersonSaveData = {
@@ -106,9 +109,6 @@ export class AppProfilePhoneItem {
             this.initializeEditForm();
         }
     }
-    @Listen('deleteClick') deleteClickHandler() { 
-        this.deleteConfirmationDialog.visible = true;
-    }
     @Listen('editClick') editClickHandler() {   
         this.initializeEditForm();
     }
@@ -134,6 +134,12 @@ export class AppProfilePhoneItem {
             this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
         }
     }
+
+    private handleDeleteClick(e: MouseEvent) {
+        e.preventDefault();
+        this.deleteConfirmationDialog.visible = true;
+    }
+
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
@@ -464,27 +470,36 @@ export class AppProfilePhoneItem {
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="phone-number">Phone Number</label>
-                                <select id='phone-number' name='phone-number' class='phone-country' onInput={(event) => this.handlePhoneCountrySelect(event)}>
-                                    {this.phoneNumberCountries?.sort((a,b) => {
-                                        var rankA = a.attributes.A2;
-                                        var rankB = b.attributes.A2;
-                                        return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
-                                    }).map(country => (
-                                        <option
-                                            value={country.id}
-                                            selected={this.editPhoneNumberCountryId === country.id}
-                                        >
-                                            {country.attributes.A2}
-                                        </option>
-                                    ))}
-                                </select>
-                                <input type="phone" class='phone-number' required value={this.editPhoneNumber} ref={el => this.phoneNumberInput = el} onInput={(e) => this.handlePhoneNumberChange(e)} />
+                                <div>
+                                    <select id='phone-number' name='phone-number' class='phone-country' onInput={(event) => this.handlePhoneCountrySelect(event)}>
+                                        {this.phoneNumberCountries?.sort((a,b) => {
+                                            var rankA = a.attributes.A2;
+                                            var rankB = b.attributes.A2;
+                                            return (rankA < rankB) ? -1 : (rankA > rankB) ? 1 : 0;
+                                        }).map(country => (
+                                            <option
+                                                value={country.id}
+                                                selected={this.editPhoneNumberCountryId === country.id}
+                                            >
+                                                {country.attributes.A2}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <input type="phone" class='phone-number' required value={this.editPhoneNumber} ref={el => this.phoneNumberInput = el} onInput={(e) => this.handlePhoneNumberChange(e)} />
+                                </div>
                                 <div class='form-error-message' ref={el => this.phoneNumberErrorMessage = el}></div>
                             </div>
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
                                 <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                            </div>
+                            { this.phoneNumberItem.id > 0 &&
+                                <div class='delete-container'>
+                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
+                                        Delete this phone number
+                                    </button>
+                                </div>
+                            }                                
                         </form>
                     }
                 </div>

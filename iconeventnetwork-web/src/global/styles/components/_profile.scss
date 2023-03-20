@@ -65,16 +65,16 @@
         .profile-item {
             display: flex;
             flex-direction: row;
-            padding: 1em 2em;
+            padding: 1em;
             border-bottom: 2px solid var(--color-light-gray);
             .label {
-                flex: 1 0 calc(20% - 2em);
-                padding-right: 2em;
+                flex: 0 0 calc(22% - 1em);
+                padding-right: 1em;
                 font-weight: 700;
                 font-size: 1.5em;
             }
             .content {
-                flex: 1 0 80%;
+                flex: 1 1 auto;
                 display: flex; 
                 flex-direction: column;           
                 .content-row {
@@ -84,7 +84,7 @@
                     margin-bottom: 1em;
                     border-bottom: 2px solid var(--color-light-gray);
                     .content-value {
-                        flex: 1 0 80%;
+                        flex: 1 1 auto;
                         display: flex;
                         flex-direction: column;
                         font-size: 1.5em;
@@ -93,12 +93,12 @@
                             display: flex;
                             flex-direction: row;
                             .sub-content-label {
-                                flex: 1 0 calc(20% - 2em);
-                                padding-right: 2em;
+                                flex: 0 0 calc(22% - 1em);
+                                padding-right: 1em;
                                 font-weight: 700;
                             }
                             .sub-content-value {
-                                flex: 1 0 80%;
+                                flex: 1 1 auto;
                             }
                         }
                         .profile-image {
@@ -132,7 +132,6 @@
                         .add-another {
                             color: var(--color-blue-main);
                             font-weight: 600;
-                            padding-top: 1em;
                             cursor: pointer;
                         }
                         .add-another:hover {
@@ -163,11 +162,13 @@
                 .hydrated:last-child {
                     .content-row {
                         padding-bottom: 0;
+                        margin-bottom: 0;
                         border-bottom: none;
                     }
                 }
                 .content-row:last-child {
                     padding-bottom: 0;
+                    margin-bottom: 0;
                     border-bottom: none;
                 }
                 hr {
@@ -519,6 +520,68 @@
     color: white;
  }
 
+ .edit-form {
+    width: 100%;
+    padding: 1em;
+    background-color: var(--color-light-gray);
+    display: flex;
+    flex-direction: column;
+    .form-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 1em;
+        label {
+            font-weight: 700;
+        }
+        label .optional {
+            font-size: 0.6em;
+            font-weight: 300;
+        }
+        select {
+            min-width: 50%;
+        }
+        select.phone-country {
+            display: inline-block;
+            width: 10%;
+            min-width: 10%;
+        }
+        input, select {
+            margin-top: .25em;
+        }
+        input.invalid, input.invalid:focus {
+            border-color: var(--color-red-main);
+        }
+        input.phone-number {
+            display: inline-block;
+            width: 89%;
+        }
+        .form-error-message {
+            font-size: .75em;
+            margin-top: .25em;
+            color: var(--color-red-main);
+        }
+        .form-helper-text {
+            font-size: .75em;
+            margin-top: .25em;
+            font-style: italic;
+        }
+    }
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: flex-end;
+        align-content: flex-end;
+        button {
+            font-size: 1em;
+            font-weight: 600;
+            margin-left: 1em;
+        }
+    }
+}
+
 @media (max-width: 768px) {
     .profile-page {
         padding-top: 40px;
@@ -689,65 +752,6 @@
                     font-size: .6em;
                 }
             }
-        }
-    }
-}
-.edit-form {
-    width: 100%;
-    padding: 2em;
-    background-color: var(--color-light-gray);
-    .form-item {
-        font-size: 1.5em;
-        margin-bottom: 1em;
-        label {
-            display: block;
-        }
-        label .optional {
-            font-size: 0.6em;
-            font-weight: 300;
-        }
-        input {
-            width: 100%;
-        }
-        select {
-            min-width: 50%;
-        }
-        select.phone-country {
-            display: inline-block;
-            width: 10%;
-            min-width: 10%;
-        }
-        input, select {
-            margin-top: .25em;
-            font-size: 1.5em;
-        }
-        input.invalid, input.invalid:focus {
-            border-color: var(--color-red-main);
-        }
-        input.phone-number {
-            display: inline-block;
-            width: 89%;
-        }
-        .form-error-message {
-            font-size: .75em;
-            margin-top: .25em;
-            color: var(--color-red-main);
-        }
-        .form-helper-text {
-            font-size: .75em;
-            margin-top: .25em;
-            font-style: italic;
-        }
-    }
-    .button-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-        align-items: flex-end;
-        align-content: flex-end;
-        button {
-            margin-left: 1em;
         }
     }
 }

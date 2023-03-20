@@ -6,17 +6,11 @@ import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
     shadow: false,
 })
 export class IcnProfileActions {
-    @Prop() editText?: string = 'Edit';
+    @Prop() editText?: string = '';
     @Prop() deleteText?: string = 'Delete';
     @Prop() editDisabled?: boolean = false;
     @Prop() deleteDisabled?: boolean = false;
     @Event() private editClick: EventEmitter;
-    @Event() private deleteClick: EventEmitter;
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteClick.emit();
-    }
 
     private handleEditClick(e: MouseEvent) {
         e.preventDefault();
@@ -26,12 +20,9 @@ export class IcnProfileActions {
     render() {
         return (        
             <div class='content-actions'>
-                <button disabled={this.editDisabled} class='profile-action primary' onClick={e => this.handleEditClick(e)}>
-                    <i class="fa-solid fa-pen"></i>&nbsp;<span class='action-text'>{this.editText}</span>
+                <button disabled={this.editDisabled} class='profile-action primary' title='Edit' onClick={e => this.handleEditClick(e)}>
+                    <span class='action-text'>{this.editText}</span><i class="fa-solid fa-pen"></i>
                 </button>
-                <button disabled={this.deleteDisabled} class='profile-action secondary' onClick={e => this.handleDeleteClick(e)}>
-                    <i class="fa-solid fa-trash-can"></i>&nbsp;<span class='action-text'>{this.deleteText}</span>
-                </button> 
             </div>
         );
     }
