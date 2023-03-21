@@ -615,8 +615,8 @@ export class PageProfileCompany {
                                             {this.accountManagerName}
                                             {this.accountManagerEmail &&
                                                 <div>
-                                                    <a href={`mailto:${this.accountManagerEmail}`} class='email-link'>{this.accountManagerEmail}</a>
-                                                    <icn-copy textToCopy={this.accountManagerEmail} titleText='Copy Email Address' />
+                                                    {this.accountManagerEmail}
+                                                    <a class='mailto-link-icon' href={`mailto:${this.accountManagerEmail}`}><i class="fa-solid fa-envelope"></i></a>
                                                 </div>                                            
                                             }   
                                         </div>
