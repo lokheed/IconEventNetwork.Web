@@ -110,6 +110,7 @@ graph TD;
   page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
   page-profile-company --> icn-copy
+  page-profile-company --> app-profile-company-website
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
@@ -117,6 +118,8 @@ graph TD;
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
+  app-profile-company-website --> icn-profile-actions
+  app-profile-company-website --> icn-message
   app-profile-social-media-item --> icn-profile-actions
   app-profile-social-media-item --> icn-message
   app-profile-social-media-item --> app-confirmation

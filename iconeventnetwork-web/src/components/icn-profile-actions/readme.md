@@ -30,6 +30,7 @@
  - [app-profile-biography](../app-profile-biography)
  - [app-profile-company-description](../app-profile-company-description)
  - [app-profile-company-tagline](../app-profile-company-tagline)
+ - [app-profile-company-website](../app-profile-company-website)
  - [app-profile-email-address-item](../app-profile-email-address-item)
  - [app-profile-job-title](../app-profile-job-title)
  - [app-profile-languages-spoken](../app-profile-languages-spoken)
@@ -48,6 +49,7 @@ graph TD;
   app-profile-biography --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
   app-profile-company-tagline --> icn-profile-actions
+  app-profile-company-website --> icn-profile-actions
   app-profile-email-address-item --> icn-profile-actions
   app-profile-job-title --> icn-profile-actions
   app-profile-languages-spoken --> icn-profile-actions

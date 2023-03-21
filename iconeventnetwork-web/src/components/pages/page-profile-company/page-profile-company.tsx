@@ -625,6 +625,17 @@ export class PageProfileCompany {
                             </div>
                             <div class='profile-item'>
                                 <div class='label'>
+                                    Website
+                                </div>
+                                <div class='content'>
+                                    {this.company &&
+                                        <app-profile-company-website canEdit={this.security.canManageCompanyDetails} company={this.company} />
+                                        
+                                    }
+                                </div>
+                            </div>
+                            <div class='profile-item'>
+                                <div class='label'>
                                     Email
                                 </div>
                                 <div class='content'>
