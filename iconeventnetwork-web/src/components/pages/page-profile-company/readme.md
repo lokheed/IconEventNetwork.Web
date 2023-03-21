@@ -25,7 +25,6 @@
 - [icn-profile-actions](../../icn-profile-actions)
 - [app-profile-company-tagline](../../app-profile-company-tagline)
 - [app-profile-company-description](../../app-profile-company-description)
-- [icn-copy](../../icn-copy)
 - [app-profile-company-website](../../app-profile-company-website)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
@@ -40,7 +39,6 @@ graph TD;
   page-profile-company --> icn-profile-actions
   page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
-  page-profile-company --> icn-copy
   page-profile-company --> app-profile-company-website
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item

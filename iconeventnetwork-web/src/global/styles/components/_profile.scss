@@ -149,14 +149,19 @@
                                 width: 100%;
                             }
                         }
-                        a.external-link-icon {
+                        a.external-link-icon,
+                        a.mailto-link-icon {
                             margin-left: .5em;
                             text-decoration: none;
                         }
                         a.external-link-icon:hover,                        
                         a.external-link-icon:visited,
                         a.external-link-icon:active,
-                        a.external-link-icon:link {
+                        a.external-link-icon:link,
+                        a.mailto-link-icon:hover,                        
+                        a.mailto-link-icon:visited,
+                        a.mailto-link-icon:active,
+                        a.mailto-link-icon:link {
                             color: var(--color-blue-main);
                         }
                     }
