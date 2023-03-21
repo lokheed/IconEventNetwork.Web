@@ -37,9 +37,19 @@ export class AppResponsiveImage {
     if (this.expectedWidth != undefined)
     {
       let entry = sortedEntries.find(e => e[1].width >= this.expectedWidth);
+      if (entry) {
+        return (
+          <img
+            src={entry[1].url}
+            alt={this.image.data.attributes.alternativeText}
+            class={this.class}
+          />
+        );
+      }
+      // no entry larger than expected width, return raw image instead which will be largest
       return (
         <img
-          src={entry[1].url}
+          src={this.image.data.attributes.url}
           alt={this.image.data.attributes.alternativeText}
           class={this.class}
         />
