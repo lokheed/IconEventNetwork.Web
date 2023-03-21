@@ -51,12 +51,14 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [app-profile-company-website](../app-profile-company-website)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-social-media-item](../app-profile-social-media-item)
 
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-company-website --> icn-message
   app-profile-phone-number-item --> icn-message
   app-profile-social-media-item --> icn-message
   style icn-message fill:#f9f,stroke:#333,stroke-width:4px

@@ -149,6 +149,16 @@
                                 width: 100%;
                             }
                         }
+                        a.external-link-icon {
+                            margin-left: .5em;
+                            text-decoration: none;
+                        }
+                        a.external-link-icon:hover,                        
+                        a.external-link-icon:visited,
+                        a.external-link-icon:active,
+                        a.external-link-icon:link {
+                            color: var(--color-blue-main);
+                        }
                     }
                     img.logo-image.hydrated {
                         max-height: 150px;

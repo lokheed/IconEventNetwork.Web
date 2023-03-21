@@ -192,6 +192,19 @@
       ]
     },
     {
+      "name": "app-profile-company-website",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-email-address-item",
       "description": {
         "kind": "markdown",

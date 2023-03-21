@@ -169,7 +169,6 @@ export class AppProfileSocialMediaItem {
     private resetFormErrors() {
         this.nameInput.classList.remove('invalid');
         this.nameErrorMessage.hide();
-
     }
 
     private saveData() {
@@ -255,7 +254,10 @@ export class AppProfileSocialMediaItem {
                                     {this.displaySocialMediaTypeName}
                                 </div>
                                 <div class='sub-content-value'>
-                                    {this.displayName}
+                                    <div>
+                                        {this.displayName}
+                                        <a class='external-link-icon' target='_blank' href={this.socialMediaItem.attributes.URL}><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>                   

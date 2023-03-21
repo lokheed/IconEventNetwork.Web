@@ -221,6 +221,7 @@ export interface CompanySaveData{
         SocialMediaAccounts?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         Description?: string;
         Tagline?: string;
+        Website?: string;
     }
 }
 

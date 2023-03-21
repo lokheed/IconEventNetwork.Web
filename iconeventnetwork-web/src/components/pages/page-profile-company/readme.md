@@ -26,6 +26,7 @@
 - [app-profile-company-tagline](../../app-profile-company-tagline)
 - [app-profile-company-description](../../app-profile-company-description)
 - [icn-copy](../../icn-copy)
+- [app-profile-company-website](../../app-profile-company-website)
 - [app-profile-email-address-item](../../app-profile-email-address-item)
 - [app-profile-phone-number-item](../../app-profile-phone-number-item)
 - [app-profile-address-item](../../app-profile-address-item)
@@ -40,6 +41,7 @@ graph TD;
   page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
   page-profile-company --> icn-copy
+  page-profile-company --> app-profile-company-website
   page-profile-company --> app-profile-email-address-item
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
@@ -47,6 +49,8 @@ graph TD;
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
+  app-profile-company-website --> icn-profile-actions
+  app-profile-company-website --> icn-message
   app-profile-email-address-item --> icn-profile-actions
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
