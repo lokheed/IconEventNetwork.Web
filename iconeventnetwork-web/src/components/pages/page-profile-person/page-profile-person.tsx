@@ -275,7 +275,10 @@ export class PageProfilePerson {
                                 <div class='content'>
                                     <div class='content-row'>
                                         <div class='content-value'>
-                                            {this.loginEmail}
+                                            <div>
+                                                {this.loginEmail}
+                                                <a class='mailto-link-icon' href={`mailto:${this.loginEmail}`}><i class="fa-solid fa-envelope"></i></a>
+                                            </div>
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />                                                                      
                                     </div>
@@ -318,7 +321,10 @@ export class PageProfilePerson {
                                                     Login
                                                 </div>
                                                 <div class='sub-content-value'>
-                                                    {this.loginEmail}
+                                                    <div>
+                                                        {this.loginEmail}
+                                                        <a class='mailto-link-icon' href={`mailto:${this.loginEmail}`}><i class="fa-solid fa-envelope"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

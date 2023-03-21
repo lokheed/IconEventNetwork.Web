@@ -367,7 +367,10 @@ export class AppProfileEmailAddressItem {
                                     {this.displayEmailAddressTypeName}
                                 </div>
                                 <div class='sub-content-value'>
-                                    {this.displayEmailAddress}
+                                    <div>
+                                        {this.displayEmailAddress}
+                                        <a class='mailto-link-icon' href={`mailto:${this.displayEmailAddress}`}><i class="fa-solid fa-envelope"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>                   
