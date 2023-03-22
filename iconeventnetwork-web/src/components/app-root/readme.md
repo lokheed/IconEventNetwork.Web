@@ -29,6 +29,7 @@
 - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
 - [page-profile-person-at-company](../pages/page-profile-person-at-company)
 - [page-profile-company](../pages/page-profile-company)
+- [page-ux-test](../pages/page-ux-test)
 - [page-access-denied](../pages/page-access-denied)
 - [page-not-found](../pages/page-not-found)
 - [app-footer](../app-footer)
@@ -56,6 +57,7 @@ graph TD;
   app-root --> page-profile-person-at-companies
   app-root --> page-profile-person-at-company
   app-root --> page-profile-company
+  app-root --> page-ux-test
   app-root --> page-access-denied
   app-root --> page-not-found
   app-root --> app-footer
@@ -79,6 +81,7 @@ graph TD;
   page-profile-person --> app-profile-phone-number-item
   page-profile-person --> app-profile-address-item
   app-profile-picture --> icn-profile-actions
+  app-profile-picture --> icn-message
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   app-profile-name --> icn-profile-actions
