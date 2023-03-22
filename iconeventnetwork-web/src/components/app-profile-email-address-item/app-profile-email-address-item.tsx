@@ -43,11 +43,11 @@ export class AppProfileEmailAddressItem {
     @Event() private emailAddressDeleted: EventEmitter<number>;
     private editForm: HTMLFormElement;
     private emailAddressInput: HTMLInputElement;
-    private emailAddressErrorMessage: HTMLDivElement;
+    private emailAddressErrorMessage: HTMLIcnMessageElement;
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false; 
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.innerHTML = '';
+        this.emailAddressErrorMessage.hide();
         this.isEditing = false;   
         switch (this.appliesTo) {
             case 'person':
@@ -108,7 +108,7 @@ export class AppProfileEmailAddressItem {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.innerHTML = '';
+        this.emailAddressErrorMessage.hide();
         this.isEditing = false;
         if (this.emailAddressItem.id === 0) {
             this.emailAddressDeleted.emit(this.emailAddressItem.id);
@@ -123,7 +123,7 @@ export class AppProfileEmailAddressItem {
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.innerHTML = '';
+        this.emailAddressErrorMessage.hide();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
@@ -131,7 +131,7 @@ export class AppProfileEmailAddressItem {
         }
         if (!this.emailAddressInput.validity.valid) {
             this.emailAddressInput.classList.add('invalid');
-            this.emailAddressErrorMessage.innerHTML = 'Email Address must be a valid email address.';
+            this.emailAddressErrorMessage.show();
         }    
     }
     
@@ -273,7 +273,7 @@ export class AppProfileEmailAddressItem {
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
             })
             .catch(reason => {
-                this.emailAddressErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         }
@@ -326,7 +326,7 @@ export class AppProfileEmailAddressItem {
                 }
             })
             .catch(reason => {
-                this.emailAddressErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         } 
@@ -400,7 +400,9 @@ export class AppProfileEmailAddressItem {
                             <div class='form-item'>
                                 <label htmlFor="email-address">Email Address</label>
                                 <input id='email-address' name='email-address' required ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} />
-                                <div ref={el => this.emailAddressErrorMessage = el} class='form-error-message'></div>
+                                <icn-message type='error' hidden ref={el => this.emailAddressErrorMessage = el}>
+                                    Email Address must be a valid email address.
+                                </icn-message>
                             </div>
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
