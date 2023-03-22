@@ -15,7 +15,8 @@ export class AppProfileCompanyLogo {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private profileActions: HTMLIcnProfileActionsElement;
     private imageInput: HTMLInputElement;
-    private errorDiv: HTMLDivElement;
+    private sizeErrorMessage: HTMLIcnMessageElement;
+    private typeErrorMessage: HTMLIcnMessageElement;
     private maxImageSize: number = 5 * 1024 * 1024; // 5 MB
     private fileReader: FileReader;
     constructor(){
@@ -34,20 +35,7 @@ export class AppProfileCompanyLogo {
     @State() editImageUrl: string;
     @Listen('editClick') editClickHandler() {   
         this.isEditing = true;
-        if (this.displayImage?.data?.attributes?.formats) {
-            let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
-            let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
-            let entry = sortedEntries.find(e => e[1].width >= 150);
-            if (entry) {
-                this.editImageUrl = entry[1].url;
-                return;
-            }
-        }
-        if (this.displayImage?.data?.attributes?.url) {
-            this.editImageUrl = this.displayImage.data.attributes.url;
-            return;
-        }
-        this.editImageUrl = noImageDataUrl;
+        this.setEditImageToDisplayImage();
     }
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;         
@@ -84,26 +72,39 @@ export class AppProfileCompanyLogo {
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
+        this.resetFormErrors();
         if (this.imageInput.files.length === 0) {
-            this.errorDiv.innerHTML = 'ERROR: You must select a profile image.';
-            this.errorDiv.classList.remove('hidden');
+            this.isEditing = false;
             return;
         } 
         this.saveData();
     } 
 
     private handleImageSelect() {
-        this.errorDiv.classList.add('hidden');
+        this.resetFormErrors();
         if (this.imageInput.files.length === 0) return;
         const newImage = this.imageInput.files[0];
+        if (newImage.type !== 'image/jpeg' && newImage.type !== 'image/png') {
+            this.imageInput.value = '';
+            this.typeErrorMessage.show();
+            this.setEditImageToDisplayImage();
+            return;
+        }
         if (newImage.size > this.maxImageSize) {
-            this.errorDiv.innerHTML = 'ERROR: Image must be less than 5 MB.';
-            this.errorDiv.classList.remove('hidden');
+            this.imageInput.value = '';
+            this.sizeErrorMessage.show();
+            this.setEditImageToDisplayImage();
             return;
         }
         this.fileReader.readAsDataURL(newImage);
 
     } 
+
+    private resetFormErrors() {
+        this.sizeErrorMessage.hide();
+        this.typeErrorMessage.hide();
+
+    }
 
     private saveData() {
         this.uploadClient.upload(this.imageInput.files[0])
@@ -129,6 +130,23 @@ export class AppProfileCompanyLogo {
             this.companyClient.updateCompany(this.companyId, companySaveData);
         });
         this.isEditing = false;
+    }
+
+    private setEditImageToDisplayImage() {
+        if (this.displayImage?.data?.attributes?.formats) {
+            let entries = Object.entries(this.displayImage.data.attributes.formats) as [string, ImageFormatInfo][];
+            let sortedEntries = entries.sort((a, b) => a[1].width - b[1].width);
+            let entry = sortedEntries.find(e => e[1].width >= 150);
+            if (entry) {
+                this.editImageUrl = entry[1].url;
+                return;
+            }
+        }
+        if (this.displayImage?.data?.attributes?.url) {
+            this.editImageUrl = this.displayImage.data.attributes.url;
+            return;
+        }
+        this.editImageUrl = noImageDataUrl;
     }
         
     componentWillLoad() {
@@ -161,19 +179,20 @@ export class AppProfileCompanyLogo {
                                 <div class='company-logo'>
                                     <img src={this.editImageUrl} />
                                 </div>
-                                <div class='instructions'>
+                                <div class='file-upload'>
                                     <div class='file-type'>
                                         File types accepted: .jpg, .jpeg, and .png
                                     </div>
                                     <div class='file-size'>
                                         Max file size: 5 MB
                                     </div>
-                                    <div class='action'>
-                                        <input type='file' class='file-select' accept="image/jpeg, image/png" ref={el => this.imageInput = el} onChange={() => this.handleImageSelect()} />
-                                    </div>
-                                    <div class='error hidden' ref={el => this.errorDiv = el}>
-                                        ERROR: Image must be less than 5 MB.
-                                    </div>
+                                    <input type='file' class='file-select' accept="image/jpeg, image/png" ref={el => this.imageInput = el} onChange={() => this.handleImageSelect()} />
+                                    <icn-message type='error' hidden ref={el => this.sizeErrorMessage = el}>
+                                        Image must be less than 5 MB.
+                                    </icn-message>
+                                    <icn-message type='error' hidden ref={el => this.typeErrorMessage = el}>
+                                        File types must be .jpg, .jpeg, or .png.
+                                    </icn-message>                                
                                 </div>                            
                             </div>
                             <div class="button-container">

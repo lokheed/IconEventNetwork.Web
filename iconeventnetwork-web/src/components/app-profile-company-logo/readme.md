@@ -24,6 +24,7 @@
 
 - [app-responsive-image](../app-responsive-image)
 - [icn-profile-actions](../icn-profile-actions)
+- [icn-message](../icn-message)
 - [app-confirmation](../app-confirmation)
 
 ### Graph
@@ -31,6 +32,7 @@
 graph TD;
   app-profile-company-logo --> app-responsive-image
   app-profile-company-logo --> icn-profile-actions
+  app-profile-company-logo --> icn-message
   app-profile-company-logo --> app-confirmation
   page-profile-company --> app-profile-company-logo
   style app-profile-company-logo fill:#f9f,stroke:#333,stroke-width:4px

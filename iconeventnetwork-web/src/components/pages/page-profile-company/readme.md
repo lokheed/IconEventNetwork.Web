@@ -46,6 +46,7 @@ graph TD;
   page-profile-company --> app-profile-social-media-item
   app-profile-company-logo --> app-responsive-image
   app-profile-company-logo --> icn-profile-actions
+  app-profile-company-logo --> icn-message
   app-profile-company-logo --> app-confirmation
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
