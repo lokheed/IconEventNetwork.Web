@@ -32,7 +32,7 @@
       align-items: center;
     }
     a:hover {
-      color: var(--color-medium-gray)
+      color: var(--color-neutral-main)
     }
     div{
       display: flex;
@@ -49,7 +49,7 @@
         text-align: center;
       }
       .company-profiles, .companies{
-        background-color: var(--color-navigation-l2-background);
+        background-color: var(--color-neutral-light);
         overflow: hidden;
         transition: height 300ms ease-in-out;
         height: 0;
@@ -57,12 +57,12 @@
         flex-direction: column;
         a:hover,
         a.selected{
-          color: var(--color-blue-dark);
+          color: var(--color-primary-dark);
         }
       }      
     }
     .company-profiles, .companies{
-      background-color: var(--color-navigation-l2-background);
+      background-color: var(--color-neutral-light);
       overflow: hidden;
       transition: height 300ms ease-in-out;
       height: 0;
@@ -71,11 +71,11 @@
       align-items: flex-start;
       a:hover,
       a.selected{
-        color: var(--color-blue-dark);
+        color: var(--color-primary-dark);
       }
     }    
     .expanded{
-      background-color: var(--color-blue-main);
+      background-color: var(--color-primary-main);
       a{
         color: white;
         font-weight: 700;

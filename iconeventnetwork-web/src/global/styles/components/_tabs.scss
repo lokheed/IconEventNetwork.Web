@@ -17,7 +17,7 @@
 	}
 	>span.selected {
 		text-decoration: underline;
-		color: var(--color-purple);
+		color: var(--color-accent-1);
 	}
 }
 .tabContent {
@@ -39,7 +39,7 @@
 			flex: 0 0 30%;
 			font-size: 1.5em;
 			font-weight: 700;
-			color: var(--color-purple);
+			color: var(--color-accent-1);
 			margin: 1.5em 0 0 0;
 		}
 		>div.content {
@@ -56,7 +56,7 @@
 				&:before {
 					content: '+';
 					padding-right: 5px;
-					color: var(--color-purple);
+					color: var(--color-accent-1);
 					font-weight: 700;
 				}
 			}

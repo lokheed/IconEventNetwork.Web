@@ -19,9 +19,9 @@ nav {
 	top: 0;
 	width: 100%;
 	z-index: 100;
-	background-color: var(--color-white);
-	color: var(--color-black);
-	border-bottom: 2px solid var(--color-light-gray);
+	background-color: var(--color-background);
+	color: var(--color-foreground);
+	border-bottom: 2px solid var(--color-neutral-light);
 	.logo {
 		background-repeat: no-repeat;
 		background-size: contain;
@@ -32,40 +32,40 @@ nav {
 		a {
 			text-decoration: none;
 			&:hover {
-				color: var(--color-black);
+				color: var(--color-foreground);
 			}
 			&:visited {
-				color: var(--color-black);
+				color: var(--color-foreground);
 			}
 			&:active {
-				color: var(--color-black);
+				color: var(--color-foreground);
 			}
 		}
 	}
 }
 nav.brown {
-	background-color: var(--color-brown);
-	color: var(--color-white);
+	background-color: #79675c;
+	color: var(--color-background);
 	.logo {
 		background-image: url('/assets/icon/TIN-Logo-Horizontal-Reversed.png');
 		a {
 			&:hover {
-				color: var(--color-white);
+				color: var(--color-background);
 			}
 			&:visited {
-				color: var(--color-white);
+				color: var(--color-background);
 			}
 			&:active {
-				color: var(--color-white);
+				color: var(--color-background);
 			}
 		}
 	}
 	.menu {
 		ul.parent {
 			a {
-				color: var(--color-white);
+				color: var(--color-background);
 				&:hover {
-					color: var(--color-white);
+					color: var(--color-background);
 				}
 			}
 		}
@@ -83,10 +83,10 @@ nav.brown {
 			text-transform: uppercase;
 			font-size: 1em;
 			font-weight: 500;
-			color: var(--color-black);
+			color: var(--color-foreground);
 			&:hover {
 				font-weight: 700;
-				color: var(--color-black);
+				color: var(--color-foreground);
 			}
 		}
 		a.link-active {
@@ -106,7 +106,7 @@ nav.brown {
 			}
 		}
 		.dropdown {
-			background-color: var(--color-black);
+			background-color: var(--color-foreground);
 			padding: 1em 0;
 			position: absolute;
 			display: none;
@@ -140,10 +140,10 @@ nav.brown {
 			width: 8em;
 			text-align: left;
 			a {
-				color: var(--color-white);
+				color: var(--color-background);
 			}
 			&:hover {
-				background-color: var(--color-white);
+				background-color: var(--color-background);
 			}
 		}
 	}
@@ -151,10 +151,10 @@ nav.brown {
 		>li {
 			&:hover {
 				>a {
-					color: var(--color-black);
+					color: var(--color-foreground);
 					font-weight: 700;
 					&:hover {
-						color: var(--color-black);
+						color: var(--color-foreground);
 						font-weight: 700;
 					}
 				}
@@ -198,7 +198,6 @@ input#menu_checkbox_toggle {
 	.menu {
 		display: none;
 		position: absolute;
-		background-color: var(--color-brown);
 		right: 0;
 		left: 0;
 		margin: 0;
@@ -213,13 +212,12 @@ input#menu_checkbox_toggle {
 			flex-direction: column;
 			padding-inline-start: 0;
 			a {
-				color: var(--color-white);
+				color: var(--color-background);
 			}
 		}
 
 		ul.dropdown {
 			position: relative;
-			background-color: var(--color-brown);
 			display: flex;
 			flex-direction: column;
 			padding: 0;

@@ -29,7 +29,7 @@ h3 {
 	font-weight: 500;
 }
 p {
-	color: var(--color-black);
+	color: var(--color-foreground);
 	text-align: center;
 	font-weight: 300;
 	font-size: 1.3em;
@@ -42,35 +42,35 @@ hr {
 	width: 3.5em;
 	border: none;
 	height: 3px;
-	background-color: var(--color-black);
+	background-color: var(--color-foreground);
 	margin: 1.5em auto 0 auto;
 }
 hr.purple {
-	background-color: var(--color-purple);
+	background-color: var(--color-accent-1);
 }
 .purple {
-	color: var(--color-purple);
+	color: var(--color-accent-1);
 }
 hr.green {
-	background-color: var(--color-green);
+	background-color: var(--color-success-main);
 }
 .green {
-	color: var(--color-green);
+	color: var(--color-success-main);
 }
 hr.pink {
-	background-color: var(--color-pink);
+	background-color: var(--color-accent-2);
 }
 .pink {
-	color: var(--color-pink);
+	color: var(--color-accent-2);
 }
 hr.orange {
-	background-color: var(--color-orange);
+	background-color: var(--color-accent-3);
 }
 .orange {
-	color: var(--color-orange);
+	color: var(--color-accent-3);
 }
 hr.blue {
-	background-color: var(--color-blue);
+	background-color: var(--color-primary-main);
 }
 .main-content {
 	margin: auto;

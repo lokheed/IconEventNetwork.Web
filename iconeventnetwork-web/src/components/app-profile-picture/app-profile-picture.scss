@@ -33,14 +33,14 @@
             white-space: nowrap;
             font-size: 1.2em;
             font-weight: 500;
-            color: var(--color-blue-main);
+            color: var(--color-primary-main);
             text-decoration: underline;
             width: 300px;
             cursor: pointer;
         }
     }
     .error {
-        color: var(--color-red-main);
+        color: var(--color-danger-main);
         font-weight: 700;
     }
 }

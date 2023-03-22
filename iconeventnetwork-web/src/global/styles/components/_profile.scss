@@ -3,7 +3,7 @@
     padding-top: 62px;
     aside {
         flex: 1 0 15%;
-        border-right: 2px solid var(--color-light-gray);
+        border-right: 2px solid var(--color-neutral-light);
     }
 
     main {
@@ -48,10 +48,10 @@
         } 
         .tab.selected {
             font-weight: 700;
-            border-bottom: 5px solid var(--color-green-main);
+            border-bottom: 5px solid var(--color-success-main);
         }
         .tab:hover {
-            color: var(--color-medium-gray);
+            color: var(--color-neutral-main);
         }
     }
     .tab-grid.company {
@@ -66,7 +66,7 @@
             display: flex;
             flex-direction: row;
             padding: 1em;
-            border-bottom: 2px solid var(--color-light-gray);
+            border-bottom: 2px solid var(--color-neutral-light);
             .label {
                 flex: 0 0 calc(22% - 1em);
                 padding-right: 1em;
@@ -82,7 +82,7 @@
                     flex-direction: row;
                     padding-bottom: 1em;
                     margin-bottom: 1em;
-                    border-bottom: 2px solid var(--color-light-gray);
+                    border-bottom: 2px solid var(--color-neutral-light);
                     .content-value {
                         flex: 1 1 auto;
                         display: flex;
@@ -115,8 +115,8 @@
                             }
                         }
                         .profile-logo {
-                            background-color: var(--color-medium-gray);
-                            color: var(--color-white);
+                            background-color: var(--color-neutral-main);
+                            color: var(--color-background);
                             line-height: 3em;
                             text-align: center;
                             height: 3em;
@@ -130,13 +130,13 @@
                             padding-left: .2em;
                         }
                         .add-another {
-                            color: var(--color-blue-main);
+                            color: var(--color-primary-main);
                             font-weight: 600;
                             cursor: pointer;
                         }
                         .add-another:hover {
                             transition: 1000ms;
-                            color: var(--color-blue-light);
+                            color: var(--color-primary-light);
                         }
                         .textarea-content {
                             display: flex;
@@ -162,7 +162,7 @@
                         a.mailto-link-icon:visited,
                         a.mailto-link-icon:active,
                         a.mailto-link-icon:link {
-                            color: var(--color-blue-main);
+                            color: var(--color-primary-main);
                         }
                     }
                     img.logo-image.hydrated {
@@ -176,7 +176,7 @@
                     .edit-form {
                         width: 100%;
                         padding: 1em;
-                        background-color: var(--color-light-gray);
+                        background-color: var(--color-neutral-light);
                         display: flex;
                         flex-direction: column;
                         .form-item {
@@ -201,7 +201,7 @@
                                 padding: .25em;
                             }
                             input.invalid, input.invalid:focus {
-                                border-color: var(--color-red-main);
+                                border-color: var(--color-danger-main);
                             }
                             select.phone-country {
                                 display: inline-block;
@@ -240,11 +240,11 @@
                             }
                         }
                         .delete-container {
-                            border-top: 1px solid var(--black);
+                            border-top: 1px solid var(--color-foreground);
                             margin: 1em 0 0 0;
                             button {
                                 font-size: 1em;
-                                color: var(--color-red-main);
+                                color: var(--color-danger-main);
                                 border: none;
                                 background: none;
                                 text-decoration: underline;
@@ -268,7 +268,7 @@
                 }
                 hr {
                     height: 2px;
-                    background-color: var(--color-light-gray);
+                    background-color: var(--color-neutral-light);
                     width: 100%;
                     margin: 1em 0;
                 }
@@ -306,8 +306,8 @@
                     }
                 }
                 .logo {
-                    background-color: var(--color-medium-gray);
-                    color: var(--color-white);
+                    background-color: var(--color-neutral-main);
+                    color: var(--color-background);
                     line-height: 3em;
                     margin: auto;
                     height: 3em;
@@ -333,7 +333,7 @@
     
             hr {
                 height: 2px;
-                background-color: var(--color-light-gray);
+                background-color: var(--color-neutral-light);
                 width: 100%;
                 margin: 1em 0;
             }
@@ -350,7 +350,7 @@
             grid-template-rows: 1fr;
             grid-column-gap: 1em;           
             padding: 2em 4em;
-            border-bottom: 2px solid var(--color-light-gray);
+            border-bottom: 2px solid var(--color-neutral-light);
             .label {
                 font-size: 1.5em;
                 font-weight: 700;
@@ -362,14 +362,14 @@
         }
         .company-item.disabled {
             .label {
-                color: var(--color-medium-gray);
+                color: var(--color-neutral-main);
             }
             .status {
-                color: var(--color-medium-gray);
+                color: var(--color-neutral-main);
             }
             .contact {
                 .action-link {
-                    color: var(--color-medium-gray);
+                    color: var(--color-neutral-main);
                     cursor: default;
                 }
             }
@@ -399,10 +399,10 @@
                 align-items: center;
                 justify-content: center;
                 height: 225px;
-                background-color: var(--color-medium-gray);
+                background-color: var(--color-neutral-main);
                 i.fa-image {
                     font-size: 6em;
-                    color: var(--color-dark-gray);
+                    color: var(--color-neutral-dark);
                 }
             }
             .media-info,
@@ -412,7 +412,7 @@
             } 
             .media-info {
                 flex-direction: column;
-                border-bottom: 2px solid var(--color-light-gray);
+                border-bottom: 2px solid var(--color-neutral-light);
                 .filename {
                     font-weight: 500;
                 }
@@ -427,10 +427,10 @@
                     span {
                         font-size: 1.5em;
                         font-weight: 700;
-                        color: var(--color-black);
+                        color: var(--color-foreground);
                     }
                     span:hover {
-                        color: var(--color-blue);
+                        color: var(--color-primary-main);
                         text-decoration: underline;
                         cursor: pointer;
                     }
@@ -445,7 +445,7 @@
                         cursor: pointer;   
                     }
                     i:hover {
-                        color: var(--color-red-dark);
+                        color: var(--color-danger-dark);
                     }
                 }
 
@@ -480,20 +480,20 @@
 
     .action-link  {
         font-weight: 600;
-        color: var(--color-blue-main);
+        color: var(--color-primary-main);
         text-decoration: underline;
         cursor: pointer;
         a, a:active, a:link, a:visited {
-            color:  var(--color-blue-main);
+            color:  var(--color-primary-main);
         }
         a:hover {
             transition: 1000ms;
-            color: var(--color-blue-light);    
+            color: var(--color-primary-light);    
         }
     }
     .action-link:hover {
         transition: 1000ms;
-        color: var(--color-blue-light);
+        color: var(--color-primary-light);
     }
 
     .id-timestamp {
@@ -505,7 +505,7 @@
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 2em;
-        color: var(--color-medium-gray);         
+        color: var(--color-neutral-main);         
         .updated-message {
             font-style: italic;
             display: grid;
@@ -528,13 +528,13 @@
         .action-link-navigation {
             font-size: 1.2em;
             font-weight: 700;
-            color: var(--color-blue-main);
+            color: var(--color-primary-main);
             text-decoration: none;
             cursor: pointer;    
         }
         .action-link-navigation:hover {
             transition: 1000ms;
-            color: var(--color-blue-light);
+            color: var(--color-primary-light);
         }
         .company-header {
             display: grid;
@@ -611,7 +611,7 @@
     }
 }
 .profile-image.no-image{
-    background-color: var(--color-purple);
+    background-color: var(--color-accent-1);
     color: white;
 }
 

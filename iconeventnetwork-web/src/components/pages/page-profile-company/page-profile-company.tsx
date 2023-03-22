@@ -20,6 +20,7 @@ type teamMember = {
   tag: 'page-profile-company',
   styleUrl: 'page-profile-company.scss',
   shadow: false,
+  scoped: true,
 })
 export class PageProfileCompany {
     private readonly personClient: PersonClient;
@@ -777,11 +778,11 @@ export class PageProfileCompany {
                                         <div class='content-value'>
                                             <div>Yes</div>
                                             <div></div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Permanent</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Paved</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Restrooms Facilities</div>
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />
@@ -795,17 +796,17 @@ export class PageProfileCompany {
                                 <div class='content'>
                                     <div class='content-row'>
                                         <div class='content-value'>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Kosher kitchen</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Kid-friendly</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Golf Course</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Chapel</div>
-                                            <div><i class="fa-solid fa-check green"></i></div>
+                                            <div><i class="fa-solid fa-check success"></i></div>
                                             <div>Ocean views</div>
-                                            <div><i class="fa-solid fa-xmark red"></i></div>
+                                            <div><i class="fa-solid fa-xmark danger"></i></div>
                                             <div class='disabled'>Valet</div>
                                         </div>
                                         <icn-profile-actions deleteDisabled editDisabled />

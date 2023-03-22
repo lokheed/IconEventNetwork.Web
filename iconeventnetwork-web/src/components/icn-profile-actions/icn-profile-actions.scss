@@ -10,7 +10,7 @@
         border: none;
         background: none;
         padding: 0;
-        color: var(--color-blue-main);
+        color: var(--color-primary-main);
         .action-text {
             text-decoration: underline;
         }
@@ -20,7 +20,7 @@
         cursor: default;
         .action-text,
         i {
-            color: var(--color-medium-gray);
+            color: var(--color-neutral-main);
             text-decoration: none;
         }                      
     }

@@ -17,7 +17,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 300px; 
-        border-top: 5px solid var(--color-red-main);
+        border-top: 5px solid var(--color-danger-main);
         .message {
             padding: 1em;
         }
@@ -31,13 +31,13 @@
                 padding: 10px 30px;
             }
             button.primary-action {
-                border: solid var(--color-red-main) 1px;
-                background-color: var(--color-red-main);
+                border: solid var(--color-danger-main) 1px;
+                background-color: var(--color-danger-main);
             }
             button.primary-action:hover {
                 transition : 1000ms;
-                border: solid var(--color-red-light) 1px;
-                background-color: var(--color-red-light);
+                border: solid var(--color-danger-light) 1px;
+                background-color: var(--color-danger-light);
             }
             .clearfix {
                 clear: both;

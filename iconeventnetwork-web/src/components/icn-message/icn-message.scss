@@ -6,7 +6,7 @@
     font-weight: 500;
     position: relative;
     button {
-        color: var(--black);
+        color: var(--color-foreground);
         font-size: 1em;
         display: inline-block;
         border: none;
@@ -18,24 +18,24 @@
     }
   }
   .message.error {
-    border: 1px solid var(--message-error-foreground);
-    color: var(--message-error-foreground);
-    background-color: var(--message-error-background);
+    border: 1px solid var(--color-danger-main);
+    color: var(--color-danger-main);
+    background-color: var(--color-danger-light);
   }
   .message.info {
-    border: 1px solid var(--message-info-foreground);
-    color: var(--message-info-foreground);
-    background-color: var(--message-info-background);
+    border: 1px solid var(--color-info-main);
+    color: var(--color-info-main);
+    background-color: var(--color-info-light);
   }
   .message.success {
-    border: 1px solid var(--message-success-foreground);
-    color: var(--message-success-foreground);
-    background-color: var(--message-success-background);
+    border: 1px solid var(--color-success-main);
+    color: var(--color-success-main);
+    background-color: var(--color-success-light);
   }
   .message.warning {
-    border: 1px solid var(--message-warning-foreground);
-    color: var(--message-warning-foreground);
-    background-color: var(--message-warning-background);
+    border: 1px solid var(--color-warning-dark);
+    color: var(--color-warning-dark);
+    background-color: var(--color-warning-light);
   }
   .message.hidden {
     display: none;
