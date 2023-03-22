@@ -41,6 +41,7 @@ graph TD;
   page-profile-person-at-company --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-address-item
   app-profile-picture --> icn-profile-actions
+  app-profile-picture --> icn-message
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   app-profile-name --> icn-profile-actions

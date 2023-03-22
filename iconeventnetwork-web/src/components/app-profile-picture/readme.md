@@ -23,6 +23,7 @@
 ### Depends on
 
 - [icn-profile-actions](../icn-profile-actions)
+- [icn-message](../icn-message)
 - [app-confirmation](../app-confirmation)
 - [app-responsive-image](../app-responsive-image)
 
@@ -30,6 +31,7 @@
 ```mermaid
 graph TD;
   app-profile-picture --> icn-profile-actions
+  app-profile-picture --> icn-message
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   page-profile-person --> app-profile-picture

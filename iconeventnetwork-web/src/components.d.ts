@@ -229,6 +229,8 @@ export namespace Components {
     }
     interface PageTermsOfService {
     }
+    interface PageUxTest {
+    }
 }
 export interface AppConfirmationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -587,6 +589,12 @@ declare global {
         prototype: HTMLPageTermsOfServiceElement;
         new (): HTMLPageTermsOfServiceElement;
     };
+    interface HTMLPageUxTestElement extends Components.PageUxTest, HTMLStencilElement {
+    }
+    var HTMLPageUxTestElement: {
+        prototype: HTMLPageUxTestElement;
+        new (): HTMLPageUxTestElement;
+    };
     interface HTMLElementTagNameMap {
         "app-confirmation": HTMLAppConfirmationElement;
         "app-environment-nag": HTMLAppEnvironmentNagElement;
@@ -642,6 +650,7 @@ declare global {
         "page-profile-person-at-companies": HTMLPageProfilePersonAtCompaniesElement;
         "page-profile-person-at-company": HTMLPageProfilePersonAtCompanyElement;
         "page-terms-of-service": HTMLPageTermsOfServiceElement;
+        "page-ux-test": HTMLPageUxTestElement;
     }
 }
 declare namespace LocalJSX {
@@ -862,6 +871,8 @@ declare namespace LocalJSX {
     }
     interface PageTermsOfService {
     }
+    interface PageUxTest {
+    }
     interface IntrinsicElements {
         "app-confirmation": AppConfirmation;
         "app-environment-nag": AppEnvironmentNag;
@@ -917,6 +928,7 @@ declare namespace LocalJSX {
         "page-profile-person-at-companies": PageProfilePersonAtCompanies;
         "page-profile-person-at-company": PageProfilePersonAtCompany;
         "page-terms-of-service": PageTermsOfService;
+        "page-ux-test": PageUxTest;
     }
 }
 export { LocalJSX as JSX };
@@ -977,6 +989,7 @@ declare module "@stencil/core" {
             "page-profile-person-at-companies": LocalJSX.PageProfilePersonAtCompanies & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompaniesElement>;
             "page-profile-person-at-company": LocalJSX.PageProfilePersonAtCompany & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompanyElement>;
             "page-terms-of-service": LocalJSX.PageTermsOfService & JSXBase.HTMLAttributes<HTMLPageTermsOfServiceElement>;
+            "page-ux-test": LocalJSX.PageUxTest & JSXBase.HTMLAttributes<HTMLPageUxTestElement>;
         }
     }
 }
