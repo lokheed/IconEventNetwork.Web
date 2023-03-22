@@ -44,6 +44,7 @@ graph TD;
   app-profile-preferred-language --> icn-profile-actions
   app-profile-languages-spoken --> icn-profile-actions
   app-profile-email-address-item --> icn-profile-actions
+  app-profile-email-address-item --> icn-message
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> icn-profile-actions

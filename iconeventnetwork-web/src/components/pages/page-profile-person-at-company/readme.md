@@ -50,6 +50,7 @@ graph TD;
   app-profile-biography --> icn-profile-actions
   app-profile-biography --> icn-rich-text-editor
   app-profile-email-address-item --> icn-profile-actions
+  app-profile-email-address-item --> icn-message
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> icn-profile-actions

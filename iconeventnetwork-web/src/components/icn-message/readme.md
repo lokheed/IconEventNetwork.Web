@@ -53,6 +53,7 @@ Type: `Promise<void>`
 
  - [app-profile-company-logo](../app-profile-company-logo)
  - [app-profile-company-website](../app-profile-company-website)
+ - [app-profile-email-address-item](../app-profile-email-address-item)
  - [app-profile-name](../app-profile-name)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-picture](../app-profile-picture)
@@ -63,6 +64,7 @@ Type: `Promise<void>`
 graph TD;
   app-profile-company-logo --> icn-message
   app-profile-company-website --> icn-message
+  app-profile-email-address-item --> icn-message
   app-profile-name --> icn-message
   app-profile-phone-number-item --> icn-message
   app-profile-picture --> icn-message
