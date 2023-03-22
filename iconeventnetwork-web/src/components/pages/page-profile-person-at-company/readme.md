@@ -45,6 +45,7 @@ graph TD;
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   app-profile-name --> icn-profile-actions
+  app-profile-name --> icn-message
   app-profile-job-title --> icn-profile-actions
   app-profile-biography --> icn-profile-actions
   app-profile-biography --> icn-rich-text-editor
