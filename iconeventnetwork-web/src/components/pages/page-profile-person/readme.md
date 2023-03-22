@@ -40,6 +40,7 @@ graph TD;
   app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
   app-profile-name --> icn-profile-actions
+  app-profile-name --> icn-message
   app-profile-preferred-language --> icn-profile-actions
   app-profile-languages-spoken --> icn-profile-actions
   app-profile-email-address-item --> icn-profile-actions

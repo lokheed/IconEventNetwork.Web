@@ -55,31 +55,21 @@ export class AppProfileName {
     }
     private editForm: HTMLFormElement;
     private firstNameInput: HTMLInputElement;
-    private firstNameErrorMessage: HTMLDivElement;
+    private firstNameErrorMessage: HTMLIcnMessageElement;
     private lastNameInput: HTMLInputElement;
-    private lastNameErrorMessage: HTMLDivElement;
+    private lastNameErrorMessage: HTMLIcnMessageElement;
     private directoryNameInput: HTMLInputElement;
-    private directoryNameErrorMessage: HTMLDivElement;
+    private directoryNameErrorMessage: HTMLIcnMessageElement;
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
-        this.firstNameInput.classList.remove('invalid');
-        this.firstNameErrorMessage.innerHTML = '';
-        this.lastNameInput.classList.remove('invalid');
-        this.lastNameErrorMessage.innerHTML = '';
-        this.directoryNameInput.classList.remove('invalid');
-        this.directoryNameErrorMessage.innerHTML = '';
+        this.resetFormErrors();
         this.isEditing = false;
     }
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
-        this.firstNameInput.classList.remove('invalid');
-        this.firstNameErrorMessage.innerHTML = '';
-        this.lastNameInput.classList.remove('invalid');
-        this.lastNameErrorMessage.innerHTML = '';
-        this.directoryNameInput.classList.remove('invalid');
-        this.directoryNameErrorMessage.innerHTML = '';
+        this.resetFormErrors();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
@@ -87,15 +77,15 @@ export class AppProfileName {
         }
         if (!this.firstNameInput.validity.valid) {
             this.firstNameInput.classList.add('invalid');
-            this.firstNameErrorMessage.innerHTML = 'First (Given) Name is a required field.';
+            this.firstNameErrorMessage.show();
         } 
         if (!this.lastNameInput.validity.valid) {
             this.lastNameInput.classList.add('invalid');
-            this.lastNameErrorMessage.innerHTML = 'Last (Family) Name is a required field.';
+            this.lastNameErrorMessage.show();
         } 
         if (!this.directoryNameInput.validity.valid) {
             this.directoryNameInput.classList.add('invalid');
-            this.directoryNameErrorMessage.innerHTML = 'Directory Name is a required field.';
+            this.directoryNameErrorMessage.show();
         } 
     }
     
@@ -251,6 +241,15 @@ export class AppProfileName {
         .catch(reason => console.error(reason));  
     }
 
+    private resetFormErrors() {
+        this.firstNameErrorMessage.hide();
+        this.firstNameInput.classList.remove('invalid');
+        this.lastNameErrorMessage.hide();
+        this.lastNameInput.classList.remove('invalid');
+        this.directoryNameErrorMessage.hide();
+        this.directoryNameInput.classList.remove('invalid');
+    } 
+
     private saveData() {
         let personSaveData: PersonSaveData = {
             data: {
@@ -307,7 +306,7 @@ export class AppProfileName {
             this.displayPronounName = this.editPronounName;
         })
         .catch(reason => {
-            this.lastNameErrorMessage.innerHTML = reason.error.message;
+            console.log(reason.error.message);
         });
     }
         
@@ -366,8 +365,10 @@ export class AppProfileName {
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="first-name">First (Given) Name</label>
-                                <input id='first-name' name='first-name' type="text" required maxLength={50} ref={el => this.firstNameInput = el} value={this.editFirstName} onInput={(e) => this.handleFirstNameChange(e)} />
-                                <div ref={el => this.firstNameErrorMessage = el} class='form-error-message'></div>
+                                <input id='first-name' name='first-name' type="text" required maxLength={50} ref={el => this.firstNameInput = el} value={this.editFirstName} onInput={(e) => this.handleFirstNameChange(e)} />                               
+                                <icn-message type='error' hidden ref={el => this.firstNameErrorMessage = el}>
+                                    First (Given) Name is a required field.
+                                </icn-message>      
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="middle-name">Middle Name <span class='optional'>(Optional)</span></label>
@@ -376,13 +377,17 @@ export class AppProfileName {
                             <div class='form-item'>
                                 <label htmlFor="last-name">Last (Family) Name</label>
                                 <input id='last-name' name='last-name' type="text" required maxLength={50} ref={el => this.lastNameInput = el} value={this.editLastName} onInput={(e) => this.handleLastNameChange(e)} />
-                                <div ref={el => this.lastNameErrorMessage = el} class='form-error-message'></div>
+                                <icn-message type='error' hidden ref={el => this.lastNameErrorMessage = el}>
+                                    Last (Family) Name is a required field.
+                                </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="directory-name">Directory Name</label>
                                 <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
                                 <div class='form-helper-text'>This is how your name will be displayed in the Directory</div>
-                                <div ref={el => this.directoryNameErrorMessage = el} class='form-error-message'></div>
+                                <icn-message type='error' hidden ref={el => this.directoryNameErrorMessage = el}>
+                                    Directory Name is a required field.
+                                </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
