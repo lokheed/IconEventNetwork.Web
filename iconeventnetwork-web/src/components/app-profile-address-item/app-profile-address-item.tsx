@@ -623,7 +623,7 @@ export class AppProfileAddressItem {
                                 <label htmlFor="city">City</label>
                                 <input id='city' name='city' ref={el => this.cityInput = el} type="text" value={this.editCity} onInput={(e) => this.handleCityChange(e)} required />
                                 <icn-message type='error' hidden ref={el => this.cityErrorMessage = el}>
-                                    City is a required field.
+                                    City is required.
                                 </icn-message>
                             </div>
                             <div class='form-item'>
