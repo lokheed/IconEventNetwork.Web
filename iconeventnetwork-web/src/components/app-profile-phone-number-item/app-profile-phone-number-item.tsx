@@ -18,7 +18,7 @@ export class AppProfilePhoneItem {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private editForm: HTMLFormElement;
     private phoneNumberInput: HTMLInputElement;
-    private phoneNumberErrorMessage: HTMLDivElement;
+    private phoneNumberErrorMessage: HTMLIcnMessageElement;
     private personClient: PersonClient;
     private personAtCompanyClient: PersonAtCompanyClient;
     private companyClient: CompanyClient;
@@ -55,7 +55,7 @@ export class AppProfilePhoneItem {
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
         this.phoneNumberInput.classList.remove('invalid');
-        this.phoneNumberErrorMessage.innerHTML = '';
+        this.phoneNumberErrorMessage.hide();
         this.isEditing = false;    
         switch (this.appliesTo) {
             case 'person':
@@ -128,7 +128,7 @@ export class AppProfilePhoneItem {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.phoneNumberInput.classList.remove('invalid');
-        this.phoneNumberErrorMessage.innerHTML = '';
+        this.phoneNumberErrorMessage.hide();
         this.isEditing = false;
         if (this.phoneNumberItem.id === 0) {
             this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
@@ -144,7 +144,7 @@ export class AppProfilePhoneItem {
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.phoneNumberInput.classList.remove('invalid');
-        this.phoneNumberErrorMessage.innerHTML = '';
+        this.phoneNumberErrorMessage.hide();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
@@ -152,7 +152,7 @@ export class AppProfilePhoneItem {
         }
         if (!this.phoneNumberInput.validity.valid) {
             this.phoneNumberInput.classList.add('invalid');
-            this.phoneNumberErrorMessage.innerHTML = 'Phone Number must be a valid phone number.';
+            this.phoneNumberErrorMessage.show();
         }
     }
 
@@ -332,7 +332,7 @@ export class AppProfilePhoneItem {
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
             })
             .catch(reason => {
-                this.phoneNumberErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         }
@@ -390,7 +390,7 @@ export class AppProfilePhoneItem {
                 }
             })
             .catch(reason => {
-                this.phoneNumberErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         } 
@@ -487,7 +487,9 @@ export class AppProfilePhoneItem {
                                     </select>
                                     <input type="phone" class='phone-number' required value={this.editPhoneNumber} ref={el => this.phoneNumberInput = el} onInput={(e) => this.handlePhoneNumberChange(e)} />
                                 </div>
-                                <div class='form-error-message' ref={el => this.phoneNumberErrorMessage = el}></div>
+                                <icn-message type='error' hidden ref={el => this.phoneNumberErrorMessage = el}>
+                                    Phone Number is a required field.
+                                </icn-message>
                             </div>
                             <div class="button-container">
                                 <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
