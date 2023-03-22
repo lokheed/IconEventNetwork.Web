@@ -69,12 +69,12 @@ export class AppProfileAddressItem {
     @Event() private addressDeleted: EventEmitter<number>;
     private editForm: HTMLFormElement;
     private cityInput: HTMLInputElement;
-    private cityErrorMessage: HTMLDivElement;
+    private cityErrorMessage: HTMLIcnMessageElement;
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
         this.cityInput.classList.remove('invalid');
-        this.cityErrorMessage.innerHTML = '';
+        this.cityErrorMessage.hide();
         this.isEditing = false;    
         switch (this.appliesTo) {
             case 'person':
@@ -135,7 +135,7 @@ export class AppProfileAddressItem {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.cityInput.classList.remove('invalid');
-        this.cityErrorMessage.innerHTML = '';
+        this.cityErrorMessage.hide();
         this.isEditing = false;
         if (this.addressItem.id === 0) {
             this.addressDeleted.emit(this.addressItem.id);
@@ -150,14 +150,14 @@ export class AppProfileAddressItem {
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.cityInput.classList.remove('invalid');
-        this.cityErrorMessage.innerHTML = '';
+        this.cityErrorMessage.hide();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
             return;
         }
         this.cityInput.classList.add('invalid');
-        this.cityErrorMessage.innerHTML = 'City is a required field';
+        this.cityErrorMessage.show();
     }
     
     private handleCountrySelect(event) {
@@ -459,7 +459,7 @@ export class AppProfileAddressItem {
                 this.displayAddressTypeName = this.editAddressTypeName;
             })
             .catch(reason => {
-                this.cityErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         }
@@ -525,7 +525,7 @@ export class AppProfileAddressItem {
                 }
             })
             .catch(reason => {
-                this.cityErrorMessage.innerHTML = reason.error.message;
+                console.log(reason.error.message);
             });
             return;  
         }  
@@ -612,17 +612,19 @@ export class AppProfileAddressItem {
                                 </select>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="line1">Line 1</label>
+                                <label htmlFor="line1">Street Address <span class='optional'>(Optional)</span></label>
                                 <input id='line1' name='line1' type="text" value={this.editLine1} onInput={(e) => this.handleLine1Change(e)} />
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="line2">Line 2</label>
+                                <label htmlFor="line2">Suite or Unit Number <span class='optional'>(Optional)</span></label>
                                 <input id='line2' name='line2' type="text" value={this.editLine2} onInput={(e) => this.handleLine2Change(e)} />
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="city">City</label>
                                 <input id='city' name='city' ref={el => this.cityInput = el} type="text" value={this.editCity} onInput={(e) => this.handleCityChange(e)} required />
-                                <div ref={el => this.cityErrorMessage = el} class='form-error-message'></div>
+                                <icn-message type='error' hidden ref={el => this.cityErrorMessage = el}>
+                                    City is required.
+                                </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor='country'>Country</label>
@@ -642,7 +644,7 @@ export class AppProfileAddressItem {
                                 </select>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor='region'>State/Region</label>
+                                <label htmlFor='region'>State/Region <span class='optional'>(Optional)</span></label>
                                 <select id='region' name='region' onInput={(event) => this.handleCountrySubdivisionSelect(event)}>
                                     {this.countrySubdivisions?.sort((a,b) => {
                                         var rankA = a.attributes.Name;
@@ -659,7 +661,7 @@ export class AppProfileAddressItem {
                                 </select>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="postal-code">Postal Code</label>
+                                <label htmlFor="postal-code">Postal Code <span class='optional'>(Optional)</span></label>
                                 <input id='postal-code' name='postal-code' type="text" value={this.editPostalCode} onInput={(e) => this.handlePostalCodeChange(e)} />
                             </div>
                             <div class="button-container">
