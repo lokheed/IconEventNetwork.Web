@@ -69,7 +69,6 @@ export class AppProfileCompanyLogo {
         this.deleteConfirmationDialog.visible = true;
     }
 
-
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.resetFormErrors();
@@ -97,13 +96,11 @@ export class AppProfileCompanyLogo {
             return;
         }
         this.fileReader.readAsDataURL(newImage);
-
     } 
 
     private resetFormErrors() {
         this.sizeErrorMessage.hide();
         this.typeErrorMessage.hide();
-
     }
 
     private saveData() {
