@@ -222,6 +222,7 @@ export interface CompanySaveData{
         Description?: string;
         Tagline?: string;
         Website?: string;
+        LogoImage?: number;
     }
 }
 

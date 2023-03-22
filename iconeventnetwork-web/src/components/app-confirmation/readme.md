@@ -27,6 +27,7 @@
 ### Used by
 
  - [app-profile-address-item](../app-profile-address-item)
+ - [app-profile-company-logo](../app-profile-company-logo)
  - [app-profile-email-address-item](../app-profile-email-address-item)
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-picture](../app-profile-picture)
@@ -36,6 +37,7 @@
 ```mermaid
 graph TD;
   app-profile-address-item --> app-confirmation
+  app-profile-company-logo --> app-confirmation
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> app-confirmation
   app-profile-picture --> app-confirmation

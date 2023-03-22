@@ -179,6 +179,23 @@
       ]
     },
     {
+      "name": "app-profile-company-logo",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "can-edit",
+          "description": ""
+        },
+        {
+          "name": "company-id",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "app-profile-company-tagline",
       "description": {
         "kind": "markdown",
