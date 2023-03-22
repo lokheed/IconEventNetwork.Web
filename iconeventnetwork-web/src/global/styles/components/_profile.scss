@@ -123,6 +123,11 @@
                             width: 3em;
                             border-radius: 3em;
                         }
+                        .company-logo {
+                            img {
+                                max-height: 150px;
+                            }
+                        }
                         .pronouns {
                             font-size: 0.8em;
                             line-height: 1em;
@@ -224,6 +229,11 @@
                             }
                             .message.hidden {
                                 display: none;
+                            }
+                            .company-logo {
+                                img {
+                                    max-height: 150px;
+                                }
                             }
                         }
                         .button-container {

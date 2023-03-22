@@ -120,7 +120,7 @@ export class PageProfileCompany {
                    populate: ['email_address_type'],
                 },
                 LogoImage: {
-                    fields: ['formats'],
+                    fields: ['formats','url'],
                 },
                 Media: {
                     fields: ['formats'],
@@ -546,16 +546,9 @@ export class PageProfileCompany {
                                     Logo
                                 </div>                            
                                 <div class='content'>
-                                    <div class='content-row'>
-                                        <div class='content-value'>
-                                            { 
-                                                this.company?.data?.attributes?.LogoImage ? 
-                                                    <app-responsive-image image={this.company.data.attributes.LogoImage} class='logo-image' expectedWidth={75} /> : 
-                                                    <div class='profile-logo'><i class="fa-regular fa-image"></i></div> 
-                                            }                                           
-                                        </div>
-                                        <icn-profile-actions deleteDisabled editDisabled />                                 
-                                    </div>
+                                    { this.company?.data?.attributes?.LogoImage &&
+                                        <app-profile-company-logo canEdit={this.security.canManageCompanyDetails} logo={this.company.data.attributes.LogoImage} companyId={this.company.data.id} /> 
+                                    } 
                                 </div>
                             </div>
                             <div class='profile-item'>

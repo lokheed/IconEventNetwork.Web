@@ -21,8 +21,8 @@
 
  - [app-event-planner-item](../app-event-planner-item)
  - [app-nav-user-info](../app-nav-user-info)
+ - [app-profile-company-logo](../app-profile-company-logo)
  - [app-profile-picture](../app-profile-picture)
- - [page-profile-company](../pages/page-profile-company)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
 
 ### Graph
@@ -30,8 +30,8 @@
 graph TD;
   app-event-planner-item --> app-responsive-image
   app-nav-user-info --> app-responsive-image
+  app-profile-company-logo --> app-responsive-image
   app-profile-picture --> app-responsive-image
-  page-profile-company --> app-responsive-image
   page-profile-person-at-companies --> app-responsive-image
   style app-responsive-image fill:#f9f,stroke:#333,stroke-width:4px
 ```

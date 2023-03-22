@@ -21,7 +21,7 @@
 ### Depends on
 
 - [app-profile-left-nav](../../app-profile-left-nav)
-- [app-responsive-image](../../app-responsive-image)
+- [app-profile-company-logo](../../app-profile-company-logo)
 - [icn-profile-actions](../../icn-profile-actions)
 - [app-profile-company-tagline](../../app-profile-company-tagline)
 - [app-profile-company-description](../../app-profile-company-description)
@@ -35,7 +35,7 @@
 ```mermaid
 graph TD;
   page-profile-company --> app-profile-left-nav
-  page-profile-company --> app-responsive-image
+  page-profile-company --> app-profile-company-logo
   page-profile-company --> icn-profile-actions
   page-profile-company --> app-profile-company-tagline
   page-profile-company --> app-profile-company-description
@@ -44,6 +44,9 @@ graph TD;
   page-profile-company --> app-profile-phone-number-item
   page-profile-company --> app-profile-address-item
   page-profile-company --> app-profile-social-media-item
+  app-profile-company-logo --> app-responsive-image
+  app-profile-company-logo --> icn-profile-actions
+  app-profile-company-logo --> app-confirmation
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
