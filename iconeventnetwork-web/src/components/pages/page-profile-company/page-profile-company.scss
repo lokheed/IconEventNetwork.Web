@@ -23,11 +23,11 @@
             }
             a.edit-person,
             a.edit-person:visited {
-                color: var(--color-black);
+                color: var(--color-foreground);
             }
             a.edit-person:hover {
                 transition: 1000ms;
-                color: var(--color-blue-light);  
+                color: var(--color-primary-light);  
             }
         }
     }
@@ -35,25 +35,33 @@
         font-size: 1em;
     }
     .revo-button.red {
-        border: solid var(--color-button-background-primary) 1px;
-        background-color: var(--color-button-background-primary);
-        color: var(--color-button-text-primary);
+        border: solid var(--color-primary-main) 1px;
+        background-color: var(--color-primary-main);
+        color: var(--color-foreground);
         border-radius: 50px;
     }
     .revo-button.red:hover {
         transition: 1000ms;
-        border: solid var(--color-button-hover-primary) 1px;
-        background-color: var(--color-button-hover-primary);
+        border: solid var(--color-primary-light) 1px;
+        background-color: var(--color-primary-light);
     }
     .revo-button.light {
-        border: solid var(--color-button-border-secondary) 1px;
-        background-color: var(--color-button-background-secondary);
-        color: var(--color-button-text-secondary);
+        border: solid var(--color-foreground) 1px;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
         border-radius: 50px;        
     }
     .revo-button.light:hover {
         transition: 1000ms;
-        border: solid var(--color-button-hover-secondary) 1px;
-        background-color: var(--color-button-hover-secondary);
+        border: solid var(--color-neutral-light) 1px;
+        background-color: var(--color-neutral-light);
     }
+}
+
+.success{
+    color: var(--color-success-main);
+}
+
+.danger{
+    color: var(--color-danger-main);
 }

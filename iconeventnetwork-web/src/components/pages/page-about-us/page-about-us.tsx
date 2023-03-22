@@ -7,6 +7,7 @@ import { GetLeadershipTeamMembersResponse, LeadershipTeamMemberClient } from '..
   tag: 'page-about-us',
   styleUrl: 'page-about-us.scss',
   shadow: false,
+  scoped: true,
 })
 export class PageAboutUs {
   private readonly leadershipTeamMemberClient: LeadershipTeamMemberClient;
@@ -44,9 +45,9 @@ export class PageAboutUs {
           <div class='image4'><div class='photo-credit'>Photo courtesy of Marcy Blum Events</div></div>
         </div>   
         <a id='our-leadership'></a>         
-        <div class='accent-block'>       
+        <div class='accent-block our-leadership-container'>
           <h2>Our Leadership</h2>
-          <hr class='blue'/>
+          <hr/>
           <p>
             Our executive team brings decades of expertise and experience to the
             Icon Network, providing the strategic vision and plan for the network's
@@ -57,21 +58,21 @@ export class PageAboutUs {
           {this.leadershipTeamMembers && this.leadershipTeamMembers.map((member, index) =>
             <app-leadership-team-item 
               member={member}
-              color={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
+              readMoreColor={index == 0 ? 'blue' : index == 1 ? 'purple' : index == 2 ? 'green' : 'pink'}
             />
           )}
         </div>
         <a id='testimonials'></a>           
-        <div class='accent-block'>    
+        <div class='accent-block testimonials-container'>    
           <h2>Testimonials</h2>
-          <hr class='orange'/>
+          <hr/>
           <app-testimonial-carousel></app-testimonial-carousel>
         </div>     
         <a id='contact-us'></a>        
         <div class='right-image'>
           <div class='text-container contact-us'>
             <h2>Contact Us</h2>
-            <hr class='green'/>
+            <hr/>
             <p>
               To reach the Icon Network, call or email us.
             </p>

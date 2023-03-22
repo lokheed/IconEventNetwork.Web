@@ -83,3 +83,41 @@
 		}	
 	}
 }
+
+.our-mission-container{
+	hr{
+		background-color: var(--color-accent-1);
+	}
+}
+
+.left-image{
+	.text-container{
+		hr{
+			background-color: var(--color-success-main);
+		}
+
+		.list-item-container{
+			&:nth-child(1){
+				.counter-container{
+					color: var(--color-accent-2);
+				}
+			}
+			&:nth-child(2){
+				.counter-container{
+					color: var(--color-accent-3);
+				}
+			}
+			&:nth-child(3){
+				.counter-container{
+					color: var(--color-primary-main);
+				}
+			}
+		}
+	}
+}
+
+.are-you-an-icon-container{
+	hr{
+		background-color: var(--color-primary-main);
+	}
+}

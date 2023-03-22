@@ -77,10 +77,10 @@ export class PageHome {
           </p>
           <div class='photo-credit'>Photo courtesy of Marcy Blum Events</div>       
         </div>
-        <div>
+        <div class="our-mission-container">
           <a id='our-mission'></a>        
           <h2>Our Mission</h2>
-          <hr class='purple'/>
+          <hr/>
           <p>
             To empower luxury event professionals to operate at their highest potential by creating
             a platform to collaborate and create, share best practices, and drive fullfillment
@@ -100,17 +100,17 @@ export class PageHome {
           </div>
           <div class='text-container'>
             <h2>How it Works</h2>
-            <hr class='green'/>
+            <hr/>
             <div class='list'>
               <div class='list-item-container'>
-                <div class='counter-container pink'></div>                  
+                <div class='counter-container'></div>                  
                 <p>
                   The Icon Network is a by-invitation-only organization designed to develop
                   connections between event planners and the providers they partner with to
                   deliver iconic events.
                 </p>
               </div>
-              <div class='list-item-container orange'>
+              <div class='list-item-container'>
                 <div class='counter-container'></div>   
                 <p>
                   Providers are vetted and selected based on their experience and performance, 
@@ -118,7 +118,7 @@ export class PageHome {
                 </p>              
               </div>           
               <div class='list-item-container'>
-                <div class='counter-container blue'></div>    
+                <div class='counter-container'></div>    
                 <p>
                   Thereafter, all Icon Network members are monitored and held accountable for
                   quality, reliability, and consistency.
@@ -131,10 +131,10 @@ export class PageHome {
           <div class='image1'><div class='photo-credit'>Photo courtesy of Matthew Robbins Design</div></div>
         </div>      
         <a id='are-you-an-icon'></a>        
-        <div class='right-image'>
+        <div class='right-image are-you-an-icon-container'>
           <div class='text-container'>
             <h2>Are You an Icon?</h2>
-            <hr class='blue'/>
+            <hr/>
             <h3>The Selection Process</h3>
             <p>
               The Icon Network consists of world-renowned event planners and providers who

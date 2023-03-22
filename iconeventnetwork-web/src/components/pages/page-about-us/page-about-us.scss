@@ -9,19 +9,37 @@
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 1.25em;
-		color: var(--color-black);
+		color: var(--color-foreground);
 		&:hover {
-			color: var(--color-black);
+			color: var(--color-foreground);
 		}
 		&:visited {
-			color: var(--color-black);
+			color: var(--color-foreground);
 		}
 		&:active {
-			color: var(--color-black);
+			color: var(--color-foreground);
 		}
 	}
 	.phone {
 		font-weight: 500;
 		font-size: 1.25em;
+	}
+}
+
+.our-leadership-container{
+	hr{
+		background-color: var(--color-primary-main);
+	}
+}
+
+.testimonials-container{
+	hr{
+		background-color: var(--color-accent-3);
+	}
+}
+
+.contact-us{
+	hr{
+		background-color: var(--color-success-main);
 	}
 }

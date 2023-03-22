@@ -3,8 +3,8 @@ footer {
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 3rem;
-	background-color: var(--color-black);
-	color: var(--color-white);
+	background-color: var(--color-foreground);
+	color: var(--color-background);
 	>div {
 		width: 25%;
 	}
@@ -39,18 +39,18 @@ footer {
 			font-weight: 700;
 			a {
 				text-decoration: none;
-				color: var(--color-white);
+				color: var(--color-background);
 				&:visited {
 					text-decoration: none;
-					color: var(--color-white);
+					color: var(--color-background);
 				}
 				&:hover {
 					text-decoration: none;
-					color: var(--color-white);
+					color: var(--color-background);
 				}
 				&:active {
 					text-decoration: none;
-					color: var(--color-white);
+					color: var(--color-background);
 				}
 			}
 		}
@@ -61,21 +61,21 @@ footer {
 		line-height: 2em;
 		a {
 			text-decoration: none;
-			color: var(--color-white);
+			color: var(--color-background);
 			text-transform: none;
 			&:visited {
 				text-decoration: none;
-				color: var(--color-white);
+				color: var(--color-background);
 				text-transform: none;
 			}
 			&:hover {
 				text-decoration: none;
-				color: var(--color-white);
+				color: var(--color-background);
 				text-transform: none;
 			}
 			&:active {
 				text-decoration: none;
-				color: var(--color-white);
+				color: var(--color-background);
 				text-transform: none;
 			}
 		}
@@ -94,24 +94,24 @@ footer {
 	a {
 		text-decoration: none;
 		text-transform: uppercase;
-		color: var(--color-white);
+		color: var(--color-background);
 		cursor: pointer;
 		&:visited {
 			text-decoration: none;
 			text-transform: uppercase;
-			color: var(--color-white);
+			color: var(--color-background);
 			cursor: pointer;
 		}
 		&:hover {
 			text-decoration: none;
 			text-transform: uppercase;
-			color: var(--color-white);
+			color: var(--color-background);
 			cursor: pointer;
 		}
 		&:active {
 			text-decoration: none;
 			text-transform: uppercase;
-			color: var(--color-white);
+			color: var(--color-background);
 			cursor: pointer;
 		}
 	}

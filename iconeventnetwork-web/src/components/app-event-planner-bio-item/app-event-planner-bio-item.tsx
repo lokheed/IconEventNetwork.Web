@@ -5,6 +5,7 @@ import { GetFoundingPlannersResponse } from '../../services/clients/founding-pla
     tag: 'app-event-planner-bio-item',
     styleUrl: 'app-event-planner-bio-item.scss',
     shadow: false,
+    scoped: true,
 })
 
 export class EventPlannerBioItem { 
@@ -23,7 +24,7 @@ export class EventPlannerBioItem {
                 <div class='closer' onClick={() => this.thisEventPlannerItemSelectedHandler()}>&#x2715; CLOSE</div>
                 <h2>{this.planner.attributes.FirstName} {this.planner.attributes.LastName}</h2>
                 <h3>{this.planner.attributes.CompanyName}</h3>
-                <hr class='blue'/>
+                <hr />
                 <div class='bio' innerHTML={this.planner.attributes.Bio}></div>
             </div>
         );

@@ -30,7 +30,7 @@
     min-width: 10em;
     max-width: 15em;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    border: 1px solid var(--color-light-gray);
+    border: 1px solid var(--color-neutral-light);
     padding: 0.5em;
     margin-top: 0.5em;
     color: black;
@@ -66,11 +66,11 @@
         text-decoration: none;
       }
       a:link, a:visited, a:active {
-        color: var(--color-blue-main);
+        color: var(--color-primary-main);
       }
       a:hover {
         transition: 1000ms;
-        color: var(--color-blue-light);
+        color: var(--color-primary-light);
       }
     }
     .controls.logout {
