@@ -145,6 +145,7 @@ export class AppProfileSocialMediaItem {
           this.socialMediaTypes = state.socialMediaTypes;
           if (this.socialMediaItem.id === 0) {
               this.initializeDefaultSocialMediaType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -164,6 +165,7 @@ export class AppProfileSocialMediaItem {
             state.socialMediaTypes = response.data;
             if (this.socialMediaItem.id === 0) {
                 this.initializeDefaultSocialMediaType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -241,9 +243,6 @@ export class AppProfileSocialMediaItem {
         this.displaySocialMediaTypeId = this.socialMediaItem.attributes.social_media_type.data.id;
         this.displaySocialMediaTypeName = this.socialMediaItem.attributes.social_media_type.data.attributes.Name;
         this.getSocialMediaTypes();
-        if (this.socialMediaItem.id === 0) {
-            this.initializeEditForm();
-        }
     } 
 
     render() {
