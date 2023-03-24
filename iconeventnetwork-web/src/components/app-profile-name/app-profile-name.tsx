@@ -368,7 +368,7 @@ export class AppProfileName {
                                 <label htmlFor="first-name">First (Given) Name</label>
                                 <input id='first-name' name='first-name' type="text" required maxLength={50} ref={el => this.firstNameInput = el} value={this.editFirstName} onInput={(e) => this.handleFirstNameChange(e)} />                               
                                 <icn-message type='error' hidden ref={el => this.firstNameErrorMessage = el}>
-                                    First (Given) Name is a required field.
+                                    First (Given) Name is required.
                                 </icn-message>      
                             </div>
                             <div class='form-item'>
@@ -379,21 +379,21 @@ export class AppProfileName {
                                 <label htmlFor="last-name">Last (Family) Name</label>
                                 <input id='last-name' name='last-name' type="text" required maxLength={50} ref={el => this.lastNameInput = el} value={this.editLastName} onInput={(e) => this.handleLastNameChange(e)} />
                                 <icn-message type='error' hidden ref={el => this.lastNameErrorMessage = el}>
-                                    Last (Family) Name is a required field.
+                                    Last (Family) Name is required.
                                 </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="directory-name">Directory Name</label>
                                 <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
-                                <div class='form-helper-text'>This is how your name will be displayed in the Directory</div>
+                                <div class='form-helper-text'>How your name is displayed in the Directory</div>
                                 <icn-message type='error' hidden ref={el => this.directoryNameErrorMessage = el}>
-                                    Directory Name is a required field.
+                                    Directory Name is required.
                                 </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
                                 <input id='preferred-name' name='preferred-name' type="text" maxLength={50} value={this.editPreferredName} onInput={(e) => this.handlePreferredNameChange(e)} />
-                                <div class='form-helper-text'>This is how your name will be displayed on a conference badge</div>
+                                <div class='form-helper-text'>What you like to be called</div>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor='suffix'>Suffix <span class='optional'>(Optional)</span></label>

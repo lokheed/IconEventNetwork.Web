@@ -71,7 +71,6 @@ export class AppProfileJobTitle {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <label htmlFor="job-title">Job Title</label>
                                 <input id='job-title' name='job-title' type="text" maxLength={50} value={this.editJobTitle} onInput={(e) => this.handleJobTitleChange(e)} />
                             </div>
                             <div class="button-container">

@@ -71,7 +71,6 @@ export class AppProfileCompanyTagline {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <label htmlFor="job-title">Job Title</label>
                                 <input id='job-title' name='job-title' type="text" maxLength={50} value={this.editTagline} onInput={(e) => this.handleTaglineChange(e)} />
                             </div>
                             <div class="button-container">

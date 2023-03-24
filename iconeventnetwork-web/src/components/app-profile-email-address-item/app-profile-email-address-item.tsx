@@ -41,10 +41,12 @@ export class AppProfileEmailAddressItem {
     @State() displayEmailAddressTypeName: string = '';
     @State() editEmailAddressTypeName: string = '';
     @State() emailAddressTypes: DataResponse<EmailAddressTypeAttributes>[];
+    @State() serverValidationMessage: string = '';
     @Event() private emailAddressDeleted: EventEmitter<number>;
     private editForm: HTMLFormElement;
     private emailAddressInput: HTMLInputElement;
     private emailAddressErrorMessage: HTMLIcnMessageElement;
+    private emailAddressServerErrorMessage: HTMLIcnMessageElement;
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false; 
         this.emailAddressInput.classList.remove('invalid');
@@ -125,6 +127,7 @@ export class AppProfileEmailAddressItem {
         e.preventDefault();
         this.emailAddressInput.classList.remove('invalid');
         this.emailAddressErrorMessage.hide();
+        this.emailAddressServerErrorMessage.hide();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
@@ -274,7 +277,9 @@ export class AppProfileEmailAddressItem {
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
             })
             .catch(reason => {
-                console.log(reason.error.message);
+                this.emailAddressInput.classList.add('invalid');
+                this.serverValidationMessage = reason.error.message;
+                this.emailAddressServerErrorMessage.show();
             });
             return;  
         }
@@ -327,7 +332,9 @@ export class AppProfileEmailAddressItem {
                 }
             })
             .catch(reason => {
-                console.log(reason.error.message);
+                this.emailAddressInput.classList.add('invalid');
+                this.serverValidationMessage = reason.error.message;
+                this.emailAddressServerErrorMessage.show();
             });
             return;  
         } 
@@ -402,7 +409,10 @@ export class AppProfileEmailAddressItem {
                                 <label htmlFor="email-address">Email Address</label>
                                 <input id='email-address' name='email-address' required ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} />
                                 <icn-message type='error' hidden ref={el => this.emailAddressErrorMessage = el}>
-                                    Email Address must be a valid email address.
+                                    Email Address is required.
+                                </icn-message>
+                                <icn-message type='error' hidden ref={el => this.emailAddressServerErrorMessage = el}>
+                                    {this.serverValidationMessage}
                                 </icn-message>
                             </div>
                             <div class="button-container">

@@ -22,6 +22,7 @@ export class AppProfileCompanyWebsite {
     private websiteErrorMessage: HTMLIcnMessageElement; 
     @Listen('editClick') editClickHandler() { 
         this.editWebsite = this.displayWebsite;
+        if (this.editWebsite === '') this.editWebsite = 'http://';
         this.isEditing = true;
     }
     private handleCancelClick(e: MouseEvent) {
@@ -32,7 +33,10 @@ export class AppProfileCompanyWebsite {
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.resetFormErrors();
-        const isValid = this.isValidUrl(this.editWebsite.trim());
+        let isValid = true;
+        if (this.editWebsite.trim().length > 0) {
+            isValid = this.isValidUrl(this.editWebsite.trim());
+        }
         if (isValid) {
             this.saveData();
             return;
@@ -87,9 +91,9 @@ export class AppProfileCompanyWebsite {
                     { !this.isEditing &&
                         <div class='content-value'>
                             <div>
-                                {this.company?.data?.attributes?.Website??''}
-                                {this.company?.data?.attributes?.Website &&
-                                    <a class='external-link-icon' target='_blank' href={this.company.data.attributes.Website}><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                {this.displayWebsite}
+                                {this.displayWebsite &&
+                                    <a class='external-link-icon' target='_blank' href={this.displayWebsite}><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                 }
                             </div>
                         </div>                   
@@ -100,10 +104,9 @@ export class AppProfileCompanyWebsite {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <label htmlFor="website">Website</label>
                                 <input id='website' name='website' type="text" maxLength={256} ref={el => this.websiteInput = el} value={this.editWebsite} onInput={(e) => this.handleWebsiteChange(e)} />
                                 <icn-message type='error' hidden ref={el => this.websiteErrorMessage = el}>
-                                    Website must be a valid URL.
+                                    Website must be a valid URL (e.g., https://domain).
                                 </icn-message>
                             </div>
                             <div class="button-container">

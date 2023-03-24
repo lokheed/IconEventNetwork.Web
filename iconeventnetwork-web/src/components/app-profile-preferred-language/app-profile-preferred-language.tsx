@@ -124,7 +124,6 @@ export class AppProfilePreferredLanguage {
                     { this.isEditing &&
                         <form class='edit-form' >
                             <div class='form-item'>
-                                <label htmlFor="preferred-language">Preferred Language</label>
                                 <select id='preferred-language' name='preferred-language' onInput={(event) => this.handleLanguageSelect(event)}>
                                     {this.languages?.sort((a,b) => {
                                         var rankA = a.attributes.Rank;
