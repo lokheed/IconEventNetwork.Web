@@ -20,9 +20,6 @@ export class AppProfileCompanyWebsite {
     @State() editWebsite: string;
     private websiteInput: HTMLInputElement;
     private websiteErrorMessage: HTMLIcnMessageElement; 
-    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
-        e.preventDefault(); // This presents the browser validation bubble
-    }
     @Listen('editClick') editClickHandler() { 
         this.editWebsite = this.displayWebsite;
         if (this.editWebsite === '') this.editWebsite = 'http://';
