@@ -57,7 +57,7 @@ export class AppProfileLanguagesSpoken {
                 { 
                     id: 0,
                     attributes: {
-                        EnglishName: 'Select a language to add',
+                        EnglishName: 'Select language',
                         Rank: -1,
                     }
                 };

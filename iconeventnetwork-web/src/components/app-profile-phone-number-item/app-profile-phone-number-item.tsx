@@ -489,7 +489,7 @@ export class AppProfilePhoneItem {
                                     <input type="phone" class='phone-number' required value={this.editPhoneNumber} ref={el => this.phoneNumberInput = el} onInput={(e) => this.handlePhoneNumberChange(e)} />
                                 </div>
                                 <icn-message type='error' hidden ref={el => this.phoneNumberErrorMessage = el}>
-                                    Phone Number is a required field.
+                                    Phone Number is required.
                                 </icn-message>
                             </div>
                             <div class="button-container">

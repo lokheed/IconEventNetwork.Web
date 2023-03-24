@@ -110,6 +110,8 @@ export class AppProfileSocialMediaItem {
     }
 
     private handleNameChange(event) {
+        this.nameInput.classList.remove('invalid');
+        this.nameErrorMessage.hide();
         this.editName = event.target.value;
         this.editURL = this.editSocialMediaTypeBaseURL + this.editName;
     }
@@ -269,7 +271,7 @@ export class AppProfileSocialMediaItem {
                     { this.isEditing &&
                         <form ref={el => this.editForm = el} class='edit-form' >
                             <div class='form-item'>
-                                <label htmlFor='social-media-type'>Type</label>
+                                <label htmlFor='social-media-type'>Platform</label>
                                 <select id='social-media-type' name='social-media-type' onInput={(event) => this.handleSocialMediaTypeSelect(event)}>
                                     {this.socialMediaTypes?.sort((a,b) => {
                                         var rankA = a.attributes.Rank;
@@ -286,23 +288,23 @@ export class AppProfileSocialMediaItem {
                                 </select>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="name">Name</label>
+                                <label htmlFor="name">Username</label>
                                 <input id='name' name='name' required maxLength={50} ref={el => this.nameInput = el} type="text" value={this.editName} onInput={(e) => this.handleNameChange(e)} />
                                 <icn-message type='error' hidden ref={el => this.nameErrorMessage = el}>
                                     Name is a required field.
                                 </icn-message>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="url">URL</label>
+                                <label htmlFor="url">Address <span class='optional'>(generated based on platform and username)</span></label>
                                 <input id='url' name='url' disabled type="text" value={this.editURL} />
                             </div>
                             <div class="button-container">
                                 { this.socialMediaItem.id > 0 &&
-                                    <icn-button class='delete' onClick={e => this.handleDeleteClick(e)}>
-                                        Delete
+                                    <icn-button class='delete' type="danger" onClick={e => this.handleDeleteClick(e)}>
+                                        Delete this social media account
                                     </icn-button>
                                 }                       
-                                <icn-button class="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
