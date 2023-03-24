@@ -51,9 +51,6 @@ export class AppProfileName {
     @State() prefixes: DataResponse<PrefixAttributes>[];
     @State() suffixes: DataResponse<SuffixAttributes>[];
     @State() pronouns: DataResponse<PronounAttributes>[];
-    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
-        e.preventDefault(); // This presents the browser validation bubble
-    }
     @Listen('editClick') editClickHandler() { 
         this.initializeEditForm();
     }

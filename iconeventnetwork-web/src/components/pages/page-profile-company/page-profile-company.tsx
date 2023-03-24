@@ -61,6 +61,9 @@ export class PageProfileCompany {
     @State() teamGridColumns: any[];
     @State() accountManagerName: string = 'Not assigned';
     @State() accountManagerEmail: string;
+    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
+        e.preventDefault(); // This presents the browser validation bubble
+    }
     @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
         this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
 

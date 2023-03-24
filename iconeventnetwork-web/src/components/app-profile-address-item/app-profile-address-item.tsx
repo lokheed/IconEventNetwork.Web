@@ -71,9 +71,6 @@ export class AppProfileAddressItem {
     private editForm: HTMLFormElement;
     private cityInput: HTMLInputElement;
     private cityErrorMessage: HTMLIcnMessageElement;
-    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
-        e.preventDefault(); // This presents the browser validation bubble
-    }
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;

@@ -25,7 +25,10 @@ export class PageProfilePerson {
     @State() person: DataResponse<PersonInfo>;
     @State() preferredLanguage: LanguageSingularData;
     @State() languagesSpoken: DataResponse<LanguageAttributes>[] = []; 
-    @State() addresses: DataResponse<AddressAttributes>[] = [];   
+    @State() addresses: DataResponse<AddressAttributes>[] = []; 
+    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
+        e.preventDefault(); // This presents the browser validation bubble
+    }  
     @Listen('addressDeleted') addressDeletedHandler(event: CustomEvent<number>) {
         this.addresses = [...this.addresses.filter(e => e.id != event.detail)];
     }

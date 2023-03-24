@@ -46,9 +46,6 @@ export class AppProfileEmailAddressItem {
     private emailAddressInput: HTMLInputElement;
     private emailAddressRequiredErrorMessage: HTMLIcnMessageElement;
     private emailAddressInvalidErrorMessage: HTMLIcnMessageElement;
-    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
-        e.preventDefault(); // This presents the browser validation bubble
-    }
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false; 
         this.emailAddressInput.classList.remove('invalid');
