@@ -124,6 +124,8 @@ export class AppProfilePhoneItem {
 
     private handlePhoneNumberChange(event) {
         this.editPhoneNumber = event.target.value;
+        this.phoneNumberInput.classList.remove('invalid');
+        this.phoneNumberErrorMessage.hide();
     }
 
     private handleCancelClick(e: MouseEvent) {
@@ -140,7 +142,6 @@ export class AppProfilePhoneItem {
         e.preventDefault();
         this.deleteConfirmationDialog.visible = true;
     }
-
 
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
@@ -162,6 +163,7 @@ export class AppProfilePhoneItem {
           this.phoneNumberTypes = state.personPhoneNumberTypes;
           if (this.phoneNumberItem.id === 0) {
               this.initializeDefaultPhoneNumberType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -181,6 +183,7 @@ export class AppProfilePhoneItem {
             state.personPhoneNumberTypes = response.data;
             if (this.phoneNumberItem.id === 0) {
                 this.initializeDefaultPhoneNumberType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -191,6 +194,7 @@ export class AppProfilePhoneItem {
           this.phoneNumberTypes = state.personAtCompanyPhoneNumberTypes;
           if (this.phoneNumberItem.id === 0) {
               this.initializeDefaultPhoneNumberType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -210,6 +214,7 @@ export class AppProfilePhoneItem {
             state.personAtCompanyPhoneNumberTypes = response.data;
             if (this.phoneNumberItem.id === 0) {
                 this.initializeDefaultPhoneNumberType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -220,6 +225,7 @@ export class AppProfilePhoneItem {
           this.phoneNumberTypes = state.companyPhoneNumberTypes;
           if (this.phoneNumberItem.id === 0) {
               this.initializeDefaultPhoneNumberType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -239,6 +245,7 @@ export class AppProfilePhoneItem {
             state.companyPhoneNumberTypes = response.data;
             if (this.phoneNumberItem.id === 0) {
                 this.initializeDefaultPhoneNumberType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -400,9 +407,11 @@ export class AppProfilePhoneItem {
         
     componentWillLoad() { 
         this.displayPhoneNumber = this.phoneNumberItem.attributes.NationalFormat && 
-                                  this.phoneNumberItem.attributes.NationalFormat.length > 0 ? 
-            this.phoneNumberItem.attributes.NationalFormat :
-            this.phoneNumberItem.attributes.RawFormat;
+                                  this.phoneNumberItem.attributes.NationalFormat.length > 0 
+                                  ? 
+                                    this.phoneNumberItem.attributes.NationalFormat 
+                                  :
+                                    this.phoneNumberItem.attributes.RawFormat;
         this.displayPhoneNumberTypeId = this.phoneNumberItem.attributes.phone_number_type.data.id;
         this.displayPhoneNumberTypeName = this.phoneNumberItem.attributes.phone_number_type.data.attributes.Name;
         this.displayPhoneNumberCountryId = this.phoneNumberItem.attributes.country.data.id;
@@ -419,12 +428,6 @@ export class AppProfilePhoneItem {
         }
         this.getPhoneNumberCountries();
     } 
-    
-    componentDidLoad() {
-        if (this.phoneNumberItem.id === 0) {
-            this.initializeEditForm();
-        }
-    }
 
     render() {
         return (
