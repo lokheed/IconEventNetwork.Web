@@ -12,7 +12,8 @@ import state from '../../services/store';
 @Component({
   tag: "app-profile-address-item",
   styleUrl: "app-profile-address-item.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileAddressItem {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
@@ -665,16 +666,14 @@ export class AppProfileAddressItem {
                                 <input id='postal-code' name='postal-code' type="text" value={this.editPostalCode} onInput={(e) => this.handlePostalCodeChange(e)} />
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>
-                            { this.addressItem.id > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
+                                { this.addressItem.id > 0 &&
+                                    <icn-button type="danger" class="delete" onClick={e => this.handleDeleteClick(e)}>
                                         Delete this address
-                                    </button>
-                                </div>  
-                            }                                 
+                                    </icn-button>
+                                }                                 
+                                <icn-button type='neutral' onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button type='primary' onClick={e => this.handleSaveClick(e)}>Save</icn-button>
+                            </div>
                         </form>
                     }
                 </div>

@@ -6,9 +6,10 @@ import state from '../../services/store';
 
 
 @Component({
-  tag: "app-profile-preferred-language",
-  styleUrl: "app-profile-preferred-language.scss",
-  shadow: false
+    tag: "app-profile-preferred-language",
+    styleUrl: "app-profile-preferred-language.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfilePreferredLanguage {
     private personClient: PersonClient;
@@ -140,9 +141,9 @@ export class AppProfilePreferredLanguage {
                                 </select>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
+                            </div>
                         </form>
                     }
                 </div>

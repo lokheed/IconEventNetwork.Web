@@ -7,9 +7,10 @@ import { PersonClient } from "../../services/clients/person-client";
 import state from '../../services/store';
 
 @Component({
-  tag: "app-profile-name",
-  styleUrl: "app-profile-name.scss",
-  shadow: false
+    tag: "app-profile-name",
+    styleUrl: "app-profile-name.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfileName {
     private prefixClient: PrefixClient;
@@ -429,9 +430,9 @@ export class AppProfileName {
                                 </select>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
+                            </div>
                         </form>
                     }
                 </div>

@@ -457,6 +457,53 @@
       "attributes": []
     },
     {
+      "name": "icn-button",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Defines if the button should be disabled"
+        },
+        {
+          "name": "reversed",
+          "description": "Defines if the button should be reversed (colors)"
+        },
+        {
+          "name": "type",
+          "description": "Defines the overall style of the button.",
+          "values": [
+            {
+              "name": "danger"
+            },
+            {
+              "name": "link"
+            },
+            {
+              "name": "neutral"
+            },
+            {
+              "name": "primary"
+            },
+            {
+              "name": "secondary"
+            },
+            {
+              "name": "success"
+            },
+            {
+              "name": "tertiary"
+            },
+            {
+              "name": "warning"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "icn-copy",
       "description": {
         "kind": "markdown",

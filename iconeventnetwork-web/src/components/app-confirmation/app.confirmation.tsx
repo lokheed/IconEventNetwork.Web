@@ -31,9 +31,8 @@ export class Modal {
                     </div>
                     <hr/>
                     <div class="button-container">
-                        <button class="primary-action" onClick={e => this.handlePrimaryClick(e)}>{this.primaryActionText}</button>
-                        <button class="secondary-action" onClick={e => this.handleSecondaryClick(e)}>{this.secondaryActionText}</button>
-                        <div class='clearfix'></div>
+                        <icn-button type="neutral" onClick={e => this.handleSecondaryClick(e)}>{this.secondaryActionText}</icn-button>
+                        <icn-button type="danger" onClick={e => this.handlePrimaryClick(e)}>{this.primaryActionText}</icn-button>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,8 @@ import state from '../../services/store';
 @Component({
   tag: "app-profile-languages-spoken",
   styleUrl: "app-profile-languages-spoken.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileLanguagesSpoken {
     private personClient: PersonClient;
@@ -201,16 +202,16 @@ export class AppProfileLanguagesSpoken {
                                                     <button onClick={e => this.handleRemoveSpokenLanguageClick(e, language.id)}>
                                                         <i class="fa-solid fa-xmark"></i>
                                                     </button>
-                                                </div>                                      
-                                            </div>                                           
+                                                </div>
+                                            </div>
                                         </li>
                                     ))}
                                 </ol>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>                        
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
+                            </div>
                         </form>
                     }
                 </div>

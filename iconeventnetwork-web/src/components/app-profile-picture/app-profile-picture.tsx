@@ -7,9 +7,10 @@ import { localStorageKeyService } from '../../services/local-storage-key-service
 import { noPhotoDataUrl } from "../../utils/images-fallback";
 
 @Component({
-  tag: "app-profile-picture",
-  styleUrl: "app-profile-picture.scss",
-  shadow: false
+    tag: "app-profile-picture",
+    styleUrl: "app-profile-picture.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfilePicture {
     private readonly personClient: PersonClient;
@@ -202,16 +203,14 @@ export class AppProfilePicture {
                                 </div>   
                             </div>                         
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                { (this.displayImage?.data?.id??0) > 0 &&
+                                    <icn-button type="danger" class='delete' onClick={e => this.handleDeleteClick(e)}>
+                                        Delete this picture
+                                    </icn-button>
+                                }                                      
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
-                            { (this.displayImage?.data?.id??0) > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
-                                        Delete this logo
-                                    </button>
-                                </div>
-                            }                                      
                         </form>
                     }
                 </div>

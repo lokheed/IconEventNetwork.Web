@@ -12,33 +12,3 @@ button {
     align-items: center;
     cursor: pointer;
 }
-
-button.primary-action {
-    border: solid var(--color-primary-main) 1px;
-    background-color: var(--color-primary-main);
-    color: var(--color-background);
-}
-
-button.secondary-action {
-    border: solid var(--color-foreground) 1px;
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-}
-
-button.primary-action:hover {
-    transition : 1000ms;
-    border: solid var(--color-primary-light) 1px;
-    background-color: var(--color-primary-light);
-}
-
-button.secondary-action:hover {
-    transition : 1000ms;
-    background-color: var(--color-neutral-light);
-}
-
-button.action {
-    background: none;
-    border: none;
-    font-size: 1em;
-    padding: 0;
-}

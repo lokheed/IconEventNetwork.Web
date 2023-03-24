@@ -23,11 +23,13 @@
 ### Depends on
 
 - [icn-profile-actions](../icn-profile-actions)
+- [icn-button](../icn-button)
 
 ### Graph
 ```mermaid
 graph TD;
   app-profile-languages-spoken --> icn-profile-actions
+  app-profile-languages-spoken --> icn-button
   page-profile-person --> app-profile-languages-spoken
   style app-profile-languages-spoken fill:#f9f,stroke:#333,stroke-width:4px
 ```

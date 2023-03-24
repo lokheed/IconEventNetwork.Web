@@ -51,6 +51,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [app-profile-address-item](../app-profile-address-item)
  - [app-profile-company-logo](../app-profile-company-logo)
  - [app-profile-company-website](../app-profile-company-website)
  - [app-profile-email-address-item](../app-profile-email-address-item)
@@ -62,6 +63,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
+  app-profile-address-item --> icn-message
   app-profile-company-logo --> icn-message
   app-profile-company-website --> icn-message
   app-profile-email-address-item --> icn-message

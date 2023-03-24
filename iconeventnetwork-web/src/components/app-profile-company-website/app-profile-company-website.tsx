@@ -3,9 +3,10 @@ import { CompanyData, CompanySaveData } from '../../services/clients/client-base
 import { CompanyClient } from "../../services/clients/company-client";
 
 @Component({
-  tag: "app-profile-company-website",
-  styleUrl: "app-profile-company-website.scss",
-  shadow: false
+    tag: "app-profile-company-website",
+    styleUrl: "app-profile-company-website.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfileCompanyWebsite {
     private companyClient: CompanyClient;
@@ -106,8 +107,8 @@ export class AppProfileCompanyWebsite {
                                 </icn-message>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                <icn-button type='neutral' onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button type='primary' onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>    
                         </form>
                     }

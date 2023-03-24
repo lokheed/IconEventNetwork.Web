@@ -10,9 +10,10 @@ import state from '../../services/store';
 
 
 @Component({
-  tag: "app-profile-phone-number-item",
-  styleUrl: "app-profile-phone-number-item.scss",
-  shadow: false
+    tag: "app-profile-phone-number-item",
+    styleUrl: "app-profile-phone-number-item.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfilePhoneItem {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
@@ -492,16 +493,18 @@ export class AppProfilePhoneItem {
                                 </icn-message>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div>
-                            { this.phoneNumberItem.id > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
+                                { this.phoneNumberItem.id > 0 &&
+                                    <icn-button class="delete" type="danger" onClick={e => this.handleDeleteClick(e)}>
                                         Delete this phone number
-                                    </button>
-                                </div>
-                            }                                
+                                    </icn-button>
+                                }
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>
+                                    Cancel
+                                </icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>
+                                    Save
+                                </icn-button>
+                            </div>
                         </form>
                     }
                 </div>

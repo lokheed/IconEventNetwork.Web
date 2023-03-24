@@ -5,7 +5,8 @@ import { PersonAtCompanyClient } from "../../services/clients/person-at-company-
 @Component({
   tag: "app-profile-biography",
   styleUrl: "app-profile-biography.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileBiography {
     private personAtCompanyClient: PersonAtCompanyClient;
@@ -105,8 +106,8 @@ export class AppProfileBiography {
                                 />
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>                        
                         </form>
                     }
