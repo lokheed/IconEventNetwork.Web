@@ -9,10 +9,12 @@ import { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, I
 import { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 import { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 import { GetRequestingPersonResponse } from "./services/clients/person-client";
+import { Config } from "jodit/types/config";
 export { AddressAttributes, CompanyData, DataResponse, EmailAddressAttributes, ImageInfo, LanguageAttributes, MenuLink, PersonAtCompanyData, PersonInfo, PhoneNumberAttributes, SocialMediaAttributes } from "./services/clients/client-base";
 export { GetFoundingPlannersResponse } from "./services/clients/founding-planner-client";
 export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-team-member-client";
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
+export { Config } from "jodit/types/config";
 export namespace Components {
     interface AppConfirmation {
         "primaryActionText"?: string;
@@ -193,6 +195,10 @@ export namespace Components {
           * Gets the current html value.
          */
         "getValue": () => Promise<string>;
+        /**
+          * Allows overriding the default config, see https://github.com/xdan/jodit/blob/master/src/config.ts
+         */
+        "options": Config;
         /**
           * The value of the html content
          */
@@ -856,6 +862,10 @@ declare namespace LocalJSX {
         "onEditClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
     }
     interface IcnRichTextEditor {
+        /**
+          * Allows overriding the default config, see https://github.com/xdan/jodit/blob/master/src/config.ts
+         */
+        "options"?: Config;
         /**
           * The value of the html content
          */
