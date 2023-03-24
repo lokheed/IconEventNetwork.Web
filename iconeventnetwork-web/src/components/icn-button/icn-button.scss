@@ -1,0 +1,110 @@
+:host {
+  /**
+  * @prop --color-border: The color for the border of the button.
+  * @prop --color-background: The color for the background of the button.
+  * @prop --color-foreground: The color for the foreground of the button.
+  * @prop --color-background-hover: The color for the background of the button when hovered.
+  * @prop --color-background-active: The color for the background of the button when active.
+  * @prop --color-link: The color of the text for when used as a link-button.
+  */
+  --color-border: var(--color-primary-main, #0066CC);
+  --color-background: var(--color-primary-main, #0066CC);
+  --color-foreground: var(--color-primary-contrast, #FFFFFF);
+  --color-background-hover: var(--color-primary-light, #99C2EB);
+  --color-background-active: var(--color-primary-dark, #004D99);
+  --color-link: var(--color-primary-main, #0066CC);
+  --color-link-hover: var(--color-primary-light, #99C2EB);
+  --color-link-active: var(--color-primary-dark, #004D99);
+
+  display: inline-block;
+}
+
+.disabled{
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.secondary{
+  --color-border: var(--color-secondary-main);
+  --color-background: var(--color-secondary-main);
+  --color-foreground: var(--color-secondary-contrast);
+  --color-background-hover: var(--color-secondary-light);
+  --color-background-active: var(--color-secondary-dark);
+}
+
+.tertiary{
+  --color-border: var(--color-tertiary-main);
+  --color-background: var(--color-tertiary-main);
+  --color-foreground: var(--color-tertiary-contrast);
+  --color-background-hover: var(--color-tertiary-light);
+  --color-background-active: var(--color-tertiary-dark);
+}
+
+.neutral{
+  --color-border: var(--color-neutral-main);
+  --color-background: var(--color-neutral-main);
+  --color-foreground: var(--color-neutral-contrast);
+  --color-background-hover: var(--color-neutral-light);
+  --color-background-active: var(--color-neutral-dark);
+}
+
+.danger{
+  --color-border: var(--color-danger-main);
+  --color-background: var(--color-danger-main);
+  --color-foreground: var(--color-danger-contrast);
+  --color-background-hover: var(--color-danger-light);
+  --color-background-active: var(--color-danger-dark);
+}
+
+.success{
+  --color-border: var(--color-success-main);
+  --color-background: var(--color-success-main);
+  --color-foreground: var(--color-success-contrast);
+  --color-background-hover: var(--color-success-light);
+  --color-background-active: var(--color-success-dark);
+}
+
+.warning{
+  --color-border: var(--color-warning-main);
+  --color-background: var(--color-warning-main);
+  --color-foreground: var(--color-warning-contrast);
+  --color-background-hover: var(--color-warning-light);
+  --color-background-active: var(--color-warning-dark);
+}
+
+button{
+  font-weight: 600;
+  border-radius: 2em;
+  padding: 0.9em 3em;
+  transition: 1000ms;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  &.reversed{
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+  &:hover{
+    background-color: var(--color-background-hover);
+  }
+  &:active{
+    background-color: var(--color-background-active);
+    color: var(--color-foreground);
+  }
+  &.disabled{
+    cursor: not-allowed;
+  }
+  &.link{
+    background: transparent;
+    border-color: transparent;
+    color: var(--color-link);
+    text-decoration: underline;
+    &:hover{
+      color: var(--color-link-hover);
+    }
+    &:active{
+      color: var(--color-link-active);
+    }
+  }
+}

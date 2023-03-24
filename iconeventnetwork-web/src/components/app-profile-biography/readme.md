@@ -23,12 +23,14 @@
 
 - [icn-profile-actions](../icn-profile-actions)
 - [icn-rich-text-editor](../icn-rich-text-editor)
+- [icn-button](../icn-button)
 
 ### Graph
 ```mermaid
 graph TD;
   app-profile-biography --> icn-profile-actions
   app-profile-biography --> icn-rich-text-editor
+  app-profile-biography --> icn-button
   page-profile-person-at-company --> app-profile-biography
   style app-profile-biography fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -10,7 +10,8 @@ import state from '../../services/store';
 @Component({
   tag: "app-profile-email-address-item",
   styleUrl: "app-profile-email-address-item.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileEmailAddressItem {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
@@ -405,16 +406,18 @@ export class AppProfileEmailAddressItem {
                                 </icn-message>
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                { this.emailAddressItem.id > 0 &&
+                                <icn-button class="delete" type="danger" onClick={e => this.handleDeleteClick(e)}>
+                                    Delete this email address
+                                </icn-button>
+                                }
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>
+                                    Cancel
+                                </icn-button>
+                                <icn-button type="primary" onClick={e => this.handleSaveClick(e)}>
+                                    Save
+                                </icn-button>
                             </div>
-                            { this.emailAddressItem.id > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
-                                        Delete this email address
-                                    </button>
-                                </div> 
-                            }                       
                         </form>
                     }                
                 </div>

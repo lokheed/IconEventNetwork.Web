@@ -47,22 +47,32 @@ graph TD;
   app-profile-company-logo --> app-responsive-image
   app-profile-company-logo --> icn-profile-actions
   app-profile-company-logo --> icn-message
+  app-profile-company-logo --> icn-button
   app-profile-company-logo --> app-confirmation
+  app-confirmation --> icn-button
   app-profile-company-tagline --> icn-profile-actions
+  app-profile-company-tagline --> icn-button
   app-profile-company-description --> icn-profile-actions
   app-profile-company-description --> icn-rich-text-editor
+  app-profile-company-description --> icn-button
   app-profile-company-website --> icn-profile-actions
   app-profile-company-website --> icn-message
+  app-profile-company-website --> icn-button
   app-profile-email-address-item --> icn-profile-actions
   app-profile-email-address-item --> icn-message
+  app-profile-email-address-item --> icn-button
   app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> icn-profile-actions
+  app-profile-phone-number-item --> icn-button
   app-profile-phone-number-item --> app-confirmation
   app-profile-address-item --> icn-profile-actions
+  app-profile-address-item --> icn-message
+  app-profile-address-item --> icn-button
   app-profile-address-item --> app-confirmation
   app-profile-social-media-item --> icn-profile-actions
   app-profile-social-media-item --> icn-message
+  app-profile-social-media-item --> icn-button
   app-profile-social-media-item --> app-confirmation
   app-root --> page-profile-company
   style page-profile-company fill:#f9f,stroke:#333,stroke-width:4px

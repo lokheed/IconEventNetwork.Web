@@ -22,26 +22,10 @@
             padding: 1em;
         }
         .button-container {
-            padding: 1em;            
-            button {
-                float: right;
-                margin-left: 1em;
-                font-size: 1em;
-                font-weight: 600;
-                padding: 10px 30px;
-            }
-            button.primary-action {
-                border: solid var(--color-danger-main) 1px;
-                background-color: var(--color-danger-main);
-            }
-            button.primary-action:hover {
-                transition : 1000ms;
-                border: solid var(--color-danger-light) 1px;
-                background-color: var(--color-danger-light);
-            }
-            .clearfix {
-                clear: both;
-            }
+            display: flex;
+            justify-content: space-between;
+            gap: 1em;
+            padding: 1em;
         }
     }  
 }

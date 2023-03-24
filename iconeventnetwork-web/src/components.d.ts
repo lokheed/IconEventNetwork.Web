@@ -156,6 +156,20 @@ export namespace Components {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnButton {
+        /**
+          * Defines if the button should be disabled
+         */
+        "disabled": boolean;
+        /**
+          * Defines if the button should be reversed (colors)
+         */
+        "reversed": boolean;
+        /**
+          * Defines the overall style of the button.
+         */
+        "type": 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "link";
+    }
     interface IcnCopy {
         "textToCopy": string;
         "titleText"?: string;
@@ -439,6 +453,12 @@ declare global {
         prototype: HTMLAppTestimonialCarouselElement;
         new (): HTMLAppTestimonialCarouselElement;
     };
+    interface HTMLIcnButtonElement extends Components.IcnButton, HTMLStencilElement {
+    }
+    var HTMLIcnButtonElement: {
+        prototype: HTMLIcnButtonElement;
+        new (): HTMLIcnButtonElement;
+    };
     interface HTMLIcnCopyElement extends Components.IcnCopy, HTMLStencilElement {
     }
     var HTMLIcnCopyElement: {
@@ -625,6 +645,7 @@ declare global {
         "app-responsive-image": HTMLAppResponsiveImageElement;
         "app-root": HTMLAppRootElement;
         "app-testimonial-carousel": HTMLAppTestimonialCarouselElement;
+        "icn-button": HTMLIcnButtonElement;
         "icn-copy": HTMLIcnCopyElement;
         "icn-message": HTMLIcnMessageElement;
         "icn-profile-actions": HTMLIcnProfileActionsElement;
@@ -804,6 +825,20 @@ declare namespace LocalJSX {
     }
     interface AppTestimonialCarousel {
     }
+    interface IcnButton {
+        /**
+          * Defines if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines if the button should be reversed (colors)
+         */
+        "reversed"?: boolean;
+        /**
+          * Defines the overall style of the button.
+         */
+        "type"?: 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "link";
+    }
     interface IcnCopy {
         "textToCopy"?: string;
         "titleText"?: string;
@@ -903,6 +938,7 @@ declare namespace LocalJSX {
         "app-responsive-image": AppResponsiveImage;
         "app-root": AppRoot;
         "app-testimonial-carousel": AppTestimonialCarousel;
+        "icn-button": IcnButton;
         "icn-copy": IcnCopy;
         "icn-message": IcnMessage;
         "icn-profile-actions": IcnProfileActions;
@@ -964,6 +1000,7 @@ declare module "@stencil/core" {
             "app-responsive-image": LocalJSX.AppResponsiveImage & JSXBase.HTMLAttributes<HTMLAppResponsiveImageElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "app-testimonial-carousel": LocalJSX.AppTestimonialCarousel & JSXBase.HTMLAttributes<HTMLAppTestimonialCarouselElement>;
+            "icn-button": LocalJSX.IcnButton & JSXBase.HTMLAttributes<HTMLIcnButtonElement>;
             "icn-copy": LocalJSX.IcnCopy & JSXBase.HTMLAttributes<HTMLIcnCopyElement>;
             "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
             "icn-profile-actions": LocalJSX.IcnProfileActions & JSXBase.HTMLAttributes<HTMLIcnProfileActionsElement>;

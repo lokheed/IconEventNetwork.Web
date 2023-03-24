@@ -5,7 +5,8 @@ import { CompanyClient } from "../../services/clients/company-client";
 @Component({
   tag: "app-profile-company-description",
   styleUrl: "app-profile-company-description.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileCompanyDescription {
     private companyClient: CompanyClient;
@@ -105,8 +106,8 @@ export class AppProfileCompanyDescription {
                                 />
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>                        
                         </form>
                     }

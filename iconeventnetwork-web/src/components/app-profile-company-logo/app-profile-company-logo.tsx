@@ -7,7 +7,8 @@ import { noImageDataUrl } from "../../utils/images-fallback";
 @Component({
   tag: "app-profile-company-logo",
   styleUrl: "app-profile-company-logo.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileCompanyLogo {
     private readonly companyClient: CompanyClient;
@@ -193,16 +194,12 @@ export class AppProfileCompanyLogo {
                                 </div>                            
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
-                            </div> 
-                            { (this.displayImage?.data?.id??0) > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
-                                        Delete this logo
-                                    </button>
-                                </div>
-                            }                               
+                                { (this.displayImage?.data?.id??0) > 0 &&
+                                    <icn-button type="danger" class="delete" onClick={e => this.handleDeleteClick(e)}>Delete this logo</icn-button>
+                                }
+                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
+                            </div>
                         </form>
                     }
                 </div>

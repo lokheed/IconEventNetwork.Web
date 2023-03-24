@@ -23,9 +23,19 @@ export const CompanyBox: FunctionalComponent<CompanyBoxProps> = (props => (
             </div>
         </div>
         <hr />
-        <div class='profile-actions-row'>
-            <button class='primary-action' onClick={() => window.location.pathname = ('/profile-pac/' + props.pacId)}>View my work profile</button>
-            <button class='secondary-action' onClick={() => window.location.pathname = ('/profile-company/' + props.company.data.id)}>View company profile</button>
+        <div
+            class='profile-actions-row'
+            style={{display: "flex", flexDirection: "column", gap: "1em"}}>
+            <icn-button
+                onClick={() => window.location.pathname = ('/profile-pac/' + props.pacId)}
+            >
+                View my work profile
+            </icn-button>
+            <icn-button type="neutral"
+                onClick={() => window.location.pathname = ('/profile-company/' + props.company.data.id)}
+            >
+                View company profile
+            </icn-button>
         </div>
     </div>
 ));

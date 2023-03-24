@@ -14,3 +14,12 @@
         }
     }
 }
+
+.button-container{
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+    .delete{
+        margin-right: auto;
+    }
+}

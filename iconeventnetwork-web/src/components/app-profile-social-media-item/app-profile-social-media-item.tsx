@@ -6,9 +6,10 @@ import { CompanyClient } from "../../services/clients/company-client";
 import state from '../../services/store';
 
 @Component({
-  tag: "app-profile-social-media-item",
-  styleUrl: "app-profile-social-media-item.scss",
-  shadow: false
+    tag: "app-profile-social-media-item",
+    styleUrl: "app-profile-social-media-item.scss",
+    shadow: false,
+    scoped: true,
 })
 export class AppProfileSocialMediaItem {
     private deleteConfirmationDialog: HTMLAppConfirmationElement;
@@ -296,16 +297,14 @@ export class AppProfileSocialMediaItem {
                                 <input id='url' name='url' disabled type="text" value={this.editURL} />
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                { this.socialMediaItem.id > 0 &&
+                                    <icn-button class='delete' onClick={e => this.handleDeleteClick(e)}>
+                                        Delete
+                                    </icn-button>
+                                }                       
+                                <icn-button class="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
-                            { this.socialMediaItem.id > 0 &&
-                                <div class='delete-container'>
-                                    <button class='delete-action' onClick={e => this.handleDeleteClick(e)}>
-                                        Delete this social media account
-                                    </button>
-                                </div> 
-                            }                       
                         </form>
                     }                
                 </div>

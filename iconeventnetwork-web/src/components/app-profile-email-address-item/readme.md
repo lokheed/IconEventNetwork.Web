@@ -36,6 +36,7 @@
 
 - [icn-profile-actions](../icn-profile-actions)
 - [icn-message](../icn-message)
+- [icn-button](../icn-button)
 - [app-confirmation](../app-confirmation)
 
 ### Graph
@@ -43,7 +44,9 @@
 graph TD;
   app-profile-email-address-item --> icn-profile-actions
   app-profile-email-address-item --> icn-message
+  app-profile-email-address-item --> icn-button
   app-profile-email-address-item --> app-confirmation
+  app-confirmation --> icn-button
   page-profile-company --> app-profile-email-address-item
   page-profile-person --> app-profile-email-address-item
   page-profile-person-at-company --> app-profile-email-address-item

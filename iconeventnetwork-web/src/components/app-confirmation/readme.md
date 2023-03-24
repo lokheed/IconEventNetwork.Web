@@ -33,9 +33,14 @@
  - [app-profile-picture](../app-profile-picture)
  - [app-profile-social-media-item](../app-profile-social-media-item)
 
+### Depends on
+
+- [icn-button](../icn-button)
+
 ### Graph
 ```mermaid
 graph TD;
+  app-confirmation --> icn-button
   app-profile-address-item --> app-confirmation
   app-profile-company-logo --> app-confirmation
   app-profile-email-address-item --> app-confirmation

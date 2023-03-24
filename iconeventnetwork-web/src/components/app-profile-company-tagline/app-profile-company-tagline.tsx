@@ -5,7 +5,8 @@ import { CompanyClient } from "../../services/clients/company-client";
 @Component({
   tag: "app-profile-company-tagline",
   styleUrl: "app-profile-company-tagline.scss",
-  shadow: false
+  shadow: false,
+  scoped: true,
 })
 export class AppProfileCompanyTagline {
     private companyClient: CompanyClient;
@@ -74,8 +75,8 @@ export class AppProfileCompanyTagline {
                                 <input id='job-title' name='job-title' type="text" maxLength={50} value={this.editTagline} onInput={(e) => this.handleTaglineChange(e)} />
                             </div>
                             <div class="button-container">
-                                <button class="secondary-action" onClick={e => this.handleCancelClick(e)}>Cancel</button>
-                                <button class="primary-action" onClick={e => this.handleSaveClick(e)}>Save</button>
+                                <icn-button type='neutral' onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>    
                         </form>
                     }
