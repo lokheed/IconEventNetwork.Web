@@ -51,6 +51,9 @@ export class AppProfileName {
     @State() prefixes: DataResponse<PrefixAttributes>[];
     @State() suffixes: DataResponse<SuffixAttributes>[];
     @State() pronouns: DataResponse<PronounAttributes>[];
+    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
+        e.preventDefault(); // This presents the browser validation bubble
+    }
     @Listen('editClick') editClickHandler() { 
         this.initializeEditForm();
     }
@@ -107,6 +110,8 @@ export class AppProfileName {
 
     private handleFirstNameChange(event) {
         this.editFirstName = event.target.value;
+        this.firstNameErrorMessage.hide();
+        this.firstNameInput.classList.remove('invalid');
     }
 
     private handleMiddleNameChange(event) {
@@ -115,10 +120,14 @@ export class AppProfileName {
 
     private handleLastNameChange(event) {
         this.editLastName = event.target.value;
+        this.lastNameErrorMessage.hide();
+        this.lastNameInput.classList.remove('invalid');
     }
 
     private handleDirectoryNameChange(event) {
         this.editDirectoryName = event.target.value;
+        this.directoryNameErrorMessage.hide();
+        this.directoryNameInput.classList.remove('invalid');
     }
 
     private handlePreferredNameChange(event) {

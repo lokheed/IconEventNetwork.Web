@@ -71,6 +71,9 @@ export class AppProfileAddressItem {
     private editForm: HTMLFormElement;
     private cityInput: HTMLInputElement;
     private cityErrorMessage: HTMLIcnMessageElement;
+    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
+        e.preventDefault(); // This presents the browser validation bubble
+    }
 
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false;
@@ -191,6 +194,8 @@ export class AppProfileAddressItem {
 
     private handleCityChange(event) {
         this.editCity = event.target.value;
+        this.cityInput.classList.remove('invalid');
+        this.cityErrorMessage.hide();
     }
 
     private handlePostalCodeChange(event) {
@@ -320,6 +325,7 @@ export class AppProfileAddressItem {
             this.addressTypes = state.personAddressTypes;
             if (this.addressItem.id === 0) {
                 this.initializeDefaultAddressType();
+                this.initializeEditForm();
             }
             return;
         }
@@ -339,6 +345,7 @@ export class AppProfileAddressItem {
             state.personAddressTypes = response.data;
             if (this.addressItem.id === 0) {
                 this.initializeDefaultAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -349,6 +356,7 @@ export class AppProfileAddressItem {
           this.addressTypes = state.personAtCompanyAddressTypes;
           if (this.addressItem.id === 0) {
               this.initializeDefaultAddressType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -368,6 +376,7 @@ export class AppProfileAddressItem {
             state.personAtCompanyAddressTypes = response.data;
             if (this.addressItem.id === 0) {
                 this.initializeDefaultAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -378,6 +387,7 @@ export class AppProfileAddressItem {
           this.addressTypes = state.companyAddressTypes;
           if (this.addressItem.id === 0) {
               this.initializeDefaultAddressType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -397,6 +407,7 @@ export class AppProfileAddressItem {
             state.companyAddressTypes = response.data;
             if (this.addressItem.id === 0) {
                 this.initializeDefaultAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -559,12 +570,6 @@ export class AppProfileAddressItem {
                 break;
         }
     } 
-    
-    componentDidLoad() {
-        if (this.addressItem.id === 0) {
-            this.initializeEditForm();
-        }
-    }
 
     render() {
         return (
