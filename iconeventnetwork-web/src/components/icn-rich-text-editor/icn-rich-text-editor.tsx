@@ -43,7 +43,6 @@ export class IcnRichTextEditor {
   private editor!: Jodit;
 
   componentDidLoad() {
-    console.log(this.options);
     this.editor = Jodit.make(this.editorContainer, this.options);
     this.editor.value = this.value;
   }
