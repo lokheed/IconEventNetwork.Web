@@ -41,16 +41,18 @@ export class AppProfileEmailAddressItem {
     @State() displayEmailAddressTypeName: string = '';
     @State() editEmailAddressTypeName: string = '';
     @State() emailAddressTypes: DataResponse<EmailAddressTypeAttributes>[];
-    @State() serverValidationMessage: string = '';
     @Event() private emailAddressDeleted: EventEmitter<number>;
     private editForm: HTMLFormElement;
     private emailAddressInput: HTMLInputElement;
-    private emailAddressErrorMessage: HTMLIcnMessageElement;
-    private emailAddressServerErrorMessage: HTMLIcnMessageElement;
+    private emailAddressRequiredErrorMessage: HTMLIcnMessageElement;
+    private emailAddressInvalidErrorMessage: HTMLIcnMessageElement;
+    @Listen('invalid', { target: 'window', capture: true }) formValidationHandler(e) {
+        e.preventDefault(); // This presents the browser validation bubble
+    }
     @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
         this.deleteConfirmationDialog.visible = false; 
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.hide();
+        this.emailAddressRequiredErrorMessage.hide();
         this.isEditing = false;   
         switch (this.appliesTo) {
             case 'person':
@@ -111,7 +113,7 @@ export class AppProfileEmailAddressItem {
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.hide();
+        this.emailAddressRequiredErrorMessage.hide();
         this.isEditing = false;
         if (this.emailAddressItem.id === 0) {
             this.emailAddressDeleted.emit(this.emailAddressItem.id);
@@ -126,8 +128,8 @@ export class AppProfileEmailAddressItem {
     private handleSaveClick(e: MouseEvent) {
         e.preventDefault();
         this.emailAddressInput.classList.remove('invalid');
-        this.emailAddressErrorMessage.hide();
-        this.emailAddressServerErrorMessage.hide();
+        this.emailAddressRequiredErrorMessage.hide();
+        this.emailAddressInvalidErrorMessage.hide();
         let isValid = this.editForm.reportValidity();
         if (isValid) {
             this.saveData();
@@ -135,7 +137,11 @@ export class AppProfileEmailAddressItem {
         }
         if (!this.emailAddressInput.validity.valid) {
             this.emailAddressInput.classList.add('invalid');
-            this.emailAddressErrorMessage.show();
+            if (this.editEmailAddress.trim() == '') {
+                this.emailAddressRequiredErrorMessage.show();
+            } else {
+                this.emailAddressInvalidErrorMessage.show();
+            }
         }    
     }
     
@@ -146,6 +152,9 @@ export class AppProfileEmailAddressItem {
 
     private handleEmailAddressChange(event) {
         this.editEmailAddress = event.target.value;
+        this.emailAddressInput.classList.remove('invalid');
+        this.emailAddressRequiredErrorMessage.hide();
+        this.emailAddressInvalidErrorMessage.hide();
     }
 
     private initializeEditForm() {
@@ -172,6 +181,7 @@ export class AppProfileEmailAddressItem {
           this.emailAddressTypes = state.personEmailAddressTypes;
           if (this.emailAddressItem.id === 0) {
               this.initializeDefaultEmailAddressType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -191,6 +201,7 @@ export class AppProfileEmailAddressItem {
             state.personEmailAddressTypes = response.data;
             if (this.emailAddressItem.id === 0) {
                 this.initializeDefaultEmailAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -201,6 +212,7 @@ export class AppProfileEmailAddressItem {
           this.emailAddressTypes = state.personAtCompanyEmailAddressTypes;
           if (this.emailAddressItem.id === 0) {
               this.initializeDefaultEmailAddressType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -220,6 +232,7 @@ export class AppProfileEmailAddressItem {
             state.personAtCompanyEmailAddressTypes = response.data;
             if (this.emailAddressItem.id === 0) {
                 this.initializeDefaultEmailAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -230,6 +243,7 @@ export class AppProfileEmailAddressItem {
           this.emailAddressTypes = state.companyEmailAddressTypes;
           if (this.emailAddressItem.id === 0) {
               this.initializeDefaultEmailAddressType();
+              this.initializeEditForm();
           }
           return;
         }
@@ -249,6 +263,7 @@ export class AppProfileEmailAddressItem {
             state.companyEmailAddressTypes = response.data;
             if (this.emailAddressItem.id === 0) {
                 this.initializeDefaultEmailAddressType();
+                this.initializeEditForm();
             }
         })
         .catch(reason => console.error(reason));  
@@ -276,10 +291,9 @@ export class AppProfileEmailAddressItem {
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
             })
-            .catch(reason => {
+            .catch(() => {
                 this.emailAddressInput.classList.add('invalid');
-                this.serverValidationMessage = reason.error.message;
-                this.emailAddressServerErrorMessage.show();
+                this.emailAddressInvalidErrorMessage.show();
             });
             return;  
         }
@@ -331,10 +345,9 @@ export class AppProfileEmailAddressItem {
                         break;
                 }
             })
-            .catch(reason => {
+            .catch(() => {
                 this.emailAddressInput.classList.add('invalid');
-                this.serverValidationMessage = reason.error.message;
-                this.emailAddressServerErrorMessage.show();
+                this.emailAddressInvalidErrorMessage.show();
             });
             return;  
         } 
@@ -357,12 +370,6 @@ export class AppProfileEmailAddressItem {
                 break;
         }
     } 
-    
-    componentDidLoad() {
-        if (this.emailAddressItem.id === 0) {
-            this.initializeEditForm();
-        }
-    }
 
     render() {
         return (
@@ -408,11 +415,11 @@ export class AppProfileEmailAddressItem {
                             <div class='form-item'>
                                 <label htmlFor="email-address">Email Address</label>
                                 <input id='email-address' name='email-address' required ref={el => this.emailAddressInput = el} type="email" value={this.editEmailAddress} onInput={(e) => this.handleEmailAddressChange(e)} />
-                                <icn-message type='error' hidden ref={el => this.emailAddressErrorMessage = el}>
+                                <icn-message type='error' hidden ref={el => this.emailAddressRequiredErrorMessage = el}>
                                     Email Address is required.
-                                </icn-message>
-                                <icn-message type='error' hidden ref={el => this.emailAddressServerErrorMessage = el}>
-                                    {this.serverValidationMessage}
+                                </icn-message> 
+                                <icn-message type='error' hidden ref={el => this.emailAddressInvalidErrorMessage = el}>
+                                    Email Address must be in the format username@domain.
                                 </icn-message>
                             </div>
                             <div class="button-container">
