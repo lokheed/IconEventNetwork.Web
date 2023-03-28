@@ -1,5 +1,6 @@
 import {FunctionalComponent, h} from "@stencil/core"
 import { CompanyData } from "../../services/clients/client-base";
+import { noLogoDataUrl } from "../../utils/images-fallback";
 
 interface CompanyBoxProps {
     company: CompanyData;
@@ -9,13 +10,12 @@ interface CompanyBoxProps {
 export const CompanyBox: FunctionalComponent<CompanyBoxProps> = (props => (
     <div class='company-box box-container'>
         <div class='company-row'>
-            { 
-                props.company?.data?.attributes?.LogoImage?.data ? 
+            {props.company?.data?.attributes?.LogoImage &&
                 <app-responsive-image 
                     image={props.company.data.attributes.LogoImage} 
+                    noImageDataUrl={noLogoDataUrl}
                     class='logo-image' 
-                    expectedWidth={300} /> : 
-                <div class='logo'><i class="fa-regular fa-image"></i></div> 
+                    expectedWidth={300} />
             }
             
             <div class='company-name'>
