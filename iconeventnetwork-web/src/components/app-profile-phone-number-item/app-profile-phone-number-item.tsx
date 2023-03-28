@@ -501,12 +501,8 @@ export class AppProfilePhoneItem {
                                         Delete this phone number
                                     </icn-button>
                                 }
-                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>
-                                    Cancel
-                                </icn-button>
-                                <icn-button onClick={e => this.handleSaveClick(e)}>
-                                    Save
-                                </icn-button>
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
                     }

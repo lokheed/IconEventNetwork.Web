@@ -209,7 +209,7 @@ export class AppProfileLanguagesSpoken {
                                 </ol>
                             </div>
                             <div class="button-container">
-                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
