@@ -425,12 +425,8 @@ export class AppProfileEmailAddressItem {
                                     Delete this email address
                                 </icn-button>
                                 }
-                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>
-                                    Cancel
-                                </icn-button>
-                                <icn-button type="primary" onClick={e => this.handleSaveClick(e)}>
-                                    Save
-                                </icn-button>
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
                     }                

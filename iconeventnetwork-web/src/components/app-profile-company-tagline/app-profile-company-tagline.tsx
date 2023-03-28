@@ -74,7 +74,7 @@ export class AppProfileCompanyTagline {
                                 <input id='job-title' name='job-title' type="text" maxLength={50} value={this.editTagline} onInput={(e) => this.handleTaglineChange(e)} />
                             </div>
                             <div class="button-container">
-                                <icn-button type='neutral' onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>    
                         </form>

@@ -197,7 +197,7 @@ export class AppProfileCompanyLogo {
                                 { (this.displayImage?.data?.id??0) > 0 &&
                                     <icn-button type="danger" class="delete" onClick={e => this.handleDeleteClick(e)}>Delete this logo</icn-button>
                                 }
-                                <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
+                                <icn-button reversed onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
