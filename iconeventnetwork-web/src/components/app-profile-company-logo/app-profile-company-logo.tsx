@@ -2,7 +2,7 @@ import { Component, Host, Listen, Prop, State, h } from "@stencil/core";
 import { ImageFormatInfo, ImageInfo, CompanySaveData } from '../../services/clients/client-base';
 import { CompanyClient } from '../../services/clients/company-client';
 import { UploadClient } from "../../services/clients/upload-client";
-import { noImageDataUrl } from "../../utils/images-fallback";
+import { noLogoDataUrl } from "../../utils/images-fallback";
 
 @Component({
   tag: "app-profile-company-logo",
@@ -144,7 +144,7 @@ export class AppProfileCompanyLogo {
             this.editImageUrl = this.displayImage.data.attributes.url;
             return;
         }
-        this.editImageUrl = noImageDataUrl;
+        this.editImageUrl = noLogoDataUrl;
     }
         
     componentWillLoad() {
@@ -164,7 +164,7 @@ export class AppProfileCompanyLogo {
                     { !this.isEditing &&
                         <div class='content-value'>
                             { this.displayImage && 
-                                <app-responsive-image image={this.displayImage} class='logo-image' expectedWidth={150} /> 
+                                <app-responsive-image image={this.displayImage} noImageDataUrl={noLogoDataUrl} class='logo-image' expectedWidth={150} /> 
                             }                           
                         </div>                   
                     }
