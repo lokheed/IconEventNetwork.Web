@@ -195,6 +195,7 @@ export class AppProfilePicture {
                             <div class="button-container">
                                 { (this.displayImage?.data?.id??0) > 0 &&
                                     <icn-button type="danger" class='delete'
+                                        confirm
                                         confirmMessage="Are you sure you want to delete this picture?"
                                         confirmYesText="Delete"
                                         confirmNoText="Cancel"

@@ -292,6 +292,7 @@ export class AppProfileSocialMediaItem {
                             <div class="button-container">
                                 { this.socialMediaItem.id > 0 &&
                                     <icn-button class='delete' type="danger"
+                                        confirm
                                         confirmMessage="Are you sure you want to delete this social media account?"
                                         confirmYesText="Delete"
                                         confirmNoText="Cancel"
