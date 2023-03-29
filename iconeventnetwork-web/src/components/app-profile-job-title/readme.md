@@ -29,6 +29,8 @@
 graph TD;
   app-profile-job-title --> icn-profile-actions
   app-profile-job-title --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-person-at-company --> app-profile-job-title
   style app-profile-job-title fill:#f9f,stroke:#333,stroke-width:4px
 ```

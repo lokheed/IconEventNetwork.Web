@@ -83,9 +83,9 @@ graph TD;
   app-profile-picture --> icn-profile-actions
   app-profile-picture --> icn-message
   app-profile-picture --> icn-button
-  app-profile-picture --> app-confirmation
   app-profile-picture --> app-responsive-image
-  app-confirmation --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   app-profile-name --> icn-profile-actions
   app-profile-name --> icn-message
   app-profile-name --> icn-button
@@ -96,15 +96,12 @@ graph TD;
   app-profile-email-address-item --> icn-profile-actions
   app-profile-email-address-item --> icn-message
   app-profile-email-address-item --> icn-button
-  app-profile-email-address-item --> app-confirmation
   app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> icn-profile-actions
   app-profile-phone-number-item --> icn-button
-  app-profile-phone-number-item --> app-confirmation
   app-profile-address-item --> icn-profile-actions
   app-profile-address-item --> icn-message
   app-profile-address-item --> icn-button
-  app-profile-address-item --> app-confirmation
   page-profile-person-at-companies --> app-profile-left-nav
   page-profile-person-at-companies --> app-responsive-image
   page-profile-person-at-companies --> icn-button
@@ -135,7 +132,6 @@ graph TD;
   app-profile-company-logo --> icn-profile-actions
   app-profile-company-logo --> icn-message
   app-profile-company-logo --> icn-button
-  app-profile-company-logo --> app-confirmation
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-tagline --> icn-button
   app-profile-company-description --> icn-profile-actions
@@ -147,8 +143,8 @@ graph TD;
   app-profile-social-media-item --> icn-profile-actions
   app-profile-social-media-item --> icn-message
   app-profile-social-media-item --> icn-button
-  app-profile-social-media-item --> app-confirmation
   page-ux-test --> icn-button
+  page-ux-test --> icn-modal
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

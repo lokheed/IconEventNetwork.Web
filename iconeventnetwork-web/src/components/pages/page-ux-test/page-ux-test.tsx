@@ -6,6 +6,17 @@ import { Component, h } from '@stencil/core';
   shadow: false,
 })
 export class PageUXTest{
+    private demoModal: HTMLIcnModalElement;
+    private buttonsContainer: HTMLFieldSetElement;
+
+    componentDidLoad(){
+        const buttons = this.buttonsContainer.querySelectorAll("icn-button");
+        buttons.forEach(button => button.addEventListener("click", e => console.log(e)));
+    }
+
+    private showModal(): void {
+        this.demoModal.show();
+    }
 
     private getColors(): {varName: string, value: string}[]{
         var colors: {varName: string, value: string}[] = [];
@@ -47,7 +58,7 @@ export class PageUXTest{
                         </div>
                     )}
                 </fieldset>
-                <fieldset class="icn-button">
+                <fieldset class="icn-button" ref={el => this.buttonsContainer = el}>
                     <legend>icn-button</legend>
                     <icn-button type="primary">Primary</icn-button>
                     <icn-button type="primary" reversed>Primary Reversed</icn-button>
@@ -76,10 +87,42 @@ export class PageUXTest{
                     <icn-button type="warning">Warning</icn-button>
                     <icn-button type="warning" reversed>Warning Reversed</icn-button>
                     <icn-button type="warning" disabled>Warning Disabled</icn-button>
-                    
+
+                    <icn-button type="info">Info</icn-button>
+                    <icn-button type="info" reversed>Info Reversed</icn-button>
+                    <icn-button type="info" disabled>Info Disabled</icn-button>
+
                     <icn-button type="link">Link</icn-button>
                     <icn-button type="link" reversed>Link Reversed</icn-button>
                     <icn-button type="link" disabled>Link Disabled</icn-button>
+
+                    <icn-button
+                        confirm
+                        confirmMessage="Are you sure you want to do the thing?"
+                        confirmYesText="Hell ya!"
+                        confirmNoText="Oh hell no!"
+                        onConfirmed={() => alert("Confirmed!")}
+                        onDismissed={() => alert("Dismissed!")}
+                    >
+                        Confirmable
+                    </icn-button>
+                </fieldset>
+                <fieldset>
+                    <legend>icn-modal</legend>
+                    <icn-button onClick={() => this.showModal()}>
+                        Open Modal
+                    </icn-button>
+                    <icn-modal ref={el => this.demoModal = el}>
+                        <div>
+                            <h3>Modal Header Text</h3>
+                            <p>The body content of the modal goes in this space.</p>
+                        </div>
+                        <div slot="footer">
+                            <icn-button type="primary" onClick={() => this.demoModal.hide()}>
+                                Close
+                            </icn-button>
+                        </div>
+                    </icn-modal>
                 </fieldset>
             </div>    
         );

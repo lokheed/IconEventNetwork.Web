@@ -16,7 +16,6 @@ import state from '../../services/store';
     scoped: true,
 })
 export class AppProfilePhoneItem {
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private editForm: HTMLFormElement;
     private phoneNumberInput: HTMLInputElement;
     private phoneNumberErrorMessage: HTMLIcnMessageElement;
@@ -53,8 +52,7 @@ export class AppProfilePhoneItem {
     @State() phoneNumberCountries: DataResponse<CountryAttributes>[];
     @Event() private phoneNumberDeleted: EventEmitter<number>;
 
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
+    private deletePhoneNumber() {
         this.phoneNumberInput.classList.remove('invalid');
         this.phoneNumberErrorMessage.hide();
         this.isEditing = false;    
@@ -102,9 +100,7 @@ export class AppProfilePhoneItem {
         this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
         return;     
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
+
     @Listen('phoneNumberAdded') phoneNumberAddedHandler(event: CustomEvent<number>) {
         if (this.phoneNumberItem.id == event.detail) {
             this.initializeEditForm();
@@ -136,11 +132,6 @@ export class AppProfilePhoneItem {
         if (this.phoneNumberItem.id === 0) {
             this.phoneNumberDeleted.emit(this.phoneNumberItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -497,7 +488,13 @@ export class AppProfilePhoneItem {
                             </div>
                             <div class="button-container">
                                 { this.phoneNumberItem.id > 0 &&
-                                    <icn-button class="delete" type="danger" onClick={e => this.handleDeleteClick(e)}>
+                                    <icn-button class="delete" type="danger"
+                                        confirm
+                                        confirmMessage="Are you sure you want to delete this phone number?"
+                                        confirmYesText="Delete"
+                                        confirmNoText="Cancel"
+                                        onConfirmed={() => this.deletePhoneNumber()}
+                                    >
                                         Delete this phone number
                                     </icn-button>
                                 }
@@ -507,9 +504,6 @@ export class AppProfilePhoneItem {
                         </form>
                     }
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} visible={false} >
-                    Are you sure you want to delete this phone number?
-                </app-confirmation>    
             </div>
         );
     }

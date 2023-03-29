@@ -2,27 +2,6 @@
   "version": 1.1,
   "tags": [
     {
-      "name": "app-confirmation",
-      "description": {
-        "kind": "markdown",
-        "value": ""
-      },
-      "attributes": [
-        {
-          "name": "primary-action-text",
-          "description": ""
-        },
-        {
-          "name": "secondary-action-text",
-          "description": ""
-        },
-        {
-          "name": "visible",
-          "description": ""
-        }
-      ]
-    },
-    {
       "name": "app-environment-nag",
       "description": {
         "kind": "markdown",
@@ -464,6 +443,22 @@
       },
       "attributes": [
         {
+          "name": "confirm",
+          "description": "Optionally add a confirmation dialog before firing the action."
+        },
+        {
+          "name": "confirm-message",
+          "description": "The text of the confirmation message;"
+        },
+        {
+          "name": "confirm-no-text",
+          "description": "The text of the no button for confirmation."
+        },
+        {
+          "name": "confirm-yes-text",
+          "description": "The text of the yes button for confirmation."
+        },
+        {
           "name": "disabled",
           "description": "Defines if the button should be disabled"
         },
@@ -477,6 +472,9 @@
           "values": [
             {
               "name": "danger"
+            },
+            {
+              "name": "info"
             },
             {
               "name": "link"
@@ -547,6 +545,45 @@
             },
             {
               "name": "success"
+            },
+            {
+              "name": "warning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "icn-modal",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "type",
+          "description": "Defines the overall style of the button.",
+          "values": [
+            {
+              "name": "danger"
+            },
+            {
+              "name": "info"
+            },
+            {
+              "name": "neutral"
+            },
+            {
+              "name": "primary"
+            },
+            {
+              "name": "secondary"
+            },
+            {
+              "name": "success"
+            },
+            {
+              "name": "tertiary"
             },
             {
               "name": "warning"

@@ -30,6 +30,8 @@
 graph TD;
   app-profile-languages-spoken --> icn-profile-actions
   app-profile-languages-spoken --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-person --> app-profile-languages-spoken
   style app-profile-languages-spoken fill:#f9f,stroke:#333,stroke-width:4px
 ```

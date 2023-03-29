@@ -15,7 +15,6 @@ import { noPhotoDataUrl } from "../../utils/images-fallback";
 export class AppProfilePicture {
     private readonly personClient: PersonClient;
     private readonly uploadClient: UploadClient;
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private profileActions: HTMLIcnProfileActionsElement;
     private imageInput: HTMLInputElement;
     private sizeErrorMessage: HTMLIcnMessageElement;
@@ -39,8 +38,8 @@ export class AppProfilePicture {
         this.isEditing = true;
         this.setEditImageToDisplayImage();
     }
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;         
+    
+    private deletePicture() {
         this.uploadClient.destroy(this.displayImage.data.id);
         let personSaveData: PersonSaveData = {
             data: {
@@ -58,19 +57,10 @@ export class AppProfilePicture {
             window.location.replace('/profile-person'); // needed to refresh profile image in navigation
         });
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();     
-        if (!this.displayImage.data) return;
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -204,7 +194,12 @@ export class AppProfilePicture {
                             </div>                         
                             <div class="button-container">
                                 { (this.displayImage?.data?.id??0) > 0 &&
-                                    <icn-button type="danger" class='delete' onClick={e => this.handleDeleteClick(e)}>
+                                    <icn-button type="danger" class='delete'
+                                        confirmMessage="Are you sure you want to delete this picture?"
+                                        confirmYesText="Delete"
+                                        confirmNoText="Cancel"
+                                        onConfirmed={() => this.deletePicture()}
+                                    >
                                         Delete this picture
                                     </icn-button>
                                 }                                      
@@ -214,9 +209,6 @@ export class AppProfilePicture {
                         </form>
                     }
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
-                    Are you sure you want to delete this profile picture?
-                </app-confirmation>    
             </Host>
         );
     }

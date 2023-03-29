@@ -26,7 +26,6 @@
 - [icn-profile-actions](../icn-profile-actions)
 - [icn-message](../icn-message)
 - [icn-button](../icn-button)
-- [app-confirmation](../app-confirmation)
 
 ### Graph
 ```mermaid
@@ -35,8 +34,8 @@ graph TD;
   app-profile-company-logo --> icn-profile-actions
   app-profile-company-logo --> icn-message
   app-profile-company-logo --> icn-button
-  app-profile-company-logo --> app-confirmation
-  app-confirmation --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-company --> app-profile-company-logo
   style app-profile-company-logo fill:#f9f,stroke:#333,stroke-width:4px
 ```

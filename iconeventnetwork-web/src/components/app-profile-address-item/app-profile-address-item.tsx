@@ -16,7 +16,6 @@ import state from '../../services/store';
   scoped: true,
 })
 export class AppProfileAddressItem {
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private addressClient: AddressClient;
     private addressTypeClient: AddressTypeClient;
     private countryClient: CountryClient;
@@ -72,8 +71,7 @@ export class AppProfileAddressItem {
     private cityInput: HTMLInputElement;
     private cityErrorMessage: HTMLIcnMessageElement;
 
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
+    private deleteConfirmed() {
         this.cityInput.classList.remove('invalid');
         this.cityErrorMessage.hide();
         this.isEditing = false;    
@@ -121,9 +119,7 @@ export class AppProfileAddressItem {
         this.addressDeleted.emit(this.addressItem.id);
         return;     
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
+
     @Listen('addressAdded') addressAddedHandler(event: CustomEvent<number>) {
         if (this.addressItem.id == event.detail) {
             this.initializeEditForm();
@@ -141,11 +137,6 @@ export class AppProfileAddressItem {
         if (this.addressItem.id === 0) {
             this.addressDeleted.emit(this.addressItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -669,7 +660,13 @@ export class AppProfileAddressItem {
                             </div>
                             <div class="button-container">
                                 { this.addressItem.id > 0 &&
-                                    <icn-button type="danger" class="delete" onClick={e => this.handleDeleteClick(e)}>
+                                    <icn-button type="danger" class="delete" 
+                                        confirm
+                                        confirmMessage="Are you sure you want to delete this address?"
+                                        confirmYesText="Delete"
+                                        confirmNoText="Cancel"
+                                        onConfirmed={() => this.deleteConfirmed()}
+                                    >
                                         Delete this address
                                     </icn-button>
                                 }                                 
@@ -679,9 +676,6 @@ export class AppProfileAddressItem {
                         </form>
                     }
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
-                    Are you sure you want to delete this address?
-                </app-confirmation>    
             </div>
         );
     }

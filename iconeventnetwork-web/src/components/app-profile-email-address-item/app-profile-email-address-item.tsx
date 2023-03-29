@@ -14,7 +14,6 @@ import state from '../../services/store';
   scoped: true,
 })
 export class AppProfileEmailAddressItem {
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private emailAddressClient: EmailAddressClient;
     private emailAddressTypeClient: EmailAddressTypeClient;
     private personClient: PersonClient;
@@ -46,8 +45,8 @@ export class AppProfileEmailAddressItem {
     private emailAddressInput: HTMLInputElement;
     private emailAddressRequiredErrorMessage: HTMLIcnMessageElement;
     private emailAddressInvalidErrorMessage: HTMLIcnMessageElement;
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false; 
+
+    private deleteEmail() {
         this.emailAddressInput.classList.remove('invalid');
         this.emailAddressRequiredErrorMessage.hide();
         this.isEditing = false;   
@@ -95,9 +94,7 @@ export class AppProfileEmailAddressItem {
         this.emailAddressDeleted.emit(this.emailAddressItem.id);
         return;     
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
+
     @Listen('emailAddressAdded') emailAddressAddedHandler(event: CustomEvent<number>) {
         if (this.emailAddressItem.id == event.detail) {
             this.initializeEditForm();
@@ -115,11 +112,6 @@ export class AppProfileEmailAddressItem {
         if (this.emailAddressItem.id === 0) {
             this.emailAddressDeleted.emit(this.emailAddressItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -421,7 +413,12 @@ export class AppProfileEmailAddressItem {
                             </div>
                             <div class="button-container">
                                 { this.emailAddressItem.id > 0 &&
-                                <icn-button class="delete" type="danger" onClick={e => this.handleDeleteClick(e)}>
+                                <icn-button class="delete" type="danger"
+                                    confirmMessage="Are you sure you want to delete this email address?"
+                                    confirmYesText="Delete"
+                                    confirmNoText="Cancel"
+                                    onConfirmed={() => this.deleteEmail()}
+                                >
                                     Delete this email address
                                 </icn-button>
                                 }
@@ -431,9 +428,6 @@ export class AppProfileEmailAddressItem {
                         </form>
                     }                
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
-                    Are you sure you want to delete this email address?
-                </app-confirmation>    
             </div>
         );
     }
