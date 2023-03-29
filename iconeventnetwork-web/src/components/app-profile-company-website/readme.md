@@ -31,6 +31,8 @@ graph TD;
   app-profile-company-website --> icn-profile-actions
   app-profile-company-website --> icn-message
   app-profile-company-website --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-company --> app-profile-company-website
   style app-profile-company-website fill:#f9f,stroke:#333,stroke-width:4px
 ```

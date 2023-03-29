@@ -13,7 +13,6 @@ import { noImageDataUrl } from "../../utils/images-fallback";
 export class AppProfileCompanyLogo {
     private readonly companyClient: CompanyClient;
     private readonly uploadClient: UploadClient;
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private profileActions: HTMLIcnProfileActionsElement;
     private imageInput: HTMLInputElement;
     private sizeErrorMessage: HTMLIcnMessageElement;
@@ -38,8 +37,8 @@ export class AppProfileCompanyLogo {
         this.isEditing = true;
         this.setEditImageToDisplayImage();
     }
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;         
+
+    private deleteLogo() {
         this.uploadClient.destroy(this.displayImage.data.id);
         let companySaveData: CompanySaveData = {
             data: {
@@ -55,19 +54,10 @@ export class AppProfileCompanyLogo {
             this.profileActions.deleteDisabled = true;
         });
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
 
     private handleCancelClick(e: MouseEvent) {
         e.preventDefault();
         this.isEditing = false;
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();     
-        if (!this.displayImage.data) return;
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -195,7 +185,15 @@ export class AppProfileCompanyLogo {
                             </div>
                             <div class="button-container">
                                 { (this.displayImage?.data?.id??0) > 0 &&
-                                    <icn-button type="danger" class="delete" onClick={e => this.handleDeleteClick(e)}>Delete this logo</icn-button>
+                                    <icn-button type="danger" class="delete"
+                                        confirm
+                                        confirmMessage="Are you sure you want to delete this logo?"
+                                        confirmYesText="Delete"
+                                        confirmNoText="Cancel"
+                                        onConfirmed={() => this.deleteLogo()}
+                                    >
+                                        Delete this logo
+                                    </icn-button>
                                 }
                                 <icn-button type="neutral" onClick={e => this.handleCancelClick(e)}>Cancel</icn-button>
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
@@ -203,9 +201,6 @@ export class AppProfileCompanyLogo {
                         </form>
                     }
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
-                    Are you sure you want to delete this logo?
-                </app-confirmation>    
             </Host>
         );
     }

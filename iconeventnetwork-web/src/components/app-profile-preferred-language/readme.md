@@ -30,6 +30,8 @@
 graph TD;
   app-profile-preferred-language --> icn-profile-actions
   app-profile-preferred-language --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-person --> app-profile-preferred-language
   style app-profile-preferred-language fill:#f9f,stroke:#333,stroke-width:4px
 ```

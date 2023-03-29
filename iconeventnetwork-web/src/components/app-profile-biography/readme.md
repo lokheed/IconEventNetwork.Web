@@ -31,6 +31,8 @@ graph TD;
   app-profile-biography --> icn-profile-actions
   app-profile-biography --> icn-rich-text-editor
   app-profile-biography --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-person-at-company --> app-profile-biography
   style app-profile-biography fill:#f9f,stroke:#333,stroke-width:4px
 ```

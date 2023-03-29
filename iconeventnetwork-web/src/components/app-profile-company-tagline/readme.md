@@ -29,6 +29,8 @@
 graph TD;
   app-profile-company-tagline --> icn-profile-actions
   app-profile-company-tagline --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-company --> app-profile-company-tagline
   style app-profile-company-tagline fill:#f9f,stroke:#333,stroke-width:4px
 ```

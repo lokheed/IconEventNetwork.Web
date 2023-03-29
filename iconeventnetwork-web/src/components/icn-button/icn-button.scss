@@ -72,6 +72,14 @@
   --color-background-active: var(--color-warning-dark);
 }
 
+.info{
+  --color-border: var(--color-info-main);
+  --color-background: var(--color-info-main);
+  --color-foreground: var(--color-info-contrast);
+  --color-background-hover: var(--color-info-light);
+  --color-background-active: var(--color-info-dark);
+}
+
 button{
   font-weight: 600;
   border-radius: 2em;
@@ -107,4 +115,10 @@ button{
       color: var(--color-link-active);
     }
   }
+}
+
+.controls{
+  display: flex;
+  gap: 1em;
+  justify-content: flex-end;
 }

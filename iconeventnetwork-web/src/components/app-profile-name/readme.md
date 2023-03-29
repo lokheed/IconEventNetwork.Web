@@ -32,6 +32,8 @@ graph TD;
   app-profile-name --> icn-profile-actions
   app-profile-name --> icn-message
   app-profile-name --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-person --> app-profile-name
   page-profile-person-at-company --> app-profile-name
   style app-profile-name fill:#f9f,stroke:#333,stroke-width:4px

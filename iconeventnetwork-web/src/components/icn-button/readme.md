@@ -7,11 +7,23 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                       | Type                                                                                                  | Default     |
-| ---------- | ---------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------- |
-| `disabled` | `disabled` | Defines if the button should be disabled          | `boolean`                                                                                             | `false`     |
-| `reversed` | `reversed` | Defines if the button should be reversed (colors) | `boolean`                                                                                             | `false`     |
-| `type`     | `type`     | Defines the overall style of the button.          | `"danger" \| "link" \| "neutral" \| "primary" \| "secondary" \| "success" \| "tertiary" \| "warning"` | `"primary"` |
+| Property         | Attribute          | Description                                                    | Type                                                                                                            | Default            |
+| ---------------- | ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `confirm`        | `confirm`          | Optionally add a confirmation dialog before firing the action. | `boolean`                                                                                                       | `false`            |
+| `confirmMessage` | `confirm-message`  | The text of the confirmation message;                          | `string`                                                                                                        | `"Are you sure ?"` |
+| `confirmNoText`  | `confirm-no-text`  | The text of the no button for confirmation.                    | `string`                                                                                                        | `"No"`             |
+| `confirmYesText` | `confirm-yes-text` | The text of the yes button for confirmation.                   | `string`                                                                                                        | `"Yes"`            |
+| `disabled`       | `disabled`         | Defines if the button should be disabled                       | `boolean`                                                                                                       | `false`            |
+| `reversed`       | `reversed`         | Defines if the button should be reversed (colors)              | `boolean`                                                                                                       | `false`            |
+| `type`           | `type`             | Defines the overall style of the button.                       | `"danger" \| "info" \| "link" \| "neutral" \| "primary" \| "secondary" \| "success" \| "tertiary" \| "warning"` | `"primary"`        |
+
+
+## Events
+
+| Event       | Description                                                    | Type               |
+| ----------- | -------------------------------------------------------------- | ------------------ |
+| `confirmed` | Fires when in confirm mode and the user accepts the message.   | `CustomEvent<any>` |
+| `dismissed` | Fires when in confirm mode and the user dismisses the message. | `CustomEvent<any>` |
 
 
 ## CSS Custom Properties
@@ -30,7 +42,6 @@
 
 ### Used by
 
- - [app-confirmation](../app-confirmation)
  - [app-profile-address-item](../app-profile-address-item)
  - [app-profile-biography](../app-profile-biography)
  - [app-profile-company-description](../app-profile-company-description)
@@ -45,13 +56,19 @@
  - [app-profile-picture](../app-profile-picture)
  - [app-profile-preferred-language](../app-profile-preferred-language)
  - [app-profile-social-media-item](../app-profile-social-media-item)
+ - [icn-button](.)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
  - [page-ux-test](../pages/page-ux-test)
+
+### Depends on
+
+- [icn-modal](../icn-modal)
+- [icn-button](.)
 
 ### Graph
 ```mermaid
 graph TD;
-  app-confirmation --> icn-button
+  icn-button --> icn-button
   app-profile-address-item --> icn-button
   app-profile-biography --> icn-button
   app-profile-company-description --> icn-button

@@ -16,11 +16,6 @@ export { GetLeadershipTeamMembersResponse } from "./services/clients/leadership-
 export { GetRequestingPersonResponse } from "./services/clients/person-client";
 export { Config } from "jodit/types/config";
 export namespace Components {
-    interface AppConfirmation {
-        "primaryActionText"?: string;
-        "secondaryActionText"?: string;
-        "visible": boolean;
-    }
     interface AppEnvironmentNag {
     }
     interface AppEventPlannerBioItem {
@@ -160,6 +155,22 @@ export namespace Components {
     }
     interface IcnButton {
         /**
+          * Optionally add a confirmation dialog before firing the action.
+         */
+        "confirm"?: boolean;
+        /**
+          * The text of the confirmation message;
+         */
+        "confirmMessage"?: string;
+        /**
+          * The text of the no button for confirmation.
+         */
+        "confirmNoText"?: string;
+        /**
+          * The text of the yes button for confirmation.
+         */
+        "confirmYesText"?: string;
+        /**
           * Defines if the button should be disabled
          */
         "disabled": boolean;
@@ -170,7 +181,7 @@ export namespace Components {
         /**
           * Defines the overall style of the button.
          */
-        "type": 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "link";
+        "type": 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "info" | "link";
     }
     interface IcnCopy {
         "textToCopy": string;
@@ -183,6 +194,20 @@ export namespace Components {
         "reset": () => Promise<void>;
         "show": () => Promise<void>;
         "type": 'warning' | 'success' | 'error' | 'info';
+    }
+    interface IcnModal {
+        /**
+          * Hides the modal.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Shows the modal.
+         */
+        "show": () => Promise<void>;
+        /**
+          * Defines the overall style of the button.
+         */
+        "type": 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "info";
     }
     interface IcnProfileActions {
         "deleteDisabled"?: boolean;
@@ -252,10 +277,6 @@ export namespace Components {
     interface PageUxTest {
     }
 }
-export interface AppConfirmationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLAppConfirmationElement;
-}
 export interface AppEventPlannerBioItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLAppEventPlannerBioItemElement;
@@ -280,17 +301,15 @@ export interface AppProfileSocialMediaItemCustomEvent<T> extends CustomEvent<T> 
     detail: T;
     target: HTMLAppProfileSocialMediaItemElement;
 }
+export interface IcnButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIcnButtonElement;
+}
 export interface IcnProfileActionsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIcnProfileActionsElement;
 }
 declare global {
-    interface HTMLAppConfirmationElement extends Components.AppConfirmation, HTMLStencilElement {
-    }
-    var HTMLAppConfirmationElement: {
-        prototype: HTMLAppConfirmationElement;
-        new (): HTMLAppConfirmationElement;
-    };
     interface HTMLAppEnvironmentNagElement extends Components.AppEnvironmentNag, HTMLStencilElement {
     }
     var HTMLAppEnvironmentNagElement: {
@@ -477,6 +496,12 @@ declare global {
         prototype: HTMLIcnMessageElement;
         new (): HTMLIcnMessageElement;
     };
+    interface HTMLIcnModalElement extends Components.IcnModal, HTMLStencilElement {
+    }
+    var HTMLIcnModalElement: {
+        prototype: HTMLIcnModalElement;
+        new (): HTMLIcnModalElement;
+    };
     interface HTMLIcnProfileActionsElement extends Components.IcnProfileActions, HTMLStencilElement {
     }
     var HTMLIcnProfileActionsElement: {
@@ -622,7 +647,6 @@ declare global {
         new (): HTMLPageUxTestElement;
     };
     interface HTMLElementTagNameMap {
-        "app-confirmation": HTMLAppConfirmationElement;
         "app-environment-nag": HTMLAppEnvironmentNagElement;
         "app-event-planner-bio-item": HTMLAppEventPlannerBioItemElement;
         "app-event-planner-item": HTMLAppEventPlannerItemElement;
@@ -654,6 +678,7 @@ declare global {
         "icn-button": HTMLIcnButtonElement;
         "icn-copy": HTMLIcnCopyElement;
         "icn-message": HTMLIcnMessageElement;
+        "icn-modal": HTMLIcnModalElement;
         "icn-profile-actions": HTMLIcnProfileActionsElement;
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
@@ -681,13 +706,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface AppConfirmation {
-        "onPrimaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
-        "onSecondaryConfirmationClick"?: (event: AppConfirmationCustomEvent<any>) => void;
-        "primaryActionText"?: string;
-        "secondaryActionText"?: string;
-        "visible"?: boolean;
-    }
     interface AppEnvironmentNag {
     }
     interface AppEventPlannerBioItem {
@@ -833,9 +851,33 @@ declare namespace LocalJSX {
     }
     interface IcnButton {
         /**
+          * Optionally add a confirmation dialog before firing the action.
+         */
+        "confirm"?: boolean;
+        /**
+          * The text of the confirmation message;
+         */
+        "confirmMessage"?: string;
+        /**
+          * The text of the no button for confirmation.
+         */
+        "confirmNoText"?: string;
+        /**
+          * The text of the yes button for confirmation.
+         */
+        "confirmYesText"?: string;
+        /**
           * Defines if the button should be disabled
          */
         "disabled"?: boolean;
+        /**
+          * Fires when in confirm mode and the user accepts the message.
+         */
+        "onConfirmed"?: (event: IcnButtonCustomEvent<any>) => void;
+        /**
+          * Fires when in confirm mode and the user dismisses the message.
+         */
+        "onDismissed"?: (event: IcnButtonCustomEvent<any>) => void;
         /**
           * Defines if the button should be reversed (colors)
          */
@@ -843,7 +885,7 @@ declare namespace LocalJSX {
         /**
           * Defines the overall style of the button.
          */
-        "type"?: 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "link";
+        "type"?: 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "info" | "link";
     }
     interface IcnCopy {
         "textToCopy"?: string;
@@ -853,6 +895,12 @@ declare namespace LocalJSX {
         "dismissible"?: boolean;
         "hidden"?: boolean;
         "type": 'warning' | 'success' | 'error' | 'info';
+    }
+    interface IcnModal {
+        /**
+          * Defines the overall style of the button.
+         */
+        "type"?: 'primary' | "secondary" | "tertiary" | "neutral" | "danger" | "success" | "warning" | "info";
     }
     interface IcnProfileActions {
         "deleteDisabled"?: boolean;
@@ -919,7 +967,6 @@ declare namespace LocalJSX {
     interface PageUxTest {
     }
     interface IntrinsicElements {
-        "app-confirmation": AppConfirmation;
         "app-environment-nag": AppEnvironmentNag;
         "app-event-planner-bio-item": AppEventPlannerBioItem;
         "app-event-planner-item": AppEventPlannerItem;
@@ -951,6 +998,7 @@ declare namespace LocalJSX {
         "icn-button": IcnButton;
         "icn-copy": IcnCopy;
         "icn-message": IcnMessage;
+        "icn-modal": IcnModal;
         "icn-profile-actions": IcnProfileActions;
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
@@ -981,7 +1029,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-confirmation": LocalJSX.AppConfirmation & JSXBase.HTMLAttributes<HTMLAppConfirmationElement>;
             "app-environment-nag": LocalJSX.AppEnvironmentNag & JSXBase.HTMLAttributes<HTMLAppEnvironmentNagElement>;
             "app-event-planner-bio-item": LocalJSX.AppEventPlannerBioItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerBioItemElement>;
             "app-event-planner-item": LocalJSX.AppEventPlannerItem & JSXBase.HTMLAttributes<HTMLAppEventPlannerItemElement>;
@@ -1013,6 +1060,7 @@ declare module "@stencil/core" {
             "icn-button": LocalJSX.IcnButton & JSXBase.HTMLAttributes<HTMLIcnButtonElement>;
             "icn-copy": LocalJSX.IcnCopy & JSXBase.HTMLAttributes<HTMLIcnCopyElement>;
             "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
+            "icn-modal": LocalJSX.IcnModal & JSXBase.HTMLAttributes<HTMLIcnModalElement>;
             "icn-profile-actions": LocalJSX.IcnProfileActions & JSXBase.HTMLAttributes<HTMLIcnProfileActionsElement>;
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;

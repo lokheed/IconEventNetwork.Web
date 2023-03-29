@@ -12,7 +12,6 @@ import state from '../../services/store';
     scoped: true,
 })
 export class AppProfileSocialMediaItem {
-    private deleteConfirmationDialog: HTMLAppConfirmationElement;
     private socialMediaClient: SocialMediaClient;
     private socialMediaTypeClient: SocialMediaTypeClient;
     private companyClient: CompanyClient;
@@ -39,8 +38,8 @@ export class AppProfileSocialMediaItem {
     private editForm: HTMLFormElement;
     private nameInput: HTMLInputElement;
     private nameErrorMessage: HTMLIcnMessageElement;
-    @Listen('primaryConfirmationClick') primaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false; 
+    
+    private deleteItem() {
         this.resetFormErrors();
         this.isEditing = false; 
         let companySaveData: CompanySaveData = {
@@ -59,9 +58,7 @@ export class AppProfileSocialMediaItem {
         this.socialMediaDeleted.emit(this.socialMediaItem.id);
         return;     
     }
-    @Listen('secondaryConfirmationClick') secondaryDeleteConfirmationClickHandler() {
-        this.deleteConfirmationDialog.visible = false;
-    }
+
     @Listen('emailAddressAdded') emailAddressAddedHandler(event: CustomEvent<number>) {
         if (this.socialMediaItem.id == event.detail) {
             this.isEditing = true;
@@ -78,11 +75,6 @@ export class AppProfileSocialMediaItem {
         if (this.socialMediaItem.id === 0) {
             this.socialMediaDeleted.emit(this.socialMediaItem.id);
         }
-    }
-
-    private handleDeleteClick(e: MouseEvent) {
-        e.preventDefault();
-        this.deleteConfirmationDialog.visible = true;
     }
 
     private handleSaveClick(e: MouseEvent) {
@@ -299,7 +291,12 @@ export class AppProfileSocialMediaItem {
                             </div>
                             <div class="button-container">
                                 { this.socialMediaItem.id > 0 &&
-                                    <icn-button class='delete' type="danger" onClick={e => this.handleDeleteClick(e)}>
+                                    <icn-button class='delete' type="danger"
+                                        confirmMessage="Are you sure you want to delete this social media account?"
+                                        confirmYesText="Delete"
+                                        confirmNoText="Cancel"
+                                        onConfirmed={() => this.deleteItem()}
+                                    >
                                         Delete this social media account
                                     </icn-button>
                                 }                       
@@ -307,11 +304,8 @@ export class AppProfileSocialMediaItem {
                                 <icn-button onClick={e => this.handleSaveClick(e)}>Save</icn-button>
                             </div>
                         </form>
-                    }                
+                    }
                 </div>
-                <app-confirmation ref={el => this.deleteConfirmationDialog = el} >
-                    Are you sure you want to delete this social media account?
-                </app-confirmation>    
             </div>
         );
     }

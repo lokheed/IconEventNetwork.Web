@@ -37,7 +37,6 @@
 - [icn-message](../icn-message)
 - [icn-profile-actions](../icn-profile-actions)
 - [icn-button](../icn-button)
-- [app-confirmation](../app-confirmation)
 
 ### Graph
 ```mermaid
@@ -45,8 +44,8 @@ graph TD;
   app-profile-phone-number-item --> icn-message
   app-profile-phone-number-item --> icn-profile-actions
   app-profile-phone-number-item --> icn-button
-  app-profile-phone-number-item --> app-confirmation
-  app-confirmation --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-profile-company --> app-profile-phone-number-item
   page-profile-person --> app-profile-phone-number-item
   page-profile-person-at-company --> app-profile-phone-number-item
