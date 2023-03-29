@@ -414,6 +414,7 @@ export class AppProfileEmailAddressItem {
                             <div class="button-container">
                                 { this.emailAddressItem.id > 0 &&
                                 <icn-button class="delete" type="danger"
+                                    confirm
                                     confirmMessage="Are you sure you want to delete this email address?"
                                     confirmYesText="Delete"
                                     confirmNoText="Cancel"
