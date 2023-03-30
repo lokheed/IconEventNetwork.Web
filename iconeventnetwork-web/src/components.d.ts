@@ -215,6 +215,24 @@ export namespace Components {
         "editDisabled"?: boolean;
         "editText"?: string;
     }
+    interface IcnRadio {
+        /**
+          * Defines if the radio button is selected or not.
+         */
+        "checked": boolean;
+        /**
+          * Disables the radio button.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the name of the radio button (used to uncheck other radio buttons sharing the same name).
+         */
+        "name": string;
+        /**
+          * Holds the value for this radio button.
+         */
+        "value": any;
+    }
     interface IcnRichTextEditor {
         /**
           * Gets the current html value.
@@ -508,6 +526,12 @@ declare global {
         prototype: HTMLIcnProfileActionsElement;
         new (): HTMLIcnProfileActionsElement;
     };
+    interface HTMLIcnRadioElement extends Components.IcnRadio, HTMLStencilElement {
+    }
+    var HTMLIcnRadioElement: {
+        prototype: HTMLIcnRadioElement;
+        new (): HTMLIcnRadioElement;
+    };
     interface HTMLIcnRichTextEditorElement extends Components.IcnRichTextEditor, HTMLStencilElement {
     }
     var HTMLIcnRichTextEditorElement: {
@@ -680,6 +704,7 @@ declare global {
         "icn-message": HTMLIcnMessageElement;
         "icn-modal": HTMLIcnModalElement;
         "icn-profile-actions": HTMLIcnProfileActionsElement;
+        "icn-radio": HTMLIcnRadioElement;
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-access-denied": HTMLPageAccessDeniedElement;
@@ -909,6 +934,24 @@ declare namespace LocalJSX {
         "editText"?: string;
         "onEditClick"?: (event: IcnProfileActionsCustomEvent<any>) => void;
     }
+    interface IcnRadio {
+        /**
+          * Defines if the radio button is selected or not.
+         */
+        "checked"?: boolean;
+        /**
+          * Disables the radio button.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the name of the radio button (used to uncheck other radio buttons sharing the same name).
+         */
+        "name": string;
+        /**
+          * Holds the value for this radio button.
+         */
+        "value"?: any;
+    }
     interface IcnRichTextEditor {
         /**
           * Allows overriding the default config, see https://github.com/xdan/jodit/blob/master/src/config.ts
@@ -1000,6 +1043,7 @@ declare namespace LocalJSX {
         "icn-message": IcnMessage;
         "icn-modal": IcnModal;
         "icn-profile-actions": IcnProfileActions;
+        "icn-radio": IcnRadio;
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
         "page-access-denied": PageAccessDenied;
@@ -1062,6 +1106,7 @@ declare module "@stencil/core" {
             "icn-message": LocalJSX.IcnMessage & JSXBase.HTMLAttributes<HTMLIcnMessageElement>;
             "icn-modal": LocalJSX.IcnModal & JSXBase.HTMLAttributes<HTMLIcnModalElement>;
             "icn-profile-actions": LocalJSX.IcnProfileActions & JSXBase.HTMLAttributes<HTMLIcnProfileActionsElement>;
+            "icn-radio": LocalJSX.IcnRadio & JSXBase.HTMLAttributes<HTMLIcnRadioElement>;
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;

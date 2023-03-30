@@ -618,6 +618,31 @@
       ]
     },
     {
+      "name": "icn-radio",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "checked",
+          "description": "Defines if the radio button is selected or not."
+        },
+        {
+          "name": "disabled",
+          "description": "Disables the radio button."
+        },
+        {
+          "name": "name",
+          "description": "Defines the name of the radio button (used to uncheck other radio buttons sharing the same name)."
+        },
+        {
+          "name": "value",
+          "description": "Holds the value for this radio button."
+        }
+      ]
+    },
+    {
       "name": "icn-rich-text-editor",
       "description": {
         "kind": "markdown",

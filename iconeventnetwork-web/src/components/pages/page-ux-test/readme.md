@@ -15,12 +15,14 @@
 
 - [icn-button](../../icn-button)
 - [icn-modal](../../icn-modal)
+- [icn-radio](../../icn-radio)
 
 ### Graph
 ```mermaid
 graph TD;
   page-ux-test --> icn-button
   page-ux-test --> icn-modal
+  page-ux-test --> icn-radio
   icn-button --> icn-modal
   icn-button --> icn-button
   app-root --> page-ux-test

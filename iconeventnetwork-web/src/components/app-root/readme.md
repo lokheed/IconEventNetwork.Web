@@ -145,6 +145,7 @@ graph TD;
   app-profile-social-media-item --> icn-button
   page-ux-test --> icn-button
   page-ux-test --> icn-modal
+  page-ux-test --> icn-radio
   app-footer --> app-footer-navigation
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```
