@@ -124,6 +124,15 @@ export class PageUXTest{
                         </div>
                     </icn-modal>
                 </fieldset>
+                <fieldset>
+                    <legend>icn-radio</legend>
+                    <icn-radio name="First" /> <span>Option 1</span><br />
+                    <icn-radio name="First" id="second-option" /> <label htmlFor="second-option">Option 2</label><br />
+                    <label><icn-radio name="First" /> Option 3</label><br />
+                    <br />
+                    <icn-radio name="Second" disabled checked /> <span>Disabled 1</span><br />
+                    <icn-radio name="Second" disabled /> <label>Disabled 2</label><br />
+                </fieldset>
             </div>    
         );
     }
