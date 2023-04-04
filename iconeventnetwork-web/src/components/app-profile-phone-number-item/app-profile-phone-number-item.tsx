@@ -48,6 +48,7 @@ export class AppProfilePhoneItem {
     @State() editPhoneNumberTypeName: string = '';
     @State() displayPhoneNumberCountryId: number = 0;
     @State() editPhoneNumberCountryId: number = 0;
+    @State() displayIsValidated: boolean = false;
     @State() phoneNumberTypes: DataResponse<PhoneNumberTypeAttributes>[];
     @State() phoneNumberCountries: DataResponse<CountryAttributes>[];
     @Event() private phoneNumberDeleted: EventEmitter<number>;
@@ -329,6 +330,7 @@ export class AppProfilePhoneItem {
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
+                this.displayIsValidated = response.data.attributes.IsValidated;
             })
             .catch(reason => {
                 console.log(reason.error.message);
@@ -406,6 +408,7 @@ export class AppProfilePhoneItem {
         this.displayPhoneNumberTypeId = this.phoneNumberItem.attributes.phone_number_type.data.id;
         this.displayPhoneNumberTypeName = this.phoneNumberItem.attributes.phone_number_type.data.attributes.Name;
         this.displayPhoneNumberCountryId = this.phoneNumberItem.attributes.country.data.id;
+        this.displayIsValidated = this.phoneNumberItem.attributes.IsValidated;
         switch (this.appliesTo) {
             case 'person':
                 this.getPersonPhoneNumberTypes();
@@ -434,7 +437,7 @@ export class AppProfilePhoneItem {
                                     {this.displayPhoneNumber}
                                 </div>
                             </div>                           
-                            {!this.phoneNumberItem.attributes.IsValidated &&
+                            {!this.displayIsValidated &&
                                 <icn-message type="warning">
                                     The phone number is not valid for the selected country. Invalid phone numbers do not appear in the directory.
                                 </icn-message>
