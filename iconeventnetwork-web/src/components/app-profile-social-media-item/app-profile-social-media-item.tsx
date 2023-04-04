@@ -250,7 +250,7 @@ export class AppProfileSocialMediaItem {
                                 <div class='sub-content-value'>
                                     <div>
                                         {this.displayName}
-                                        <a class='external-link-icon' target='_blank' href={this.socialMediaItem.attributes.URL}><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                        <a class='external-link-icon' target='_blank' href={this.displayURL}><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                     </div>
                                 </div>
                             </div>
