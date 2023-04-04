@@ -75,6 +75,9 @@ export class PageProfileCompany {
     @Listen('phoneNumberDeleted') phoneNumberDeletedHandler(event: CustomEvent<number>) {
         this.phoneNumbers = [...this.phoneNumbers.filter(e => e.id != event.detail)];
     }
+    @Listen('socialMediaDeleted') socialMediaDeletedHandler(event: CustomEvent<number>) {
+        this.socialMediaAccounts = [...this.socialMediaAccounts.filter(e => e.id != event.detail)];
+    }
 
     // stubbing in some fake data for the Team Members grid, this will be replaced later
     // with a proper client and definted data
