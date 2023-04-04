@@ -147,7 +147,7 @@ export class AppProfileSocialMediaItem {
                 IsActive: {
                     $eq: true,
                 },
-                AppliesToPerson: {
+                AppliesToCompany: {
                     $eq: true,
                 },
             }
