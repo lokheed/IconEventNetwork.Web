@@ -302,7 +302,7 @@
                         border-bottom: none;
                     }
                 }
-                .content-row:last-child {
+                & > .content-row:last-child {
                     padding-bottom: 0;
                     margin-bottom: 0;
                     border-bottom: none;
