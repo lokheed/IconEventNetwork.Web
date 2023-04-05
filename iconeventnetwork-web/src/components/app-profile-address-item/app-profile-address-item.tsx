@@ -39,6 +39,7 @@ export class AppProfileAddressItem {
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
     @Prop() companyId?: number;
+    @State() displayId: number = 0;
     @State() displayLine1: string = '';
     @State() editLine1: string = '';
     @State() displayLine2: string = '';
@@ -446,7 +447,9 @@ export class AppProfileAddressItem {
             .then(() => {
                 this.isEditing = false;
                 this.displayLine1 = this.editLine1;
+                this.addressItem.attributes.Line1 = this.editLine1;
                 this.displayLine2 = this.editLine2;
+                this.addressItem.attributes.Line2 = this.editLine2;
                 this.displayCity = this.editCity;
                 this.displayPostalCode = this.editPostalCode;
                 this.displayCountryId = this.editCountryId;
@@ -474,17 +477,26 @@ export class AppProfileAddressItem {
                 this.isEditing = false;
                 this.addressItem.id = result.data.id;
                 this.displayLine1 = this.editLine1;
+                this.addressItem.attributes.Line1 = this.editLine1;
                 this.displayLine2 = this.editLine2;
+                this.addressItem.attributes.Line2 = this.editLine2;
                 this.displayCity = this.editCity;
+                this.addressItem.attributes.City = this.editCity;
                 this.displayPostalCode = this.editPostalCode;
+                this.addressItem.attributes.PostalCode = this.editPostalCode;
                 this.displayCountryId = this.editCountryId;
+                this.addressItem.attributes.country.data.id = this.editCountryId;
                 this.displayCountryName = this.editCountryName;
+                this.addressItem.attributes.country.data.attributes.Name = this.editCountryName;
                 this.displayCountryA2 = this.editCountryA2;
+                this.addressItem.attributes.country.data.attributes.A2 = this.editCountryA2;
                 this.displayCountrySubdivisionId = this.editCountrySubdivisionId;
                 this.displayCountrySubdivisionName = this.editCountrySubdivisionName;
                 this.displayCountrySubdivisionCode = this.editCountrySubdivisionCode;
                 this.displayAddressTypeId = this.editAddressTypeId;
+                this.addressItem.attributes.address_type.data.id = this.editAddressTypeId;
                 this.displayAddressTypeName = this.editAddressTypeName;
+                this.addressItem.attributes.address_type.data.attributes.Name = this.editAddressTypeName;
                 switch (this.appliesTo) {
                     case 'person':
                         let personSaveData: PersonSaveData = {
@@ -530,8 +542,9 @@ export class AppProfileAddressItem {
             return;  
         }  
     }
-        
-    componentWillLoad() {
+
+    private setDiplayProps() {
+        this.displayId = this.addressItem.id;
         this.displayLine1 = this.addressItem.attributes.Line1;
         this.displayLine2 = this.addressItem.attributes.Line2;
         this.displayCity = this.addressItem.attributes.City;
@@ -545,6 +558,10 @@ export class AppProfileAddressItem {
         this.displayCountrySubdivisionCode = this.addressItem.attributes.country_subdivision?.data?.attributes?.Code??'';
         this.displayAddressTypeId = this.addressItem.attributes.address_type.data.id;
         this.displayAddressTypeName = this.addressItem.attributes.address_type.data.attributes.Name;
+    }
+        
+    componentWillLoad() {
+        this.setDiplayProps();
         this.getCountries();
         switch (this.appliesTo) {
             case 'person':
@@ -558,6 +575,13 @@ export class AppProfileAddressItem {
                 break;
         }
     } 
+
+    componentDidUpdate() {
+        if (this.addressItem.id != this.displayId) {  
+            // The object underneath changed due to a change in the parent list, reset display properties         
+            this.setDiplayProps();
+        }
+    }
 
     render() {
         return (

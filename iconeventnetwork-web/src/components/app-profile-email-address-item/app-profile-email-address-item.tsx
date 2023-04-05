@@ -33,6 +33,7 @@ export class AppProfileEmailAddressItem {
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
     @Prop() companyId?: number;
+    @State() displayId: number = 0;
     @State() displayEmailAddress: string = '';
     @State() editEmailAddress: string = '';
     @State() displayEmailAddressTypeId: number = 0;
@@ -292,6 +293,7 @@ export class AppProfileEmailAddressItem {
             .then((result) => {
                 this.isEditing = false;
                 this.emailAddressItem.id = result.data.id;
+                this.displayId = result.data.id;
                 this.displayEmailAddress = this.editEmailAddress;
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
@@ -342,11 +344,16 @@ export class AppProfileEmailAddressItem {
         } 
   
     }
-        
-    componentWillLoad() {
+
+    private setDisplayProps() {
+        this.displayId = this.emailAddressItem.id;
         this.displayEmailAddress = this.emailAddressItem.attributes.EmailAddress;
         this.displayEmailAddressTypeId = this.emailAddressItem.attributes.email_address_type.data.id;
         this.displayEmailAddressTypeName = this.emailAddressItem.attributes.email_address_type.data.attributes.Name;
+    }
+        
+    componentWillLoad() {
+        this.setDisplayProps();
         switch (this.appliesTo) {
             case 'person':
                 this.getPersonEmailAddressTypes();
@@ -359,6 +366,13 @@ export class AppProfileEmailAddressItem {
                 break;
         }
     } 
+
+    componentDidUpdate() {
+        if (this.emailAddressItem.id != this.displayId) {  
+            // The object underneath changed due to a change in the parent list, reset display properties  
+            this.setDisplayProps();
+        }
+    }
 
     render() {
         return (
