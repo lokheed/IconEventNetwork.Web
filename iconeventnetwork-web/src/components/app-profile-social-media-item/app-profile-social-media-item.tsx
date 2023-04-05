@@ -24,6 +24,7 @@ export class AppProfileSocialMediaItem {
     @Prop() canEdit: boolean;
     @State() isEditing: boolean = false;
     @Prop() companyId: number;
+    @State() displayId: number = 0;
     @State() displayName: string = '';
     @State() editName: string = '';
     @State() displayURL: string = '';
@@ -205,6 +206,7 @@ export class AppProfileSocialMediaItem {
             this.socialMediaClient.addSocialMedia(socialMediaSaveData)
             .then((result) => {
                 this.isEditing = false;
+                this.displayId = result.data.id;
                 this.socialMediaItem.id = result.data.id;
                 this.displayName = this.editName;
                 this.displayURL = this.editURL;
@@ -228,14 +230,26 @@ export class AppProfileSocialMediaItem {
             return;  
         }   
     }
-        
-    componentWillLoad() {
+
+    private setDisplayProps() {
+        this.displayId = this.socialMediaItem.id;
         this.displayName = this.socialMediaItem.attributes.Name;
         this.displayURL = this.socialMediaItem.attributes.URL;
         this.displaySocialMediaTypeId = this.socialMediaItem.attributes.social_media_type.data.id;
         this.displaySocialMediaTypeName = this.socialMediaItem.attributes.social_media_type.data.attributes.Name;
+    }
+        
+    componentWillLoad() {
+        this.setDisplayProps();
         this.getSocialMediaTypes();
     } 
+
+    componentDidUpdate() {
+        if (this.socialMediaItem.id != this.displayId) {  
+            // The object underneath changed due to a change in the parent list, reset display properties  
+            this.setDisplayProps();
+        }
+    }
 
     render() {
         return (

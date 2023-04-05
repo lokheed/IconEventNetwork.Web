@@ -40,6 +40,7 @@ export class AppProfilePhoneItem {
     @Prop() personId?: number;
     @Prop() personAtCompanyId?: number;
     @Prop() companyId?: number;
+    @State() displayId: number = 0;
     @State() displayPhoneNumber: string = '';
     @State() editPhoneNumber: string = '';
     @State() displayPhoneNumberTypeId: number = 0;
@@ -343,6 +344,7 @@ export class AppProfilePhoneItem {
             this.phoneNumberClient.addPhoneNumber(phoneNumberSaveData)
             .then((result) => {
                 this.isEditing = false;
+                this.displayId = result.data.id;
                 this.phoneNumberItem.id = result.data.id;
                 this.displayPhoneNumber = result.data.attributes.NationalFormat &&
                                           result.data.attributes.NationalFormat.length > 0 ? 
@@ -397,8 +399,9 @@ export class AppProfilePhoneItem {
         } 
   
     }
-        
-    componentWillLoad() { 
+
+    private setDisplayProps() {
+        this.displayId = this.phoneNumberItem.id;
         this.displayPhoneNumber = this.phoneNumberItem.attributes.NationalFormat && 
                                   this.phoneNumberItem.attributes.NationalFormat.length > 0 
                                   ? 
@@ -409,6 +412,10 @@ export class AppProfilePhoneItem {
         this.displayPhoneNumberTypeName = this.phoneNumberItem.attributes.phone_number_type.data.attributes.Name;
         this.displayPhoneNumberCountryId = this.phoneNumberItem.attributes.country.data.id;
         this.displayIsValidated = this.phoneNumberItem.attributes.IsValidated;
+    }
+        
+    componentWillLoad() { 
+        this.setDisplayProps();
         switch (this.appliesTo) {
             case 'person':
                 this.getPersonPhoneNumberTypes();
@@ -422,6 +429,13 @@ export class AppProfilePhoneItem {
         }
         this.getPhoneNumberCountries();
     } 
+
+    componentDidUpdate() {
+        if (this.phoneNumberItem.id != this.displayId) {  
+            // The object underneath changed due to a change in the parent list, reset display properties  
+            this.setDisplayProps();
+        }
+    }
 
     render() {
         return (
