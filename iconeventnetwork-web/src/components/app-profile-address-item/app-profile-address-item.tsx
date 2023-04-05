@@ -656,7 +656,7 @@ export class AppProfileAddressItem {
                                     }).map(country => (
                                         <option
                                             value={country.id}
-                                            selected={this.editCountryId === country.id}
+                                            selected={this.editCountryId == country.id}
                                         >
                                             {country.attributes.Name}
                                         </option>
@@ -673,7 +673,7 @@ export class AppProfileAddressItem {
                                     }).map(countrySubdivision => (
                                         <option
                                             value={countrySubdivision.id}
-                                            selected={this.editCountrySubdivisionId === countrySubdivision.id}
+                                            selected={this.editCountrySubdivisionId == countrySubdivision.id}
                                         >
                                             {countrySubdivision.attributes.Name}
                                         </option>
