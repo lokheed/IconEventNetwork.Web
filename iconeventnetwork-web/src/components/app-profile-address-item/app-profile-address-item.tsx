@@ -475,6 +475,7 @@ export class AppProfileAddressItem {
             this.addressClient.addAddress(addressSaveData)
             .then((result) => {
                 this.isEditing = false;
+                this.displayId = result.data.id;
                 this.addressItem.id = result.data.id;
                 this.displayLine1 = this.editLine1;
                 this.addressItem.attributes.Line1 = this.editLine1;
@@ -578,6 +579,7 @@ export class AppProfileAddressItem {
 
     componentDidUpdate() {
         if (this.addressItem.id != this.displayId) {  
+            alert('id changed');
             // The object underneath changed due to a change in the parent list, reset display properties         
             this.setDiplayProps();
         }
