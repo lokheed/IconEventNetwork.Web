@@ -353,6 +353,7 @@ export class AppProfilePhoneItem {
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
+                this.displayIsValidated = result.data.attributes.IsValidated;
                 switch (this.appliesTo) {
                     case 'person':
                         let personSaveData: PersonSaveData = {
