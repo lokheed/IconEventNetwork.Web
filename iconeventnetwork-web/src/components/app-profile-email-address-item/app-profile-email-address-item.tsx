@@ -408,7 +408,7 @@ export class AppProfileEmailAddressItem {
                                     }).map(emailAddressType => (
                                         <option
                                             value={emailAddressType.id}
-                                            selected={this.editEmailAddressTypeId === emailAddressType.id}
+                                            selected={this.editEmailAddressTypeId == emailAddressType.id}
                                         >
                                             {emailAddressType.attributes.Name}
                                         </option>
