@@ -262,13 +262,10 @@ export class AppProfileEmailAddressItem {
     private saveData() {
         let emailAddressSaveData: EmailAddressSaveData = {
             data: {
-                EmailAddress: this.emailAddressItem.attributes.EmailAddress,
+                EmailAddress: this.editEmailAddress.trim(),
                 email_address_type: { },
             }
         };
-        if (this.editEmailAddress.trim() != this.displayEmailAddress) {
-            emailAddressSaveData.data.EmailAddress = this.editEmailAddress.trim();
-        }
         if (this.emailAddressItem.id > 0)  {
             if (this.editEmailAddressTypeId != this.displayEmailAddressTypeId) {
                 emailAddressSaveData.data.email_address_type.disconnect = [{id: this.displayEmailAddressTypeId}];

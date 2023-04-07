@@ -304,14 +304,11 @@ export class AppProfilePhoneItem {
     private saveData() {
         let phoneNumberSaveData: PhoneNumberSaveData = {
             data: {
-                RawFormat: this.phoneNumberItem.attributes.RawFormat,
+                RawFormat: this.editPhoneNumber.trim(),
                 country: { },
                 phone_number_type: { },
             }
         };
-        if (this.editPhoneNumber.trim() != this.displayPhoneNumber) {
-            phoneNumberSaveData.data.RawFormat = this.editPhoneNumber.trim();
-        }
         if (this.phoneNumberItem.id > 0)  {
             if (this.editPhoneNumberTypeId != this.displayPhoneNumberTypeId) {
                 phoneNumberSaveData.data.phone_number_type.disconnect = [{id: this.displayPhoneNumberTypeId}];
