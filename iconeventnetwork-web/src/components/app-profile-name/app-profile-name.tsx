@@ -363,7 +363,7 @@ export class AppProfileName {
                                     }).map(prefix => (
                                         <option
                                             value={prefix.id}
-                                            selected={this.editPrefixId === prefix.id}
+                                            selected={this.editPrefixId == prefix.id}
                                         >
                                             {prefix.attributes.Name}
                                         </option>
@@ -411,7 +411,7 @@ export class AppProfileName {
                                     }).map(suffix => (
                                         <option
                                             value={suffix.id}
-                                            selected={this.editSuffixId === suffix.id}
+                                            selected={this.editSuffixId == suffix.id}
                                         >
                                             {suffix.attributes.Name}
                                         </option>
@@ -428,7 +428,7 @@ export class AppProfileName {
                                     }).map(pronoun => (
                                         <option
                                             value={pronoun.id}
-                                            selected={this.editPronounId === pronoun.id}
+                                            selected={this.editPronounId == pronoun.id}
                                         >
                                             {pronoun.attributes.Name}
                                         </option>
