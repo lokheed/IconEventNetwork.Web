@@ -305,6 +305,11 @@ export class AppProfileAddressItem {
                     this.displayCountrySubdivisionCode = defaultCountrySubdivision.attributes.Code;
                     this.editCountrySubdivisionCode = defaultCountrySubdivision.attributes.Code;
             }
+            if (this.countrySubdivisions.length == 0) {
+                this.editCountrySubdivisionId = 0;
+                this.editCountrySubdivisionName = '';
+                this.editCountrySubdivisionCode = '';
+            }
         })
         .catch(reason => console.error(reason));  
     }
