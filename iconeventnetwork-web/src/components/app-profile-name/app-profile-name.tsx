@@ -303,7 +303,7 @@ export class AppProfileName {
             this.displayFirstName = this.editFirstName;
             this.displayMiddleName = this.editMiddleName;
             this.displayLastName = this.editLastName;
-            this.displayDirectoryName = this.editPreferredName;
+            this.displayDirectoryName = this.editDirectoryName;
             this.displayPreferredName = this.editPreferredName;
             this.displayPrefixId = this.editPrefixId;
             this.displayPrefixName = this.editPrefixName;
