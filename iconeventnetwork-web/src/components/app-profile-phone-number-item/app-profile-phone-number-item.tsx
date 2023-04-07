@@ -474,7 +474,7 @@ export class AppProfilePhoneItem {
                                     }).map(phoneNumberType => (
                                         <option
                                             value={phoneNumberType.id}
-                                            selected={this.editPhoneNumberTypeId === phoneNumberType.id}
+                                            selected={this.editPhoneNumberTypeId == phoneNumberType.id}
                                         >
                                             {phoneNumberType.attributes.Name}
                                         </option>
@@ -492,7 +492,7 @@ export class AppProfilePhoneItem {
                                         }).map(country => (
                                             <option
                                                 value={country.id}
-                                                selected={this.editPhoneNumberCountryId === country.id}
+                                                selected={this.editPhoneNumberCountryId == country.id}
                                             >
                                                 {country.attributes.A2}
                                             </option>
