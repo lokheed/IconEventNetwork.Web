@@ -71,7 +71,7 @@ export class AppProfilePreferredLanguage {
     }
 
     private initializeEditForm() {     
-        if (this.displayLanguageId === 0) {
+        if (this.displayLanguageId == 0) {
             const defaultLanguage = this.languages.filter(language => language.attributes.A2 == 'en' )[0];
             this.editLanguageId = defaultLanguage.id;
             this.editLanguageName = defaultLanguage.attributes.EnglishName;
@@ -132,7 +132,7 @@ export class AppProfilePreferredLanguage {
                                     }).map(language => (
                                         <option
                                             value={language.id}
-                                            selected={this.editLanguageId === language.id}
+                                            selected={this.editLanguageId == language.id}
                                         >
                                             {language.attributes.EnglishName}
                                         </option>
