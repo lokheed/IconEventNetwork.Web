@@ -629,7 +629,7 @@ export class AppProfileAddressItem {
                                     }).map(addressType => (
                                         <option
                                             value={addressType.id}
-                                            selected={this.editAddressTypeId === addressType.id}
+                                            selected={this.editAddressTypeId == addressType.id}
                                         >
                                             {addressType.attributes.Name}
                                         </option>
