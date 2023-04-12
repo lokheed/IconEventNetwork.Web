@@ -71,7 +71,7 @@ export interface GetRequestingPersonResponse{
     LastName: string;
     DirectoryName: string;
     PreferredName: string;
-    Users: UserInfo[];
+    user: UserInfo;
     ProfileImage: {
         id: number;
         formats: ImageFormatsInfo;

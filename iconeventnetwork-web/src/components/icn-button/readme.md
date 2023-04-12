@@ -57,6 +57,7 @@
  - [app-profile-preferred-language](../app-profile-preferred-language)
  - [app-profile-social-media-item](../app-profile-social-media-item)
  - [icn-button](.)
+ - [page-login](../pages/page-login)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
  - [page-ux-test](../pages/page-ux-test)
 
@@ -83,6 +84,7 @@ graph TD;
   app-profile-picture --> icn-button
   app-profile-preferred-language --> icn-button
   app-profile-social-media-item --> icn-button
+  page-login --> icn-button
   page-profile-person-at-companies --> icn-button
   page-ux-test --> icn-button
   style icn-button fill:#f9f,stroke:#333,stroke-width:4px

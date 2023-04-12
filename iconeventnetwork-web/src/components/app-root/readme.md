@@ -66,6 +66,9 @@ graph TD;
   app-header --> app-login-button
   app-login-button --> app-nav-user-info
   app-nav-user-info --> app-responsive-image
+  page-login --> icn-button
+  icn-button --> icn-modal
+  icn-button --> icn-button
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
   app-event-planner-item --> app-responsive-image
@@ -84,8 +87,6 @@ graph TD;
   app-profile-picture --> icn-message
   app-profile-picture --> icn-button
   app-profile-picture --> app-responsive-image
-  icn-button --> icn-modal
-  icn-button --> icn-button
   app-profile-name --> icn-profile-actions
   app-profile-name --> icn-message
   app-profile-name --> icn-button
