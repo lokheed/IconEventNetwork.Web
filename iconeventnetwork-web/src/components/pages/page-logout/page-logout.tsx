@@ -1,5 +1,4 @@
 import { Component, Host, h } from '@stencil/core';
-import { urlService } from '../../../services/url-service';
 import { localStorageKeyService } from '../../../services/local-storage-key-service';
 
 @Component({
@@ -16,7 +15,7 @@ export class PageLogout {;
       localStorage.removeItem(localStorageKeyService.Jwt);
       localStorage.removeItem(localStorageKeyService.Username);
       sessionStorage.removeItem(localStorageKeyService.Me);
-      window.location.replace(urlService.CognitoBaseUrl + '/logout?client_id=' + urlService.CognitoClientId + '&logout_uri=' + window.location.href);
+      window.location.replace('/');
     }
   }
 
