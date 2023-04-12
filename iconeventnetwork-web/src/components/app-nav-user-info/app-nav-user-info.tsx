@@ -84,7 +84,7 @@ export class AppNavUserInfo {
                 lastName={this.me?.LastName}
               />
               <strong>{this.me?.FirstName} {this.me?.LastName}</strong>
-              <span>{this.me?.Users[0]?.username}</span>
+              <span>{this.me?.user?.username}</span>
             </div>
             <div class="controls">
               <a href="/profile-person">My Personal Profile</a>

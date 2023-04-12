@@ -169,6 +169,25 @@ export interface AddressTypeAttributes{
     Rank: number;
 }
 
+export interface AuthenticationData{
+    identifier: string;
+    password: string;
+}
+
+export interface AuthenticationResponse{
+    jwt: string;
+    user: {
+        blocked: boolean;
+        confirmed: boolean;
+        createdAt: Date;
+        email: string;
+        id: number;
+        provider: string;
+        updatedAt: Date;
+        username: string;
+    }
+}
+
 export interface CountryData{
     data: DataResponse<CountryAttributes>;
 }
@@ -356,7 +375,7 @@ export interface PersonInfo{
     Pronoun?: PronounData;
     SocialMediaAccounts?: SocialMediaData[];
     Suffix?: SuffixData;
-    Users?: UserData;
+    user?: UserData;
     PreferredLanguage?: LanguageSingularData;
     LanguagesSpoken?: LanguageCollectionData;
 }
