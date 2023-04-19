@@ -46,16 +46,21 @@ export class PageLogin {
   render() {  
     return (
       <Host>
-        <div class='accent-block'>
-          <div class='form-item'>
-              <label htmlFor="username">Username</label>
-              <input id='username' name='username' type="text" onInput={(e) => this.handleUserNameChange(e)} />                               
+        <div class='login-form'>
+          <div class='logo-header'>
+              <img src='/assets/icon/icon.png' class='icon' />
           </div>
           <div class='form-item'>
-              <label htmlFor="password">Password</label>
-              <input id='password' name='password' type="password" onInput={(e) => this.handlePasswordChange(e)} />
+              <label class='hidden' htmlFor="username">Username</label>
+              <input id='username' name='username' placeholder='Username' type="text" onInput={(e) => this.handleUserNameChange(e)} />                               
           </div>
-          <icn-button onClick={e => this.handleLoginClick(e)}>Login</icn-button>
+          <div class='form-item'>
+              <label class='hidden' htmlFor="password">Password</label>
+              <input id='password' name='password' placeholder='Password' type="password" onInput={(e) => this.handlePasswordChange(e)} />
+          </div>
+          <div class='form-item'>
+            <icn-button onClick={e => this.handleLoginClick(e)}>Login</icn-button>
+          </div>
         </div>  
       </Host>  
     )
