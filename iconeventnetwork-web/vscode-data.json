@@ -725,6 +725,14 @@
       "attributes": []
     },
     {
+      "name": "page-forgot-password",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
       "name": "page-home",
       "description": {
         "kind": "markdown",
@@ -826,6 +834,19 @@
       "attributes": [
         {
           "name": "person-at-company-id",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "page-reset-password",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "code",
           "description": ""
         }
       ]

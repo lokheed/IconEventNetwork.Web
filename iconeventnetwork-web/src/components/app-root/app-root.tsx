@@ -51,8 +51,13 @@ export class AppRoot {
             </Route>            
             <Route path="/prelaunch">
               <page-prelaunch />
+            </Route>          
+            <Route path="/forgot-password">
+              <page-forgot-password />
+            </Route>         
+            <Route path="/reset-password">
+              <page-reset-password />
             </Route>
-
             {this.isAuthenticated && (
               <Route path="/" to="/home" />
               )}

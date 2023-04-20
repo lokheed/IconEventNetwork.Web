@@ -264,6 +264,8 @@ export namespace Components {
     }
     interface PageEventPlanners {
     }
+    interface PageForgotPassword {
+    }
     interface PageHome {
     }
     interface PageJoin {
@@ -289,6 +291,8 @@ export namespace Components {
     }
     interface PageProfilePersonAtCompany {
         "personAtCompanyId": string;
+    }
+    interface PageResetPassword {
     }
     interface PageTermsOfService {
     }
@@ -586,6 +590,12 @@ declare global {
         prototype: HTMLPageEventPlannersElement;
         new (): HTMLPageEventPlannersElement;
     };
+    interface HTMLPageForgotPasswordElement extends Components.PageForgotPassword, HTMLStencilElement {
+    }
+    var HTMLPageForgotPasswordElement: {
+        prototype: HTMLPageForgotPasswordElement;
+        new (): HTMLPageForgotPasswordElement;
+    };
     interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {
     }
     var HTMLPageHomeElement: {
@@ -658,6 +668,12 @@ declare global {
         prototype: HTMLPageProfilePersonAtCompanyElement;
         new (): HTMLPageProfilePersonAtCompanyElement;
     };
+    interface HTMLPageResetPasswordElement extends Components.PageResetPassword, HTMLStencilElement {
+    }
+    var HTMLPageResetPasswordElement: {
+        prototype: HTMLPageResetPasswordElement;
+        new (): HTMLPageResetPasswordElement;
+    };
     interface HTMLPageTermsOfServiceElement extends Components.PageTermsOfService, HTMLStencilElement {
     }
     var HTMLPageTermsOfServiceElement: {
@@ -714,6 +730,7 @@ declare global {
         "page-destinations": HTMLPageDestinationsElement;
         "page-directory": HTMLPageDirectoryElement;
         "page-event-planners": HTMLPageEventPlannersElement;
+        "page-forgot-password": HTMLPageForgotPasswordElement;
         "page-home": HTMLPageHomeElement;
         "page-join": HTMLPageJoinElement;
         "page-login": HTMLPageLoginElement;
@@ -726,6 +743,7 @@ declare global {
         "page-profile-person": HTMLPageProfilePersonElement;
         "page-profile-person-at-companies": HTMLPageProfilePersonAtCompaniesElement;
         "page-profile-person-at-company": HTMLPageProfilePersonAtCompanyElement;
+        "page-reset-password": HTMLPageResetPasswordElement;
         "page-terms-of-service": HTMLPageTermsOfServiceElement;
         "page-ux-test": HTMLPageUxTestElement;
     }
@@ -979,6 +997,8 @@ declare namespace LocalJSX {
     }
     interface PageEventPlanners {
     }
+    interface PageForgotPassword {
+    }
     interface PageHome {
     }
     interface PageJoin {
@@ -1004,6 +1024,8 @@ declare namespace LocalJSX {
     }
     interface PageProfilePersonAtCompany {
         "personAtCompanyId"?: string;
+    }
+    interface PageResetPassword {
     }
     interface PageTermsOfService {
     }
@@ -1053,6 +1075,7 @@ declare namespace LocalJSX {
         "page-destinations": PageDestinations;
         "page-directory": PageDirectory;
         "page-event-planners": PageEventPlanners;
+        "page-forgot-password": PageForgotPassword;
         "page-home": PageHome;
         "page-join": PageJoin;
         "page-login": PageLogin;
@@ -1065,6 +1088,7 @@ declare namespace LocalJSX {
         "page-profile-person": PageProfilePerson;
         "page-profile-person-at-companies": PageProfilePersonAtCompanies;
         "page-profile-person-at-company": PageProfilePersonAtCompany;
+        "page-reset-password": PageResetPassword;
         "page-terms-of-service": PageTermsOfService;
         "page-ux-test": PageUxTest;
     }
@@ -1116,6 +1140,7 @@ declare module "@stencil/core" {
             "page-destinations": LocalJSX.PageDestinations & JSXBase.HTMLAttributes<HTMLPageDestinationsElement>;
             "page-directory": LocalJSX.PageDirectory & JSXBase.HTMLAttributes<HTMLPageDirectoryElement>;
             "page-event-planners": LocalJSX.PageEventPlanners & JSXBase.HTMLAttributes<HTMLPageEventPlannersElement>;
+            "page-forgot-password": LocalJSX.PageForgotPassword & JSXBase.HTMLAttributes<HTMLPageForgotPasswordElement>;
             "page-home": LocalJSX.PageHome & JSXBase.HTMLAttributes<HTMLPageHomeElement>;
             "page-join": LocalJSX.PageJoin & JSXBase.HTMLAttributes<HTMLPageJoinElement>;
             "page-login": LocalJSX.PageLogin & JSXBase.HTMLAttributes<HTMLPageLoginElement>;
@@ -1128,6 +1153,7 @@ declare module "@stencil/core" {
             "page-profile-person": LocalJSX.PageProfilePerson & JSXBase.HTMLAttributes<HTMLPageProfilePersonElement>;
             "page-profile-person-at-companies": LocalJSX.PageProfilePersonAtCompanies & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompaniesElement>;
             "page-profile-person-at-company": LocalJSX.PageProfilePersonAtCompany & JSXBase.HTMLAttributes<HTMLPageProfilePersonAtCompanyElement>;
+            "page-reset-password": LocalJSX.PageResetPassword & JSXBase.HTMLAttributes<HTMLPageResetPasswordElement>;
             "page-terms-of-service": LocalJSX.PageTermsOfService & JSXBase.HTMLAttributes<HTMLPageTermsOfServiceElement>;
             "page-ux-test": LocalJSX.PageUxTest & JSXBase.HTMLAttributes<HTMLPageUxTestElement>;
         }

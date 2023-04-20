@@ -18,6 +18,8 @@
 - [page-login](../pages/page-login)
 - [page-logout](../pages/page-logout)
 - [page-prelaunch](../pages/page-prelaunch)
+- [page-forgot-password](../pages/page-forgot-password)
+- [page-reset-password](../pages/page-reset-password)
 - [page-home](../pages/page-home)
 - [page-event-planners](../pages/page-event-planners)
 - [page-about-us](../pages/page-about-us)
@@ -46,6 +48,8 @@ graph TD;
   app-root --> page-login
   app-root --> page-logout
   app-root --> page-prelaunch
+  app-root --> page-forgot-password
+  app-root --> page-reset-password
   app-root --> page-home
   app-root --> page-event-planners
   app-root --> page-about-us
@@ -69,6 +73,10 @@ graph TD;
   page-login --> icn-button
   icn-button --> icn-modal
   icn-button --> icn-button
+  page-forgot-password --> icn-button
+  page-forgot-password --> icn-message
+  page-reset-password --> icn-button
+  page-reset-password --> icn-message
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
   app-event-planner-item --> app-responsive-image

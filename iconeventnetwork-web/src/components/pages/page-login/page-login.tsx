@@ -43,6 +43,10 @@ export class PageLogin {
     });
   }
 
+  private handleForgotPasswordClick() {
+    window.location.replace('/forgot-password')
+  } 
+
   render() {  
     return (
       <Host>
@@ -60,6 +64,9 @@ export class PageLogin {
           </div>
           <div class='form-item'>
             <icn-button onClick={e => this.handleLoginClick(e)}>Login</icn-button>
+          </div>
+          <div class='form-item'>
+            <icn-button type='link' onClick={() => this.handleForgotPasswordClick()}>Forgot Password</icn-button>
           </div>
         </div>  
       </Host>  
