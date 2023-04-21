@@ -252,6 +252,8 @@ export namespace Components {
     interface PageAccessDenied {
         "message": string;
     }
+    interface PageChangePassword {
+    }
     interface PageCodeOfConduct {
     }
     interface PageCookiePolicy {
@@ -554,6 +556,12 @@ declare global {
         prototype: HTMLPageAccessDeniedElement;
         new (): HTMLPageAccessDeniedElement;
     };
+    interface HTMLPageChangePasswordElement extends Components.PageChangePassword, HTMLStencilElement {
+    }
+    var HTMLPageChangePasswordElement: {
+        prototype: HTMLPageChangePasswordElement;
+        new (): HTMLPageChangePasswordElement;
+    };
     interface HTMLPageCodeOfConductElement extends Components.PageCodeOfConduct, HTMLStencilElement {
     }
     var HTMLPageCodeOfConductElement: {
@@ -724,6 +732,7 @@ declare global {
         "icn-rich-text-editor": HTMLIcnRichTextEditorElement;
         "page-about-us": HTMLPageAboutUsElement;
         "page-access-denied": HTMLPageAccessDeniedElement;
+        "page-change-password": HTMLPageChangePasswordElement;
         "page-code-of-conduct": HTMLPageCodeOfConductElement;
         "page-cookie-policy": HTMLPageCookiePolicyElement;
         "page-dashboard": HTMLPageDashboardElement;
@@ -985,6 +994,8 @@ declare namespace LocalJSX {
     interface PageAccessDenied {
         "message"?: string;
     }
+    interface PageChangePassword {
+    }
     interface PageCodeOfConduct {
     }
     interface PageCookiePolicy {
@@ -1069,6 +1080,7 @@ declare namespace LocalJSX {
         "icn-rich-text-editor": IcnRichTextEditor;
         "page-about-us": PageAboutUs;
         "page-access-denied": PageAccessDenied;
+        "page-change-password": PageChangePassword;
         "page-code-of-conduct": PageCodeOfConduct;
         "page-cookie-policy": PageCookiePolicy;
         "page-dashboard": PageDashboard;
@@ -1134,6 +1146,7 @@ declare module "@stencil/core" {
             "icn-rich-text-editor": LocalJSX.IcnRichTextEditor & JSXBase.HTMLAttributes<HTMLIcnRichTextEditorElement>;
             "page-about-us": LocalJSX.PageAboutUs & JSXBase.HTMLAttributes<HTMLPageAboutUsElement>;
             "page-access-denied": LocalJSX.PageAccessDenied & JSXBase.HTMLAttributes<HTMLPageAccessDeniedElement>;
+            "page-change-password": LocalJSX.PageChangePassword & JSXBase.HTMLAttributes<HTMLPageChangePasswordElement>;
             "page-code-of-conduct": LocalJSX.PageCodeOfConduct & JSXBase.HTMLAttributes<HTMLPageCodeOfConductElement>;
             "page-cookie-policy": LocalJSX.PageCookiePolicy & JSXBase.HTMLAttributes<HTMLPageCookiePolicyElement>;
             "page-dashboard": LocalJSX.PageDashboard & JSXBase.HTMLAttributes<HTMLPageDashboardElement>;
