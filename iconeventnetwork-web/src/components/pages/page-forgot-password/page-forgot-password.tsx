@@ -5,6 +5,7 @@ import { ForgotPasswordClient } from '../../../services/clients/forgot-password-
   styleUrl: 'page-forgot-password.scss',
   shadow: false,
 })
+// Page for an anonymous user to request an email link to reset their password
 export class PageForgotPassword {
   private forgotPasswordClient: ForgotPasswordClient;
   constructor() {

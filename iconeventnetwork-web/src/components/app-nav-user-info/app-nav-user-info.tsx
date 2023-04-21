@@ -91,6 +91,7 @@ export class AppNavUserInfo {
               <a href="/profile-pacs">My Work Profiles</a>
             </div>
             <div class="controls logout">
+              <a href="/change-password">Change Password</a>
               <a href="/logout">Log Out</a>
             </div>
           </div>

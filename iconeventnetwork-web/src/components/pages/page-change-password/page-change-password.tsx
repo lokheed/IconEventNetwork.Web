@@ -1,19 +1,19 @@
 import { Component, Host, State, h } from '@stencil/core';
-import { ResetPasswordClient } from '../../../services/clients/reset-password-client';
+import { ChangePasswordClient } from '../../../services/clients/change-password-client';
 import { regxService } from '../../../services/regx-service';
 @Component({
-  tag: 'page-reset-password',
-  styleUrl: 'page-reset-password.scss',
+  tag: 'page-change-password',
+  styleUrl: 'page-change-password.scss',
   shadow: false,
 })
-// Page for an anonymous uer to reset their password using a link from the received email
-export class PageResetPassword {
-  private resetPasswordClient: ResetPasswordClient;
+// Page for an authenticated uer to reset their password
+export class PageChangePassword {
+  private changePasswordClient: ChangePasswordClient;
   constructor() {
-      this.resetPasswordClient = new ResetPasswordClient();
+      this.changePasswordClient = new ChangePasswordClient();
   }  
-  @State() code: string = '';
-  @State() password: string = '';
+  @State() currentPassword: string = '';
+  @State() newPassword: string = '';
   @State() confirmPassword: string = '';
   private formDiv: HTMLDivElement;
   private successDiv: HTMLDivElement;
@@ -23,8 +23,13 @@ export class PageResetPassword {
   private passwordStrengthErrorMessage: HTMLIcnMessageElement;
   private saveErrorMessage: HTMLIcnMessageElement;
   private successMessage: HTMLIcnMessageElement;
-  private handlePasswordChange(event) {
-      this.password = event.target.value;
+
+  private handleCurrentPasswordChange(event) {
+      this.currentPassword = event.target.value;
+  } 
+
+  private handleNewPasswordChange(event) {
+      this.newPassword = event.target.value;
   } 
 
   private handleConfirmPasswordChange(event) {
@@ -39,28 +44,28 @@ export class PageResetPassword {
     this.passwordStrengthErrorMessage.hide();
     this.saveErrorMessage.hide();
 
-    if (this.password !== this.confirmPassword) {
+    if (this.newPassword !== this.confirmPassword) {
         this.matchErrorMessage.show();
         return;
     }
 
-    if (this.password.length < 8) {
+    if (this.newPassword.length < 8) {
         this.minimumLengthErrorMessage.show();
         return;
     }
 
-    if (this.password.length > 128) {
+    if (this.newPassword.length > 128) {
         this.maximumLengthErrorMessage.show();
         return;
     }
 
     let strongPassword = new RegExp(regxService.password);
-    if (!strongPassword.test(this.password)) {
+    if (!strongPassword.test(this.newPassword)) {
         this.passwordStrengthErrorMessage.show();
         return;
     }
 
-    this.resetPasswordClient.resetPassword(this.code, this.password, this.confirmPassword)
+    this.changePasswordClient.changePassword(this.currentPassword, this.newPassword, this.confirmPassword)
     .then(() => {
       this.formDiv.classList.add('hidden');
       this.successDiv.classList.remove('hidden');
@@ -70,18 +75,7 @@ export class PageResetPassword {
         this.saveErrorMessage.show();
     });
   } 
-
-  private handleLoginClick() {
-    window.location.replace('/login')
-  } 
-
-  componentDidLoad() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('code')) {
-        this.code = params.get('code');
-    }
-  }
-
+  
   render() {  
     return (
       <Host>
@@ -101,8 +95,12 @@ export class PageResetPassword {
               </ul>
             </p>
             <div class='form-item'>
+                <label htmlFor="password">Current Password</label>
+                <input id='currentPassword' name='currentPassword' type="password" onInput={(e) => this.handleCurrentPasswordChange(e)} />                               
+            </div>
+            <div class='form-item'>
                 <label htmlFor="password">New Password</label>
-                <input id='password' name='password' type="password" onInput={(e) => this.handlePasswordChange(e)} />                               
+                <input id='newPassword' name='newPassword' type="password" onInput={(e) => this.handleNewPasswordChange(e)} />                               
             </div>
             <div class='form-item'>
                 <label htmlFor="confirmPassword">Confirm Password</label>
@@ -130,17 +128,14 @@ export class PageResetPassword {
               </ul>
             </icn-message>
             <icn-message type='error' hidden ref={el => this.saveErrorMessage = el}>
-              An error occured while updating your password. Please recheck your email link and try again. 
+              An error occured while updating your password. Please recheck your current password and try again. 
               If the error persists, please contact your account administrator for assistance.
             </icn-message>
           </div>
           <div class='hidden' ref={el => this.successDiv = el}>
             <icn-message type='success' ref={el => this.successMessage = el}>
-              New password is saved. You can now log in with your new password.
+              New password is saved.
             </icn-message> 
-            <div class='form-item'>
-              <icn-button type='link' onClick={() => this.handleLoginClick()}>Log In</icn-button>
-            </div>
           </div>
         </div>  
       </Host>  
