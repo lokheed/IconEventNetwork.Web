@@ -14,6 +14,8 @@ export class PageLogout {;
     } else {
       localStorage.removeItem(localStorageKeyService.Jwt);
       localStorage.removeItem(localStorageKeyService.Username);
+      localStorage.removeItem(localStorageKeyService.LoginEmail);
+      localStorage.removeItem(localStorageKeyService.RefreshAfter);
       sessionStorage.removeItem(localStorageKeyService.Me);
       window.location.replace('/');
     }

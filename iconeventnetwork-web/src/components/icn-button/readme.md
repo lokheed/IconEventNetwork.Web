@@ -57,6 +57,7 @@
  - [app-profile-preferred-language](../app-profile-preferred-language)
  - [app-profile-social-media-item](../app-profile-social-media-item)
  - [icn-button](.)
+ - [page-change-password](../pages/page-change-password)
  - [page-forgot-password](../pages/page-forgot-password)
  - [page-login](../pages/page-login)
  - [page-profile-person-at-companies](../pages/page-profile-person-at-companies)
@@ -86,6 +87,7 @@ graph TD;
   app-profile-picture --> icn-button
   app-profile-preferred-language --> icn-button
   app-profile-social-media-item --> icn-button
+  page-change-password --> icn-button
   page-forgot-password --> icn-button
   page-login --> icn-button
   page-profile-person-at-companies --> icn-button

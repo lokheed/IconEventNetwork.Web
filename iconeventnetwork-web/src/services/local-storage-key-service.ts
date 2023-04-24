@@ -1,5 +1,6 @@
 class LocalStorageKeyService{
     private readonly jwt: string;
+    private readonly refreshAfter: string;
     private readonly username: string;
     private readonly loginEmail: string;
     private readonly me: string;
@@ -9,6 +10,7 @@ class LocalStorageKeyService{
         if (window.location.hostname.toLowerCase() === 'localhost')
         {
             this.jwt = 'dev-jwt';
+            this.refreshAfter = 'dev-refreshAfter';
             this.username = 'dev-username';
             this.loginEmail = 'dev-loginEmail'
             this.me = 'dev-me';
@@ -19,6 +21,7 @@ class LocalStorageKeyService{
         if (window.location.hostname.toLowerCase().startsWith('qa'))
         {
             this.jwt = 'qa-jwt';
+            this.refreshAfter = 'qa-refreshAfter';
             this.username = 'qa-username';
             this.loginEmail = 'qa-loginEmail';
             this.me = 'qa-me';
@@ -29,6 +32,7 @@ class LocalStorageKeyService{
         if (window.location.hostname.toLowerCase().startsWith('stg'))
         {
             this.jwt = 'stg-jwt';
+            this.refreshAfter = 'stg-refreshAfter';
             this.username = 'stg-username';
             this.loginEmail = 'stg-loginEmail';
             this.me = 'stg-me';
@@ -37,23 +41,24 @@ class LocalStorageKeyService{
         }
         
         this.jwt = 'jwt';
+        this.refreshAfter = 'refreshAfter';
         this.username = 'username';
         this.loginEmail = 'loginEmail';
         this.me = 'me';
         this.profileNav = 'profile-nav';
     }
     
-    /** Gets the strapi URL to use depending on the environment. */
-    public get Jwt() { return this.jwt }
+    public get Jwt() { return this.jwt; }
 
-    /** Gets the cognito URL to use depending on the environment. */
-    public get Username() { return this.username };
+    public get RefreshAfter() { return this.refreshAfter; }
 
-    public get LoginEmail() { return this.loginEmail };
+    public get Username() { return this.username; }
 
-    public get Me() { return this.me };
+    public get LoginEmail() { return this.loginEmail; }
 
-    public get ProfileNav() { return this.profileNav };
+    public get Me() { return this.me; }
+
+    public get ProfileNav() { return this.profileNav; }
 }
 
 export const localStorageKeyService = new LocalStorageKeyService();
