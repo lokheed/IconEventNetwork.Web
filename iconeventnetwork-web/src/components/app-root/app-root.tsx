@@ -42,7 +42,7 @@ export class AppRoot {
         localStorage.setItem(localStorageKeyService.RefreshAfter, refreshDate.toString());    
       })
       .catch(() => {
-        window.location.replace('/logout'); // The refresh failed, log the user out.
+        //window.location.replace('/logout'); // The refresh failed, log the user out.
       });
     }
   }
