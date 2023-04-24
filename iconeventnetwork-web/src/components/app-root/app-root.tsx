@@ -1,6 +1,7 @@
 import { Component, Host, State, h } from '@stencil/core';
 import { createRouter, Route, NotFound, match } from 'stencil-router-v2';
 import { localStorageKeyService } from '../../services/local-storage-key-service';
+import { RefreshTokenClient } from '../../services/clients/refresh-token-client';
 
 const Router = createRouter();
 
@@ -10,6 +11,10 @@ const Router = createRouter();
   shadow: false,
 })
 export class AppRoot {
+  private refreshTokenClient: RefreshTokenClient;
+  constructor() {
+      this.refreshTokenClient = new RefreshTokenClient();
+  }  
   @State() navigationBackgroundClass: string = 'white';
   @State() isAuthenticated: boolean = false;
 
@@ -19,9 +24,29 @@ export class AppRoot {
         this.navigationBackgroundClass = 'brown';
         break;
       default: this.navigationBackgroundClass = 'white';
-    }    
+    }  
+
     this.isAuthenticated = !!localStorage.getItem(localStorageKeyService.Jwt);
+
+    if (!this.isAuthenticated) {
+      return;
+    }
+
+    let refreshAfter = new Date(localStorage.getItem(localStorageKeyService.RefreshAfter)).getTime(); // if the refreshAfter key is missing it will return null, and creating a new Date passing null creates a date of 1970-01-01T00:00:00.000Z
+    let now = new Date().getTime();
+    if (now > refreshAfter) {
+      this.refreshTokenClient.refreshToken()
+      .then((response) => {
+        localStorage.setItem(localStorageKeyService.Jwt, response.jwt); 
+        let refreshDate = new Date(Date.now() + 10*60000);  // refresh after ten minutes, 60,000 milliseconds in a minute
+        localStorage.setItem(localStorageKeyService.RefreshAfter, refreshDate.toString());    
+      })
+      .catch(() => {
+        window.location.replace('/logout'); // The refresh failed, log the user out.
+      });
+    }
   }
+
   render() {
     return (
       <Host>

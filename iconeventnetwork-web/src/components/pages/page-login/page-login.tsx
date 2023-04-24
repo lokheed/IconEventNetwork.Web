@@ -33,7 +33,9 @@ export class PageLogin {
     .then((response) => {
       // Successfully logged with Strapi
       // Now saving the jwt to use it for future authenticated requests to Strapi
-      localStorage.setItem(localStorageKeyService.Jwt, response.jwt);
+      localStorage.setItem(localStorageKeyService.Jwt, response.jwt); 
+      let refreshDate = new Date(Date.now() + 10*60000);  // refresh after ten minutes, 60,000 milliseconds in a minute
+      localStorage.setItem(localStorageKeyService.RefreshAfter, refreshDate.toString());  
       localStorage.setItem(localStorageKeyService.Username, response.user.username);
       localStorage.setItem(localStorageKeyService.LoginEmail, response.user.email);
       window.location.replace('/home')

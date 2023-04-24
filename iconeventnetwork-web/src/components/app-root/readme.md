@@ -20,6 +20,7 @@
 - [page-prelaunch](../pages/page-prelaunch)
 - [page-forgot-password](../pages/page-forgot-password)
 - [page-reset-password](../pages/page-reset-password)
+- [page-change-password](../pages/page-change-password)
 - [page-home](../pages/page-home)
 - [page-event-planners](../pages/page-event-planners)
 - [page-about-us](../pages/page-about-us)
@@ -50,6 +51,7 @@ graph TD;
   app-root --> page-prelaunch
   app-root --> page-forgot-password
   app-root --> page-reset-password
+  app-root --> page-change-password
   app-root --> page-home
   app-root --> page-event-planners
   app-root --> page-about-us
@@ -77,6 +79,8 @@ graph TD;
   page-forgot-password --> icn-message
   page-reset-password --> icn-button
   page-reset-password --> icn-message
+  page-change-password --> icn-button
+  page-change-password --> icn-message
   page-event-planners --> app-event-planner-bio-item
   page-event-planners --> app-event-planner-item
   app-event-planner-item --> app-responsive-image

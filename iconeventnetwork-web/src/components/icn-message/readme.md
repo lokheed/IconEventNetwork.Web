@@ -59,6 +59,7 @@ Type: `Promise<void>`
  - [app-profile-phone-number-item](../app-profile-phone-number-item)
  - [app-profile-picture](../app-profile-picture)
  - [app-profile-social-media-item](../app-profile-social-media-item)
+ - [page-change-password](../pages/page-change-password)
  - [page-forgot-password](../pages/page-forgot-password)
  - [page-reset-password](../pages/page-reset-password)
 
@@ -73,6 +74,7 @@ graph TD;
   app-profile-phone-number-item --> icn-message
   app-profile-picture --> icn-message
   app-profile-social-media-item --> icn-message
+  page-change-password --> icn-message
   page-forgot-password --> icn-message
   page-reset-password --> icn-message
   style icn-message fill:#f9f,stroke:#333,stroke-width:4px

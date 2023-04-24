@@ -677,6 +677,14 @@
       ]
     },
     {
+      "name": "page-change-password",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": []
+    },
+    {
       "name": "page-code-of-conduct",
       "description": {
         "kind": "markdown",

@@ -16,6 +16,7 @@ export class LoginClient extends ClientBase {
                     headers: {
                         'Content-type': 'application/json',
                     },
+                    credentials: 'include',
                     body: JSON.stringify(data)
                 })
                 .then(response => resolve(this.processResponse(response)))
