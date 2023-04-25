@@ -65,7 +65,7 @@ export class PageLogin {
               <input id='password' name='password' placeholder='Password' type="password" onInput={(e) => this.handlePasswordChange(e)} />
           </div>
           <div class='form-item'>
-            <icn-button onClick={e => this.handleLoginClick(e)}>Login</icn-button>
+            <icn-button onClick={e => this.handleLoginClick(e)}>Log In</icn-button>
           </div>
           <div class='form-item'>
             <icn-button type='link' onClick={() => this.handleForgotPasswordClick()}>Forgot Password</icn-button>
