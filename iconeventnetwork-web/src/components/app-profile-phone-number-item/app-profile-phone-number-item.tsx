@@ -43,6 +43,8 @@ export class AppProfilePhoneItem {
     @State() displayId: number = 0;
     @State() displayPhoneNumber: string = '';
     @State() editPhoneNumber: string = '';
+    @State() displayIsPrimary: boolean = false;
+    @State() editIsPrimary: boolean = false;
     @State() displayPhoneNumberTypeId: number = 0;
     @State() editPhoneNumberTypeId: number = 0;
     @State() displayPhoneNumberTypeName: string = '';
@@ -280,7 +282,8 @@ export class AppProfilePhoneItem {
     }
 
     private initializeEditForm() {
-        this.editPhoneNumber = this.displayPhoneNumber;        
+        this.editPhoneNumber = this.displayPhoneNumber;  
+        this.editIsPrimary = this.displayIsPrimary;      
         this.editPhoneNumberTypeId = this.displayPhoneNumberTypeId;
         this.editPhoneNumberTypeName = this.displayPhoneNumberTypeName;
         this.editPhoneNumberCountryId = this.displayPhoneNumberCountryId;
@@ -305,6 +308,7 @@ export class AppProfilePhoneItem {
         let phoneNumberSaveData: PhoneNumberSaveData = {
             data: {
                 RawFormat: this.editPhoneNumber.trim(),
+                IsPrimary: this.editIsPrimary,
                 country: { },
                 phone_number_type: { },
             }
@@ -325,6 +329,7 @@ export class AppProfilePhoneItem {
                                           response.data.attributes.NationalFormat.length > 0 ? 
                     response.data.attributes.NationalFormat :
                     response.data.attributes.RawFormat;
+                this.displayIsPrimary = this.editIsPrimary;
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
@@ -347,6 +352,7 @@ export class AppProfilePhoneItem {
                                           result.data.attributes.NationalFormat.length > 0 ? 
                     result.data.attributes.NationalFormat :
                     result.data.attributes.RawFormat;
+                this.displayIsPrimary = this.editIsPrimary;
                 this.displayPhoneNumberTypeId = this.editPhoneNumberTypeId
                 this.displayPhoneNumberTypeName = this.editPhoneNumberTypeName;
                 this.displayPhoneNumberCountryId = this.editPhoneNumberCountryId;
@@ -406,6 +412,7 @@ export class AppProfilePhoneItem {
                                     this.phoneNumberItem.attributes.NationalFormat 
                                   :
                                     this.phoneNumberItem.attributes.RawFormat;
+        this.displayIsPrimary = this.phoneNumberItem.attributes.IsPrimary??false;
         this.displayPhoneNumberTypeId = this.phoneNumberItem.attributes.phone_number_type.data.id;
         this.displayPhoneNumberTypeName = this.phoneNumberItem.attributes.phone_number_type.data.attributes.Name;
         this.displayPhoneNumberCountryId = this.phoneNumberItem.attributes.country.data.id;
@@ -447,6 +454,11 @@ export class AppProfilePhoneItem {
                                 </div>
                                 <div class='sub-content-value'>
                                     {this.displayPhoneNumber}
+                                    {this.displayIsPrimary &&
+                                        <span>
+                                            <i class="fa-solid fa-circle-check success"></i> Primary
+                                        </span>                                          
+                                    }
                                 </div>
                             </div>                           
                             {!this.displayIsValidated &&
@@ -500,6 +512,21 @@ export class AppProfilePhoneItem {
                                 <icn-message type='error' hidden ref={el => this.phoneNumberErrorMessage = el}>
                                     Phone Number is required.
                                 </icn-message>
+                            </div>
+                            <div class='form-item'>
+                                <label class="checkbox-container">
+                                    Set as Primary
+                                    <input 
+                                        id='is-primary'
+                                        name='is-primary'
+                                        type='checkbox' 
+                                        checked={this.editIsPrimary}
+                                        onChange={() => {
+                                            this.editIsPrimary = !this.editIsPrimary;
+                                        }} 
+                                    />                                   
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="button-container">
                                 { this.phoneNumberItem.id > 0 &&

@@ -143,6 +143,7 @@ export interface AddressAttributes{
     Line2?: string;
     City?: string;
     PostalCode?: string;
+    IsPrimary?: boolean;
     country?: CountryData;
     country_subdivision?: CountrySubdivisionData;
     address_type?: AddressTypeData;
@@ -154,6 +155,7 @@ export interface AddressSaveData{
         Line2?: string;
         City?: string;
         PostalCode?: string;
+        IsPrimary?: boolean;
         country?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         country_subdivision?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         address_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
@@ -260,6 +262,7 @@ export interface EmailAddressData{
 export interface EmailAddressAttributes{
     IsValidated: boolean;
     EmailAddress: string;
+    IsPrimary?: boolean;
     email_address_type: EmailAddressTypeData;
 }
 
@@ -275,6 +278,7 @@ export interface EmailAddressTypeAttributes{
 export interface EmailAddressSaveData{
     data: {
         EmailAddress?: string;
+        IsPrimary?: boolean;
         email_address_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }
 }
@@ -441,6 +445,7 @@ export interface PhoneNumberAttributes{
     E164Format?: string;
     InternationalFormat?: string;
     NationalFormat?: string;
+    IsPrimary?: boolean;
     country?: CountryData;
     phone_number_type?: PhoneNumberTypeData;
 }
@@ -448,6 +453,7 @@ export interface PhoneNumberAttributes{
 export interface PhoneNumberSaveData{
     data: {
         RawFormat?: string;
+        IsPrimary?: boolean;
         country?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
         phone_number_type?: { disconnect?: [{id?: number}], connect?: [{id?: number}] };
     }

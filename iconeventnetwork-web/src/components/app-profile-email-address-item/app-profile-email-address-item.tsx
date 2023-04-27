@@ -36,6 +36,8 @@ export class AppProfileEmailAddressItem {
     @State() displayId: number = 0;
     @State() displayEmailAddress: string = '';
     @State() editEmailAddress: string = '';
+    @State() displayIsPrimary: boolean = false;
+    @State() editIsPrimary: boolean = false;
     @State() displayEmailAddressTypeId: number = 0;
     @State() editEmailAddressTypeId: number = 0;
     @State() displayEmailAddressTypeName: string = '';
@@ -148,7 +150,8 @@ export class AppProfileEmailAddressItem {
     }
 
     private initializeEditForm() {
-        this.editEmailAddress = this.displayEmailAddress;        
+        this.editEmailAddress = this.displayEmailAddress;  
+        this.editIsPrimary = this.displayIsPrimary;      
         this.editEmailAddressTypeId = this.displayEmailAddressTypeId;
         this.editEmailAddressTypeName = this.displayEmailAddressTypeName;
         this.isEditing = true;
@@ -263,6 +266,7 @@ export class AppProfileEmailAddressItem {
         let emailAddressSaveData: EmailAddressSaveData = {
             data: {
                 EmailAddress: this.editEmailAddress.trim(),
+                IsPrimary: this.editIsPrimary,
                 email_address_type: { },
             }
         };
@@ -275,6 +279,7 @@ export class AppProfileEmailAddressItem {
             .then(() => {
                 this.isEditing = false;
                 this.displayEmailAddress = this.editEmailAddress;
+                this.displayIsPrimary = this.editIsPrimary;
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
             })
@@ -292,6 +297,7 @@ export class AppProfileEmailAddressItem {
                 this.emailAddressItem.id = result.data.id;
                 this.displayId = result.data.id;
                 this.displayEmailAddress = this.editEmailAddress;
+                this.displayIsPrimary = this.editIsPrimary;
                 this.displayEmailAddressTypeId = this.editEmailAddressTypeId;
                 this.displayEmailAddressTypeName = this.editEmailAddressTypeName;
                 switch (this.appliesTo) {
@@ -345,6 +351,7 @@ export class AppProfileEmailAddressItem {
     private setDisplayProps() {
         this.displayId = this.emailAddressItem.id;
         this.displayEmailAddress = this.emailAddressItem.attributes.EmailAddress;
+        this.displayIsPrimary = this.emailAddressItem.attributes.IsPrimary??false;
         this.displayEmailAddressTypeId = this.emailAddressItem.attributes.email_address_type.data.id;
         this.displayEmailAddressTypeName = this.emailAddressItem.attributes.email_address_type.data.attributes.Name;
     }
@@ -385,6 +392,11 @@ export class AppProfileEmailAddressItem {
                                     <div>
                                         {this.displayEmailAddress}
                                         <a class='mailto-link-icon' href={`mailto:${this.displayEmailAddress}`}><i class="fa-solid fa-envelope"></i></a>
+                                        {this.displayIsPrimary &&
+                                            <span>
+                                                <i class="fa-solid fa-circle-check success"></i> Primary
+                                            </span>                                          
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -421,6 +433,21 @@ export class AppProfileEmailAddressItem {
                                 <icn-message type='error' hidden ref={el => this.emailAddressInvalidErrorMessage = el}>
                                     Email Address must be in the format username@domain.
                                 </icn-message>
+                            </div>
+                            <div class='form-item'>
+                                <label class="checkbox-container">
+                                    Set as Primary
+                                    <input 
+                                        id='is-primary'
+                                        name='is-primary'
+                                        type='checkbox' 
+                                        checked={this.editIsPrimary}
+                                        onChange={() => {
+                                            this.editIsPrimary = !this.editIsPrimary;
+                                        }} 
+                                    />                                   
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="button-container">
                                 { this.emailAddressItem.id > 0 &&

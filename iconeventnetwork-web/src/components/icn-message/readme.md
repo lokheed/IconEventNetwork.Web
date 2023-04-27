@@ -61,6 +61,7 @@ Type: `Promise<void>`
  - [app-profile-social-media-item](../app-profile-social-media-item)
  - [page-change-password](../pages/page-change-password)
  - [page-forgot-password](../pages/page-forgot-password)
+ - [page-login](../pages/page-login)
  - [page-reset-password](../pages/page-reset-password)
 
 ### Graph
@@ -76,6 +77,7 @@ graph TD;
   app-profile-social-media-item --> icn-message
   page-change-password --> icn-message
   page-forgot-password --> icn-message
+  page-login --> icn-message
   page-reset-password --> icn-message
   style icn-message fill:#f9f,stroke:#333,stroke-width:4px
 ```
