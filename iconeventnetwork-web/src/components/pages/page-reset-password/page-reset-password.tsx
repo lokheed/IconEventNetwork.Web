@@ -130,8 +130,9 @@ export class PageResetPassword {
               </ul>
             </icn-message>
             <icn-message type='error' hidden ref={el => this.saveErrorMessage = el}>
-              An error occured while updating your password. Please recheck your email link and try again. 
-              If the error persists, please contact your account administrator for assistance.
+              Please recheck the link in the Reset Password email. If you received more than one 
+              email, be sure to use the most recent. If the error persists, please contact your 
+              account administrator.
             </icn-message>
           </div>
           <div class='hidden' ref={el => this.successDiv = el}>
