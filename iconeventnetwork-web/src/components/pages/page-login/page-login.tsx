@@ -14,6 +14,7 @@ export class PageLogin {
   }  
   @State() username: string = '';
   @State() password: string = '';
+  private loginErrorMessage: HTMLIcnMessageElement;
 
   private handleUserNameChange(event) {
       this.username = event.target.value;
@@ -25,6 +26,7 @@ export class PageLogin {
 
   private handleLoginClick(e: MouseEvent) {
     e.preventDefault();
+    this.loginErrorMessage.hide();
     let authenticationData: AuthenticationData = {
       identifier: this.username,
       password: this.password
@@ -41,6 +43,7 @@ export class PageLogin {
       window.location.replace('/home')
     })
     .catch(reason => {
+        this.loginErrorMessage.show();
         console.log(reason.error.message);
     });
   }
@@ -67,6 +70,9 @@ export class PageLogin {
           <div class='form-item'>
             <icn-button onClick={e => this.handleLoginClick(e)}>Log In</icn-button>
           </div>
+          <icn-message type='error' hidden ref={el => this.loginErrorMessage = el}>
+            The email address or password is not correct. Please try again.
+          </icn-message>
           <div class='form-item'>
             <icn-button type='link' onClick={() => this.handleForgotPasswordClick()}>Forgot Password</icn-button>
           </div>
