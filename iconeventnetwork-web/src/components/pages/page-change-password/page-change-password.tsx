@@ -128,8 +128,7 @@ export class PageChangePassword {
               </ul>
             </icn-message>
             <icn-message type='error' hidden ref={el => this.saveErrorMessage = el}>
-              An error occured while updating your password. Please recheck your current password and try again. 
-              If the error persists, please contact your account administrator for assistance.
+              Please reenter your current password. If the error persists, please contact your account administrator.
             </icn-message>
           </div>
           <div class='hidden' ref={el => this.successDiv = el}>
