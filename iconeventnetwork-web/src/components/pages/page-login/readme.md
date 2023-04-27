@@ -14,11 +14,13 @@
 ### Depends on
 
 - [icn-button](../../icn-button)
+- [icn-message](../../icn-message)
 
 ### Graph
 ```mermaid
 graph TD;
   page-login --> icn-button
+  page-login --> icn-message
   icn-button --> icn-modal
   icn-button --> icn-button
   app-root --> page-login

@@ -73,6 +73,7 @@ graph TD;
   app-login-button --> app-nav-user-info
   app-nav-user-info --> app-responsive-image
   page-login --> icn-button
+  page-login --> icn-message
   icn-button --> icn-modal
   icn-button --> icn-button
   page-forgot-password --> icn-button

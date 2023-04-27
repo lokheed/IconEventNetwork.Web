@@ -65,9 +65,11 @@ export class PageProfilePerson {
                 },
                 EmailAddresses: {
                     populate: ['email_address_type'],
+                    sort: ['IsPrimary:desc', 'EmailAddress']
                 },
                 PhoneNumbers: {
                     populate: ['phone_number_type', 'country'],
+                    sort: ['IsPrimary:desc', 'E164Format']
                 },
                 prefix: {
                     fields: ['Name'],

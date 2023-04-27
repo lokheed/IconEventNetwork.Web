@@ -64,6 +64,8 @@ export class AppProfileAddressItem {
     @State() editCountrySubdivisionCode: string = '';
     @State() displayCountrySubdivisionId: number = 0;
     @State() editCountrySubdivisionId: number = 0;
+    @State() displayIsPrimary: boolean = false;
+    @State() editIsPrimary: boolean = false;
     @State() addressTypes: DataResponse<AddressTypeAttributes>[];
     @State() countries: DataResponse<CountryAttributes>[];
     @State() countrySubdivisions: DataResponse<CountrySubdivisionAttributes>[];
@@ -204,6 +206,7 @@ export class AppProfileAddressItem {
         this.editCountrySubdivisionCode = this.displayCountrySubdivisionCode;
         this.editAddressTypeId = this.displayAddressTypeId;
         this.editAddressTypeName = this.displayAddressTypeName;
+        this.editIsPrimary = this.displayIsPrimary;
         this.isEditing = true;
     }
 
@@ -414,6 +417,7 @@ export class AppProfileAddressItem {
                 Line2: this.displayLine2??'',
                 City: this.displayCity??'',
                 PostalCode: this.displayPostalCode??'',
+                IsPrimary: this.editIsPrimary,
                 country: { },
                 country_subdivision: { },
                 address_type: { },
@@ -465,6 +469,7 @@ export class AppProfileAddressItem {
                 this.displayCountrySubdivisionCode = this.editCountrySubdivisionCode;
                 this.displayAddressTypeId = this.editAddressTypeId;
                 this.displayAddressTypeName = this.editAddressTypeName;
+                this.displayIsPrimary = this.editIsPrimary;
             })
             .catch(reason => {
                 console.log(reason.error.message);
@@ -503,6 +508,7 @@ export class AppProfileAddressItem {
                 this.addressItem.attributes.address_type.data.id = this.editAddressTypeId;
                 this.displayAddressTypeName = this.editAddressTypeName;
                 this.addressItem.attributes.address_type.data.attributes.Name = this.editAddressTypeName;
+                this.displayIsPrimary = this.editIsPrimary;
                 switch (this.appliesTo) {
                     case 'person':
                         let personSaveData: PersonSaveData = {
@@ -564,6 +570,7 @@ export class AppProfileAddressItem {
         this.displayCountrySubdivisionCode = this.addressItem.attributes.country_subdivision?.data?.attributes?.Code??'';
         this.displayAddressTypeId = this.addressItem.attributes.address_type.data.id;
         this.displayAddressTypeName = this.addressItem.attributes.address_type.data.attributes.Name;
+        this.displayIsPrimary = this.addressItem.attributes.IsPrimary??false;
     }
         
     componentWillLoad() {
@@ -609,7 +616,12 @@ export class AppProfileAddressItem {
                                     {this.displayCountrySubdivisionCode ? this.displayCountrySubdivisionCode.substring(3, 5).toUpperCase() + ' ' : ''}
                                     {this.displayPostalCode ?? ''}
                                     {this.displayCountryA2 && this.displayCountryA2 != 'US' ? <br/> : '' }
-                                    {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }
+                                    {this.displayCountryA2 && this.displayCountryA2 != 'US' ? this.displayCountryName : '' }       
+                                    {this.displayIsPrimary &&
+                                        <span>
+                                            <i class="fa-solid fa-circle-check success"></i> Primary
+                                        </span>                                          
+                                    }
                                 </div>
                             </div>
                         </div>               
@@ -688,6 +700,21 @@ export class AppProfileAddressItem {
                             <div class='form-item'>
                                 <label htmlFor="postal-code">Postal Code <span class='optional'>(Optional)</span></label>
                                 <input id='postal-code' name='postal-code' type="text" value={this.editPostalCode} onInput={(e) => this.handlePostalCodeChange(e)} />
+                            </div>
+                            <div class='form-item'>
+                                <label class="checkbox-container">
+                                    Set as Primary
+                                    <input 
+                                        id='is-primary'
+                                        name='is-primary'
+                                        type='checkbox' 
+                                        checked={this.editIsPrimary}
+                                        onChange={() => {
+                                            this.editIsPrimary = !this.editIsPrimary;
+                                        }} 
+                                    />                                   
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="button-container">
                                 { this.addressItem.id > 0 &&

@@ -557,6 +557,11 @@
     .hidden {
         display: none;
     }
+
+    i.success {
+        color: var(--color-success-main);
+        margin: 0 0 0 .5em;
+    }
 }
 .profile-page.person-at-company,
 .profile-page.company {
