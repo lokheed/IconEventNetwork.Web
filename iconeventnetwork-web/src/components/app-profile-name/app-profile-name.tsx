@@ -389,19 +389,6 @@ export class AppProfileName {
                                 </icn-message>
                             </div>
                             <div class='form-item'>
-                                <label htmlFor="directory-name">Directory Name</label>
-                                <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
-                                <div class='form-helper-text'>How your name is displayed in the Directory</div>
-                                <icn-message type='error' hidden ref={el => this.directoryNameErrorMessage = el}>
-                                    Directory Name is required.
-                                </icn-message>
-                            </div>
-                            <div class='form-item'>
-                                <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
-                                <input id='preferred-name' name='preferred-name' type="text" maxLength={50} value={this.editPreferredName} onInput={(e) => this.handlePreferredNameChange(e)} />
-                                <div class='form-helper-text'>What you like to be called</div>
-                            </div>
-                            <div class='form-item'>
                                 <label htmlFor='suffix'>Suffix <span class='optional'>(Optional)</span></label>
                                 <select id='suffix' name='suffix' onInput={(event) => this.handleSuffixSelect(event)}>
                                     {this.suffixes?.sort((a,b) => {
@@ -417,6 +404,19 @@ export class AppProfileName {
                                         </option>
                                     ))}
                                 </select>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="preferred-name">Preferred Name <span class='optional'>(Optional)</span></label>
+                                <input id='preferred-name' name='preferred-name' type="text" maxLength={50} value={this.editPreferredName} onInput={(e) => this.handlePreferredNameChange(e)} />
+                                <div class='form-helper-text'>What you like to be called</div>
+                            </div>
+                            <div class='form-item'>
+                                <label htmlFor="directory-name">Directory Name</label>
+                                <input id='directory-name' name='directory-name' type="text" required maxLength={50} ref={el => this.directoryNameInput = el} value={this.editDirectoryName} onInput={(e) => this.handleDirectoryNameChange(e)} />
+                                <div class='form-helper-text'>How your name is displayed in the Directory</div>
+                                <icn-message type='error' hidden ref={el => this.directoryNameErrorMessage = el}>
+                                    Directory Name is required.
+                                </icn-message>
                             </div>
                             <div class='form-item'>
                                 <label htmlFor='pronouns'>Pronouns <span class='optional'>(Optional)</span></label>
