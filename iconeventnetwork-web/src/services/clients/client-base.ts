@@ -291,7 +291,9 @@ export interface ImageData{
 export interface ImageAttributes{
     alternativeText: string;
     url: string;
-    formats? : ImageFormatsInfo
+    formats? : ImageFormatsInfo;
+    caption? : string;
+    name? : string;
 }
 
 export interface ImageResponseData{

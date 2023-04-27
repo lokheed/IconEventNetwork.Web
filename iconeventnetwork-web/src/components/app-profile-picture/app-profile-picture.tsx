@@ -98,31 +98,47 @@ export class AppProfilePicture {
     } 
 
     private saveData() {
-        this.uploadClient.upload(this.imageInput.files[0])
+        const extension = this.imageInput.files[0].name.split('.').pop();
+        const fileName = `${this.personItem.attributes.FirstName??''}${this.personItem.attributes.LastName??''}Headshot${this.personItem.id}.${extension}`;
+        // first upload the new file
+        this.uploadClient.upload(this.imageInput.files[0], fileName)
         .then((response) => {
-            const newImage: ImageInfo = {
-                data: {
-                    id: response[0].id,
-                    attributes: {
-                        formats: response[0].formats,
-                        alternativeText: '',
-                        url: ''
+            // next set the default 
+            const fileId = response[0].id;
+            const imageFormats = response[0].formats;
+            const newFileData = {
+                alternativeText: this.personItem.attributes.DirectoryName??'',
+                caption: this.personItem.attributes.DirectoryName??'',
+            };
+            const formData = new FormData();
+            formData.append('fileInfo', JSON.stringify(newFileData));
+            this.uploadClient.updateFileInfo(fileId, formData)
+            .then(() => {
+                const newImage: ImageInfo = {
+                    data: {
+                        id: fileId,
+                        attributes: {
+                            formats: imageFormats,
+                            alternativeText: this.personItem.attributes.DirectoryName??'',
+                            caption: this.personItem.attributes.DirectoryName??'',
+                            url: ''
+                        }
                     }
                 }
-            }
-            this.profileActions.deleteDisabled = false;
-            const formerImageId = this.displayImage.data?.id??0; 
-            if (formerImageId > 0) this.uploadClient.destroy(formerImageId);
-            this.displayImage = newImage;            
-            let personSaveData: PersonSaveData = {
-                data: {
-                    ProfileImage: this.displayImage.data.id,
-                }
-            };
-            this.personClient.updatePerson(this.personItem.id, personSaveData)
-            .then(() => {
-                sessionStorage.removeItem(localStorageKeyService.Me);
-                window.location.replace('/profile-person'); // needed to refresh profile image in navigation
+                this.profileActions.deleteDisabled = false;
+                const formerImageId = this.displayImage.data?.id??0; 
+                if (formerImageId > 0) this.uploadClient.destroy(formerImageId);
+                this.displayImage = newImage;            
+                let personSaveData: PersonSaveData = {
+                    data: {
+                        ProfileImage: this.displayImage.data.id,
+                    }
+                };
+                this.personClient.updatePerson(this.personItem.id, personSaveData)
+                .then(() => {
+                    sessionStorage.removeItem(localStorageKeyService.Me);
+                    window.location.replace('/profile-person'); // needed to refresh profile image in navigation
+                });
             });
         });
         this.isEditing = false;

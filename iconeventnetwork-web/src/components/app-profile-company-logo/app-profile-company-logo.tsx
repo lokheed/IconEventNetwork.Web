@@ -95,7 +95,7 @@ export class AppProfileCompanyLogo {
     }
 
     private saveData() {
-        this.uploadClient.upload(this.imageInput.files[0])
+        this.uploadClient.upload(this.imageInput.files[0], this.imageInput.files[0].name)
         .then((response) => {
             const newImage: ImageInfo = {
                 data: {
